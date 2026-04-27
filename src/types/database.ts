@@ -147,6 +147,18 @@ export type Database = {
         Args: { target_tenant: string };
         Returns: boolean;
       };
+      create_tenant_with_owner: {
+        Args: {
+          p_business_name: string;
+          p_business_type: string;
+          p_city?: string | null;
+          p_country?: string | null;
+          p_timezone?: string | null;
+          p_language?: string | null;
+          p_human_fallback_number?: string | null;
+        };
+        Returns: string;
+      };
     };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;

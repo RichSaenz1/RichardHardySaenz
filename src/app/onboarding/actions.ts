@@ -34,59 +34,20 @@ export async function completeOnboarding(
     return { error: "You must be logged in to finish onboarding." };
   }
 
-  const { data: existingTenant } = await supabase
-    .from("tenant_memberships")
-    .select("tenant_id")
-    .eq("user_id", user.id)
-    .limit(1)
-    .maybeSingle();
-
-  if (existingTenant?.tenant_id) {
-    redirect("/dashboard");
-  }
-
   const values = parsed.data;
 
-  const { data: tenant, error: tenantError } = await supabase
-    .from("tenants")
-    .insert({
-      business_name: values.business_name,
-      business_type: values.business_type,
-      city: values.city || null,
-      country: values.country || null,
-      timezone: values.timezone,
-      status: "draft",
-      plan: "starter",
-      owner_user_id: user.id,
-    })
-    .select("*")
-    .single();
-
-  if (tenantError || !tenant) {
-    return { error: tenantError?.message ?? "Could not create tenant." };
-  }
-
-  const { error: membershipError } = await supabase.from("tenant_memberships").insert({
-    tenant_id: tenant.id,
-    user_id: user.id,
-    role: "owner",
+  const { error } = await supabase.rpc("create_tenant_with_owner", {
+    p_business_name: values.business_name,
+    p_business_type: values.business_type,
+    p_city: values.city || null,
+    p_country: values.country || null,
+    p_timezone: values.timezone,
+    p_language: values.language,
+    p_human_fallback_number: values.human_fallback_number || null,
   });
 
-  if (membershipError) {
-    return { error: membershipError.message };
-  }
-
-  const { error: settingsError } = await supabase.from("tenant_settings").insert({
-    tenant_id: tenant.id,
-    languages: [values.language],
-    human_fallback_number: values.human_fallback_number || null,
-    tone: "friendly",
-    hours: {},
-    services: [],
-  });
-
-  if (settingsError) {
-    return { error: settingsError.message };
+  if (error) {
+    return { error: error.message };
   }
 
   redirect("/dashboard");
