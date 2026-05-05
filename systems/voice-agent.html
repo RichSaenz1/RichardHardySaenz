@@ -1,179 +1,500 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voice Agent System | The Future Studio</title>
-<meta name="description" content="A bilingual AI voice agent system for inbound calls, client intake, routing, follow-up, transcripts, and call analytics.">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script><title>Voice Agent System | The Future Studio</title>
+<meta name="description" content="A bilingual AI voice agent system for call answering, lead qualification, routing, follow-up, transcripts, and client intake.">
 <link rel="icon" type="image/png" href="../future-studio-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
 <style>
 :root{
   --cream:#fff8f5;
-  --white:#ffffff;
-  --black:#0a0a0a;
+  --white:#fff;
+  --black:#080808;
   --cyan:#00e5cc;
+  --blue:#38bdf8;
   --violet:#9b59ff;
-  --cyan-glow:rgba(0,229,204,0.34);
-  --violet-glow:rgba(155,89,255,0.28);
+  --muted:#6f6f76;
+  --line:rgba(8,8,8,.14);
+  --border-dark:rgba(10,10,10,.18);
+  --text-dark:#0a0a0a;
   --text-mid:#444;
-  --text-muted:#7b7b7b;
+  --text-muted:#777;
   --font-d:'Barlow Condensed',sans-serif;
   --font-b:'DM Sans',sans-serif;
-  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease:cubic-bezier(.25,.46,.45,.94);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{background:var(--cream);color:var(--black);font-family:var(--font-b);overflow-x:hidden}
+body{font-family:var(--font-b);background:var(--cream);color:var(--black);overflow-x:hidden}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{cursor:pointer;border:0;background:none;font-family:inherit}
-ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-section,nav,footer{position:relative;z-index:1}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-.wrap-wide{max-width:1440px;margin:0 auto;padding:0 32px}
-.headline-xl{font-family:var(--font-d);font-size:clamp(68px,10vw,148px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.88;letter-spacing:-.01em}
-.headline-lg{font-family:var(--font-d);font-size:clamp(46px,6vw,92px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9;letter-spacing:-.01em}
-.headline-md{font-family:var(--font-d);font-size:clamp(34px,4vw,58px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.94}
-.headline-sm{font-family:var(--font-d);font-size:clamp(24px,3vw,38px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:1}
-.eyebrow{font-family:var(--font-d);font-size:18px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.body-lg{font-size:18px;line-height:1.75;color:var(--text-mid)}
-.body-sm{font-size:14px;line-height:1.65;color:var(--text-muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;font-family:var(--font-d);font-weight:800;font-size:17px;letter-spacing:.08em;text-transform:uppercase;transition:all .24s var(--ease);border:2px solid transparent}
+section,nav,footer,.marquee{position:relative;z-index:1}
+.wrap{width:min(100% - 56px,1320px);margin:0 auto}
+.wrap-narrow{width:min(100% - 56px,1040px);margin:0 auto}
+.headline-xl{font-family:var(--font-d);font-size:clamp(74px,9.2vw,178px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.82;letter-spacing:-.025em}
+.headline-lg{font-family:var(--font-d);font-size:clamp(56px,6.6vw,126px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.84;letter-spacing:-.018em}
+.headline-md{font-family:var(--font-d);font-size:clamp(40px,4vw,72px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9}
+.headline-sm{font-family:var(--font-d);font-size:clamp(28px,2.8vw,44px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.94}
+.eyebrow{font-family:var(--font-d);font-size:18px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.eyebrow-line{display:flex;align-items:center;gap:16px}
+.eyebrow-line::before{content:"";width:54px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:block;flex:0 0 auto}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.body-lg{font-size:20px;line-height:1.72;color:#444;max-width:720px}
+.body-md{font-size:17px;line-height:1.7;color:#54545b}
+.body-sm{font-size:14px;line-height:1.65;color:#777}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:58px;padding:17px 34px;border:2px solid transparent;font-family:var(--font-d);font-weight:800;font-size:18px;letter-spacing:.085em;text-transform:uppercase;transition:all .22s var(--ease);white-space:nowrap}
 .btn-grad{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
-.btn-grad:hover{background:var(--black);color:var(--white);box-shadow:0 10px 28px rgba(0,0,0,.25);transform:translateY(-2px)}
-.btn-dark{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-grad:hover{background:var(--black);color:var(--white);transform:translateY(-2px)}
+.btn-dark{background:var(--black);border-color:var(--black);color:var(--white)}
 .btn-dark:hover{background:var(--white);color:var(--black)}
+.btn-outline{border-color:var(--black);color:var(--black);background:transparent}
+.btn-outline:hover{background:var(--black);color:var(--white)}
 .btn-outline-dark{border-color:var(--black);color:var(--black);background:transparent}
 .btn-outline-dark:hover{background:var(--black);color:var(--white)}
-.btn-outline-white{border-color:rgba(255,255,255,.45);color:var(--white);background:transparent}
-.btn-outline-white:hover{background:var(--white);color:var(--black)}
+.btn-whatsapp:hover{background:#25D366!important;border-color:#25D366!important;color:var(--white)!important;box-shadow:0 10px 28px rgba(37,211,102,.32)}
+.btn-outline-light{border-color:rgba(255,255,255,.42);color:var(--white);background:transparent}
+.btn-outline-light:hover{background:var(--white);color:var(--black)}
 
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,248,245,.95);backdrop-filter:blur(18px);border-bottom:1px solid rgba(10,10,10,.08);transition:transform .32s ease,background .32s ease}
+.top-urgency-bar{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--black);color:var(--white);border-bottom:1px solid rgba(255,255,255,.12)}
+.top-urgency-inner{width:min(100% - 56px,1320px);margin:0 auto;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
+.top-urgency-copy{font-size:14px;line-height:1.45;color:rgba(255,255,255,.82)}
+.top-urgency-copy strong{color:var(--white)}
+.top-urgency-copy span{color:var(--cyan)}
+.top-urgency-cta{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:9px 16px;border:1px solid rgba(255,255,255,.18);font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black);white-space:nowrap}
+.top-urgency-cta:hover{background:var(--white)}
+body.has-urgency-bar #nav{top:56px}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);transition:transform .4s var(--ease),background .3s,border-color .3s;border-bottom:1px solid transparent}
+#nav.scrolled{background:rgba(255,248,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border-dark)}
 #nav.nav-hidden{transform:translateY(-100%)}
-.nav-inner{height:82px;display:flex;align-items:center;justify-content:space-between;max-width:1440px;margin:0 auto;padding:0 28px;position:relative}
-.nav-links,.nav-actions{display:flex;align-items:center;gap:24px}
-.nav-links a{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.nav-links a:hover{color:var(--cyan)}
-.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-.nav-logo img{height:118px;width:auto;object-fit:contain;padding:18px 0}
-.lang-toggle{display:flex;border:2px solid var(--black);height:40px;background:rgba(255,255,255,.55)}
-.lang-btn{min-width:44px;padding:0 12px;font-family:var(--font-d);font-weight:800;letter-spacing:.08em;color:var(--black)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:112px;padding:0 32px;max-width:100%;margin:0;gap:20px;position:relative}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{width:auto;height:130px;object-fit:contain;padding:18px 0}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-family:var(--font-d);font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--black);transition:all .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .25s var(--ease)}
+.nav-links a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.nav-linkedin{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:6px;background:var(--black);color:var(--white);transition:all .25s var(--ease);flex-shrink:0;line-height:1;font-size:0}
+.nav-linkedin svg{display:block}
+.nav-linkedin:hover{background:linear-gradient(135deg,var(--cyan),var(--violet));transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,229,204,.3)}
+.lang-toggle{display:flex;background:rgba(10,10,10,0.06);border:1px solid var(--border-dark);padding:3px;gap:2px}
+.lang-btn{padding:5px 13px;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:all .2s;background:none;border:none;cursor:pointer}
 .lang-btn.active{background:var(--black);color:var(--white)}
-.nav-hamburger{display:none;width:48px;height:48px;border:2px solid var(--black);align-items:center;justify-content:center;flex-direction:column;gap:5px;background:var(--cream)}
-.nav-hamburger span{width:22px;height:2px;background:var(--black)}
-.nav-mobile{display:none;position:absolute;top:82px;left:0;right:0;background:var(--cream);border-bottom:2px solid var(--black);padding:22px 28px}
-.nav-mobile.open{display:grid;gap:14px}
-.nav-mobile a{font-family:var(--font-d);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.btn-sm{min-height:46px;padding:13px 25px;font-size:15px}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;width:40px}
+.nav-hamburger span{display:block;height:1.5px;background:var(--black);transition:all .3s}
+.nav-hamburger.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+.nav-mobile{display:none;background:var(--cream);border-top:2px solid var(--black);padding:24px 32px 32px}
+.nav-mobile.open{display:block}
+.nav-mobile a{display:block;padding:14px 0;font-family:var(--font-d);font-size:22px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-mid);border-bottom:1px solid var(--border-dark);text-align:center}
+.nav-mobile a:hover{color:var(--black)}
+.nav-mobile .btn{margin-top:20px;width:100%;justify-content:center}
+.nav-mobile-meta{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 0 20px;margin-bottom:4px}
+.nav-mobile .lang-toggle{display:inline-flex}
 
-.hero{min-height:calc(100vh - 82px);padding:156px 0 88px;background:
-  radial-gradient(circle at 8% 18%, rgba(0,229,204,.35), transparent 28%),
-  radial-gradient(circle at 86% 72%, rgba(155,89,255,.32), transparent 34%),
-  linear-gradient(135deg,#f5fffb 0%,#fff8f5 48%,#ead8ff 100%);
-  overflow:hidden;
-}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.82fr);gap:54px;align-items:end}
-.hero-kicker{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-.hero-kicker::before,.mini-line{content:'';display:block;width:54px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--violet))}
-.hero-copy{max-width:920px}
-.hero-copy .body-lg{max-width:760px;margin-top:32px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-.proof-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.proof-pill{border:2px solid var(--black);background:rgba(255,255,255,.7);padding:12px 16px;font-family:var(--font-d);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.hero-card{border:2px solid var(--black);background:var(--white);box-shadow:14px 14px 0 var(--cyan);padding:22px;align-self:center}
-.hero-video{border:2px solid var(--black);background:var(--black);overflow:hidden}
-.hero-video video{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--black)}
-.video-caption{display:flex;align-items:center;gap:10px;padding:16px 18px;background:var(--black);color:var(--white);font-family:var(--font-d);font-size:17px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-.video-caption span{width:10px;height:10px;background:var(--cyan);display:inline-block}
-.section{padding:104px 0}
-.section-tight{padding:80px 0}
+.hero{min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--cream);position:relative}
+.hero-body{flex:1;display:flex;align-items:center;padding:120px 0 60px;position:relative;z-index:2;width:100%}
+.orb{position:absolute;border-radius:50%;filter:blur(10px);opacity:.88;pointer-events:none;mix-blend-mode:multiply}
+.hero-orb-1{width:500px;height:500px;top:-100px;left:-150px;background:radial-gradient(circle,var(--cyan),rgba(155,89,255,.36),transparent 67%);animation:floatA 11s ease-in-out infinite}
+.hero-orb-2{width:600px;height:600px;bottom:-100px;right:-200px;background:radial-gradient(circle,rgba(155,89,255,.4),transparent 68%);animation:floatB 13s ease-in-out infinite}
+.hero-orb-3{width:150px;height:150px;top:40%;left:50%;background:radial-gradient(circle,rgba(0,229,204,.45),transparent 70%);animation:floatC 9s ease-in-out infinite;opacity:.25}
+@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(32px,24px) scale(1.08)}}
+@keyframes floatB{0%,100%{transform:translate(0,0)}50%{transform:translate(-34px,-18px)}}
+@keyframes floatC{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,-28px)}}
+.hero-content{position:relative;z-index:2;width:100%;text-align:left}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.hero-eyebrow-line{width:48px;height:2px;background:var(--cyan);flex-shrink:0}
+.hero-h1{margin-bottom:36px}
+.hero-h1 .line{overflow:visible;display:block}
+.hero-h1 .line span{display:block;animation:slideUp .9s var(--ease) both}
+.mobile-only-break{display:none}
+.hero-h1 .line:nth-child(1) span{animation-delay:.1s}
+.hero-h1 .line:nth-child(2) span{animation-delay:.22s}
+.hero-h1 .line:nth-child(3) span{animation-delay:.34s}
+.hero-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:48px;flex-wrap:wrap;text-align:left}
+.hero-desc{max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.75;color:#323238;opacity:1;animation:fadeIn .8s .5s both}
+.hero-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start;animation:fadeIn .8s .65s both}
+.hero-full-strip{width:100%;animation:fadeIn .8s .8s both}
+.hero-stats{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--black);border-top:none}
+.stat-cell{padding:22px 16px;text-align:center;border-right:1px solid var(--border-dark);background:transparent}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;line-height:1}
+.stat-num.count-cyan{color:var(--cyan)}
+.stat-num.count-violet{color:var(--violet)}
+.stat-num.count-dark{color:var(--text-dark)}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;font-family:var(--font-d)}
+.hero-benefits{display:flex;flex-wrap:wrap;gap:0;border:2px solid var(--black);border-top:none}
+.hero-benefit{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 24px;border-right:1px solid var(--border-dark);flex:1;background:rgba(255,248,245,.72)}
+.hero-benefit:last-child{border-right:none}
+.hero-benefit-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex-shrink:0;animation:pulseDot 1.35s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:.62;transform:scale(1);box-shadow:0 0 0 rgba(0,229,204,0)}50%{opacity:1;transform:scale(1.7);box-shadow:0 0 18px rgba(0,229,204,.72)}}
+.hero-benefit:nth-child(even) .hero-benefit-dot{animation-name:pulseDotViolet}
+@keyframes pulseDotViolet{0%,100%{opacity:.62;transform:scale(1);box-shadow:0 0 0 rgba(143,91,255,0)}50%{opacity:1;transform:scale(1.7);box-shadow:0 0 18px rgba(143,91,255,.72)}}
+@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.marquee{overflow:hidden;border-bottom:2px solid var(--black);background:var(--cream)}
+.marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 28s linear infinite;padding:18px 0}
+.marquee span{font-family:var(--font-d);font-size:27px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--black);padding:0 28px}
+.marquee .accent{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.section{padding:110px 0}
+main{display:flex;flex-direction:column}
+#hero{order:1}
+#live-demo{order:2}
+#call-flow{order:3}
+#walkthrough{order:4}
+.marquee{order:5}
+#features{order:6}
+#proof{order:7}
+#fit{order:8}
+#process{order:9}
+#buy{order:10}
+#bonus{order:11}
+#faq{order:12}
+.final-cta{order:13}
 .section-dark{background:var(--black);color:var(--white)}
-.section-dark .body-lg,.section-dark .body-sm{color:rgba(255,255,255,.68)}
-.section-head{display:grid;grid-template-columns:.8fr 1fr;gap:42px;align-items:end;margin-bottom:44px}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--black)}
-.feature-card{background:var(--white);border-right:1px solid var(--black);border-bottom:1px solid var(--black);padding:34px;min-height:250px;transition:all .26s ease}
+.section-dark .body-lg,.section-dark .body-md,.section-dark .body-sm{color:rgba(255,255,255,.66)}
+.section-head{display:grid;grid-template-columns:1fr .82fr;gap:64px;align-items:end;margin-bottom:56px}
+.video-section{padding:116px 0;background:#09090b;color:var(--white)}
+.video-section .section-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;margin-bottom:58px}
+.video-section .section-head .body-lg{max-width:780px;color:rgba(255,255,255,.82)}
+.video-stage{max-width:1040px;margin:0 auto;border:1px solid rgba(255,255,255,.1);overflow:hidden}
+.video-card{position:relative;background:#111;overflow:hidden}
+.video-card video{width:100%;height:100%;min-height:560px;object-fit:cover;opacity:.72;filter:saturate(.9)}
+.video-card.large video{min-height:560px}
+.video-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.72));pointer-events:none}
+.play-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;z-index:3;pointer-events:none}
+.play-dot::before{content:"";width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:16px solid #fff;margin-left:4px}
+.video-copy{position:absolute;left:26px;right:24px;bottom:24px;z-index:3}
+.video-copy .kicker{font-family:var(--font-d);font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.video-copy h3{font-family:var(--font-d);font-size:36px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.92;margin-top:8px}
+
+.live-demo-section{padding:112px 0;background:var(--cream);border-bottom:2px solid var(--black)}
+.live-demo-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:58px;align-items:center}
+.live-demo-copy .body-lg{margin-top:24px}
+.live-demo-note{margin-top:26px;display:grid;gap:12px;max-width:560px}
+.live-demo-note span{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.live-demo-note span::before{content:"";width:8px;height:8px;background:var(--cyan);flex:0 0 auto;-webkit-text-fill-color:initial}
+.voice-demo-shell{position:relative;border:2px solid var(--black);background:linear-gradient(135deg,rgba(0,229,204,.16),rgba(255,248,245,.98) 42%,rgba(155,89,255,.18));box-shadow:14px 14px 0 var(--cyan);overflow:hidden}
+.voice-demo-topbar{background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px}
+.voice-live-meta{display:flex;align-items:center;gap:14px;min-width:0}
+.voice-live-dot{position:relative;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px rgba(0,229,204,.65);flex:0 0 auto}
+.voice-live-dot::after{content:"";position:absolute;inset:-7px;border:1px solid rgba(0,229,204,.6);border-radius:50%;animation:pulseDot 1.35s ease-in-out infinite}
+.voice-wave{display:flex;align-items:end;gap:3px;height:18px;margin-left:8px}
+.voice-wave i{display:block;width:4px;background:rgba(255,255,255,.72);animation:voiceWave .8s ease-in-out infinite alternate}
+.voice-wave i:nth-child(1){height:7px;animation-delay:.05s}.voice-wave i:nth-child(2){height:14px;animation-delay:.18s}.voice-wave i:nth-child(3){height:18px;animation-delay:.08s}.voice-wave i:nth-child(4){height:11px;animation-delay:.25s}.voice-wave i:nth-child(5){height:6px;animation-delay:.34s}
+@keyframes voiceWave{from{transform:scaleY(.55);opacity:.45}to{transform:scaleY(1.15);opacity:1}}
+.voice-live-title{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
+.voice-timer-pill{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.12em;border:1px solid rgba(255,255,255,.28);padding:7px 10px;background:rgba(255,255,255,.08)}
+.voice-transcript{min-height:390px;max-height:460px;overflow-y:auto;padding:30px;display:grid;gap:18px;align-content:start;background:rgba(255,255,255,.66)}
+.voice-message{display:flex;gap:14px;align-items:flex-start;animation:fadeIn .28s ease-out both}
+.voice-message.user{flex-direction:row-reverse}
+.voice-avatar{width:42px;height:42px;border:2px solid var(--black);background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:18px;font-weight:800;letter-spacing:.06em;flex:0 0 auto}
+.voice-message.assistant .voice-avatar{background:linear-gradient(135deg,var(--cyan),var(--violet));color:var(--black)}
+.voice-bubble{max-width:78%;border:2px solid var(--black);background:var(--white);padding:18px 20px;color:var(--text-dark);font-size:16px;line-height:1.58;box-shadow:6px 6px 0 rgba(0,229,204,.2)}
+.voice-message.user .voice-bubble{background:var(--black);color:var(--white);box-shadow:6px 6px 0 rgba(155,89,255,.25)}
+.voice-message.partial{opacity:.72}
+.voice-demo-footer{padding:22px 30px 28px;background:var(--white);border-top:2px solid var(--black)}
+.voice-demo-status{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.voice-demo-status span{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.voice-progress{height:9px;background:rgba(8,8,8,.12);flex:1;overflow:hidden}
+.voice-progress div{width:72%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet));animation:voiceProgress 1.5s ease-in-out infinite alternate}
+@keyframes voiceProgress{from{width:34%}to{width:86%}}
+.voice-call-btn{width:100%;min-height:66px}
+.voice-call-btn.is-loading,.voice-call-btn.is-active{background:var(--black);color:var(--white)}
+.voice-call-btn.is-active{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
+.cta-row-inline{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.compare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:34px}
+.compare-card{border:2px solid var(--black);background:var(--white);padding:28px 26px;display:flex;flex-direction:column;gap:16px;transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),color .22s var(--ease)}
+.compare-card:hover{transform:translate(-7px,-8px);box-shadow:10px 10px 0 var(--cyan)}
+.compare-card ul{list-style:none;display:grid;gap:12px}
+.compare-card li{position:relative;padding-left:18px;font-size:15px;line-height:1.65;color:var(--text-mid)}
+.compare-card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--cyan)}
+.compare-kicker{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.compare-card h3{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
+.bonus-strip{border:2px solid var(--black);background:linear-gradient(135deg,var(--cyan),#dffdf8 45%,var(--blue));padding:36px 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.bonus-strip .body-md{color:#173936}
+.price-fit{margin:0 0 22px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.55}
+
+#features{background:var(--black);color:var(--white)}
+#features .body-lg,#features .body-md,#features .body-sm{color:rgba(255,255,255,.72)}
+#features .section-head{align-items:end}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--cyan);background:var(--cyan);box-shadow:0 0 0 1px rgba(0,229,204,.3)}
+.feature-card{min-height:260px;padding:36px;border:0;transition:all .22s ease;background:var(--white);color:var(--black)}
 .feature-card:nth-child(3n){border-right:0}
 .feature-card:nth-child(n+4){border-bottom:0}
-.feature-card:hover{background:var(--black);color:var(--white);transform:translate(-6px,-8px);box-shadow:10px 10px 0 var(--cyan)}
-.feature-icon{font-family:var(--font-d);font-size:48px;font-weight:800;font-style:italic;color:var(--cyan);line-height:1;margin-bottom:22px}
-.feature-title{font-family:var(--font-d);font-size:31px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1;margin-bottom:14px}
-.feature-card p{color:var(--text-mid);line-height:1.65}
-.feature-card:hover p{color:rgba(255,255,255,.72)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
-.black-panel{background:var(--black);color:var(--white);border:2px solid var(--black);padding:44px;box-shadow:14px 14px 0 var(--cyan)}
-.white-panel{background:var(--white);color:var(--black);border:2px solid var(--black);padding:44px;box-shadow:14px 14px 0 rgba(155,89,255,.75)}
-.step-list{display:grid;gap:18px;margin-top:28px}
-.step{display:grid;grid-template-columns:54px 1fr;gap:18px;align-items:start}
-.step-num{height:54px;width:54px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--cyan),var(--violet));font-family:var(--font-d);font-size:28px;font-weight:800;font-style:italic;color:var(--black)}
-.step strong{display:block;font-family:var(--font-d);font-size:24px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
-.system-image{border:2px solid var(--black);box-shadow:14px 14px 0 var(--cyan);background:var(--black);overflow:hidden}
-.system-image img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 42%}
-.price-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:0;border:2px solid var(--black);box-shadow:14px 14px 0 var(--black);background:linear-gradient(120deg,rgba(0,229,204,.18),rgba(155,89,255,.18));overflow:hidden}
-.price-left{padding:44px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;flex-direction:column;justify-content:center}
-.price-label{font-family:var(--font-d);font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
-.price-big{font-family:var(--font-d);font-size:clamp(62px,8vw,112px);font-weight:800;font-style:italic;line-height:.82}
-.price-right{padding:44px;background:rgba(255,255,255,.78)}
-.included{display:grid;gap:13px;margin:24px 0}
-.included li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.5}
-.included li::before{content:'';width:10px;height:10px;background:var(--cyan);margin-top:8px;flex:0 0 auto}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-.faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.faq-card{border:2px solid var(--black);background:var(--white);padding:28px}
-.faq-card h3{font-family:var(--font-d);font-size:26px;font-style:italic;text-transform:uppercase;margin-bottom:12px}
-footer{background:var(--black);color:var(--white);padding:72px 0 36px}
-.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:38px;align-items:start}
-.footer-logo img{height:86px;filter:invert(1)}
-.footer-links{display:grid;gap:10px}
-.footer-links a{font-family:var(--font-d);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
-.footer-links a:hover{color:var(--cyan)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:24px;color:rgba(255,255,255,.48);font-size:13px;text-align:center}
-#whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.35);transition:all .24s ease}
-#whatsapp-btn:hover{background:var(--black);transform:scale(1.05)}
+.feature-card:hover{background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));color:var(--black);transform:translate(-7px,-8px);box-shadow:10px 10px 0 var(--white)}
+.feature-card p,.feature-card .body-md{color:var(--text-dark)!important}
+.feature-card:hover p,.feature-card:hover .body-md{color:var(--black)!important}
+.feature-card:hover .feature-num{color:var(--white);background:none;-webkit-text-fill-color:var(--white)}
+.feature-num{font-family:var(--font-d);font-size:44px;font-weight:800;font-style:italic;color:var(--cyan);background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:22px}
+.feature-title{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.96;margin-bottom:16px}
+.image-row{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:stretch;margin-top:76px}
+.image-frame{border:2px solid var(--black);box-shadow:14px 14px 0 transparent;background:var(--black);overflow:visible;position:relative;isolation:isolate}
+.image-frame::after{content:"";position:absolute;left:14px;right:-14px;bottom:-14px;height:14px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
+.image-frame::before{content:"";position:absolute;top:14px;right:-14px;bottom:-14px;width:14px;background:linear-gradient(180deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
+.image-frame img{position:relative;z-index:1;display:block;width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center 42%}
+.black-box{background:var(--black);color:var(--white);border:2px solid var(--black);box-shadow:14px 14px 0 transparent;padding:46px;position:relative;isolation:isolate}
+.black-box::after{content:"";position:absolute;left:14px;right:-14px;bottom:-14px;height:14px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
+.black-box::before{content:"";position:absolute;top:14px;right:-14px;bottom:-14px;width:14px;background:linear-gradient(180deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
+.black-box>*{position:relative;z-index:1}
+.black-box .body-md{color:rgba(255,255,255,.7)}
+
+.process-section{background:var(--white);background-image:linear-gradient(rgba(8,8,8,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,8,.045) 1px,transparent 1px);background-size:130px 130px}
+.process-head{display:grid;grid-template-columns:1fr;gap:80px;align-items:center;margin-bottom:58px}
+.process-list{border-top:2px solid var(--black)}
+.process-row{display:grid;grid-template-columns:110px minmax(270px,.8fr) 1fr 40px;gap:34px;align-items:center;border-bottom:2px solid var(--black);padding:34px 0}
+.process-num{font-family:var(--font-d);font-size:58px;font-weight:800;font-style:italic;line-height:1;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.process-title{font-family:var(--font-d);font-size:48px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.92}
+.process-time{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--violet),#d93cff 48%,var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:8px}
+.process-arrow{font-family:var(--font-d);font-size:36px;font-weight:800;font-style:italic;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.pricing-dark{background:#09090b;color:var(--white);padding:118px 0}
+.price-intro{text-align:center;margin:0 auto 54px;max-width:790px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.16)}
+.pricing-card{padding:34px 34px 38px;border-right:1px solid rgba(255,255,255,.16);min-height:440px;display:flex;flex-direction:column}
+.pricing-card:last-child{border-right:0}
+.pricing-card.featured{outline:1px solid var(--cyan);background:rgba(0,229,204,.055)}
+.badge{display:inline-flex;align-self:flex-start;padding:6px 10px;background:rgba(0,229,204,.13);color:var(--cyan);font-family:var(--font-d);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+.pricing-card h3{font-family:var(--font-d);font-size:38px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
+.from{font-family:var(--font-d);font-size:56px;font-weight:800;font-style:italic;line-height:1;margin:22px 0 18px;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pricing-card ul{list-style:none;display:grid;gap:11px;margin:12px 0 28px}
+.pricing-card li{display:flex;gap:10px;color:rgba(255,255,255,.7);font-size:15px;line-height:1.45}
+.pricing-card li::before{content:"";width:9px;height:9px;background:var(--cyan);margin-top:7px;flex:0 0 auto}
+.pricing-card .btn{margin-top:auto;width:100%}
+.pricing-dark .btn-grad:hover,.pricing-dark .btn-outline-light:hover{background:var(--white);border-color:var(--white);color:var(--black);transform:translateY(-2px)}
+
+.faq-section{padding:118px 0;background:var(--cream)}
+.faq-head{text-align:center;max-width:760px;margin:0 auto 54px}
+.faq-list{width:100%;max-width:1320px;margin:0 auto;border-top:1px solid rgba(8,8,8,.18)}
+.faq-item{border-bottom:1px solid rgba(8,8,8,.18)}
+.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:24px 0;font-family:var(--font-d);font-size:26px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1.05;cursor:pointer}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-plus{width:34px;height:34px;border:2px solid rgba(8,8,8,.18);display:flex;align-items:center;justify-content:center;font-family:var(--font-b);font-size:24px;font-style:normal;font-weight:400;flex:0 0 auto;transition:all .2s ease}
+.faq-item[open] .faq-plus{background:var(--black);color:var(--white);transform:rotate(45deg)}
+.faq-item p{max-width:none;width:100%;padding:0 0 24px;color:#555;font-size:17px;line-height:1.72}
+
+.final-cta{padding:118px 0;background:linear-gradient(135deg,var(--cyan),#17d8c6 42%,var(--blue));text-align:center}
+.final-cta p{margin:22px auto 32px;color:#153336}
+footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
+.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.footer-logo img{width:auto;height:80px;object-fit:contain;filter:invert(1)}
+.footer-logo-text{font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);max-width:360px;line-height:1.65}
+.footer-col h5{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+
+#whatsapp-btn{position:fixed;right:26px;bottom:26px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(37,211,102,.36);transition:all .22s ease}
+#whatsapp-btn:hover{background:#25D366;color:#fff;box-shadow:0 10px 36px rgba(37,211,102,.48);transform:scale(1.06)}
 #whatsapp-btn svg{width:28px;height:28px}
-#scroll-top{position:fixed;bottom:96px;right:28px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);opacity:0;pointer-events:none;transition:all .25s ease;display:flex;align-items:center;justify-content:center;font-size:28px}
-#scroll-top.visible{opacity:1;pointer-events:all}
+#scroll-top{position:fixed;right:28px;bottom:96px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);opacity:0;pointer-events:none;transition:all .22s ease;display:flex;align-items:center;justify-content:center;font-size:24px}
+#scroll-top.visible{opacity:1;pointer-events:auto}
 #scroll-top:hover{background:var(--cyan);color:var(--black)}
 .vapi-float{position:fixed;left:18px;bottom:18px;z-index:99999;pointer-events:none}
 .vapi-float vapi-widget{pointer-events:auto;display:block;max-width:calc(100vw - 36px)}
-@media(max-width:980px){
+
+@media(max-width:1100px){
+  .top-urgency-inner{width:min(100% - 32px,1320px)}
+  .top-urgency-copy{font-size:13px}
   .nav-links,.nav-actions{display:none}
-  .nav-inner{height:112px;justify-content:center;align-items:flex-start;padding-top:4px}
-  .nav-logo img{height:94px;padding:6px 0}
-  .nav-hamburger{display:flex;position:absolute;left:50%;top:70px;transform:translateX(-50%)}
-  .nav-mobile{top:112px;text-align:center}
-  .hero{padding:154px 0 64px;min-height:auto}
-  .hero-grid,.section-head,.split,.price-panel{grid-template-columns:1fr}
-  .feature-grid,.faq-grid{grid-template-columns:1fr}
-  .feature-card{border-right:0!important;border-bottom:1px solid var(--black)!important;text-align:center}
-  .feature-card:last-child{border-bottom:0!important}
-  .step{text-align:left}
-  .footer-grid{grid-template-columns:1fr;text-align:center;justify-items:center}
-  .footer-links{justify-items:center}
+  .nav-inner{height:126px;justify-content:center;align-items:flex-start;padding-top:2px}
+  .nav-logo img{height:98px;padding:5px 0}
+  .nav-hamburger{display:flex;position:absolute;left:50%;top:76px;transform:translateX(-50%)}
+  .nav-mobile{text-align:center}
+  .hero-body{padding:150px 0 60px}
+  .hero-bottom,.section-head,.image-row,.process-head{grid-template-columns:1fr;text-align:center}
+  .hero-bottom{gap:28px}
+  .hero-actions{align-items:center}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+  .hero-benefit{flex:1 1 45%;justify-content:center;border-bottom:1px solid var(--border-dark)}
+  .video-card video,.video-card.large video{min-height:480px}
+  .live-demo-grid{grid-template-columns:1fr;text-align:center}
+  .live-demo-copy .body-lg,.live-demo-note{margin-left:auto;margin-right:auto}
+  .live-demo-note span{justify-content:center}
+  .compare-grid,.bonus-strip{grid-template-columns:1fr}
+  .feature-grid,.pricing-grid{grid-template-columns:1fr}
+  .feature-card,.pricing-card{border-right:0!important;border-bottom:1px solid var(--black)}
+  .pricing-card{border-bottom-color:rgba(255,255,255,.16)}
+  .process-row{grid-template-columns:74px 1fr;align-items:start}
+  .process-row .body-md{grid-column:2}
+  .process-arrow{display:none}
+  .footer-inner{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .footer-logo{justify-content:center}
+  .footer-col ul{justify-items:center}
 }
-@media(max-width:620px){
-  .wrap,.wrap-wide{padding:0 22px}
-  .headline-xl{font-size:clamp(50px,15vw,78px);text-align:center}
-  .headline-lg,.headline-md{text-align:center}
-  .hero-kicker,.hero-actions,.proof-strip,.cta-row{justify-content:center;text-align:center}
-  .hero-copy .body-lg{text-align:center}
-  .hero-card,.black-panel,.white-panel,.price-left,.price-right{padding:28px}
-  .section{padding:72px 0}
-  .section-tight{padding:60px 0}
-  .system-image img{aspect-ratio:4/3}
-  #whatsapp-btn{bottom:22px;right:18px}
-  #scroll-top{bottom:88px;right:18px}
-  .vapi-float{bottom:80px;left:14px}
-  .vapi-float vapi-widget{max-width:calc(100vw - 28px)}
+@media(max-width:680px){
+  .top-urgency-inner{width:min(100% - 26px,480px);min-height:unset;align-items:flex-start;flex-direction:column;padding:12px 0}
+  .top-urgency-cta{width:100%}
+  .wrap,.wrap-narrow{width:min(100% - 38px,480px)}
+  .headline-xl{font-size:clamp(34px,10vw,48px);line-height:.9;text-align:center;max-width:100%;overflow:visible}
+  .headline-lg{font-size:clamp(46px,13vw,68px);text-align:center}
+  .headline-md{text-align:center}
+  .body-lg,.body-md{text-align:center}
+  .hero{min-height:auto}
+  .hero-body{display:block;padding:118px 0 42px}
+  .hero-content{text-align:center}
+  .hero-h1{max-width:100%;overflow:visible;margin-bottom:24px}
+  .hero-h1 .line span{white-space:normal}
+  .hero-eyebrow .eyebrow{font-size:10px;line-height:1.25;letter-spacing:.22em;max-width:230px}
+  .mobile-only-break{display:block}
+  .hero-eyebrow{justify-content:center;margin:0 auto 22px;gap:10px;max-width:320px}
+  .hero-eyebrow-line{width:34px}
+  .hero-bottom{justify-content:center}
+  .hero-desc{max-width:330px;margin:0 auto;font-size:16px;line-height:1.65}
+  .hero-actions{width:100%;max-width:330px;margin:0 auto}
+  .btn{width:100%;white-space:normal;text-align:center}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .stat-cell:nth-child(5){grid-column:1/3;border-top:1px solid var(--border-dark)}
+  .stat-cell:nth-child(2n){border-right:0}
+  .hero-benefits{display:block}
+  .hero-benefit{border-right:0;border-bottom:1px solid var(--border-dark);justify-content:center}
+  .marquee span{font-size:21px}
+  .section,.video-section,.live-demo-section,.pricing-dark,.faq-section,.final-cta{padding:76px 0}
+  .section-head{gap:24px;margin-bottom:34px}
+  .video-stage{display:block;min-height:0}
+  .video-card video,.video-card.large video{min-height:340px;aspect-ratio:4/5}
+  .voice-demo-shell{box-shadow:9px 9px 0 var(--cyan)}
+  .voice-demo-topbar{align-items:flex-start;flex-direction:column}
+  .voice-live-title{white-space:normal}
+  .voice-transcript{min-height:330px;max-height:420px;padding:22px 18px}
+  .voice-bubble{max-width:84%;font-size:15px;text-align:left}
+  .voice-demo-footer{padding:20px 18px 22px}
+  .voice-demo-status{display:block}
+  .voice-demo-status span{display:block;margin-bottom:12px;text-align:center}
+  .feature-card{text-align:center;padding:30px}
+  .compare-card,.bonus-strip{text-align:center}
+  .image-frame img{aspect-ratio:4/3;min-height:0}
+  .black-box{padding:32px;text-align:center}
+  .process-row{grid-template-columns:1fr;text-align:center;gap:12px;padding:30px 0}
+  .process-row .body-md{grid-column:auto}
+  .process-num{font-size:50px}
+  .process-title{font-size:42px}
+  .pricing-card{text-align:center}
+  .pricing-card li{text-align:left}
+  .badge{align-self:center}
+  .faq-item summary{font-size:22px;text-align:left}
+  #whatsapp-btn{right:18px;bottom:20px}
+  #scroll-top{right:20px;bottom:88px}
+  .vapi-float{left:14px;bottom:82px}
 }
 </style>
 </head>
-<body>
+<body class="has-urgency-bar">
 <canvas id="bg-canvas"></canvas>
+
+<div class="top-urgency-bar">
+  <div class="top-urgency-inner">
+    <p class="top-urgency-copy" data-en="May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span>" data-es="Cupos de implementacion de mayo ya abiertos. <strong>3 builds de voice agent disponibles este mes.</strong> <span>Agenda tu demo gratuita antes de que se llenen.</span>">May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span></p>
+    <a class="top-urgency-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book demo" data-es="Agendar demo">Book demo</a>
+  </div>
+</div>
 
 <nav id="nav">
   <div class="nav-inner">
@@ -181,171 +502,505 @@ footer{background:var(--black);color:var(--white);padding:72px 0 36px}
       <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
       <a href="../#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
       <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-      <a href="../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      <a href="../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
+      <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
     </div>
-    <a href="../" class="nav-logo">
+    <a href="../#hero" class="nav-logo" style="position:absolute;left:50%;transform:translateX(-50%)" aria-label="The Future Studio home">
       <img src="../logo.png" alt="The Future Studio">
     </a>
     <div class="nav-actions">
+      <a href="https://www.linkedin.com/in/richard-hardy" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
       <div class="lang-toggle" id="lang-toggle-d">
         <button class="lang-btn active" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="es">ES</button>
       </div>
-      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad btn-sm" data-en="Book a Free Demo" data-es="Agendar demo gratuita">Book a Free Demo</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-mobile" id="nav-mobile">
-    <div class="lang-toggle" id="lang-toggle-m">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="es">ES</button>
+    <div class="nav-mobile-meta">
+      <div class="lang-toggle" id="lang-toggle-m">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
     </div>
     <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="../#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
     <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="#buy" data-en="Buy" data-es="Comprar">Buy</a>
+    <a href="../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
+    <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
   </div>
 </nav>
 
 <main>
   <section class="hero" id="hero">
-    <div class="wrap-wide">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="hero-kicker">
-            <span class="eyebrow" data-en="Ready-to-install system" data-es="Sistema listo para instalar">Ready-to-install system</span>
+    <div class="orb hero-orb-1"></div>
+    <div class="orb hero-orb-2"></div>
+    <div class="orb hero-orb-3"></div>
+    <div class="hero-body">
+      <div class="wrap">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-line"></span>
+            <span class="eyebrow" data-en="Ready-to-install AI system" data-es="Sistema de IA listo para instalar">Ready-to-install AI system</span>
           </div>
-          <h1 class="headline-xl" data-en="VOICE AGENT<br><span class='grad'>FOR 24/7</span><br>CLIENT RESPONSE" data-es="AGENTE DE VOZ<br><span class='grad'>PARA RESPUESTA</span><br>24/7">VOICE AGENT<br><span class="grad">FOR 24/7</span><br>CLIENT RESPONSE</h1>
-          <p class="body-lg" data-en="A bilingual AI voice agent that answers inbound calls, qualifies enquiries, captures details, routes urgent cases, and sends every conversation back to your team with transcripts and next steps." data-es="Un agente de voz bilingue con IA que responde llamadas, califica consultas, recopila datos, enruta casos urgentes y devuelve cada conversacion a tu equipo con transcripciones y proximos pasos.">A bilingual AI voice agent that answers inbound calls, qualifies enquiries, captures details, routes urgent cases, and sends every conversation back to your team with transcripts and next steps.</p>
-          <div class="hero-actions">
-            <a href="#buy" class="btn btn-grad" data-en="Buy / Reserve This System" data-es="Comprar / Reservar Sistema">Buy / Reserve This System</a>
-            <a href="#walkthrough" class="btn btn-outline-dark" data-en="Watch the Product Video" data-es="Ver el Video">Watch the Product Video</a>
-          </div>
-          <div class="proof-strip">
-            <span class="proof-pill" data-en="Inbound + outbound" data-es="Entrante + saliente">Inbound + outbound</span>
-            <span class="proof-pill" data-en="Bilingual EN/ES" data-es="Bilingue EN/ES">Bilingual EN/ES</span>
-            <span class="proof-pill" data-en="CRM ready" data-es="Listo para CRM">CRM ready</span>
+          <h1 class="hero-h1 headline-xl">
+            <span class="line"><span data-en="AI VOICE <br class='mobile-only-break'>AGENTS" data-es="AGENTES DE <br class='mobile-only-break'>VOZ IA">AI VOICE <br class="mobile-only-break">AGENTS</span></span>
+            <span class="line"><span data-en="THAT <br class='mobile-only-break'>ANSWER" data-es="QUE <br class='mobile-only-break'>RESPONDEN">THAT <br class="mobile-only-break">ANSWER</span></span>
+            <span class="line"><span class="grad" data-en="WHEN YOUR <br class='mobile-only-break'>TEAM CAN'T" data-es="CUANDO TU <br class='mobile-only-break'>EQUIPO NO PUEDE">WHEN YOUR <br class="mobile-only-break">TEAM CAN'T</span></span>
+          </h1>
+          <div class="hero-bottom">
+            <p class="hero-desc" data-en="A custom AI voice agent for service businesses that answers missed calls, qualifies leads, routes urgent conversations, and sends clean summaries to your team so fewer opportunities slip through." data-es="Un agente de voz IA personalizado para negocios de servicios que responde llamadas perdidas, califica leads, enruta conversaciones urgentes y envia resumenes claros a tu equipo para que menos oportunidades se escapen.">A custom AI voice agent for service businesses that answers missed calls, qualifies leads, routes urgent conversations, and sends clean summaries to your team so fewer opportunities slip through.</p>
+            <div class="hero-actions">
+              <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad btn-lg" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+              <a href="#live-demo" class="btn btn-outline-dark" data-en="Try the Voice Agent" data-es="Probar el Voice Agent">Try the Voice Agent</a>
+            </div>
           </div>
         </div>
-        <aside class="hero-card" id="walkthrough">
-          <div class="hero-video">
-            <video controls playsinline preload="metadata" poster="../assets/funnel-images/team-automation-dashboard-review-wide.png">
-              <source src="../videos/Richard%20Hardy%20-%20Use%20Cases%20_%20Who%20This%20Is%20For.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption"><span></span><span data-en="Watch this before buying" data-es="Mira esto antes de comprar">Watch this before buying</span></div>
-          </div>
-        </aside>
+      </div>
+    </div>
+    <div class="hero-full-strip">
+      <div class="hero-stats">
+        <div class="stat-cell">
+          <div class="stat-num count-cyan">24/7</div>
+          <div class="stat-label" data-en="Call Coverage" data-es="Cobertura de llamadas">Call Coverage</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num count-dark" data-en="Live Fast" data-es="Rapido">Live Fast</div>
+          <div class="stat-label" data-en="7-21 Days" data-es="7-21 dias">7-21 Days</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num count-violet" data-en="Bilingual" data-es="Bilingue">Bilingual</div>
+          <div class="stat-label" data-en="By Design" data-es="Por diseno">By Design</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num count-violet" data-en="Owned" data-es="Propio">Owned</div>
+          <div class="stat-label" data-en="No Lock-In" data-es="Sin contrato cerrado">No Lock-In</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num count-cyan" data-en="Never Miss" data-es="No pierdas">Never Miss</div>
+          <div class="stat-label" data-en="A Call" data-es="Una llamada">A Call</div>
+        </div>
+      </div>
+      <div class="hero-benefits">
+        <span class="hero-benefit"><span class="hero-benefit-dot"></span><span data-en="No lock-in contracts" data-es="Sin contratos de permanencia">No lock-in contracts</span></span>
+        <span class="hero-benefit"><span class="hero-benefit-dot" style="background:var(--violet)"></span><span data-en="Real systems, not demos" data-es="Sistemas reales, no demos">Real systems, not demos</span></span>
+        <span class="hero-benefit"><span class="hero-benefit-dot"></span><span data-en="Human handoff logic included" data-es="Logica de traspaso humano incluida">Human handoff logic included</span></span>
+        <span class="hero-benefit"><span class="hero-benefit-dot" style="background:var(--violet)"></span><span data-en="Designer-built, not template-adapted" data-es="Disenado a medida, no adaptado de plantilla">Designer-built, not template-adapted</span></span>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap-wide">
+  <section class="live-demo-section" id="live-demo">
+    <div class="wrap live-demo-grid">
+      <div class="live-demo-copy">
+        <p class="eyebrow" data-en="Live voice demo" data-es="Demo de voz en vivo">Live voice demo</p>
+        <h2 class="headline-lg" data-en="TRY THE<br>VOICE AGENT<br>BEFORE YOU BUILD" data-es="PRUEBA EL<br>VOICE AGENT<br>ANTES DE CONSTRUIR">TRY THE<br>VOICE AGENT<br>BEFORE YOU BUILD</h2>
+        <p class="body-lg" data-en="Call the demo agent, ask a real service-business question, and hear how it qualifies the lead, captures context, and prepares the next step." data-es="Llama al agente demo, haz una pregunta real de negocio de servicios y escucha como califica el lead, captura contexto y prepara el siguiente paso.">Call the demo agent, ask a real service-business question, and hear how it qualifies the lead, captures context, and prepares the next step.</p>
+        <div class="live-demo-note">
+          <span data-en="Real-time transcript" data-es="Transcripcion en tiempo real">Real-time transcript</span>
+          <span data-en="Live call timer" data-es="Temporizador de llamada">Live call timer</span>
+          <span data-en="Same Vapi demo logic" data-es="Misma logica demo de Vapi">Same Vapi demo logic</span>
+        </div>
+      </div>
+
+      <div class="voice-demo-shell" aria-label="Interactive voice agent demo">
+        <div class="voice-demo-topbar">
+          <div class="voice-live-meta">
+            <span class="voice-live-dot" aria-hidden="true"></span>
+            <div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="voice-live-title" data-en="Live voice session" data-es="Sesion de voz en vivo">Live voice session</span>
+          </div>
+          <span id="voice-timer" class="voice-timer-pill">00:00:00</span>
+        </div>
+
+        <div id="transcript-container" class="voice-transcript" aria-live="polite">
+          <div class="voice-message assistant">
+            <div class="voice-avatar">AI</div>
+            <div class="voice-bubble" data-en="Hi, I am the demo voice agent. I can answer calls, ask the right questions, and prepare a clear handoff for your team." data-es="Hola, soy el agente de voz demo. Puedo responder llamadas, hacer las preguntas correctas y preparar un traspaso claro para tu equipo.">Hi, I am the demo voice agent. I can answer calls, ask the right questions, and prepare a clear handoff for your team.</div>
+          </div>
+          <div class="voice-message user">
+            <div class="voice-avatar">YOU</div>
+            <div class="voice-bubble" data-en="Try asking what happens when a lead calls after hours, needs help, or wants to book." data-es="Prueba preguntando que pasa cuando un lead llama fuera de horario, necesita ayuda o quiere reservar.">Try asking what happens when a lead calls after hours, needs help, or wants to book.</div>
+          </div>
+        </div>
+
+        <div class="voice-demo-footer">
+          <div class="voice-demo-status">
+            <span id="voice-status-label" data-en="Ready to connect" data-es="Listo para conectar">Ready to connect</span>
+            <div class="voice-progress" aria-hidden="true"><div></div></div>
+          </div>
+          <button id="btn-llamar-silice" class="btn btn-grad voice-call-btn" type="button" data-en="Call the Voice Agent" data-es="Llamar al Agente">Call the Voice Agent</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="cta-row-inline">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+        <a href="#buy" class="btn btn-outline" data-en="See the Build Options" data-es="Ver opciones de build">See the Build Options</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="call-flow">
+    <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-en="What it handles" data-es="Que maneja">What it handles</p>
-          <h2 class="headline-lg" data-en="CALLS WITHOUT<br>THE BOT FEEL" data-es="LLAMADAS SIN<br>SENTIRSE BOT">CALLS WITHOUT<br>THE BOT FEEL</h2>
+          <p class="eyebrow" data-en="What happens when a client calls?" data-es="Que pasa cuando llama un cliente?">What happens when a client calls?</p>
+          <h2 class="headline-lg" data-en="FROM CALL<br>TO NEXT STEP" data-es="DE LA LLAMADA<br>AL SIGUIENTE PASO">FROM CALL<br>TO NEXT STEP</h2>
         </div>
-        <p class="body-lg" data-en="This page is the deeper version of the Voice Agent card: what it does, what gets installed, and why it protects the first response moment." data-es="Esta pagina es la version detallada de la tarjeta de Agente de Voz: que hace, que se instala y por que protege el momento de primera respuesta.">This page is the deeper version of the Voice Agent card: what it does, what gets installed, and why it protects the first response moment.</p>
+        <p class="body-lg" data-en="The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful." data-es="El voice agent no solo debe contestar. Debe capturar el contexto correcto, decidir que importa, enrutar la conversacion y dejarle a tu equipo algo util.">The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful.</p>
       </div>
       <div class="feature-grid">
-        <article class="feature-card"><div class="feature-icon">01</div><h3 class="feature-title" data-en="Answers calls" data-es="Responde llamadas">Answers calls</h3><p data-en="Handles common enquiries, opening hours, availability, service questions, and basic triage when your team is busy or closed." data-es="Maneja consultas comunes, horarios, disponibilidad, preguntas de servicio y triaje basico cuando tu equipo esta ocupado o cerrado.">Handles common enquiries, opening hours, availability, service questions, and basic triage when your team is busy or closed.</p></article>
-        <article class="feature-card"><div class="feature-icon">02</div><h3 class="feature-title" data-en="Qualifies leads" data-es="Califica leads">Qualifies leads</h3><p data-en="Asks the right questions, captures context, scores urgency, and sends clean notes to your CRM or inbox." data-es="Hace las preguntas correctas, captura contexto, puntua urgencia y envia notas claras a tu CRM o inbox.">Asks the right questions, captures context, scores urgency, and sends clean notes to your CRM or inbox.</p></article>
-        <article class="feature-card"><div class="feature-icon">03</div><h3 class="feature-title" data-en="Books next steps" data-es="Agenda proximos pasos">Books next steps</h3><p data-en="Routes callers to appointment links, callback flows, human escalation, or follow-up messages depending on the conversation." data-es="Enruta a enlaces de cita, llamadas de regreso, escalada humana o mensajes de seguimiento segun la conversacion.">Routes callers to appointment links, callback flows, human escalation, or follow-up messages depending on the conversation.</p></article>
-        <article class="feature-card"><div class="feature-icon">04</div><h3 class="feature-title" data-en="Creates transcripts" data-es="Crea transcripciones">Creates transcripts</h3><p data-en="Every call can create a transcript, summary, action list, and contact record so your team does not lose context." data-es="Cada llamada puede crear una transcripcion, resumen, lista de acciones y registro de contacto para no perder contexto.">Every call can create a transcript, summary, action list, and contact record so your team does not lose context.</p></article>
-        <article class="feature-card"><div class="feature-icon">05</div><h3 class="feature-title" data-en="Escalates humans" data-es="Escala a humanos">Escalates humans</h3><p data-en="Sensitive, urgent, or high-value conversations can be routed to a real person instead of being trapped inside automation." data-es="Conversaciones sensibles, urgentes o de alto valor pueden pasar a una persona real en lugar de quedarse dentro de la automatizacion.">Sensitive, urgent, or high-value conversations can be routed to a real person instead of being trapped inside automation.</p></article>
-        <article class="feature-card"><div class="feature-icon">06</div><h3 class="feature-title" data-en="Reports performance" data-es="Reporta rendimiento">Reports performance</h3><p data-en="See call volume, missed-call recovery, common questions, response quality, and where your team should improve the script." data-es="Ve volumen de llamadas, recuperacion de llamadas perdidas, preguntas comunes, calidad de respuesta y donde mejorar el guion.">See call volume, missed-call recovery, common questions, response quality, and where your team should improve the script.</p></article>
+        <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Answer" data-es="Responder">Answer</h3><p class="body-md" data-en="The agent picks up when your team is busy, after hours, or away from the phone." data-es="El agente responde cuando tu equipo esta ocupado, fuera de horario o lejos del telefono.">The agent picks up when your team is busy, after hours, or away from the phone.</p></article>
+        <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Qualify" data-es="Calificar">Qualify</h3><p class="body-md" data-en="It asks the right questions to understand intent, urgency, fit, and what should happen next." data-es="Hace las preguntas correctas para entender intencion, urgencia, encaje y que deberia pasar despues.">It asks the right questions to understand intent, urgency, fit, and what should happen next.</p></article>
+        <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Route" data-es="Enrutar">Route</h3><p class="body-md" data-en="The system sends the caller toward booking, callback, escalation, or the right instruction path." data-es="El sistema envia al caller hacia reserva, callback, escalada o la ruta correcta de instrucciones.">The system sends the caller toward booking, callback, escalation, or the right instruction path.</p></article>
+        <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Summarize" data-es="Resumir">Summarize</h3><p class="body-md" data-en="Your team receives a clean summary instead of piecing together scattered notes." data-es="Tu equipo recibe un resumen limpio en lugar de unir notas dispersas.">Your team receives a clean summary instead of piecing together scattered notes.</p></article>
+        <article class="feature-card"><div class="feature-num">05</div><h3 class="feature-title" data-en="Push the next step" data-es="Empujar el siguiente paso">Push the next step</h3><p class="body-md" data-en="The agent helps move the caller into a clearer next action so fewer opportunities stall." data-es="El agente ayuda a mover al caller hacia una siguiente accion mas clara para que menos oportunidades se frenen.">The agent helps move the caller into a clearer next action so fewer opportunities stall.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section section-dark">
-    <div class="wrap-wide">
-      <div class="split">
-        <div class="system-image">
-          <img src="../assets/funnel-images/team-automation-dashboard-review-wide.png" alt="Business team reviewing AI voice agent call flows and dashboard.">
-        </div>
-        <div class="black-panel">
-          <p class="eyebrow" data-en="Installed around your business" data-es="Instalado alrededor de tu negocio">Installed around your business</p>
-          <h2 class="headline-md" data-en="NOT A GENERIC<br>PHONE BOT" data-es="NO ES UN BOT<br>TELEFONICO GENERICO">NOT A GENERIC<br>PHONE BOT</h2>
-          <p class="body-lg" style="margin-top:22px" data-en="We design the call logic, voice style, qualifying questions, escalation rules, and summaries around your actual client experience." data-es="Disenamos la logica de llamada, estilo de voz, preguntas de calificacion, reglas de escalada y resumenes alrededor de tu experiencia real de cliente.">We design the call logic, voice style, qualifying questions, escalation rules, and summaries around your actual client experience.</p>
-          <div class="step-list">
-            <div class="step"><div class="step-num">1</div><div><strong data-en="Map the calls" data-es="Mapear llamadas">Map the calls</strong><p class="body-sm" data-en="We identify the highest-value call types and the information your team needs." data-es="Identificamos los tipos de llamada de mayor valor y la informacion que necesita tu equipo.">We identify the highest-value call types and the information your team needs.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div><strong data-en="Build the agent" data-es="Construir el agente">Build the agent</strong><p class="body-sm" data-en="We create the voice, prompt, flow, handoff rules, and integrations." data-es="Creamos la voz, prompt, flujo, reglas de transferencia e integraciones.">We create the voice, prompt, flow, handoff rules, and integrations.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div><strong data-en="Launch and tune" data-es="Lanzar y ajustar">Launch and tune</strong><p class="body-sm" data-en="We test real scenarios, review transcripts, and improve the agent after launch." data-es="Probamos escenarios reales, revisamos transcripciones y mejoramos el agente despues del lanzamiento.">We test real scenarios, review transcripts, and improve the agent after launch.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="buy">
+  <section class="video-section" id="walkthrough">
     <div class="wrap">
-      <div class="price-panel">
-        <div class="price-left">
-          <div class="price-label" data-en="Voice Agent System" data-es="Sistema Agente de Voz">Voice Agent System</div>
-          <div class="price-big" data-en="FROM<br>$2,000" data-es="DESDE<br>$2,000">FROM<br>$2,000</div>
-          <p class="body-sm" style="color:rgba(0,0,0,.7);margin-top:18px;font-weight:700" data-en="Monthly support from $200/mo." data-es="Soporte mensual desde $200/mes.">Monthly support from $200/mo.</p>
-        </div>
-        <div class="price-right">
-          <p class="eyebrow" data-en="What you are buying" data-es="Lo que compras">What you are buying</p>
-          <h2 class="headline-md" data-en="A WORKING<br>VOICE AGENT" data-es="UN AGENTE<br>DE VOZ FUNCIONAL">A WORKING<br>VOICE AGENT</h2>
-          <ul class="included">
-            <li data-en="Custom call flow and voice personality" data-es="Flujo de llamada y personalidad de voz personalizada">Custom call flow and voice personality</li>
-            <li data-en="Inbound call handling, summaries, and transcripts" data-es="Manejo de llamadas entrantes, resumenes y transcripciones">Inbound call handling, summaries, and transcripts</li>
-            <li data-en="CRM, email, WhatsApp, or booking integration where appropriate" data-es="Integracion con CRM, email, WhatsApp o reservas donde aplique">CRM, email, WhatsApp, or booking integration where appropriate</li>
-            <li data-en="Launch testing and first round of optimisation" data-es="Pruebas de lanzamiento y primera ronda de optimizacion">Launch testing and first round of optimisation</li>
-          </ul>
-          <div class="cta-row">
-            <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Buy / Reserve by WhatsApp" data-es="Comprar / Reservar por WhatsApp">Buy / Reserve by WhatsApp</a>
-            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-outline-dark" data-en="Book Implementation Call" data-es="Agendar Implementacion">Book Implementation Call</a>
-          </div>
-          <p class="body-sm" style="margin-top:18px" data-en="Direct Stripe purchase can be added here once the high-ticket payment link is approved." data-es="La compra directa por Stripe se puede agregar aqui cuando el enlace de pago este aprobado.">Direct Stripe purchase can be added here once the high-ticket payment link is approved.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-tight">
-    <div class="wrap-wide">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-en="Common questions" data-es="Preguntas comunes">Common questions</p>
-          <h2 class="headline-lg" data-en="BEFORE YOU<br>INSTALL IT" data-es="ANTES DE<br>INSTALARLO">BEFORE YOU<br>INSTALL IT</h2>
+          <p class="eyebrow" data-en="Voice agent walkthrough" data-es="Recorrido del agente de voz">Voice agent walkthrough</p>
+          <h2 class="headline-lg" data-en="SEE THE<br>FULL LOGIC" data-es="MIRA LA<br>LOGICA COMPLETA">SEE THE<br>FULL LOGIC</h2>
         </div>
-        <p class="body-lg" data-en="The goal is not to replace your team. The goal is to protect speed, capture clean information, and make sure valuable calls do not disappear." data-es="El objetivo no es reemplazar a tu equipo. Es proteger la velocidad, capturar informacion clara y asegurar que las llamadas valiosas no se pierdan.">The goal is not to replace your team. The goal is to protect speed, capture clean information, and make sure valuable calls do not disappear.</p>
+        <p class="body-lg" data-en="After trying the live demo, watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing in a more complete flow." data-es="Despues de probar la demo en vivo, mira el recorrido del fundador para ver como el sistema maneja llamadas perdidas, calificacion, traspaso humano y la ruta del siguiente paso en un flujo mas completo.">After trying the live demo, watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing in a more complete flow.</p>
       </div>
-      <div class="faq-grid">
-        <article class="faq-card"><h3 data-en="Can it speak Spanish?" data-es="Puede hablar espanol?">Can it speak Spanish?</h3><p class="body-sm" data-en="Yes. The system can be built bilingual for English and Spanish, with call logic adapted to your market." data-es="Si. El sistema puede ser bilingue en ingles y espanol, con logica adaptada a tu mercado.">Yes. The system can be built bilingual for English and Spanish, with call logic adapted to your market.</p></article>
-        <article class="faq-card"><h3 data-en="Can humans take over?" data-es="Puede intervenir un humano?">Can humans take over?</h3><p class="body-sm" data-en="Yes. Escalation rules can route urgent or sensitive conversations to a person." data-es="Si. Las reglas de escalada pueden enviar conversaciones urgentes o sensibles a una persona.">Yes. Escalation rules can route urgent or sensitive conversations to a person.</p></article>
-        <article class="faq-card"><h3 data-en="How fast can it launch?" data-es="Que tan rapido se lanza?">How fast can it launch?</h3><p class="body-sm" data-en="Most simple voice agent systems can be planned, built, tested, and launched in 7 to 21 days." data-es="La mayoria de sistemas simples de agente de voz pueden planificarse, construirse, probarse y lanzarse en 7 a 21 dias.">Most simple voice agent systems can be planned, built, tested, and launched in 7 to 21 days.</p></article>
+      <div class="video-stage">
+        <article class="video-card large">
+          <video controls playsinline preload="metadata" poster="../assets/funnel-images/team-whatsapp-automation-consulting-wide.png">
+            <source src="../videos/Richard%20Hardy%20-%20Use%20Cases%20_%20Who%20This%20Is%20For.mp4" type="video/mp4">
+          </video>
+          <span class="play-dot" aria-hidden="true"></span>
+          <div class="video-copy">
+            <span class="kicker" data-en="Product overview" data-es="Vista del producto">Product overview</span>
+            <h3 data-en="How the Voice Agent Works" data-es="Como Funciona el Agente">How the Voice Agent Works</h3>
+          </div>
+        </article>
       </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="accent">Calls captured.</span><span>Custom. Not templated.</span><span class="accent">Live in weeks.</span><span>Built by a practitioner.</span><span class="accent">Leads qualified.</span><span>Human handoff ready.</span><span class="accent">EN/ES voice flow.</span><span>No missed context.</span>
+      <span class="accent">Calls captured.</span><span>Custom. Not templated.</span><span class="accent">Live in weeks.</span><span>Built by a practitioner.</span><span class="accent">Leads qualified.</span><span>Human handoff ready.</span><span class="accent">EN/ES voice flow.</span><span>No missed context.</span>
+    </div>
+  </div>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="What gets installed" data-es="Lo que se instala">What gets installed</p>
+          <h2 class="headline-lg" data-en="A CALL SYSTEM<br>WITH REAL LOGIC" data-es="UN SISTEMA DE<br>LLAMADAS CON LOGICA">A CALL SYSTEM<br>WITH REAL LOGIC</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Call answering" data-es="Respuesta de llamadas">Call answering</h3><p class="body-md" data-en="The agent answers when your team is unavailable, handles common questions, and captures the reason for the call clearly." data-es="El agente responde cuando tu equipo no esta disponible, maneja preguntas comunes y captura claramente el motivo de la llamada.">The agent answers when your team is unavailable, handles common questions, and captures the reason for the call clearly.</p></article>
+        <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Lead qualification" data-es="Calificacion de leads">Lead qualification</h3><p class="body-md" data-en="It asks the right questions, identifies intent, urgency, budget or fit, and helps your team focus on the best opportunities first." data-es="Hace las preguntas correctas, identifica intencion, urgencia, presupuesto o encaje, y ayuda a tu equipo a priorizar oportunidades.">It asks the right questions, identifies intent, urgency, budget or fit, and helps your team focus on the best opportunities first.</p></article>
+        <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Human handoff" data-es="Traspaso humano">Human handoff</h3><p class="body-md" data-en="Sensitive, urgent, or high-value calls can be escalated to a person with the context already captured." data-es="Llamadas sensibles, urgentes o de alto valor pueden pasar a una persona con el contexto ya capturado.">Sensitive, urgent, or high-value calls can be escalated to a person with the context already captured.</p></article>
+        <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Booking flow" data-es="Flujo de reservas">Booking flow</h3><p class="body-md" data-en="Where appropriate, the voice agent can route people to booking links, callback windows, intake forms, or the next best step." data-es="Cuando aplica, el agente puede enviar a enlaces de reserva, ventanas de llamada, formularios intake o el siguiente paso correcto.">Where appropriate, the voice agent can route people to booking links, callback windows, intake forms, or the next best step.</p></article>
+        <article class="feature-card"><div class="feature-num">05</div><h3 class="feature-title" data-en="Clean summaries" data-es="Resumenes claros">Clean summaries</h3><p class="body-md" data-en="Every useful conversation can generate a transcript, summary, action list, and contact record for your team." data-es="Cada conversacion util puede generar transcripcion, resumen, lista de acciones y registro de contacto para tu equipo.">Every useful conversation can generate a transcript, summary, action list, and contact record for your team.</p></article>
+        <article class="feature-card"><div class="feature-num">06</div><h3 class="feature-title" data-en="Performance view" data-es="Vista de rendimiento">Performance view</h3><p class="body-md" data-en="You can see call volume, common questions, missed-call recovery, caller quality, and what should be improved next." data-es="Puedes ver volumen de llamadas, preguntas comunes, recuperacion, calidad de callers y que mejorar despues.">You can see call volume, common questions, missed-call recovery, caller quality, and what should be improved next.</p></article>
+      </div>
+      <div class="image-row">
+        <div class="image-frame">
+          <img src="../assets/funnel-images/real-estate-content-calendar-wide.png" alt="Business owner reviewing a client response and automation dashboard on a tablet.">
+        </div>
+        <div class="black-box">
+          <p class="eyebrow" data-en="Why it matters" data-es="Por que importa">Why it matters</p>
+          <h2 class="headline-md" style="margin-top:18px" data-en="THE FIRST RESPONSE<br>IS WHERE TRUST STARTS" data-es="LA PRIMERA RESPUESTA<br>ES DONDE EMPIEZA LA CONFIANZA">THE FIRST RESPONSE<br>IS WHERE TRUST STARTS</h2>
+          <p class="body-md" style="margin-top:22px" data-en="Most service businesses do not lose opportunities because they cannot do the work. They lose them because calls arrive at the wrong time, details are incomplete, and follow-up happens too late. The voice agent protects that first moment." data-es="La mayoria de negocios de servicios no pierden oportunidades porque no sepan hacer el trabajo. Las pierden porque las llamadas llegan en mal momento, los datos quedan incompletos y el seguimiento llega tarde. El agente protege ese primer momento.">Most service businesses do not lose opportunities because they cannot do the work. They lose them because calls arrive at the wrong time, details are incomplete, and follow-up happens too late. The voice agent protects that first moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
+          <h2 class="headline-lg" data-en="FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM" data-es="DE UN INTAKE<br>DESORDENADO A UN<br>SISTEMA MAS CLARO">FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM</h2>
+        </div>
+        <p class="body-lg" data-en="Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get." data-es="La mayoria de negocios no necesitan mas demanda primero. Necesitan una forma mas limpia de capturar, entender y enrutar la demanda que ya reciben.">Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get.</p>
+      </div>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
+          <h3 data-en="Missed context" data-es="Contexto perdido">Missed context</h3>
+          <ul>
+            <li data-en="Missed calls and after-hours silence" data-es="Llamadas perdidas y silencio fuera de horario">Missed calls and after-hours silence</li>
+            <li data-en="Scattered notes and unclear follow-up" data-es="Notas dispersas y seguimiento poco claro">Scattered notes and unclear follow-up</li>
+            <li data-en="No qualification before a human jumps in" data-es="Sin calificacion antes de que entre una persona">No qualification before a human jumps in</li>
+          </ul>
+        </article>
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
+          <h3 data-en="More captured opportunities" data-es="Mas oportunidades capturadas">More captured opportunities</h3>
+          <ul>
+            <li data-en="Calls answered 24/7 with the right first questions" data-es="Llamadas respondidas 24/7 con las preguntas correctas">Calls answered 24/7 with the right first questions</li>
+            <li data-en="Clean summaries and clearer handoff" data-es="Resumenes limpios y traspaso mas claro">Clean summaries and clearer handoff</li>
+            <li data-en="Faster next steps toward booking or escalation" data-es="Siguientes pasos mas rapidos hacia reserva o escalada">Faster next steps toward booking or escalation</li>
+          </ul>
+        </article>
+      </div>
+      <div class="cta-row-inline">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fit">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="Built for you if / not for you if" data-es="Para ti si / no para ti si">Built for you if / not for you if</p>
+          <h2 class="headline-lg" data-en="WHO THIS<br>SYSTEM FITS" data-es="PARA QUIEN<br>ENCAJA ESTE SISTEMA">WHO THIS<br>SYSTEM FITS</h2>
+        </div>
+      </div>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="Built for you if" data-es="Para ti si">Built for you if</div>
+          <h3 data-en="You already have inbound demand" data-es="Ya tienes demanda entrante">You already have inbound demand</h3>
+          <ul>
+            <li data-en="You receive calls, WhatsApp messages, or booking requests every week" data-es="Recibes llamadas, mensajes de WhatsApp o solicitudes de reserva cada semana">You receive calls, WhatsApp messages, or booking requests every week</li>
+            <li data-en="Your team misses calls outside business hours or during busy periods" data-es="Tu equipo pierde llamadas fuera de horario o en momentos ocupados">Your team misses calls outside business hours or during busy periods</li>
+            <li data-en="You want bilingual English / Spanish support with real call logic" data-es="Quieres soporte bilingue ingles / espanol con logica real de llamadas">You want bilingual English / Spanish support with real call logic</li>
+          </ul>
+        </article>
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
+          <h3 data-en="You want the cheapest generic AI tool" data-es="Quieres la herramienta IA generica mas barata">You want the cheapest generic AI tool</h3>
+          <ul>
+            <li data-en="You do not receive regular enquiries yet" data-es="Todavia no recibes consultas con regularidad">You do not receive regular enquiries yet</li>
+            <li data-en="You want a simple chatbot with no real call logic" data-es="Quieres un chatbot simple sin logica real de llamadas">You want a simple chatbot with no real call logic</li>
+            <li data-en="You are not ready to map your customer journey and intake process" data-es="No estas listo para mapear tu customer journey y proceso de intake">You are not ready to map your customer journey and intake process</li>
+          </ul>
+        </article>
+      </div>
+      <div style="margin-top:44px">
+        <p class="eyebrow" data-en="Use cases" data-es="Casos de uso">Use cases</p>
+        <div class="feature-grid" style="margin-top:22px">
+          <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Clinics" data-es="Clinicas">Clinics</h3><p class="body-md" data-en="Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context." data-es="Protege solicitudes de citas, enruta consultas urgentes y dale a recepcion un contexto de llamada mas limpio.">Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context.</p></article>
+          <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Real Estate" data-es="Bienes raices">Real Estate</h3><p class="body-md" data-en="Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff." data-es="Captura mas rapido el interes por visitas y califica si el caller necesita callback, reserva o un traspaso mas urgente.">Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff.</p></article>
+          <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Service Teams" data-es="Equipos de servicio">Service Teams</h3><p class="body-md" data-en="Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in." data-es="Maneja llamadas fuera de horario, preguntas repetitivas y la primera calificacion antes de que entre alguien del equipo.">Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in.</p></article>
+          <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Consultants" data-es="Consultores">Consultants</h3><p class="body-md" data-en="Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff." data-es="Filtra prospectos serios, captura el motivo de la llamada y prepara un mejor traspaso hacia discovery.">Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process-section" id="process">
+    <div class="wrap">
+      <div class="process-head">
+        <div>
+          <p class="eyebrow" data-en="The process" data-es="El proceso">The process</p>
+          <h2 class="headline-lg" data-en="FROM FIRST CALL<br>TO LIVE AGENT" data-es="DE LA PRIMERA LLAMADA<br>AL AGENTE EN VIVO">FROM FIRST CALL<br>TO LIVE AGENT</h2>
+        </div>
+      </div>
+      <div class="process-list">
+        <div class="process-row"><div class="process-num">01</div><div><h3 class="process-title" data-en="Call map" data-es="Mapa de llamadas">Call map</h3><div class="process-time" data-en="Discovery" data-es="Descubrimiento">Discovery</div></div><p class="body-md" data-en="We map the call types, caller intent, common questions, urgent scenarios, and what information your team needs after every call." data-es="Mapeamos tipos de llamada, intencion, preguntas frecuentes, escenarios urgentes y la informacion que tu equipo necesita despues.">We map the call types, caller intent, common questions, urgent scenarios, and what information your team needs after every call.</p><div class="process-arrow">/</div></div>
+        <div class="process-row"><div class="process-num">02</div><div><h3 class="process-title" data-en="Voice logic" data-es="Logica de voz">Voice logic</h3><div class="process-time" data-en="Design" data-es="Diseno">Design</div></div><p class="body-md" data-en="We write the conversation flow, qualification rules, tone, fallback responses, and handoff logic so the agent sounds useful, not robotic." data-es="Escribimos el flujo, reglas de calificacion, tono, respuestas de respaldo y traspaso para que el agente sea util, no robotico.">We write the conversation flow, qualification rules, tone, fallback responses, and handoff logic so the agent sounds useful, not robotic.</p><div class="process-arrow">/</div></div>
+        <div class="process-row"><div class="process-num">03</div><div><h3 class="process-title" data-en="Build & connect" data-es="Construir y conectar">Build & connect</h3><div class="process-time" data-en="Implementation" data-es="Implementacion">Implementation</div></div><p class="body-md" data-en="We connect the number, voice layer, summaries, notifications, booking links, WhatsApp, CRM, or email handoff depending on the chosen scope." data-es="Conectamos numero, voz, resumenes, notificaciones, reservas, WhatsApp, CRM o email segun el alcance elegido.">We connect the number, voice layer, summaries, notifications, booking links, WhatsApp, CRM, or email handoff depending on the chosen scope.</p><div class="process-arrow">/</div></div>
+        <div class="process-row"><div class="process-num">04</div><div><h3 class="process-title" data-en="Test calls" data-es="Pruebas">Test calls</h3><div class="process-time" data-en="Quality control" data-es="Control de calidad">Quality control</div></div><p class="body-md" data-en="We test real call scenarios before launch: confused callers, urgent requests, Spanish calls, no-shows, objections, and human escalation." data-es="Probamos escenarios reales: callers confundidos, urgencias, llamadas en espanol, ausencias, objeciones y escalada humana.">We test real call scenarios before launch: confused callers, urgent requests, Spanish calls, no-shows, objections, and human escalation.</p><div class="process-arrow">/</div></div>
+        <div class="process-row"><div class="process-num">05</div><div><h3 class="process-title" data-en="Launch & tune" data-es="Lanzar y ajustar">Launch & tune</h3><div class="process-time" data-en="Go live" data-es="En vivo">Go live</div></div><p class="body-md" data-en="After launch, we review transcripts, adjust weak responses, and improve the agent based on what real callers actually ask." data-es="Despues del lanzamiento revisamos transcripciones, ajustamos respuestas debiles y mejoramos el agente segun lo que preguntan callers reales.">After launch, we review transcripts, adjust weak responses, and improve the agent based on what real callers actually ask.</p><div class="process-arrow">/</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-dark" id="buy">
+    <div class="wrap">
+      <div class="price-intro">
+        <p class="eyebrow" data-en="Voice agent build options" data-es="Opciones de build de voz">Voice agent build options</p>
+        <h2 class="headline-lg" data-en="CUSTOM AI.<br>BUILT FOR CALLS." data-es="IA A MEDIDA.<br>HECHA PARA LLAMADAS.">CUSTOM AI.<br>BUILT FOR CALLS.</h2>
+        <p class="body-lg" style="margin:24px auto 0" data-en="Choose the level of system your business needs now. Most clients start with one clear call flow, then expand once the first version is live." data-es="Elige el nivel de sistema que tu negocio necesita ahora. La mayoria de clientes empieza con un flujo de llamadas claro y luego expande cuando la primera version ya esta en vivo.">Choose the level of system your business needs now. Most clients start with one clear call flow, then expand once the first version is live.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <span class="badge" data-en="Starter" data-es="Inicial">Starter</span>
+          <h3 data-en="Voice Agent Foundation" data-es="Base Agente de Voz">Voice Agent Foundation</h3>
+          <div class="from" data-en="from $1,999" data-es="desde $1,999">from $1,999</div>
+          <p class="price-fit" data-en="Best for businesses that need one clean call flow first." data-es="Ideal para negocios que necesitan primero un flujo de llamadas limpio.">Best for businesses that need one clean call flow first.</p>
+          <ul>
+            <li data-en="One main call flow" data-es="Un flujo principal">One main call flow</li>
+            <li data-en="Bilingual voice option" data-es="Opcion de voz bilingue">Bilingual voice option</li>
+            <li data-en="Call summaries and transcripts" data-es="Resumenes y transcripciones">Call summaries and transcripts</li>
+            <li data-en="Email or WhatsApp handoff" data-es="Traspaso por email o WhatsApp">Email or WhatsApp handoff</li>
+          </ul>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Reserve Build" data-es="Reservar Build">Reserve Build</a>
+        </article>
+        <article class="pricing-card featured">
+          <span class="badge" data-en="Recommended" data-es="Recomendado">Recommended</span>
+          <h3 data-en="Voice + Follow-up System" data-es="Voz + Seguimiento">Voice + Follow-up System</h3>
+          <div class="from" data-en="from $2,999" data-es="desde $2,999">from $2,999</div>
+          <p class="price-fit" data-en="Best for most service businesses that want calls captured and followed up through WhatsApp or email." data-es="Ideal para la mayoria de negocios de servicios que quieren llamadas capturadas y seguimiento por WhatsApp o email.">Best for most service businesses that want calls captured and followed up through WhatsApp or email.</p>
+          <ul>
+            <li data-en="Voice agent plus follow-up messages" data-es="Agente de voz mas mensajes de seguimiento">Voice agent plus follow-up messages</li>
+            <li data-en="Lead qualification logic" data-es="Logica de calificacion de leads">Lead qualification logic</li>
+            <li data-en="Human escalation rules" data-es="Reglas de escalada humana">Human escalation rules</li>
+            <li data-en="Booking, CRM, or form handoff" data-es="Traspaso a reservas, CRM o formulario">Booking, CRM, or form handoff</li>
+          </ul>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Build Call" data-es="Agendar Build Call">Book a Build Call</a>
+        </article>
+        <article class="pricing-card">
+          <span class="badge" data-en="Advanced" data-es="Avanzado">Advanced</span>
+          <h3 data-en="Multi-Flow Voice System" data-es="Sistema Multi-Flujo">Multi-Flow Voice System</h3>
+          <div class="from" data-en="from $4,999" data-es="desde $4,999">from $4,999</div>
+          <p class="price-fit" data-en="Best for businesses with multiple services, teams, locations, or lead types." data-es="Ideal para negocios con multiples servicios, equipos, sedes o tipos de leads.">Best for businesses with multiple services, teams, locations, or lead types.</p>
+          <ul>
+            <li data-en="Multiple departments or locations" data-es="Multiples departamentos o sedes">Multiple departments or locations</li>
+            <li data-en="Advanced routing and reporting" data-es="Enrutamiento y reportes avanzados">Advanced routing and reporting</li>
+            <li data-en="Dashboard or custom app layer" data-es="Dashboard o capa de app personalizada">Dashboard or custom app layer</li>
+            <li data-en="Ongoing optimisation plan" data-es="Plan de optimizacion continuo">Ongoing optimisation plan</li>
+          </ul>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Discuss Scope" data-es="Hablar Alcance">Discuss Scope</a>
+        </article>
+      </div>
+      <div class="cta-row-inline">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bonus">
+    <div class="wrap">
+      <div class="bonus-strip">
+        <div>
+          <p class="eyebrow" data-en="Limited bonus" data-es="Bono limitado">Limited bonus</p>
+          <h2 class="headline-md" data-en="FREE CALL FLOW MAP<br>INCLUDED THIS WEEK" data-es="MAPA DE FLUJO DE LLAMADAS<br>INCLUIDO ESTA SEMANA">FREE CALL FLOW MAP<br>INCLUDED THIS WEEK</h2>
+        </div>
+        <div>
+          <p class="body-md" data-en="Book your demo this week and we will map the first call flow your business should automate. Normally $250. Included free with your demo." data-es="Agenda tu demo esta semana y mapearemos el primer flujo de llamadas que tu negocio deberia automatizar. Normalmente $250. Incluido gratis con tu demo.">Book your demo this week and we will map the first call flow your business should automate. Normally $250. Included free with your demo.</p>
+          <div class="cta-row-inline" style="justify-content:flex-start;margin-top:24px">
+            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book the Free Demo" data-es="Agendar la demo gratuita">Book the Free Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="wrap">
+      <div class="faq-head">
+        <p class="eyebrow" data-en="Common questions" data-es="Preguntas comunes">Common questions</p>
+        <h2 class="headline-lg" data-en="FREQUENTLY<br>ASKED" data-es="PREGUNTAS<br>FRECUENTES">FREQUENTLY<br>ASKED</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary><span data-en="What exactly does the voice agent do?" data-es="Que hace exactamente el agente de voz?">What exactly does the voice agent do?</span><span class="faq-plus">+</span></summary>
+          <p data-en="It answers calls, asks structured questions, captures details, qualifies the caller, routes urgent or high-value enquiries, and sends your team a summary or transcript. The exact behaviour depends on your business workflow and the scope we choose during setup." data-es="Responde llamadas, hace preguntas estructuradas, captura datos, califica al caller, enruta consultas urgentes o de alto valor y envia a tu equipo un resumen o transcripcion. El comportamiento exacto depende de tu flujo de negocio y del alcance que definamos.">It answers calls, asks structured questions, captures details, qualifies the caller, routes urgent or high-value enquiries, and sends your team a summary or transcript. The exact behaviour depends on your business workflow and the scope we choose during setup.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Can it speak English and Spanish?" data-es="Puede hablar ingles y espanol?">Can it speak English and Spanish?</span><span class="faq-plus">+</span></summary>
+          <p data-en="Yes. We can build the call flow in English, Spanish, or bilingual mode. The important part is not just translation; the greeting, tone, questions, and handoff logic should feel natural for your market." data-es="Si. Podemos construir el flujo en ingles, espanol o modo bilingue. Lo importante no es solo traducir; el saludo, tono, preguntas y logica de traspaso deben sentirse naturales para tu mercado.">Yes. We can build the call flow in English, Spanish, or bilingual mode. The important part is not just translation; the greeting, tone, questions, and handoff logic should feel natural for your market.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Will it replace my receptionist or sales team?" data-es="Va a reemplazar a mi recepcionista o equipo comercial?">Will it replace my receptionist or sales team?</span><span class="faq-plus">+</span></summary>
+          <p data-en="The best use is usually support, not replacement. It protects after-hours calls, busy periods, missed calls, repetitive questions, and basic qualification so your human team can focus on complex conversations and closing." data-es="El mejor uso suele ser apoyo, no reemplazo. Protege llamadas fuera de horario, momentos ocupados, llamadas perdidas, preguntas repetitivas y calificacion basica para que el equipo humano se enfoque en conversaciones complejas y cierres.">The best use is usually support, not replacement. It protects after-hours calls, busy periods, missed calls, repetitive questions, and basic qualification so your human team can focus on complex conversations and closing.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="What happens if the caller needs a real person?" data-es="Que pasa si el caller necesita una persona real?">What happens if the caller needs a real person?</span><span class="faq-plus">+</span></summary>
+          <p data-en="We define escalation rules before launch. The agent can collect the reason, mark urgency, send a notification, route to a callback, or provide instructions for reaching a person depending on your availability and risk level." data-es="Definimos reglas de escalada antes del lanzamiento. El agente puede capturar el motivo, marcar urgencia, enviar una notificacion, enrutar a llamada de vuelta o dar instrucciones para hablar con una persona segun disponibilidad y nivel de riesgo.">We define escalation rules before launch. The agent can collect the reason, mark urgency, send a notification, route to a callback, or provide instructions for reaching a person depending on your availability and risk level.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Can it connect to our CRM, WhatsApp, booking system, or email?" data-es="Puede conectarse a nuestro CRM, WhatsApp, reservas o email?">Can it connect to our CRM, WhatsApp, booking system, or email?</span><span class="faq-plus">+</span></summary>
+          <p data-en="Usually, yes. Simple handoffs can go to email or WhatsApp. More advanced builds can connect to forms, CRMs, booking links, spreadsheets, or dashboards. We check your existing tools first so the system fits what you already use." data-es="Normalmente, si. Los traspasos simples pueden ir a email o WhatsApp. Builds mas avanzados pueden conectarse a formularios, CRMs, enlaces de reserva, hojas o dashboards. Revisamos tus herramientas actuales primero para que el sistema encaje con lo que ya usas.">Usually, yes. Simple handoffs can go to email or WhatsApp. More advanced builds can connect to forms, CRMs, booking links, spreadsheets, or dashboards. We check your existing tools first so the system fits what you already use.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="How long does setup take?" data-es="Cuanto tarda la implementacion?">How long does setup take?</span><span class="faq-plus">+</span></summary>
+          <p data-en="A focused first version can often be mapped, built, tested, and launched in 7-21 days once the call flow, business details, and handoff destination are confirmed. Larger multi-flow systems can take longer." data-es="Una primera version enfocada suele mapearse, construirse, probarse y lanzarse en 7-21 dias una vez confirmado el flujo, detalles del negocio y destino de traspaso. Sistemas multi-flujo pueden tardar mas.">A focused first version can often be mapped, built, tested, and launched in 7-21 days once the call flow, business details, and handoff destination are confirmed. Larger multi-flow systems can take longer.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="What do we need to provide before build starts?" data-es="Que necesitamos entregar antes de empezar?">What do we need to provide before build starts?</span><span class="faq-plus">+</span></summary>
+          <p data-en="We need your main call scenarios, FAQs, services, opening hours, escalation contacts, booking or callback rules, and any existing scripts or intake questions. If you do not have these written down, we help structure them during discovery." data-es="Necesitamos escenarios principales, preguntas frecuentes, servicios, horarios, contactos de escalada, reglas de reserva o callback y cualquier guion o pregunta intake existente. Si no lo tienes escrito, lo estructuramos en discovery.">We need your main call scenarios, FAQs, services, opening hours, escalation contacts, booking or callback rules, and any existing scripts or intake questions. If you do not have these written down, we help structure them during discovery.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Is call data safe?" data-es="Los datos de llamadas estan seguros?">Is call data safe?</span><span class="faq-plus">+</span></summary>
+          <p data-en="We keep the first version practical and risk-aware. We avoid collecting unnecessary sensitive data, choose the simplest safe handoff, and clarify what gets stored, where it goes, and who can access it before launch." data-es="Mantenemos la primera version practica y consciente del riesgo. Evitamos capturar datos sensibles innecesarios, elegimos el traspaso seguro mas simple y aclaramos que se guarda, donde va y quien puede acceder antes de lanzar.">We keep the first version practical and risk-aware. We avoid collecting unnecessary sensitive data, choose the simplest safe handoff, and clarify what gets stored, where it goes, and who can access it before launch.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="What happens after it goes live?" data-es="Que pasa despues de lanzarlo?">What happens after it goes live?</span><span class="faq-plus">+</span></summary>
+          <p data-en="We review real transcripts, spot weak answers, improve routing, and refine the voice agent based on what callers actually ask. Ongoing optimisation can be monthly or handled in a focused post-launch sprint." data-es="Revisamos transcripciones reales, detectamos respuestas debiles, mejoramos enrutamiento y refinamos el agente segun lo que callers realmente preguntan. La optimizacion puede ser mensual o en un sprint post-lanzamiento.">We review real transcripts, spot weak answers, improve routing, and refine the voice agent based on what callers actually ask. Ongoing optimisation can be monthly or handled in a focused post-launch sprint.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Can we start with one call flow and expand later?" data-es="Podemos empezar con un flujo y expandir despues?">Can we start with one call flow and expand later?</span><span class="faq-plus">+</span></summary>
+          <p data-en="Yes. Most businesses should start with one clear call flow first. Once it is live and useful, the system can expand into more services, more escalation paths, or a broader follow-up layer." data-es="Si. La mayoria de negocios deberia empezar con un flujo de llamadas claro primero. Una vez que este en vivo y sea util, el sistema puede expandirse a mas servicios, mas rutas de escalada o una capa mas amplia de seguimiento.">Yes. Most businesses should start with one clear call flow first. Once it is live and useful, the system can expand into more services, more escalation paths, or a broader follow-up layer.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Can it send summaries to WhatsApp or email?" data-es="Puede enviar resumenes por WhatsApp o email?">Can it send summaries to WhatsApp or email?</span><span class="faq-plus">+</span></summary>
+          <p data-en="Yes. Clean summaries can be routed to email, WhatsApp, or another handoff destination depending on how your team already works." data-es="Si. Los resumenes limpios pueden enviarse a email, WhatsApp u otro destino de traspaso segun como ya trabaja tu equipo.">Yes. Clean summaries can be routed to email, WhatsApp, or another handoff destination depending on how your team already works.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="Can I hear calls after they happen?" data-es="Puedo escuchar las llamadas despues?">Can I hear calls after they happen?</span><span class="faq-plus">+</span></summary>
+          <p data-en="Yes. The setup can include call recordings, transcripts, or both, depending on the tools and consent requirements we agree before launch. The goal is to make useful conversations easy to review without creating unnecessary admin." data-es="Si. La configuracion puede incluir grabaciones, transcripciones o ambas, segun las herramientas y requisitos de consentimiento que acordemos antes del lanzamiento. El objetivo es que las conversaciones utiles sean faciles de revisar sin crear administracion innecesaria.">Yes. The setup can include call recordings, transcripts, or both, depending on the tools and consent requirements we agree before launch. The goal is to make useful conversations easy to review without creating unnecessary admin.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span data-en="What happens if the AI does not know the answer?" data-es="Que pasa si la IA no sabe la respuesta?">What happens if the AI does not know the answer?</span><span class="faq-plus">+</span></summary>
+          <p data-en="We design fallback logic before launch. The agent can say it needs to confirm, collect the caller's details, route the request to a person, or send a clear callback task instead of guessing." data-es="Disenamos logica de fallback antes del lanzamiento. El agente puede decir que necesita confirmar, capturar los datos del caller, enrutar la solicitud a una persona o enviar una tarea clara de callback en lugar de inventar.">We design fallback logic before launch. The agent can say it needs to confirm, collect the caller's details, route the request to a person, or send a clear callback task instead of guessing.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap-narrow">
+      <p class="eyebrow" style="-webkit-text-fill-color:var(--black);color:var(--black)" data-en="Ready to start?" data-es="Listo para empezar?">Ready to start?</p>
+      <h2 class="headline-lg" data-en="LET'S BUILD<br>YOUR VOICE AGENT." data-es="CONSTRUYAMOS<br>TU AGENTE DE VOZ.">LET'S BUILD<br>YOUR VOICE AGENT.</h2>
+      <p class="body-lg" data-en="Book a free demo and we will show you the first call flow your business should automate." data-es="Agenda una demo gratuita y te mostraremos el primer flujo de llamadas que tu negocio deberia automatizar.">Book a free demo and we will show you the first call flow your business should automate.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+        <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-outline btn-whatsapp" data-en="WhatsApp Us" data-es="Escribenos por WhatsApp">WhatsApp Us</a>
+      </div>
+      <p class="body-sm" style="margin-top:22px;color:#0b3a38" data-en="Or email info@thefuturestudio.online" data-es="O escribe a info@thefuturestudio.online">Or email info@thefuturestudio.online</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="footer-inner">
       <div>
-        <div class="footer-logo"><img src="../logo.png" alt="The Future Studio"></div>
-        <p class="body-sm" style="max-width:360px;margin-top:18px;color:rgba(255,255,255,.58)" data-en="AI systems, automation, and conversion infrastructure for service businesses." data-es="Sistemas de IA, automatizacion e infraestructura de conversion para negocios de servicios.">AI systems, automation, and conversion infrastructure for service businesses.</p>
+        <div class="footer-logo">
+          <img src="../logo.png" alt="The Future Studio">
+        </div>
+        <p class="footer-tagline" data-en="AI systems for service businesses, internationally. Precision-built. Results-driven." data-es="Sistemas de IA para negocios de servicios. Precision-built. Results-driven.">AI systems for service businesses, internationally. Precision-built. Results-driven.</p>
       </div>
-      <div class="footer-links">
-        <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
-        <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-        <a href="../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="../#services" data-en="AI Agents" data-es="Agentes IA">AI Agents</a></li>
+          <li><a href="../#services" data-en="Voice Agents" data-es="Agentes de Voz">Voice Agents</a></li>
+          <li><a href="../#services" data-en="WhatsApp Automation" data-es="Automatizacion WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="../#services" data-en="Booking Flows" data-es="Flujos de Reservas">Booking Flows</a></li>
+          <li><a href="../#courses-section" data-en="AI Courses" data-es="Cursos IA">AI Courses</a></li>
+        </ul>
       </div>
-      <div class="footer-links">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
-        <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:info@thefuturestudio.online">Email</a>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:info@thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">The Future Studio. Voice Agent System draft page.</div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 The Future Studio - Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
+    </div>
   </div>
 </footer>
 
-<button id="scroll-top" aria-label="Back to top">↑</button>
+<button id="scroll-top" aria-label="Back to top">&uarr;</button>
 <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." id="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.22c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.51.07-.77.36-.26.29-1.01.99-1.01 2.42s1.03 2.8 1.18 2.99c.15.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z"/><path d="M16.03 3C8.86 3 3.03 8.83 3.03 16c0 2.29.6 4.53 1.74 6.5L3 29l6.66-1.75A12.94 12.94 0 0 0 16.03 29c7.17 0 13-5.83 13-13s-5.83-13-13-13zm0 23.75c-2.14 0-4.22-.63-6-1.83l-.43-.29-3.95 1.04 1.05-3.85-.28-.44A10.7 10.7 0 0 1 5.28 16c0-5.93 4.82-10.75 10.75-10.75S26.78 10.07 26.78 16 21.96 26.75 16.03 26.75z"/></svg>
 </a>
@@ -376,7 +1031,7 @@ footer{background:var(--black);color:var(--white);padding:72px 0 36px}
     document.documentElement.lang=lang;
     document.querySelectorAll('[data-en]').forEach(function(el){
       var value=el.getAttribute('data-'+lang);
-      if(value)el.innerHTML=value;
+      if(value){el.innerHTML=value;}
     });
     document.querySelectorAll('.lang-btn').forEach(function(btn){
       btn.classList.toggle('active',btn.getAttribute('data-lang')===lang);
@@ -390,45 +1045,254 @@ footer{background:var(--black);color:var(--white);padding:72px 0 36px}
   var hamburger=document.getElementById('nav-hamburger');
   var mobile=document.getElementById('nav-mobile');
   if(hamburger&&mobile){
-    hamburger.addEventListener('click',function(){mobile.classList.toggle('open');});
-    mobile.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mobile.classList.remove('open');});});
+    hamburger.addEventListener('click',function(){
+      mobile.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+    mobile.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mobile.classList.remove('open');hamburger.classList.remove('open');});});
   }
 
   var nav=document.getElementById('nav');
-  var last=0;
+  var lastY=0;
   window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    if(nav){nav.classList.toggle('nav-hidden',y>last&&y>130);}
-    last=y;
+    var y=window.scrollY||0;
+    if(nav){
+      nav.classList.toggle('scrolled',y>30);
+      nav.classList.toggle('nav-hidden',y>lastY&&y>140);
+    }
+    lastY=y;
     var top=document.getElementById('scroll-top');
-    if(top)top.classList.toggle('visible',y>420);
+    if(top){top.classList.toggle('visible',y>440);}
   },{passive:true});
-  var st=document.getElementById('scroll-top');
-  if(st)st.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var scrollTop=document.getElementById('scroll-top');
+  if(scrollTop){scrollTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+
+  var videos=document.querySelectorAll('.video-card video');
+  videos.forEach(function(video){
+    video.addEventListener('play',function(){
+      videos.forEach(function(other){if(other!==video){other.pause();}});
+    });
+  });
 
   var canvas=document.getElementById('bg-canvas');
   if(canvas&&canvas.getContext){
     var ctx=canvas.getContext('2d');
-    var pts=[];
-    function size(){canvas.width=innerWidth;canvas.height=innerHeight;pts=Array.from({length:26},function(){return{x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18};});}
-    function tick(){
+    var points=[];
+    function resize(){
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
+      points=Array.from({length:32},function(){return{
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        vx:(Math.random()-.5)*.16,
+        vy:(Math.random()-.5)*.16
+      };});
+    }
+    function draw(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
-      pts.forEach(function(p,i){
+      points.forEach(function(p,i){
         p.x+=p.vx;p.y+=p.vy;
-        if(p.x<0||p.x>canvas.width)p.vx*=-1;
-        if(p.y<0||p.y>canvas.height)p.vy*=-1;
-        ctx.fillStyle='rgba(0,229,204,.42)';
+        if(p.x<0||p.x>canvas.width){p.vx*=-1;}
+        if(p.y<0||p.y>canvas.height){p.vy*=-1;}
+        ctx.fillStyle='rgba(0,229,204,.38)';
         ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
-        for(var j=i+1;j<pts.length;j++){
-          var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-          if(d<140){ctx.strokeStyle='rgba(0,229,204,'+(0.12*(1-d/140))+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+        for(var j=i+1;j<points.length;j++){
+          var q=points[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<145){
+            ctx.strokeStyle='rgba(0,229,204,'+(0.13*(1-d/145))+')';
+            ctx.lineWidth=1;
+            ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+          }
         }
       });
-      requestAnimationFrame(tick);
+      requestAnimationFrame(draw);
     }
-    size();addEventListener('resize',size);tick();
+    resize();
+    window.addEventListener('resize',resize);
+    draw();
   }
 })();
 </script>
+
+<script type="module">
+  import Vapi from 'https://esm.sh/@vapi-ai/web';
+
+  const vapi = new Vapi('64a2be75-0aeb-461e-a456-eed7b1010fa6');
+  const assistantId = 'fd0492be-8bfe-44f4-bba8-8f8a5d55bc11';
+
+  const container = document.getElementById('transcript-container');
+  const callBtn = document.getElementById('btn-llamar-silice');
+  const timerDisplay = document.getElementById('voice-timer');
+  const statusLabel = document.getElementById('voice-status-label');
+  let isCallActive = false;
+  let isStartingCall = false;
+  let timerInterval = null;
+  let secondsElapsed = 0;
+
+  function currentLang(){
+    return localStorage.getItem('tfsLang') || document.documentElement.lang || 'en';
+  }
+
+  function t(en, es){
+    return currentLang() === 'es' ? es : en;
+  }
+
+  function escapeHtml(value){
+    const div = document.createElement('div');
+    div.textContent = value || '';
+    return div.innerHTML;
+  }
+
+  function formatTime(totalSeconds){
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const seconds = String(totalSeconds % 60).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  function stopTimer(){
+    if(timerInterval){
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function startTimer(){
+    stopTimer();
+    secondsElapsed = 0;
+    if(timerDisplay){ timerDisplay.textContent = '00:00:00'; }
+    timerInterval = setInterval(function(){
+      secondsElapsed += 1;
+      if(timerDisplay){ timerDisplay.textContent = formatTime(secondsElapsed); }
+    }, 1000);
+  }
+
+  function setStatus(en, es){
+    if(statusLabel){ statusLabel.textContent = t(en, es); }
+  }
+
+  function messageMarkup(role, text, isPartial){
+    const safeText = escapeHtml(text);
+    const isUser = role === 'user';
+    const label = isUser ? 'YOU' : 'AI';
+    const roleClass = isUser ? 'user' : 'assistant';
+    const partialClass = isPartial ? ' partial' : '';
+    return `
+      <div${isPartial ? ' id="partial-transcript"' : ''} class="voice-message ${roleClass}${partialClass}">
+        <div class="voice-avatar">${label}</div>
+        <div class="voice-bubble">${safeText}${isPartial ? '...' : ''}</div>
+      </div>
+    `;
+  }
+
+  function addMessage(role, text){
+    if(!container || !text){ return; }
+    container.insertAdjacentHTML('beforeend', messageMarkup(role, text, false));
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function updateButtonState(){
+    if(!callBtn){ return; }
+    callBtn.classList.toggle('is-active', isCallActive);
+    callBtn.classList.toggle('is-loading', isStartingCall);
+    if(isStartingCall){
+      callBtn.textContent = t('Connecting...', 'Conectando...');
+      setStatus('Requesting microphone access', 'Solicitando acceso al microfono');
+      return;
+    }
+    if(isCallActive){
+      callBtn.textContent = t('End Voice Demo', 'Finalizar Demo de Voz');
+      setStatus('Live call active', 'Llamada en vivo');
+      return;
+    }
+    callBtn.textContent = t('Call the Voice Agent', 'Llamar al Agente');
+    setStatus('Ready to connect', 'Listo para conectar');
+  }
+
+  if(callBtn && container && timerDisplay){
+    updateButtonState();
+
+    callBtn.addEventListener('click', function(){
+      if(isStartingCall){ return; }
+      if(isCallActive){
+        try {
+          vapi.stop();
+        } catch (error) {
+          console.error('Vapi cleanup error:', error);
+        }
+        return;
+      }
+
+      isStartingCall = true;
+      updateButtonState();
+      try {
+        vapi.start(assistantId);
+      } catch (error) {
+        console.error('Vapi start error:', error);
+        isStartingCall = false;
+        isCallActive = false;
+        updateButtonState();
+        stopTimer();
+      }
+    });
+
+    vapi.on('call-start', function(){
+      isStartingCall = false;
+      isCallActive = true;
+      container.innerHTML = '';
+      addMessage('assistant', t(
+        'Hi, I am the AI voice demo. Tell me what kind of call you want to test.',
+        'Hola, soy el demo de voz con IA. Dime que tipo de llamada quieres probar.'
+      ));
+      updateButtonState();
+      startTimer();
+    });
+
+    vapi.on('call-end', function(){
+      isStartingCall = false;
+      isCallActive = false;
+      updateButtonState();
+      stopTimer();
+    });
+
+    vapi.on('error', function(error){
+      console.error('Vapi error:', error);
+      isStartingCall = false;
+      isCallActive = false;
+      updateButtonState();
+      stopTimer();
+    });
+
+    vapi.on('message', function(message){
+      if(message.type !== 'transcript'){ return; }
+      const role = message.role;
+      const text = message.transcript;
+      const partialEl = document.getElementById('partial-transcript');
+
+      if(message.transcriptType === 'partial'){
+        if(!text){ return; }
+        if(partialEl){
+          const bubble = partialEl.querySelector('.voice-bubble');
+          if(bubble){ bubble.textContent = text + '...'; }
+        } else {
+          container.insertAdjacentHTML('beforeend', messageMarkup(role, text, true));
+          container.scrollTop = container.scrollHeight;
+        }
+      }
+
+      if(message.transcriptType === 'final'){
+        if(partialEl){ partialEl.remove(); }
+        if(text){ addMessage(role, text); }
+      }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        window.setTimeout(updateButtonState, 0);
+      });
+    });
+  }
+</script>
 </body>
 </html>
+
