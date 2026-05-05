@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script>
+<title>90-Day AI Rollout Timeline | The Future Studio</title>
+<meta name="description" content="Install the right AI systems in the right order with a bilingual 90-day rollout timeline for service businesses. No wasted budget or overwhelmed teams. EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thefuturestudio.online/shop/step-2/learn/">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-2/learn/">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-2/learn/">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-2/learn/">
+<meta property="og:title" content="90-Day AI Rollout Timeline | The Future Studio">
+<meta property="og:description" content="A practical bilingual AI rollout timeline for service businesses that need order before they need more complexity.">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://thefuturestudio.online/shop/step-2/learn/">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"90-Day AI Rollout Timeline","description":"A practical 90-day AI rollout timeline for service businesses that need order, sequencing, and implementation clarity.","offers":{"@type":"Offer","price":"4.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/step-2/learn/"}}</script>
+<link rel="stylesheet" href="/assets/mobile-center.css">
+<link rel="stylesheet" href="/assets/funnel-layout.css?v=20260426-layout-9">
+</head>
+<body class="page-step-2-learn has-urgency-bar">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+  <div class="top-urgency-bar">
+    <div class="wrap-wide top-urgency-inner">
+      <p class="top-urgency-copy" data-en="Limited $4.99 entry price. <strong>Start your AI rollout plan today.</strong> <span>Buy order before complexity.</span>" data-es="Precio de entrada limitado de $4.99. <strong>Empieza hoy tu plan de rollout con IA.</strong> <span>Compra orden antes que complejidad.</span>">Limited $4.99 entry price. <strong>Start your AI rollout plan today.</strong> <span>Buy order before complexity.</span></p>
+      <a class="top-urgency-cta" href="/checkout/rollout-timeline.html" data-en="Get the timeline" data-es="Obten el timeline">Get the timeline</a>
+    </div>
+  </div>
+
+  <nav class="site-nav">
+    <div class="wrap-wide site-nav-inner">
+      <div class="site-nav-links">
+        <div class="nav-primary">
+          <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+          <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+          <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+          <a href="/#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" type="button">EN</button>
+            <button class="lang-btn" data-lang="es" type="button">ES</button>
+          </div>
+          <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+        </div>
+      </div>
+      <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+      <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-panel aos">
+            <span class="orb orb-cyan orb-1" style="width:210px;height:210px;top:-70px;right:-60px"></span>
+            <p class="eyebrow" data-en="Step 2 - Learn Path" data-es="Paso 2 - Ruta Learn">Step 2 - Learn Path</p>
+            <h1 class="hero-title" data-en="TURN <span class='grad'>AI CURIOSITY</span> INTO A CLEAR 90-DAY PLAN" data-es="CONVIERTE LA <span class='grad'>CURIOSIDAD POR IA</span> EN UN PLAN CLARO DE 90 DIAS">TURN <span class="grad">AI CURIOSITY</span> INTO A CLEAR 90-DAY PLAN</h1>
+            <p class="hero-copy" data-en="A simple planning guide for service businesses that want to use AI without overwhelming the team, wasting budget, or installing the wrong tools first." data-es="Una guia de planeacion simple para negocios de servicios que quieren usar IA sin abrumar al equipo, desperdiciar presupuesto o instalar primero las herramientas equivocadas.">A simple planning guide for service businesses that want to use AI without overwhelming the team, wasting budget, or installing the wrong tools first.</p>
+            <div class="offer-price-banner" aria-label="Offer price">
+              <div class="offer-price-main">
+                <span class="offer-price-label" data-en="Entry price" data-es="Precio de entrada">Entry price</span>
+                <span class="offer-price-amount">$4.99</span>
+              </div>
+              <div class="offer-price-detail">
+                <span class="offer-price-was" data-en="Before bigger AI spend" data-es="Antes de un gasto mayor en IA">Before bigger AI spend</span>
+                <span class="offer-price-save" data-en="Low-risk planning layer" data-es="Capa de planeacion de bajo riesgo">Low-risk planning layer</span>
+                <span class="offer-price-bestfor" data-en="Best for: businesses that want the right implementation order before buying more tools." data-es="Ideal para: negocios que quieren el orden correcto de implementacion antes de comprar mas herramientas.">Best for: businesses that want the right implementation order before buying more tools.</span>
+                <span class="offer-price-value" data-en="Secure Stripe checkout, instant access, email receipt, USD pricing, and a calmer next step into AI implementation." data-es="Checkout seguro con Stripe, acceso inmediato, recibo por email, precio en USD y un siguiente paso mas calmado hacia la implementacion con IA.">Secure Stripe checkout, instant access, email receipt, USD pricing, and a calmer next step into AI implementation.</span>
+              </div>
+            </div>
+            <div class="hero-pills">
+              <span class="hero-pill" data-en="Price: $4.99" data-es="Precio: $4.99">Price: $4.99</span>
+              <span class="hero-pill" data-en="Planning layer" data-es="Capa de planeacion">Planning layer</span>
+              <span class="hero-pill" data-en="Safer next decision" data-es="Siguiente decision mas segura">Safer next decision</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary buy-trigger" href="/checkout/rollout-timeline.html" data-product-name="90-Day AI Rollout Timeline" data-price-label="$4.99" data-product-detail="A sequencing guide that helps service businesses install AI in the right order without overwhelming the team." data-next-step="Best next step: move into the AI Implementation Playbook when you want deeper rollout confidence." data-product-note="Step 2 learn product selected." data-en="Get the 90-Day Timeline" data-es="Obten el timeline de 90 dias">Get the 90-Day Timeline</a>
+              <a class="btn btn-secondary" href="/upsell/learn-step2.html" data-en="See the Step 3 playbook" data-es="Ver el playbook del paso 3">See the Step 3 playbook</a>
+            </div>
+            <p class="hero-inline-note" data-en="Before you spend serious money on AI, spend $4.99 to understand the right order of implementation." data-es="Antes de gastar dinero serio en IA, invierte $4.99 para entender el orden correcto de implementacion.">Before you spend serious money on AI, spend $4.99 to understand the right order of implementation.</p>
+          </div>
+          <aside class="side-panel aos d1">
+            <p class="panel-kicker" data-en="What you get" data-es="Que recibes">What you get</p>
+            <div class="panel-price">$4.99</div>
+            <p class="panel-desc" data-en="A planning layer for owners who need order before they need more software, more promises, or more implementation noise." data-es="Una capa de planeacion para duenos que necesitan orden antes de mas software, mas promesas o mas ruido de implementacion.">A planning layer for owners who need order before they need more software, more promises, or more implementation noise.</p>
+            <ul class="trust-list">
+              <li data-en="A clear 90-day rollout sequence" data-es="Una secuencia clara de rollout de 90 dias">A clear 90-day rollout sequence</li>
+              <li data-en="What to do first, second, and third" data-es="Que hacer primero, segundo y tercero">What to do first, second, and third</li>
+              <li data-en="Guidance on what to delay or avoid" data-es="Guia sobre que retrasar o evitar">Guidance on what to delay or avoid</li>
+              <li data-en="A bridge toward deeper implementation" data-es="Un puente hacia una implementacion mas profunda">A bridge toward deeper implementation</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="video-showcase-card aos">
+          <p class="eyebrow" data-en="Founder walkthrough" data-es="Recorrido del fundador">Founder walkthrough</p>
+          <div class="video-showcase-head">
+            <div>
+              <h2 class="video-showcase-title" data-en="SEE HOW THE <span class='grad'>TIMELINE WORKS</span>" data-es="MIRA COMO FUNCIONA EL <span class='grad'>TIMELINE</span>">SEE HOW THE <span class="grad">TIMELINE WORKS</span></h2>
+            </div>
+          </div>
+          <div class="video-showcase-frame">
+            <video class="video-showcase-player" controls preload="metadata" playsinline aria-label="90-Day AI Rollout Timeline video">
+              <source src="/shop/assets/videos/90-day-ai-rollout-timeline.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="video-showcase-meta">
+            <div class="video-showcase-author">
+              <span class="video-showcase-label" data-en="Presented by" data-es="Presentado por">Presented by</span>
+              <strong>Richard Hardy</strong>
+              <span data-en="Founder, The Future Studio" data-es="Fundador, The Future Studio">Founder, The Future Studio</span>
+            </div>
+            <p class="video-showcase-summary" data-en="This walkthrough shows how the timeline helps a business choose what to do first, what to delay, and how to move through the first 90 days without overwhelming the team." data-es="Este recorrido muestra como el timeline ayuda a un negocio a elegir que hacer primero, que retrasar y como avanzar durante los primeros 90 dias sin abrumar al equipo.">This walkthrough shows how the timeline helps a business choose what to do first, what to delay, and how to move through the first 90 days without overwhelming the team.</p>
+          </div>
+          <div class="section-cta">
+            <a class="btn btn-primary buy-trigger" href="/checkout/rollout-timeline.html" data-product-name="90-Day AI Rollout Timeline" data-price-label="$4.99" data-product-detail="A sequencing guide that helps service businesses install AI in the right order without overwhelming the team." data-next-step="Best next step: move into the AI Implementation Playbook when you want deeper rollout confidence." data-product-note="Step 2 learn product selected." data-en="Get the 90-Day Timeline" data-es="Obten el timeline de 90 dias">Get the 90-Day Timeline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-card aos">
+          <p class="eyebrow" data-en="What the 90 days do" data-es="Que hacen los 90 dias">What the 90 days do</p>
+          <h2 class="section-title" data-en="YOU DO NOT NEED MORE <span class='grad'>HYPE</span>. YOU NEED ORDER." data-es="NO NECESITAS MAS <span class='grad'>HYPE</span>. NECESITAS ORDEN.">YOU DO NOT NEED MORE <span class="grad">HYPE</span>. YOU NEED ORDER.</h2>
+          <p class="section-copy" data-en="A lot of buyers already believe AI is important. What they do not have is a practical sequence that protects time, budget, and team attention. That is exactly what this product gives them." data-es="Muchos compradores ya creen que la IA es importante. Lo que no tienen es una secuencia practica que proteja tiempo, presupuesto y atencion del equipo. Eso es exactamente lo que da este producto.">A lot of buyers already believe AI is important. What they do not have is a practical sequence that protects time, budget, and team attention. That is exactly what this product gives them.</p>
+          <div class="timeline-grid">
+            <article class="timeline-card"><div class="tier" data-en="Days 1-30" data-es="Dias 1-30">Days 1-30</div><h3 data-en="Clarify" data-es="Clarificar">Clarify</h3><p data-en="Identify the first system worth installing and avoid trying to modernize everything at once." data-es="Identifica el primer sistema que vale la pena instalar y evita intentar modernizar todo a la vez.">Identify the first system worth installing and avoid trying to modernize everything at once.</p></article>
+            <article class="timeline-card"><div class="tier" data-en="Days 31-60" data-es="Dias 31-60">Days 31-60</div><h3 data-en="Install" data-es="Instalar">Install</h3><p data-en="Put the first useful layer in place without creating team confusion or a new operational mess." data-es="Coloca la primera capa util sin crear confusion en el equipo ni un nuevo desorden operativo.">Put the first useful layer in place without creating team confusion or a new operational mess.</p></article>
+            <article class="timeline-card"><div class="tier" data-en="Days 61-90" data-es="Dias 61-90">Days 61-90</div><h3 data-en="Stabilize" data-es="Estabilizar">Stabilize</h3><p data-en="Refine what is working, remove what is not, and get ready for a deeper implementation layer if needed." data-es="Refina lo que funciona, elimina lo que no y preparate para una capa mas profunda de implementacion si hace falta.">Refine what is working, remove what is not, and get ready for a deeper implementation layer if needed.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-card aos">
+          <p class="eyebrow" data-en="Built for you if" data-es="Es para ti si">Built for you if</p>
+          <h2 class="section-title" data-en="THE RIGHT <span class='grad'>DECISION LAYER</span> FOR CAUTIOUS BUYERS" data-es="LA <span class='grad'>CAPA DE DECISION</span> CORRECTA PARA COMPRADORES CAUTOS">THE RIGHT <span class="grad">DECISION LAYER</span> FOR CAUTIOUS BUYERS</h2>
+          <div class="compare-grid">
+            <article class="compare-card">
+              <div class="compare-kicker" data-en="For you if" data-es="Para ti si">For you if</div>
+              <h3 data-en="You want a calmer rollout path" data-es="Quieres un camino de rollout mas calmado">You want a calmer rollout path</h3>
+              <ul>
+                <li data-en="You know AI matters but do not know where to start" data-es="Sabes que la IA importa pero no sabes por donde empezar">You know AI matters but do not know where to start</li>
+                <li data-en="You want to avoid buying random tools before the workflow is clear" data-es="Quieres evitar comprar herramientas al azar antes de tener claro el workflow">You want to avoid buying random tools before the workflow is clear</li>
+                <li data-en="You want a low-risk first purchase before deeper implementation" data-es="Quieres una primera compra de bajo riesgo antes de una implementacion mas profunda">You want a low-risk first purchase before deeper implementation</li>
+              </ul>
+            </article>
+            <article class="compare-card">
+              <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
+              <h3 data-en="You already have a full rollout map" data-es="Ya tienes un mapa completo de rollout">You already have a full rollout map</h3>
+              <ul>
+                <li data-en="You want an instant done-for-you implementation" data-es="Quieres una implementacion done-for-you inmediata">You want an instant done-for-you implementation</li>
+                <li data-en="You only want a generic list of AI tools" data-es="Solo quieres una lista generica de herramientas de IA">You only want a generic list of AI tools</li>
+                <li data-en="You are not willing to review how the business currently works" data-es="No estas dispuesto a revisar como funciona hoy el negocio">You are not willing to review how the business currently works</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section">
+      <div class="wrap">
+        <div class="proof-card aos">
+          <p class="eyebrow" data-en="Why this is different" data-es="Por que esto es diferente">Why this is different</p>
+          <h2 data-en="A <span class='grad'>TIMELINE PRODUCT</span> THAT STILL THINKS LIKE A BUILDER" data-es="UN <span class='grad'>TIMELINE</span> QUE PIENSA COMO UN BUILDER">A <span class="grad">TIMELINE PRODUCT</span> THAT STILL THINKS LIKE A BUILDER</h2>
+          <p class="proof-copy" data-en="This is not a vague motivation product. It comes from a studio that actually builds systems for service businesses, so the timeline is shaped around what teams can really absorb and maintain." data-es="Este no es un producto de motivacion vaga. Viene de un estudio que realmente construye sistemas para negocios de servicios, por eso el timeline esta moldeado alrededor de lo que los equipos de verdad pueden absorber y mantener.">This is not a vague motivation product. It comes from a studio that actually builds systems for service businesses, so the timeline is shaped around what teams can really absorb and maintain.</p>
+          <div class="proof-list">
+            <div><strong data-en="Less overwhelm" data-es="Menos abrumo">Less overwhelm</strong><span data-en="The timeline helps buyers stop treating AI like one giant project and start treating it like a better sequence of decisions." data-es="El timeline ayuda a dejar de tratar la IA como un proyecto gigante y empezar a tratarla como una mejor secuencia de decisiones.">The timeline helps buyers stop treating AI like one giant project and start treating it like a better sequence of decisions.</span></div>
+            <div><strong data-en="More realistic pacing" data-es="Ritmo mas realista">More realistic pacing</strong><span data-en="The order is designed to reduce chaos, protect the team, and keep the business moving." data-es="El orden esta disenado para reducir caos, proteger al equipo y mantener el negocio avanzando.">The order is designed to reduce chaos, protect the team, and keep the business moving.</span></div>
+            <div><strong data-en="Natural bridge to step 3" data-es="Puente natural al paso 3">Natural bridge to step 3</strong><span data-en="Once the buyer has a rollout shape, the next logical move is a deeper implementation playbook." data-es="Una vez que el comprador tiene una forma de rollout, el siguiente movimiento logico es un playbook mas profundo de implementacion.">Once the buyer has a rollout shape, the next logical move is a deeper implementation playbook.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-card aos">
+          <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
+          <h2 class="section-title" data-en="FROM <span class='grad'>TOO MANY AI IDEAS</span> TO A CALMER PLAN" data-es="DE <span class='grad'>DEMASIADAS IDEAS DE IA</span> A UN PLAN MAS CALMADO">FROM <span class="grad">TOO MANY AI IDEAS</span> TO A CALMER PLAN</h2>
+          <div class="compare-grid">
+            <article class="compare-card">
+              <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
+              <h3 data-en="Tool confusion" data-es="Confusion de herramientas">Tool confusion</h3>
+              <ul>
+                <li data-en="Too many AI ideas at once" data-es="Demasiadas ideas de IA a la vez">Too many AI ideas at once</li>
+                <li data-en="No clear first system" data-es="No hay un primer sistema claro">No clear first system</li>
+                <li data-en="Budget risk from wrong sequencing" data-es="Riesgo de presupuesto por mala secuencia">Budget risk from wrong sequencing</li>
+              </ul>
+            </article>
+            <article class="compare-card">
+              <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
+              <h3 data-en="Ordered rollout logic" data-es="Logica de rollout ordenada">Ordered rollout logic</h3>
+              <ul>
+                <li data-en="Clear 90-day sequence" data-es="Secuencia clara de 90 dias">Clear 90-day sequence</li>
+                <li data-en="First system identified" data-es="Primer sistema identificado">First system identified</li>
+                <li data-en="A safer bridge into step 3" data-es="Un puente mas seguro hacia el paso 3">A safer bridge into step 3</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-card aos">
+          <p class="eyebrow" data-en="Objections and FAQ" data-es="Objeciones y FAQ">Objections and FAQ</p>
+          <h2 class="section-title" data-en="REMOVE THE <span class='grad'>LAST BIT OF HESITATION</span>" data-es="QUITAR LA <span class='grad'>ULTIMA DUDA</span>">REMOVE THE <span class="grad">LAST BIT OF HESITATION</span></h2>
+          <div class="objection-grid">
+            <article class="objection-card"><h3 data-en="Too simple?" data-es="Muy simple?">Too simple?</h3><p data-en="That is the point. The buyer does not need another dense report. They need a better order of operations they can actually use." data-es="Ese es el punto. El comprador no necesita otro reporte denso. Necesita un mejor orden de operaciones que realmente pueda usar.">That is the point. The buyer does not need another dense report. They need a better order of operations they can actually use.</p></article>
+            <article class="objection-card"><h3 data-en="Too early?" data-es="Muy temprano?">Too early?</h3><p data-en="This is designed for the exact moment before a deeper implementation decision. It is meant to reduce the cost of confusion." data-es="Esto esta disenado exactamente para el momento antes de una decision de implementacion mas profunda. Esta hecho para reducir el costo de la confusion.">This is designed for the exact moment before a deeper implementation decision. It is meant to reduce the cost of confusion.</p></article>
+            <article class="objection-card"><h3 data-en="Will I still need step 3?" data-es="Igual necesitare el paso 3?">Will I still need step 3?</h3><p data-en="Often yes, but step 3 will work better because you will be moving from order into implementation, not from chaos into implementation." data-es="Muchas veces si, pero el paso 3 funcionara mejor porque te mueves desde orden hacia implementacion, no desde caos hacia implementacion.">Often yes, but step 3 will work better because you will be moving from order into implementation, not from chaos into implementation.</p></article>
+          </div>
+          <div class="faq-list" id="faq">
+            <div class="faq-item"><button class="faq-question" type="button" data-en="Who is this timeline best for?" data-es="Para quien es mejor este timeline?">Who is this timeline best for?</button><div class="faq-answer" data-en="It is best for owners and operators who know AI matters but still want a low-risk, structured first purchase." data-es="Es mejor para duenos y operadores que saben que la IA importa pero todavia quieren una primera compra estructurada y de bajo riesgo.">It is best for owners and operators who know AI matters but still want a low-risk, structured first purchase.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" data-en="What is the next step after this?" data-es="Cual es el siguiente paso despues de esto?">What is the next step after this?</button><div class="faq-answer" data-en="For the learn path, the natural next move is the AI Implementation Playbook at step 3." data-es="Para la ruta learn, el siguiente movimiento natural es el AI Implementation Playbook en el paso 3.">For the learn path, the natural next move is the AI Implementation Playbook at step 3.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" data-en="Does this replace custom implementation?" data-es="Esto reemplaza implementacion custom?">Does this replace custom implementation?</button><div class="faq-answer" data-en="No. It creates the structure that helps future implementation happen with less risk, less waste, and better timing." data-es="No. Crea la estructura que ayuda a que la implementacion futura suceda con menos riesgo, menos desperdicio y mejor timing.">No. It creates the structure that helps future implementation happen with less risk, less waste, and better timing.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="checkout-card aos" id="checkout-slot">
+          <p class="eyebrow">Checkout slot</p>
+          <h2 data-en="READY TO UNLOCK <span class='grad'>THIS TIMELINE</span>?" data-es="LISTO PARA DESBLOQUEAR <span class='grad'>ESTE TIMELINE</span>?">READY TO UNLOCK <span class="grad">THIS TIMELINE</span>?</h2>
+          <p data-en="Get the exact planning product shown above and use it to stop guessing, choose the right first move, and only buy more complexity once your business is ready." data-es="Obten el producto de planeacion exacto que viste arriba y usalo para dejar de adivinar, elegir el primer movimiento correcto y comprar mas complejidad solo cuando tu negocio este listo.">Get the exact planning product shown above and use it to stop guessing, choose the right first move, and only buy more complexity once your business is ready.</p>
+          <div class="checkout-grid">
+            <div class="checkout-box"><strong id="checkout-product-name">90-Day AI Rollout Timeline</strong><span id="checkout-product-price">$4.99</span></div>
+            <div class="checkout-box"><strong data-en="What this product does" data-es="Que hace este producto">What this product does</strong><span id="checkout-product-detail">A sequencing guide that helps service businesses install AI in the right order without overwhelming the team.</span></div>
+            <div class="checkout-box"><strong data-en="Best next step" data-es="Siguiente mejor paso">Best next step</strong><span id="checkout-next-step">Move into the AI Implementation Playbook when you want deeper rollout confidence.</span></div>
+            <div class="checkout-box"><strong data-en="Selection note" data-es="Nota de seleccion">Selection note</strong><span id="checkout-product-note">Step 2 learn product selected.</span></div>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="manual-order-email" href="/checkout/rollout-timeline.html" data-en="Get the 90-Day Timeline" data-es="Obten el timeline de 90 dias">Get the 90-Day Timeline</a>
+            <a class="btn btn-light" id="manual-order-whatsapp" href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" data-en="Ask on WhatsApp" data-es="Preguntar por WhatsApp">Ask on WhatsApp</a>
+            <a class="btn btn-light" href="/upsell/learn-step2.html" data-en="Go to Step 3" data-es="Ir al paso 3">Go to Step 3</a>
+          </div>
+          <p class="checkout-helper" data-en="Low-friction reassurance: buy order first, then buy complexity only if the business is truly ready for it." data-es="Tranquilidad de baja friccion: compra primero orden y compra complejidad solo si el negocio de verdad ya esta listo.">Low-friction reassurance: buy order first, then buy complexity only if the business is truly ready for it.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="footer-logo-link" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p data-en="AI systems and digital products for service businesses. Design-led, bilingual, and built to create real operational momentum before bigger offers are introduced." data-es="Sistemas de IA y productos digitales para negocios de servicios. Orientado al diseno, bilingue y construido para crear momentum operativo real antes de introducir ofertas mayores.">AI systems and digital products for service businesses. Design-led, bilingual, and built to create real operational momentum before bigger offers are introduced.</p>
+        </div>
+        <div class="footer-col">
+          <h5 data-en="Services" data-es="Servicios">Services</h5>
+          <a href="/#services">Voice Agents</a>
+          <a href="/#services">WhatsApp Automation</a>
+          <a href="/#services">Booking Flows</a>
+          <a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a>
+        </div>
+        <div class="footer-col">
+          <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:info%40thefuturestudio.online">info&#64;thefuturestudio.online</a>
+          <a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-en="&copy; 2026 The Future Studio. All rights reserved." data-es="&copy; 2026 The Future Studio. Todos los derechos reservados.">&copy; 2026 The Future Studio. All rights reserved.</span>
+        <span class="footer-status" data-en="Internationally delivered. Built in weeks." data-es="Entrega internacional. Construido en semanas.">Internationally delivered. Built in weeks.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
+<script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
+</body>
+</html>

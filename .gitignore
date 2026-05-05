@@ -24,11 +24,16 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
+
+# build caches
 tsconfig.tsbuildinfo
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.err
+*.tmp
 
 # vercel
 .vercel

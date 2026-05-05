@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Business Revenue Calculator - The Future Studio</title>
+<meta name="description" content="See how much revenue your service business is losing to missed calls and slow follow-up. Free bilingual interactive calculator - results in 30 seconds. EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thefuturestudio.online/build/">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/build/">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/build/">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/build/">
+<meta property="og:title" content="Business Revenue Calculator | The Future Studio">
+<meta property="og:description" content="Free bilingual calculator - see how much revenue your service business is losing in 30 seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/build/">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Business Revenue Calculator","url":"https://thefuturestudio.online/build/","description":"A free bilingual revenue calculator for service businesses.","inLanguage":["en","es"]}</script>
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ TOKENS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+:root{
+  --cream:#fff8f5;--white:#ffffff;--black:#0a0a0a;
+  --cyan:#00e5cc;--violet:#9b59ff;
+  --cyan-dim:rgba(0,229,204,0.15);--violet-dim:rgba(155,89,255,0.15);
+  --cyan-glow:rgba(0,229,204,0.3);--violet-glow:rgba(155,89,255,0.3);
+  --text-dark:#0a0a0a;--text-mid:#444;--text-muted:#888;
+  --border-dark:rgba(10,10,10,0.15);--border-strong:#0a0a0a;
+  --font-d:'Barlow Condensed',sans-serif;--font-b:'DM Sans',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--cream);color:var(--text-dark);font-family:var(--font-b);overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+ul{list-style:none}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{display:none}
+input[type=number]{-moz-appearance:textfield}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ CANVAS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ LAYOUT Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.wrap-wide{max-width:1440px;margin:0 auto;padding:0 32px}
+section,nav,footer{position:relative;z-index:1}
+
+.top-urgency-bar{position:fixed;top:0;left:0;right:0;z-index:140;background:var(--black);color:var(--white);border-bottom:1px solid rgba(255,255,255,.12)}
+.top-urgency-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px}
+.top-urgency-copy{font-size:14px;line-height:1.45;color:rgba(255,255,255,.82)}
+.top-urgency-copy strong{color:var(--white)}
+.top-urgency-copy span{color:var(--cyan)}
+.top-urgency-cta{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 16px;background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black);font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+body.has-urgency-bar #nav{top:56px}
+.sales-block{padding:100px 0;background:var(--cream)}
+.sales-block-dark{background:var(--black);color:var(--white)}
+.sales-head{max-width:860px;margin:0 auto 42px;text-align:center}
+.sales-head .eyebrow{display:block;margin-bottom:14px}
+.sales-head .body-lg{max-width:760px;margin:18px auto 0}
+.split-compare{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.compare-panel{border:2px solid var(--black);background:var(--white);padding:28px}
+.sales-block-dark .compare-panel{background:#111;color:var(--white);border-color:rgba(255,255,255,.16)}
+.compare-panel h3,.mini-proof-card h3,.demo-step h3{font-family:var(--font-d);font-size:32px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95;margin:12px 0 16px}
+.compare-panel p,.compare-panel li,.mini-proof-card p,.demo-step p{font-size:15px;line-height:1.65;color:var(--text-mid)}
+.sales-block-dark .compare-panel p,.sales-block-dark .compare-panel li,.sales-block-dark .mini-proof-card p,.sales-block-dark .demo-step p{color:rgba(255,255,255,.72)}
+.compare-panel ul,.demo-step ul{display:grid;gap:12px}
+.compare-panel li,.demo-step li{position:relative;padding-left:18px}
+.compare-panel li::before,.demo-step li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--cyan)}
+.mini-proof-grid,.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mini-proof-card,.demo-step{border:2px solid var(--black);background:var(--white);padding:28px}
+.sales-block-dark .mini-proof-card,.sales-block-dark .demo-step{background:#111;border-color:rgba(255,255,255,.16)}
+.step-num{font-family:var(--font-d);font-size:44px;font-weight:800;font-style:italic;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.cta-row-inline{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.bonus-panel{border:2px solid var(--black);background:linear-gradient(135deg,var(--cyan),#dffdf7 42%,var(--white));padding:34px;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.bonus-panel .body-lg,.bonus-panel .body-sm{color:#143330}
+.legal-note{font-size:13px;line-height:1.6;color:var(--text-muted);margin-top:18px;text-align:center}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ TYPOGRAPHY Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.headline-xl{font-family:var(--font-d);font-size:clamp(72px,11vw,160px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.88;letter-spacing:-.01em}
+.headline-lg{font-family:var(--font-d);font-size:clamp(48px,7vw,100px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9;letter-spacing:-.01em}
+.headline-md{font-family:var(--font-d);font-size:clamp(36px,5vw,64px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
+.headline-sm{font-family:var(--font-d);font-size:clamp(22px,3vw,36px);font-weight:700;font-style:italic;text-transform:uppercase;line-height:1}
+.eyebrow{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.body-lg{font-size:18px;line-height:1.75;color:var(--text-mid)}
+.body-sm{font-size:14px;line-height:1.65;color:var(--text-muted)}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ SHIMMER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.shimmer{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--cyan));background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s ease infinite}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ ANIMATIONS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+@keyframes slideUp{from{transform:translateY(105%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,15px) scale(.97)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-25px,18px) scale(1.03)}66%{transform:translate(20px,-12px) scale(.98)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-25px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;pointer-events:none;z-index:0}
+.orb-cyan{background:var(--cyan)}
+.orb-violet{background:var(--violet)}
+.orb-1{animation:orbFloat1 12s ease-in-out infinite}
+.orb-2{animation:orbFloat2 15s ease-in-out infinite}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ BUTTONS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-family:var(--font-d);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .25s var(--ease);border:none;position:relative;overflow:hidden}
+.btn-dark{background:var(--black);color:var(--white)}
+.btn-dark:hover{background:var(--text-mid);transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.btn-grad{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
+.btn-grad:hover{background:var(--black);color:var(--white);box-shadow:0 8px 30px rgba(0,0,0,.25);transform:translateY(-1px)}
+.btn-outline-dark{background:transparent;color:var(--black);border:2px solid var(--black)}
+.btn-outline-dark:hover{background:var(--black);color:var(--white)}
+.btn-outline-white{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.4)}
+.btn-outline-white:hover{background:var(--white);color:var(--black)}
+.btn-lg{padding:18px 44px;font-size:18px}
+.btn-sm{padding:10px 22px;font-size:13px}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ NAV Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);background:rgba(255,248,245,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,10,10,0.1);box-shadow:0 18px 40px rgba(10,10,10,0.08);transition:transform .28s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
+#nav.scrolled{background:rgba(255,248,245,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:rgba(10,10,10,0.1);box-shadow:0 18px 40px rgba(10,10,10,0.08)}
+#nav.nav-hidden{transform:translateY(-100%)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:96px;padding:0 32px;max-width:1440px;margin:0 auto;gap:20px;position:relative}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-center{position:absolute;left:50%;transform:translateX(-50%)}
+.nav-logo img{height:76px;width:auto;object-fit:contain}
+.nav-logo-text{font-family:var(--font-d);font-size:32px;font-weight:800;font-style:italic;text-transform:uppercase;letter-spacing:.02em;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mid);transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--cyan);transition:width .25s var(--ease)}
+.nav-links a:hover{color:var(--black)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:24px}
+.lang-toggle{display:inline-flex;align-items:center;gap:2px;padding:4px;border:2px solid var(--black);background:rgba(255,255,255,0.66)}
+.lang-btn{min-width:44px;padding:7px 10px;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:all .2s;background:none;border:none;cursor:pointer}
+.lang-btn.active{background:var(--black);color:var(--white)}
+.nav-hamburger{display:none;margin-left:auto;width:52px;height:52px;border:2px solid var(--black);background:rgba(255,255,255,0.78);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;padding:0}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s}
+.nav-hamburger.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+.nav-mobile{display:none;padding:0 32px 24px;background:rgba(255,248,245,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(10,10,10,0.08);border-bottom:1px solid rgba(10,10,10,0.08)}
+.nav-mobile.open{display:block}
+.nav-mobile a{min-height:48px;display:flex;align-items:center;justify-content:flex-start;width:100%;padding:14px 0;font-family:var(--font-d);font-size:16px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mid);border-bottom:2px solid rgba(10,10,10,0.08)}
+.nav-mobile a:hover{color:var(--black)}
+.nav-mobile .btn{margin-top:12px;width:100%;justify-content:center}
+.nav-mobile .lang-toggle{display:flex;justify-content:center;width:100%;margin-top:18px;padding-top:16px;border-top:1px solid rgba(10,10,10,0.08)}
+.nav-mobile-controls{display:none}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ SECTION HEADER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.sec-hdr{margin-bottom:64px}
+.sec-hdr.center{text-align:center}
+.sec-hdr.center .body-lg{max-width:580px;margin:16px auto 0}
+.sec-hdr .eyebrow{color:var(--cyan);margin-bottom:12px}
+.sec-hdr .headline-md{margin-top:8px}
+.sec-hdr .body-lg{margin-top:14px}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ SECTION DARK Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.section-dark{background:var(--black);color:var(--white)}
+.section-dark .body-lg{color:rgba(255,255,255,0.55)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ SVC CARD (from index.html Ã¢â‚¬â€ exact copy) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.svc-card{padding:28px;border:2px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px;transition:all 0.4s cubic-bezier(0.23,1,0.32,1);cursor:default;position:relative;background:#0a0a0f}
+.svc-card:hover{background:#ffffff;border:2px solid #0a0a0f;transform:translateY(-16px) translateX(-8px);box-shadow:16px 16px 0px #00e5cc}
+.svc-card:hover .svc-name{color:#0a0a0f;-webkit-text-fill-color:#0a0a0f;background:none;-webkit-background-clip:unset;background-clip:unset}
+.svc-card:hover .svc-desc{color:rgba(10,10,15,0.6)}
+.svc-card:hover .svc-feat{color:#0a0a0f}
+.svc-card:hover .svc-feat svg{color:#0a0a0f}
+.svc-card:hover .svc-monthly{color:rgba(10,10,15,0.45)}
+.svc-card:hover .svc-price-row{border-top-color:rgba(10,10,15,0.12)}
+.svc-card:hover .btn-outline-white{background:#0a0a0f;color:#ffffff;border-color:#0a0a0f}
+.svc-badge{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(0,229,204,0.4);color:var(--white);background:linear-gradient(135deg,#00e5cc 0%,#9b59ff 65%,#e040fb 100%);width:fit-content}
+.svc-badge-hot{background:none;border-color:var(--violet);color:var(--violet)}
+.svc-name{font-family:var(--font-d);font-size:18px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--white);line-height:1.2;transition:all .3s}
+.svc-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;flex:1}
+.svc-features{display:flex;flex-direction:column;gap:7px}
+.svc-feat{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(255,255,255,0.45)}
+.svc-feat svg{flex-shrink:0;margin-top:2px;color:var(--cyan)}
+.svc-price-row{padding-top:14px;border-top:1px solid rgba(255,255,255,0.08);margin-top:auto}
+.svc-setup{font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.svc-monthly{font-size:12px;color:rgba(255,255,255,0.35);margin-top:3px}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ STAT CELLS (from index.html hero stats bar) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.stat-cells-row{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,0.08);max-width:980px;margin:0 auto}
+.stat-cell{padding:28px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;line-height:1}
+.stat-num.count-cyan{color:var(--cyan)}
+.stat-num.count-violet{color:var(--violet)}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:6px;font-family:var(--font-d)}
+.stat-note{font-size:12px;line-height:1.55;color:rgba(255,255,255,0.48);margin-top:10px}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ FOOTER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
+.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.footer-logo img{width:26px;height:26px;object-fit:contain;filter:brightness(0) invert(1)}
+.footer-logo-text{font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);max-width:260px;line-height:1.65}
+.footer-col h5{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col ul{display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ FIXED ELEMENTS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.35);transition:background .25s var(--ease),box-shadow .25s,transform .25s}
+#whatsapp-btn:hover{background:var(--black);box-shadow:0 8px 36px rgba(0,0,0,.35);transform:scale(1.05)}
+#whatsapp-btn svg{width:28px;height:28px}
+#scroll-top{position:fixed;bottom:96px;right:28px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;border-radius:0;transition:background .25s,opacity .3s,transform .3s;opacity:0;pointer-events:none;transform:translateY(10px)}
+#scroll-top.visible{opacity:1;pointer-events:all;transform:none}
+#scroll-top:hover{background:var(--cyan);color:var(--black)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ AOS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+.aos{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.aos.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   PAGE-SPECIFIC STYLES
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ BUILD HERO Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#build-hero{background:var(--black);padding-top:160px;padding-bottom:60px;overflow:hidden;position:relative;text-align:center}
+.build-hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:2}
+.build-hero-inner .eyebrow{color:var(--cyan);margin-bottom:20px}
+.build-hero-h1{margin-bottom:28px;color:var(--white)}
+.build-hero-body{max-width:560px;margin:0 auto 36px;color:rgba(255,255,255,0.55)}
+.hero-stat-pills{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-stat-pill{font-family:var(--font-d);font-size:13px;font-weight:700;font-style:italic;text-transform:uppercase;letter-spacing:.06em;padding:8px 20px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.55)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ CALCULATOR SECTION Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#calculator{background:var(--cream);padding:100px 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:start}
+
+/* Input panel */
+.calc-input-panel{border:2px solid var(--black);background:var(--cream);padding:40px}
+.calc-panel-heading{font-family:var(--font-d);font-size:20px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-dark);margin-bottom:32px}
+.calc-field{margin-bottom:24px}
+.calc-field:last-of-type{margin-bottom:8px}
+.calc-label{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;display:block}
+.calc-input{width:100%;background:var(--white);border:2px solid var(--black);color:var(--text-dark);font-family:var(--font-b);font-size:16px;padding:14px 18px;border-radius:0;outline:none;transition:border-color .2s}
+.calc-input:focus{border-color:var(--cyan)}
+.calc-input::placeholder{color:rgba(10,10,10,0.3)}
+.calc-helper{font-family:var(--font-b);font-size:12px;color:var(--text-muted);margin-top:5px;line-height:1.5}
+.calc-reset{font-family:var(--font-b);font-size:13px;color:var(--text-muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;background:none;border:none;padding:12px 0 0;transition:color .2s;display:inline-block}
+.calc-reset:hover{color:var(--text-dark)}
+
+/* Results panel */
+.calc-results-panel{border:2px solid var(--black);border-left:none;background:var(--black);color:var(--white);padding:40px;position:sticky;top:130px}
+.calc-results-heading{font-family:var(--font-d);font-size:20px;font-weight:700;font-style:italic;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px}
+.calc-results-sub{font-family:var(--font-b);font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:32px}
+.calc-metric{padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.calc-metric:first-of-type{padding-top:0}
+.calc-metric-label{font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px}
+.calc-metric-value{font-family:var(--font-d);font-weight:800;font-style:italic;line-height:.9;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(40px,5vw,64px)}
+.calc-metric-value.empty{background:none;-webkit-text-fill-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.2)}
+.calc-metric-value.hero-num{font-size:clamp(48px,6vw,80px)}
+.calc-metric-value.admin-num{font-size:clamp(28px,3vw,44px);background:none;-webkit-text-fill-color:rgba(255,255,255,0.7);color:rgba(255,255,255,0.7)}
+.calc-metric-value.admin-num.empty{-webkit-text-fill-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.2)}
+.calc-total{padding-top:20px;border-top:2px solid var(--cyan)}
+.calc-total-label{font-family:var(--font-d);font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.calc-total-value{font-family:var(--font-d);font-size:clamp(36px,5vw,64px);font-weight:800;font-style:italic;line-height:.9;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.calc-total-value.empty{background:none;-webkit-text-fill-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.2)}
+.calc-total-note{font-family:var(--font-b);font-size:12px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.5}
+.calc-lock-btn{margin-top:24px;width:100%;justify-content:center}
+.calc-lock-btn:hover,
+.gate-action-card .btn-grad:hover{
+  background:var(--white);
+  color:var(--black);
+  box-shadow:0 8px 30px rgba(255,255,255,.16);
+}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ SOCIAL PROOF STRIP Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#proof-strip{background:var(--black);padding:60px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+.proof-attribution{text-align:center;font-family:var(--font-b);font-size:14px;color:rgba(255,255,255,0.35);font-style:italic;margin-top:32px}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ GATE SECTION Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#gate{background:var(--cream);padding:100px 0}
+.gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+
+/* Gate summary card */
+.gate-summary-card{border:2px solid var(--black);background:var(--cream);padding:40px;transition:all 0.35s cubic-bezier(0.23,1,0.32,1);cursor:default;height:100%}
+.gate-summary-card:hover{transform:translateY(-8px) translateX(-8px);box-shadow:8px 8px 0px var(--black)}
+.gate-summary-heading{font-family:var(--font-d);font-size:18px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px}
+.gate-metric-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-dark)}
+.gate-metric-row:last-of-type{border-bottom:none;padding-bottom:0}
+.gate-metric-lbl{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.gate-metric-val{font-family:var(--font-d);font-size:18px;font-weight:700;font-style:italic;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gate-metric-val.empty{background:none;-webkit-text-fill-color:var(--text-muted);color:var(--text-muted)}
+.gate-total-row{margin-top:20px;padding-top:16px;border-top:2px solid var(--black)}
+.gate-total-val{font-family:var(--font-d);font-size:clamp(28px,3vw,40px);font-weight:800;font-style:italic;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.gate-total-val.empty{background:none;-webkit-text-fill-color:var(--text-muted);color:var(--text-muted)}
+.gate-placeholder-hint{font-family:var(--font-b);font-size:13px;color:var(--text-muted);font-style:italic;margin-top:8px}
+.gate-cta-hint{font-family:var(--font-d);font-size:13px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-muted);margin-top:12px}
+
+/* Gate action card */
+.gate-action-card{background:var(--black);color:var(--white);border:2px solid var(--black);border-left:none;padding:40px;display:flex;flex-direction:column;gap:14px;height:100%}
+.gate-action-eyebrow{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
+.gate-action-heading{font-family:var(--font-d);font-size:22px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--white);line-height:1.1}
+.gate-action-body{font-family:var(--font-b);font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65}
+.gate-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:var(--white);font-family:var(--font-b);font-size:15px;padding:14px 18px;border-radius:0;outline:none;transition:border-color .2s}
+.gate-input::placeholder{color:rgba(255,255,255,0.35)}
+.gate-input:focus{border-color:var(--cyan)}
+.gate-input-error{font-family:var(--font-b);font-size:12px;color:#ff6b6b;margin-top:4px;display:none}
+.gate-input-error.visible{display:block}
+.gate-micro{font-family:var(--font-b);font-size:12px;color:rgba(255,255,255,0.35);text-align:center;margin-top:2px}
+.gate-alt-links{font-family:var(--font-b);font-size:13px;color:rgba(255,255,255,0.45);text-align:center;margin-top:4px}
+.gate-alt-links a{color:rgba(255,255,255,0.45);transition:color .2s}
+.gate-alt-links a:hover{color:var(--cyan)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ OPTIONS SECTION Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+#options{background:var(--black);padding:100px 0;display:none}
+.options-grid{display:grid;grid-template-columns:minmax(320px,680px);justify-content:center;gap:0}
+.options-reassurance{text-align:center;font-family:var(--font-b);font-size:14px;color:rgba(255,255,255,0.35);font-style:italic;margin-top:48px}
+.options-reassurance a{color:var(--cyan);transition:color .2s}
+.options-reassurance a:hover{color:rgba(0,229,204,0.7)}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ RESPONSIVE Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+@media(max-width:1100px){
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .options-grid{grid-template-columns:1fr}
+  .mini-proof-grid,.steps-grid{grid-template-columns:1fr 1fr}
+  .bonus-panel{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .top-urgency-inner{min-height:auto;align-items:flex-start;flex-direction:column;padding:12px 0}
+  .top-urgency-cta{width:100%}
+  #nav{height:auto}
+  .nav-links,.nav-actions .btn,.nav-actions .lang-toggle{display:none}
+  .nav-inner{min-height:0;height:auto;flex-direction:column;justify-content:flex-start;align-items:center;gap:10px;padding-top:12px;padding-bottom:14px}
+  .nav-logo-center{position:static !important;left:auto !important;transform:none !important}
+  .nav-mobile-controls{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
+  .nav-hamburger{display:flex;margin:0}
+  .nav-mobile{padding:20px 24px 28px}
+  .calc-grid{grid-template-columns:1fr}
+  .calc-results-panel{border-left:2px solid var(--black);border-top:none;position:static}
+  .gate-grid{grid-template-columns:1fr}
+  .gate-action-card{border-left:2px solid var(--black);border-top:none}
+  .stat-cells-row{grid-template-columns:1fr;border:1px solid rgba(255,255,255,0.08)}
+  .stat-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .stat-cell:last-child{border-bottom:none}
+  .options-grid{grid-template-columns:1fr}
+  .hero-stat-pills{flex-direction:column;align-items:center}
+  .split-compare,.mini-proof-grid,.steps-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .footer-col,.footer-tagline,.footer-logo,.footer-copy{text-align:center}
+  .footer-col ul{align-items:center}
+  .footer-tagline{margin-left:auto;margin-right:auto;max-width:34ch}
+  .footer-bottom{flex-direction:column;text-align:center;justify-content:center}
+  .footer-bottom .footer-copy{justify-content:center}
+}
+@media(max-width:480px){
+  .wrap,.wrap-wide{padding:0 20px}
+  .nav-inner{padding-left:20px;padding-right:20px}
+  .calc-input-panel,.calc-results-panel{padding:28px 20px}
+  .gate-summary-card,.gate-action-card{padding:28px 20px}
+}
+@media(max-width:768px){
+  .btn{width:100%;justify-content:center}
+  #build-hero{padding-top:176px;padding-bottom:52px}
+  .body-lg{font-size:16px;line-height:1.65}
+}
+@media(max-width:480px){
+  .btn{padding:16px 22px}
+  #whatsapp-btn{bottom:20px;right:20px;width:52px;height:52px}
+  #scroll-top{bottom:84px;right:20px}
+}
+</style>
+<script>
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var localRoot = "../";
+
+  function toLocal(value) {
+    if (!value || value.charAt(0) !== "/" || value.charAt(1) === "/") return value;
+    return localRoot + value.slice(1);
+  }
+
+  function rewrite(scope) {
+    scope.querySelectorAll("[src]").forEach(function (el) {
+      var value = el.getAttribute("src");
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute("src", next);
+    });
+
+    scope.querySelectorAll("[href]").forEach(function (el) {
+      var value = el.getAttribute("href");
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute("href", next);
+    });
+  }
+
+  rewrite(document);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewrite(document);
+    document.querySelectorAll("video").forEach(function (video) {
+      video.load();
+    });
+  });
+})();
+</script>
+  <link rel="stylesheet" href="/assets/mobile-center.css">
+  <link rel="stylesheet" href="/assets/funnel-layout.css?v=20260426-layout-9">
+</head>
+<body class="has-urgency-bar">
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="top-urgency-bar">
+  <div class="wrap-wide top-urgency-inner">
+    <p class="top-urgency-copy" data-en="3 AI system builds available this month. <strong>Watch a free demo.</strong> <span>See where your revenue is leaking first.</span>" data-es="3 builds de sistemas IA disponibles este mes. <strong>Ver demo gratuita.</strong> <span>Mira primero donde se fuga tu revenue.</span>">3 AI system builds available this month. <strong>Watch a free demo.</strong> <span>See where your revenue is leaking first.</span></p>
+    <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="top-urgency-cta" data-en="Watch demo" data-es="Ver demo">Watch demo</a>
+  </div>
+</div>
+
+<!-- Ã¢â€â‚¬Ã¢â€â‚¬ NAV Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="../#services">Services</a>
+      <a href="../#courses-section">Courses</a>
+      <a href="../#pricing">Pricing</a>
+      <a href="../#instructor">Instructor</a>
+      <a href="../#faq">FAQ</a>
+    </div>
+    <a href="../" class="nav-logo nav-logo-center">
+      <img src="../logo.png" alt="The Future Studio" style="height:76px;width:auto;object-fit:contain">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-toggle" id="lang-toggle-d">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad btn-sm">Watch a Free Demo</a>
+    </div>
+    <div class="nav-mobile-controls">
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../#services">Services</a>
+    <a href="../#courses-section">Courses</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../#instructor">Instructor</a>
+    <a href="../#faq">FAQ</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+    <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad">Watch a Free Demo</a>
+  </div>
+</nav>
+
+<!-- SECTION 1 - HERO -->
+<section id="build-hero">
+  <div class="orb orb-cyan orb-1" style="width:500px;height:500px;top:-100px;left:-150px"></div>
+  <div class="orb orb-violet orb-2" style="width:600px;height:600px;bottom:-50px;right:-200px"></div>
+
+  <div class="wrap">
+    <div class="build-hero-inner aos">
+      <p class="eyebrow">After-Hours Revenue Calculator</p>
+      <h1 class="headline-lg build-hero-h1">
+        HOW MUCH IS YOUR BUSINESS<br>
+        <span class="shimmer">LOSING RIGHT NOW?</span>
+      </h1>
+      <p class="body-lg build-hero-body">Enter your real business numbers and see how many calls, WhatsApp inquiries, forms, and booking opportunities may be slipping through your system every month.</p>
+      <a href="#calculator" class="btn btn-grad btn-lg" id="hero-cta">Reveal My Revenue Leak -></a>
+      <div class="hero-stat-pills">
+        <span class="hero-stat-pill">No email required</span>
+        <span class="hero-stat-pill">Results update live</span>
+        <span class="hero-stat-pill">Calls, WhatsApp, forms, bookings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 - CALCULATOR -->
+<section id="calculator">
+  <div class="wrap">
+    <div class="calc-grid">
+
+      <!-- LEFT Ã¢â‚¬â€ Inputs -->
+      <div class="calc-input-panel">
+        <div class="calc-panel-heading">Your Numbers</div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-daily">Average inbound calls or inquiries per day</label>
+          <input class="calc-input" type="number" id="f-daily" min="0" placeholder="e.g. 15" oninput="recalculate()">
+          <p class="calc-helper">Include calls, WhatsApp messages, form submissions, and emails.</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-value">Average value of a new client or booking ($)</label>
+          <input class="calc-input" type="number" id="f-value" min="0" placeholder="e.g. 150" oninput="recalculate()">
+          <p class="calc-helper">Use your average transaction or appointment value.</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-missed">Estimated % of inquiries missed or unanswered</label>
+          <input class="calc-input" type="number" id="f-missed" min="0" max="100" placeholder="e.g. 30" oninput="recalculate()">
+          <p class="calc-helper">After hours, busy periods, or inquiries that fall through the cracks. As a percentage.</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-conv">Your conversion rate - inquiries that become paying clients (%)</label>
+          <input class="calc-input" type="number" id="f-conv" min="0" max="100" placeholder="e.g. 40" oninput="recalculate()">
+          <p class="calc-helper">Out of everyone who contacts you, what percentage actually books or buys?</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-admin">Hours per week your administration staff spends on manual scheduling and follow-ups</label>
+          <input class="calc-input" type="number" id="f-admin" min="0" placeholder="e.g. 12" oninput="recalculate()">
+          <p class="calc-helper">Include confirmations, reminders, rescheduling, and chasing no-shows.</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="f-rate">Estimated hourly cost of your administration staff ($/hr)</label>
+          <input class="calc-input" type="number" id="f-rate" min="0" placeholder="e.g. 8" oninput="recalculate()">
+          <p class="calc-helper">Use your average hourly wage including employer costs.</p>
+        </div>
+
+        <button class="calc-reset" onclick="resetCalc()">Reset all fields</button>
+      </div>
+
+      <!-- RIGHT Ã¢â‚¬â€ Live Results -->
+      <div class="calc-results-panel">
+        <div class="calc-results-heading">Your Revenue at Risk</div>
+        <div class="calc-results-sub">Updates as you type - no submit needed.</div>
+
+        <div class="calc-metric">
+          <div class="calc-metric-label">Missed inquiries per month</div>
+          <div class="calc-metric-value empty" id="r-missed">-</div>
+        </div>
+
+        <div class="calc-metric">
+          <div class="calc-metric-label">Lost potential clients per month</div>
+          <div class="calc-metric-value empty" id="r-lost">-</div>
+        </div>
+
+        <div class="calc-metric">
+          <div class="calc-metric-label">Monthly revenue at risk</div>
+          <div class="calc-metric-value hero-num empty" id="r-monthly-rev">-</div>
+        </div>
+
+        <div class="calc-metric" style="border-bottom:none">
+          <div class="calc-metric-label">Monthly admin cost - recoverable with automation</div>
+          <div class="calc-metric-value admin-num empty" id="r-admin-cost">-</div>
+        </div>
+
+        <div class="calc-total">
+          <div class="calc-total-label">Estimated annual revenue at risk</div>
+          <div class="calc-total-value empty" id="r-annual">-</div>
+          <div class="calc-total-note">Conservative estimate. Actual impact may be higher depending on your market and margins.</div>
+        </div>
+
+        <button class="btn btn-grad btn-sm calc-lock-btn" onclick="scrollToGate()">Lock In These Numbers -></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 - SOCIAL PROOF STRIP -->
+<section id="proof-strip">
+  <div class="wrap">
+    <div class="stat-cells-row">
+      <div class="stat-cell">
+        <div class="stat-num count-cyan">40%+</div>
+        <div class="stat-label">Average admin time saved</div>
+        <div class="stat-note">Recovered through faster booking flow, cleaner reminders, and less manual scheduling.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num count-violet">30-50%</div>
+        <div class="stat-label">Reduction in no-shows</div>
+        <div class="stat-note">Most visible after reminder systems, confirmations, and follow-up timing are tightened.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num count-cyan">&lt; 60s</div>
+        <div class="stat-label">AI response time</div>
+        <div class="stat-note">The first answer lands quickly enough to protect trust before a lead starts shopping elsewhere.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num count-violet">24/7</div>
+        <div class="stat-label">Coverage without extra shifts</div>
+        <div class="stat-note">After-hours demand gets captured instead of waiting until the next morning to be recovered.</div>
+      </div>
+    </div>
+    <p class="proof-attribution">Based on operational gains observed across The Future Studio systems and client rollouts.</p>
+  </div>
+</section>
+
+<!-- SECTION 4 - EMAIL GATE -->
+<section id="gate">
+  <div class="wrap">
+    <div class="gate-grid">
+
+      <!-- LEFT Ã¢â‚¬â€ Result summary -->
+      <div class="gate-summary-card">
+        <div class="gate-summary-heading">Your result summary</div>
+
+        <div class="gate-metric-row">
+          <span class="gate-metric-lbl">Missed / month</span>
+          <span class="gate-metric-val empty" id="g-missed">-</span>
+        </div>
+        <div class="gate-metric-row">
+          <span class="gate-metric-lbl">Lost clients / month</span>
+          <span class="gate-metric-val empty" id="g-lost">-</span>
+        </div>
+        <div class="gate-metric-row">
+          <span class="gate-metric-lbl">Monthly rev at risk</span>
+          <span class="gate-metric-val empty" id="g-monthly">-</span>
+        </div>
+        <div class="gate-metric-row">
+          <span class="gate-metric-lbl">Admin cost / month</span>
+          <span class="gate-metric-val empty" id="g-admin">-</span>
+        </div>
+
+        <div class="gate-total-row">
+          <div class="gate-total-val empty" id="g-annual">-</div>
+          <p class="gate-placeholder-hint" id="g-hint">(Complete the calculator above to see your numbers)</p>
+          <p class="gate-cta-hint" id="g-cta-hint" style="display:none">Numbers locked in - ready to act?</p>
+        </div>
+      </div>
+
+      <!-- RIGHT Ã¢â‚¬â€ Action card -->
+      <div class="gate-action-card">
+        <p class="gate-action-eyebrow">Next Step</p>
+        <h3 class="gate-action-heading">SAVE YOUR RESULTS &amp; SEE YOUR OPTIONS</h3>
+        <p class="gate-action-body">Enter your details and we'll send you a summary of your numbers plus the fastest ways to recover this revenue.</p>
+
+        <div>
+          <input class="gate-input" type="text" id="gate-name" placeholder="Your name" autocomplete="name">
+          <p class="gate-input-error" id="gate-err-name">Please enter your name.</p>
+        </div>
+        <div>
+          <input class="gate-input" type="email" id="gate-email" placeholder="Your business email" autocomplete="email">
+          <p class="gate-input-error" id="gate-err-email">Please enter a valid email address.</p>
+        </div>
+
+        <button class="btn btn-grad btn-lg" style="width:100%;justify-content:center;margin-top:8px" onclick="submitGate()">Save My Results &amp; See Options -></button>
+        <p class="gate-micro">No spam. We'll follow up once.</p>
+        <p class="gate-alt-links">
+          <a href="../thank-you/build.html">See the best next step -></a>
+          &nbsp;|&nbsp;
+          <a href="../shop/">Browse the full shop -></a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sales-block sales-block-dark" id="revenue-action">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="What this number means" data-es="Lo que significa este numero">What this number means</p>
+      <h2 class="headline-md" data-en="THIS IS NOT JUST<br><span class='grad'>LOST REVENUE</span>" data-es="ESTO NO ES SOLO<br><span class='grad'>REVENUE PERDIDO</span>">THIS IS NOT JUST<br><span class="grad">LOST REVENUE</span></h2>
+      <p class="body-lg" data-en="It usually points to a broken intake and follow-up system: slower first response, missed WhatsApp, weaker qualification, manual reminders, and a booking path that depends too much on memory." data-es="Normalmente apunta a un sistema roto de intake y seguimiento: primera respuesta mas lenta, WhatsApp perdido, calificacion mas debil, recordatorios manuales y una ruta de reserva que depende demasiado de la memoria.">It usually points to a broken intake and follow-up system: slower first response, missed WhatsApp, weaker qualification, manual reminders, and a booking path that depends too much on memory.</p>
+      <div class="cta-row-inline">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Show Me How to Fix This ->" data-es="Mostrarme como corregir esto ->">Show Me How to Fix This -></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block" id="fit-section">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="Built for you if / not for you if" data-es="Para ti si / no para ti si">Built for you if / not for you if</p>
+      <h2 class="headline-md" data-en="WHO THIS <span class='grad'>CALCULATOR PATH</span> FITS" data-es="PARA QUIEN ENCAJA ESTA <span class='grad'>RUTA DE CALCULADORA</span>">WHO THIS <span class="grad">CALCULATOR PATH</span> FITS</h2>
+    </div>
+    <div class="split-compare">
+      <article class="compare-panel">
+        <p class="eyebrow" data-en="Built for you if" data-es="Para ti si">Built for you if</p>
+        <h3 data-en="You already have demand" data-es="Ya tienes demanda">You already have demand</h3>
+        <ul>
+          <li data-en="You receive leads through WhatsApp, phone calls, forms, or Instagram." data-es="Recibes leads por WhatsApp, llamadas, formularios o Instagram.">You receive leads through WhatsApp, phone calls, forms, or Instagram.</li>
+          <li data-en="Leads go cold because follow-up is slow or inconsistent." data-es="Los leads se enfrían porque el seguimiento es lento o inconsistente.">Leads go cold because follow-up is slow or inconsistent.</li>
+          <li data-en="You want more bookings without hiring more admin staff." data-es="Quieres mas reservas sin contratar mas personal administrativo.">You want more bookings without hiring more admin staff.</li>
+        </ul>
+      </article>
+      <article class="compare-panel">
+        <p class="eyebrow" data-en="Not for you if" data-es="No es para ti si">Not for you if</p>
+        <h3 data-en="You want a magic tool with no process change" data-es="Quieres una herramienta magica sin cambiar procesos">You want a magic tool with no process change</h3>
+        <ul>
+          <li data-en="You do not have an active business or regular enquiries yet." data-es="Todavia no tienes un negocio activo o consultas regulares.">You do not have an active business or regular enquiries yet.</li>
+          <li data-en="You only want the cheapest possible chatbot." data-es="Solo quieres el chatbot mas barato posible.">You only want the cheapest possible chatbot.</li>
+          <li data-en="You are not willing to review your current client journey." data-es="No estas dispuesto a revisar tu customer journey actual.">You are not willing to review your current client journey.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block sales-block-dark" id="system-section">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="The Future Studio system" data-es="El sistema de The Future Studio">The Future Studio system</p>
+      <h2 class="headline-md" data-en="REAL SYSTEMS,<br><span class='grad'>NOT AI HYPE</span>" data-es="SISTEMAS REALES,<br><span class='grad'>NO HUMO DE IA</span>">REAL SYSTEMS,<br><span class="grad">NOT AI HYPE</span></h2>
+      <p class="body-lg" data-en="When the leak is real, the fix usually lives across intake, qualification, WhatsApp, booking, follow-up, and reporting. That is why the next step is not a random tool. It is a cleaner system." data-es="Cuando la fuga es real, la solucion normalmente vive entre intake, calificacion, WhatsApp, reservas, seguimiento y reportes. Por eso el siguiente paso no es una herramienta al azar. Es un sistema mas limpio.">When the leak is real, the fix usually lives across intake, qualification, WhatsApp, booking, follow-up, and reporting. That is why the next step is not a random tool. It is a cleaner system.</p>
+    </div>
+    <div class="mini-proof-grid">
+      <article class="mini-proof-card">
+        <h3 data-en="Intake" data-es="Intake">Intake</h3>
+        <p data-en="Capture missed calls, WhatsApp messages, forms, and after-hours demand instead of letting it disappear." data-es="Captura llamadas perdidas, mensajes de WhatsApp, formularios y demanda fuera de horario en lugar de dejar que desaparezca.">Capture missed calls, WhatsApp messages, forms, and after-hours demand instead of letting it disappear.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="Qualification" data-es="Calificacion">Qualification</h3>
+        <p data-en="Ask the right first questions so your team stops treating every enquiry the same way." data-es="Haz las primeras preguntas correctas para que tu equipo deje de tratar cada consulta de la misma manera.">Ask the right first questions so your team stops treating every enquiry the same way.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="WhatsApp" data-es="WhatsApp">WhatsApp</h3>
+        <p data-en="Reply faster with a structured WhatsApp layer that protects trust before the lead looks elsewhere." data-es="Responde mas rapido con una capa estructurada de WhatsApp que protege la confianza antes de que el lead siga buscando.">Reply faster with a structured WhatsApp layer that protects trust before the lead looks elsewhere.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="Booking" data-es="Reservas">Booking</h3>
+        <p data-en="Create a cleaner booking path so manual scheduling does not become the bottleneck." data-es="Crea una ruta de reservas mas limpia para que la agenda manual no se convierta en el cuello de botella.">Create a cleaner booking path so manual scheduling does not become the bottleneck.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="Follow-up" data-es="Seguimiento">Follow-up</h3>
+        <p data-en="Use reminders and next-step logic to reduce preventable no-shows and slower callbacks." data-es="Usa recordatorios y logica de siguiente paso para reducir ausencias evitables y callbacks lentos.">Use reminders and next-step logic to reduce preventable no-shows and slower callbacks.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="Dashboard" data-es="Dashboard">Dashboard</h3>
+        <p data-en="Track what was recovered, where the leak still lives, and what deserves the next improvement." data-es="Haz seguimiento de lo recuperado, donde sigue la fuga y que merece la siguiente mejora.">Track what was recovered, where the leak still lives, and what deserves the next improvement.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block" id="future-state">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="After The Future Studio" data-es="Despues de The Future Studio">After The Future Studio</p>
+      <h2 class="headline-md" data-en="WHAT THE <span class='grad'>FUTURE STATE</span> LOOKS LIKE" data-es="COMO SE VE EL <span class='grad'>ESTADO FUTURO</span>">WHAT THE <span class="grad">FUTURE STATE</span> LOOKS LIKE</h2>
+    </div>
+    <div class="mini-proof-grid">
+      <article class="mini-proof-card">
+        <h3 data-en="Faster first response" data-es="Primera respuesta mas rapida">Faster first response</h3>
+        <p data-en="The lead receives a clearer answer while trust is still high." data-es="El lead recibe una respuesta mas clara mientras la confianza sigue alta.">The lead receives a clearer answer while trust is still high.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="Cleaner bookings" data-es="Reservas mas limpias">Cleaner bookings</h3>
+        <p data-en="Manual admin work drops because the path to booking is less fragmented." data-es="El trabajo administrativo manual baja porque la ruta hacia la reserva esta menos fragmentada.">Manual admin work drops because the path to booking is less fragmented.</p>
+      </article>
+      <article class="mini-proof-card">
+        <h3 data-en="More visibility" data-es="Mas visibilidad">More visibility</h3>
+        <p data-en="You can see what the system is recovering instead of guessing if follow-up is working." data-es="Puedes ver lo que el sistema esta recuperando en lugar de adivinar si el seguimiento funciona.">You can see what the system is recovering instead of guessing if follow-up is working.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block" id="bonus-section">
+  <div class="wrap">
+    <div class="bonus-panel">
+      <div>
+        <p class="eyebrow" data-en="Free bonus" data-es="Bono gratis">Free bonus</p>
+        <h2 class="headline-md" data-en="FREE REVENUE LEAK MAP<br>INCLUDED THIS WEEK" data-es="MAPA DE FUGAS DE REVENUE<br>INCLUIDO ESTA SEMANA">FREE REVENUE LEAK MAP<br>INCLUDED THIS WEEK</h2>
+      </div>
+      <div>
+        <p class="body-lg" data-en="Book your demo this week and we'll map the main points where your business is losing leads across calls, WhatsApp, forms, and follow-up. Normally $250. Included free this week." data-es="Agenda tu demo esta semana y mapearemos los puntos principales donde tu negocio pierde leads entre llamadas, WhatsApp, formularios y seguimiento. Normalmente $250. Incluido gratis esta semana.">Book your demo this week and we'll map the main points where your business is losing leads across calls, WhatsApp, forms, and follow-up. Normally $250. Included free this week.</p>
+        <div class="cta-row-inline" style="justify-content:flex-start">
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block sales-block-dark" id="demo-process">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="What happens after you book" data-es="Que pasa despues de agendar">What happens after you book</p>
+      <h2 class="headline-md" data-en="THE DEMO<br><span class='grad'>PROCESS</span>" data-es="EL PROCESO<br><span class='grad'>DE LA DEMO</span>">THE DEMO<br><span class="grad">PROCESS</span></h2>
+    </div>
+    <div class="steps-grid">
+      <article class="demo-step">
+        <div class="step-num">01</div>
+        <h3 data-en="Review the leak" data-es="Revisar la fuga">Review the leak</h3>
+        <p data-en="We look at the calls, WhatsApp, booking, and admin friction your numbers are pointing to." data-es="Revisamos las llamadas, WhatsApp, reservas y friccion administrativa que tus numeros estan mostrando.">We look at the calls, WhatsApp, booking, and admin friction your numbers are pointing to.</p>
+      </article>
+      <article class="demo-step">
+        <div class="step-num">02</div>
+        <h3 data-en="Show the system" data-es="Mostrar el sistema">Show the system</h3>
+        <p data-en="You see how intake, qualification, response, reminders, and dashboard logic fit together." data-es="Ves como intake, calificacion, respuesta, recordatorios y logica de dashboard encajan juntos.">You see how intake, qualification, response, reminders, and dashboard logic fit together.</p>
+      </article>
+      <article class="demo-step">
+        <div class="step-num">03</div>
+        <h3 data-en="Recommend the next step" data-es="Recomendar el siguiente paso">Recommend the next step</h3>
+        <p data-en="We tell you what should happen next: a planning product, a practical first system, or a larger implementation path." data-es="Te decimos que deberia pasar despues: un producto de planeacion, un primer sistema practico o una ruta de implementacion mas grande.">We tell you what should happen next: a planning product, a practical first system, or a larger implementation path.</p>
+      </article>
+    </div>
+    <div class="cta-row-inline">
+      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-outline-light" data-en="WhatsApp Us" data-es="Escribenos por WhatsApp">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="sales-block" id="build-faq">
+  <div class="wrap">
+    <div class="sales-head">
+      <p class="eyebrow" data-en="Common questions" data-es="Preguntas comunes">Common questions</p>
+      <h2 class="headline-md" data-en="FAQ BEFORE<br><span class='grad'>THE NEXT STEP</span>" data-es="FAQ ANTES<br><span class='grad'>DEL SIGUIENTE PASO</span>">FAQ BEFORE<br><span class="grad">THE NEXT STEP</span></h2>
+    </div>
+    <div class="split-compare">
+      <article class="compare-panel">
+        <h3 data-en="Is this just an estimate?" data-es="Esto es solo un estimado?">Is this just an estimate?</h3>
+        <p data-en="Yes. The calculator gives a conservative estimate based on the numbers you enter. It is designed to show the size of the problem, not to promise an exact outcome." data-es="Si. La calculadora da un estimado conservador basado en los numeros que ingresas. Esta disenada para mostrar el tamano del problema, no para prometer un resultado exacto.">Yes. The calculator gives a conservative estimate based on the numbers you enter. It is designed to show the size of the problem, not to promise an exact outcome.</p>
+        <h3 style="margin-top:28px" data-en="What should I buy next?" data-es="Que deberia comprar despues?">What should I buy next?</h3>
+        <p data-en="If you want a low-risk first move, start with the planning or prompt products. If the leak is already serious, a demo helps map the right system path faster." data-es="Si quieres un primer movimiento de bajo riesgo, empieza con los productos de planeacion o prompts. Si la fuga ya es seria, una demo ayuda a mapear mas rapido la ruta correcta del sistema.">If you want a low-risk first move, start with the planning or prompt products. If the leak is already serious, a demo helps map the right system path faster.</p>
+      </article>
+      <article class="compare-panel">
+        <h3 data-en="Will this work with calls, WhatsApp, and forms?" data-es="Esto funciona con llamadas, WhatsApp y formularios?">Will this work with calls, WhatsApp, and forms?</h3>
+        <p data-en="Yes. The calculator is built to point toward intake systems that usually span more than one channel, especially in service businesses." data-es="Si. La calculadora esta hecha para apuntar hacia sistemas de intake que normalmente cubren mas de un canal, especialmente en negocios de servicios.">Yes. The calculator is built to point toward intake systems that usually span more than one channel, especially in service businesses.</p>
+        <h3 style="margin-top:28px" data-en="What happens if I am not ready for a full build?" data-es="Que pasa si no estoy listo para un build completo?">What happens if I am not ready for a full build?</h3>
+        <p data-en="That is fine. The goal is to leave with a clearer next step, whether that is a smaller planning product, a demo, or a bigger implementation decision later." data-es="Esta bien. La meta es salir con un siguiente paso mas claro, ya sea un producto de planeacion mas pequeno, una demo o una decision de implementacion mas grande despues.">That is fine. The goal is to leave with a clearer next step, whether that is a smaller planning product, a demo, or a bigger implementation decision later.</p>
+      </article>
+    </div>
+    <p class="legal-note" data-en="This calculator provides an estimate based on the numbers you enter. Actual results depend on demand quality, conversion, follow-up execution, and the systems your business implements next." data-es="Esta calculadora proporciona un estimado basado en los numeros que ingresas. Los resultados reales dependen de la calidad de la demanda, la conversion, la ejecucion del seguimiento y los sistemas que tu negocio implemente despues.">This calculator provides an estimate based on the numbers you enter. Actual results depend on demand quality, conversion, follow-up execution, and the systems your business implements next.</p>
+  </div>
+</section>
+
+<!-- SECTION 5 - OPTIONS (hidden until gate submit) -->
+<section id="options">
+  <div class="wrap">
+    <div class="sec-hdr center aos">
+      <p class="eyebrow">Your Options</p>
+      <h2 class="headline-md" style="color:var(--white)">START WITH A <span class="shimmer">PRACTICAL FIRST MOVE</span></h2>
+      <p class="body-lg" style="color:rgba(255,255,255,0.55)">If the calculator exposed missed follow-up and admin drag, this is the easiest way to put AI to work without turning the next step into a bigger decision than it needs to be.</p>
+    </div>
+
+    <div class="options-grid">
+
+      <div class="svc-card">
+        <div class="svc-name">20 Prompts for Service Businesses</div>
+        <p class="svc-desc">Give your team a practical set of AI prompts they can start using right away for follow-up, admin support, client communication, and faster day-to-day execution.</p>
+        <ul class="svc-features">
+          <li class="svc-feat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Useful when you want to test AI in a way the team can apply the same day.</span>
+          </li>
+          <li class="svc-feat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Helps service businesses respond faster and sound more consistent across the week.</span>
+          </li>
+          <li class="svc-feat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Creates a simple first win before you decide on any deeper implementation work.</span>
+          </li>
+        </ul>
+        <div class="svc-price-row">
+          <div class="svc-monthly">Practical first product</div>
+        </div>
+        <a href="../thank-you/build.html" class="btn btn-grad btn-sm" style="width:100%;justify-content:center;margin-top:10px">See the best next step -></a>
+      </div>
+
+    </div>
+
+    <p class="options-reassurance">
+      Want to browse everything later? <a href="../shop/">Open the shop</a> once you have reviewed the best next step.
+    </p>
+  </div>
+</section>
+
+<!-- Ã¢â€â‚¬Ã¢â€â‚¬ FOOTER Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="../logo.png" alt="The Future Studio" style="height:80px;width:auto;object-fit:contain;filter:invert(1)">
+        </div>
+        <p class="footer-tagline">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../#services">Voice Agents</a></li>
+          <li><a href="../#services">WhatsApp Automation</a></li>
+          <li><a href="../#services">Booking Flows</a></li>
+          <li><a href="../#services">Custom Platforms</a></li>
+          <li><a href="../#courses-section">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz@thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">(c) 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        Latin America | Remote &amp; In-person
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Ã¢â€â‚¬Ã¢â€â‚¬ FIXED BUTTONS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ -->
+<button id="scroll-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." id="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// WEBHOOK_URL = '' - paste Make/n8n webhook URL here to activate tracking
+// resultData includes: name, email, dailyInquiries, avgValue, missedPct, conversionRate,
+//   adminHours, adminHourlyRate, missedPerMonth, lostClientsPerMonth,
+//   monthlyRevAtRisk, monthlyAdminCost, annualLoss, timestamp, source: 'thefuturestudio.online/build'
+// On submit: fetch(WEBHOOK_URL, { method:'POST', body: JSON.stringify(resultData) })
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ NAV SCROLL Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  var nav = document.getElementById('nav');
+  var lastY = 0;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 40);
+    var mobileOpen = mn && mn.classList.contains('open');
+    nav.classList.toggle('nav-hidden', !mobileOpen && y > lastY && y > 200);
+    lastY = y;
+    var st = document.getElementById('scroll-top');
+    if (st) st.classList.toggle('visible', y > 600);
+  }, { passive: true });
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ MOBILE NAV Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  var hb = document.getElementById('nav-hamburger');
+  var mn = document.getElementById('nav-mobile');
+  hb.addEventListener('click', function() {
+    var o = mn.classList.toggle('open');
+    hb.classList.toggle('open', o);
+    nav.classList.remove('nav-hidden');
+  });
+  mn.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { mn.classList.remove('open'); hb.classList.remove('open'); });
+  });
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ SCROLL TO TOP Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  var stBtn = document.getElementById('scroll-top');
+  if (stBtn) stBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ HERO CTA SMOOTH SCROLL Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  var heroCta = document.getElementById('hero-cta');
+  if (heroCta) {
+    heroCta.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ AOS Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  function initAOS() {
+    var els = document.querySelectorAll('.aos:not(.visible)');
+    if (!window.IntersectionObserver) {
+      document.querySelectorAll('.aos').forEach(function(e) { e.classList.add('visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { obs.observe(el); });
+  }
+  initAOS();
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ CANVAS PARTICLE NETWORK Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+  (function() {
+    var cv = document.getElementById('bg-canvas');
+    var cx = cv.getContext('2d');
+    var pts = [];
+    var N = 55, D = 140;
+    function resize() { cv.width = innerWidth; cv.height = innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    for (var i = 0; i < N; i++) {
+      pts.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, r: Math.random() * 1.5 + .4, cyan: Math.random() > .5 });
+    }
+    function tick() {
+      cx.clearRect(0, 0, cv.width, cv.height);
+      for (var i = 0; i < N; i++) {
+        var p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > cv.width) p.vx *= -1;
+        if (p.y < 0 || p.y > cv.height) p.vy *= -1;
+        cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        cx.fillStyle = p.cyan ? 'rgba(0,229,204,0.4)' : 'rgba(155,89,255,0.35)';
+        cx.fill();
+        for (var j = i + 1; j < N; j++) {
+          var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < D) {
+            cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(q.x, q.y);
+            var alpha = ((1 - dist / D) * 0.08).toFixed(3);
+            cx.strokeStyle = (p.cyan && q.cyan) ? 'rgba(0,229,204,' + alpha + ')' : 'rgba(155,89,255,' + alpha + ')';
+            cx.lineWidth = .7; cx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  bindBuildLanguageToggles();
+  applyBuildLanguage('en');
+
+}); // end DOMContentLoaded
+
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   CALCULATOR STATE & LOGIC
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+var resultData = {
+  dailyInquiries: 0, avgValue: 0, missedPct: 0, conversionRate: 0,
+  adminHours: 0, adminHourlyRate: 0,
+  missedPerMonth: 0, lostClientsPerMonth: 0,
+  monthlyRevAtRisk: 0, monthlyAdminCost: 0, annualLoss: 0,
+  name: '', email: '',
+  timestamp: '', source: 'thefuturestudio.online/build'
+};
+var currentLang = 'en';
+
+var buildCopy = {
+  en: {
+    navLinks: ['Services', 'Courses', 'Pricing', 'Instructor', 'FAQ'],
+    bookCall: 'Watch a Free Demo',
+    heroEyebrow: 'After-Hours Revenue Calculator',
+    heroHeading: 'HOW MUCH IS YOUR BUSINESS<br><span class="shimmer">LOSING RIGHT NOW?</span>',
+    heroBody: 'Enter your real business numbers and see how many calls, WhatsApp inquiries, forms, and booking opportunities may be slipping through your system every month.',
+    heroCta: 'Reveal My Revenue Leak ->',
+    heroPills: ['No email required', 'Results update live', 'Calls, WhatsApp, forms, bookings'],
+    calcHeading: 'Your Numbers',
+    labels: [
+      'Average inbound calls or inquiries per day',
+      'Average value of a new client or booking ($)',
+      'Estimated % of inquiries missed or unanswered',
+      'Your conversion rate - inquiries that become paying clients (%)',
+      'Hours per week your administration staff spends on manual scheduling and follow-ups',
+      'Estimated hourly cost of your administration staff ($/hr)'
+    ],
+    placeholders: ['e.g. 15', 'e.g. 150', 'e.g. 30', 'e.g. 40', 'e.g. 12', 'e.g. 8'],
+    helpers: [
+      'Include calls, WhatsApp messages, form submissions, and emails.',
+      'Use your average transaction or appointment value.',
+      'After hours, busy periods, or inquiries that fall through the cracks. As a percentage.',
+      'Out of everyone who contacts you, what percentage actually books or buys?',
+      'Include confirmations, reminders, rescheduling, and chasing no-shows.',
+      'Use your average hourly wage including employer costs.'
+    ],
+    reset: 'Reset all fields',
+    resultsHeading: 'Your Revenue at Risk',
+    resultsSub: 'Updates as you type - no submit needed.',
+    metricLabels: ['Missed inquiries per month', 'Lost potential clients per month', 'Monthly revenue at risk', 'Monthly admin cost - recoverable with automation'],
+    totalLabel: 'Estimated annual revenue at risk',
+    totalNote: 'Conservative estimate. Actual impact may be higher depending on your market and margins.',
+    lockBtn: 'Lock In These Numbers ->',
+    proofLabels: ['Average admin time saved', 'Reduction in no-shows', 'AI response time', 'Coverage without extra shifts'],
+    proofNotes: [
+      'Recovered through faster booking flow, cleaner reminders, and less manual scheduling.',
+      'Most visible after reminder systems, confirmations, and follow-up timing are tightened.',
+      'The first answer lands quickly enough to protect trust before a lead starts shopping elsewhere.',
+      'After-hours demand gets captured instead of waiting until the next morning to be recovered.'
+    ],
+    proofAttribution: 'Based on operational gains observed across The Future Studio systems and client rollouts.',
+    gateSummaryHeading: 'Your result summary',
+    gateMetricLabels: ['Missed / month', 'Lost clients / month', 'Monthly rev at risk', 'Admin cost / month'],
+    gateHintEmpty: '(Complete the calculator above to see your numbers)',
+    gateHintReady: 'Numbers locked in - ready to act?',
+    gateEyebrow: 'Next Step',
+    gateHeading: 'SAVE YOUR RESULTS & SEE YOUR OPTIONS',
+    gateBody: "Enter your details and we'll send you a summary of your numbers plus the fastest ways to recover this revenue.",
+    gateNamePlaceholder: 'Your name',
+    gateEmailPlaceholder: 'Your business email',
+    gateErrName: 'Please enter your name.',
+    gateErrEmail: 'Please enter a valid email address.',
+    gateSubmit: 'Save My Results & See Options ->',
+    gateMicro: "No spam. We'll follow up once.",
+    gateAltPrimary: 'See the best next step ->',
+    gateAltSecondary: 'Browse the full shop ->',
+    optionsEyebrow: 'Your Options',
+    optionsHeading: 'START WITH A <span class="shimmer">PRACTICAL FIRST MOVE</span>',
+    optionsBody: 'If the calculator exposed missed follow-up and admin drag, this is the easiest way to put AI to work without turning the next step into a bigger decision than it needs to be.',
+    optionName: '20 Prompts for Service Businesses',
+    optionDesc: 'Give your team a practical set of AI prompts they can start using right away for follow-up, admin support, client communication, and faster day-to-day execution.',
+    optionFeatures: [
+      'Useful when you want to test AI in a way the team can apply the same day.',
+      'Helps service businesses respond faster and sound more consistent across the week.',
+      'Creates a simple first win before you decide on any deeper implementation work.'
+    ],
+    optionMeta: 'Practical first product',
+    optionCta: 'See the best next step ->',
+    reassurancePrefix: 'Want to browse everything later?',
+    reassuranceLink: 'Open the shop',
+    reassuranceSuffix: 'once you have reviewed the best next step.',
+    footer: {
+      tagline: 'AI systems for service businesses across Latin America. Trust-first. No hype.',
+      servicesHeading: 'Services',
+      servicesLinks: ['Voice Agents', 'WhatsApp Automation', 'Booking Flows', 'Custom Platforms', 'AI Courses'],
+      contactHeading: 'Contact',
+      contactLinks: ['Watch a Free Demo', 'WhatsApp', 'Email', 'thefuturestudio.online'],
+      copy: '(c) 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.',
+      location: 'Latin America | Remote & In-person'
+    }
+  },
+  es: {
+    navLinks: ['Servicios', 'Cursos', 'Precios', 'Instructor', 'FAQ'],
+    bookCall: 'Ver demo gratuita',
+    heroEyebrow: 'Calculadora de revenue fuera de horario',
+    heroHeading: 'CUANTO ESTA PERDIENDO TU NEGOCIO<br><span class="shimmer">EN ESTE MOMENTO?</span>',
+    heroBody: 'Ingresa los numeros reales de tu negocio y mira cuantas llamadas, consultas por WhatsApp, formularios y oportunidades de reserva pueden estar escapandose de tu sistema cada mes.',
+    heroCta: 'Revelar mi fuga de revenue ->',
+    heroPills: ['Sin email requerido', 'Resultados en vivo', 'Llamadas, WhatsApp, formularios, reservas'],
+    calcHeading: 'Tus numeros',
+    labels: [
+      'Promedio de llamadas o consultas entrantes por dia',
+      'Valor promedio de un nuevo cliente o reserva ($)',
+      'Porcentaje estimado de consultas perdidas o sin respuesta',
+      'Tu tasa de conversion - consultas que se convierten en clientes de pago (%)',
+      'Horas por semana que tu equipo administrativo dedica a agenda y seguimiento manual',
+      'Costo estimado por hora de tu equipo administrativo ($/h)'
+    ],
+    placeholders: ['ej. 15', 'ej. 150', 'ej. 30', 'ej. 40', 'ej. 12', 'ej. 8'],
+    helpers: [
+      'Incluye llamadas, mensajes de WhatsApp, formularios y correos.',
+      'Usa tu valor promedio por compra, cita o reserva.',
+      'Fuera de horario, en picos de trabajo o consultas que se quedan sin respuesta. Como porcentaje.',
+      'De todas las personas que te contactan, que porcentaje termina comprando o reservando?',
+      'Incluye confirmaciones, recordatorios, reprogramaciones y seguimiento a ausencias.',
+      'Usa tu costo promedio por hora incluyendo cargas del empleador.'
+    ],
+    reset: 'Reiniciar campos',
+    resultsHeading: 'Tu revenue en riesgo',
+    resultsSub: 'Se actualiza mientras escribes - no necesitas enviar nada.',
+    metricLabels: ['Consultas perdidas por mes', 'Clientes potenciales perdidos por mes', 'Revenue mensual en riesgo', 'Costo administrativo mensual - recuperable con automatizacion'],
+    totalLabel: 'Revenue anual estimado en riesgo',
+    totalNote: 'Estimado conservador. El impacto real puede ser mayor segun tu mercado y tus margenes.',
+    lockBtn: 'Guardar estos numeros ->',
+    proofLabels: ['Tiempo administrativo ahorrado', 'Reduccion en ausencias', 'Tiempo de respuesta con IA', 'Cobertura sin turnos extra'],
+    proofNotes: [
+      'Se recupera con mejores flujos de reserva, recordatorios mas claros y menos agenda manual.',
+      'Se nota mas cuando se corrigen recordatorios, confirmaciones y tiempos de seguimiento.',
+      'La primera respuesta llega lo suficientemente rapido para proteger la confianza antes de que el lead siga buscando.',
+      'La demanda fuera de horario se captura en vez de esperar a la manana siguiente para tratar de recuperarla.'
+    ],
+    proofAttribution: 'Basado en mejoras operativas observadas en sistemas y despliegues de The Future Studio.',
+    gateSummaryHeading: 'Resumen de tu resultado',
+    gateMetricLabels: ['Perdidas / mes', 'Clientes perdidos / mes', 'Revenue mensual en riesgo', 'Costo admin / mes'],
+    gateHintEmpty: '(Completa la calculadora arriba para ver tus numeros)',
+    gateHintReady: 'Numeros listos - quieres actuar ahora?',
+    gateEyebrow: 'Siguiente paso',
+    gateHeading: 'GUARDA TUS RESULTADOS Y VE TUS OPCIONES',
+    gateBody: 'Deja tus datos y te enviaremos un resumen de tus numeros junto con las formas mas rapidas de recuperar ese revenue.',
+    gateNamePlaceholder: 'Tu nombre',
+    gateEmailPlaceholder: 'Tu correo de negocio',
+    gateErrName: 'Por favor ingresa tu nombre.',
+    gateErrEmail: 'Por favor ingresa un correo valido.',
+    gateSubmit: 'Guardar mis resultados y ver opciones ->',
+    gateMicro: 'Sin spam. Te escribiremos una sola vez.',
+    gateAltPrimary: 'Ver el mejor siguiente paso ->',
+    gateAltSecondary: 'Ver la tienda completa ->',
+    optionsEyebrow: 'Tus opciones',
+    optionsHeading: 'EMPIEZA CON UN <span class="shimmer">PRIMER MOVIMIENTO PRACTICO</span>',
+    optionsBody: 'Si la calculadora mostro perdida por seguimiento lento y carga administrativa, esta es la forma mas simple de poner la IA a trabajar sin convertir el siguiente paso en una decision demasiado grande.',
+    optionName: '20 Prompts for Service Businesses',
+    optionDesc: 'Dale a tu equipo un set practico de prompts de IA que puedan usar de inmediato para seguimiento, soporte administrativo, comunicacion con clientes y ejecucion diaria mas rapida.',
+    optionFeatures: [
+      'Util cuando quieres probar IA de una forma que el equipo pueda aplicar el mismo dia.',
+      'Ayuda a negocios de servicios a responder mas rapido y sonar mas consistentes durante la semana.',
+      'Crea una primera ganancia clara antes de decidir una implementacion mas profunda.'
+    ],
+    optionMeta: 'Producto practico para empezar',
+    optionCta: 'Ver el mejor siguiente paso ->',
+    reassurancePrefix: 'Quieres ver todo mas tarde?',
+    reassuranceLink: 'Abrir la tienda',
+    reassuranceSuffix: 'cuando ya hayas revisado el mejor siguiente paso.',
+    footer: {
+      tagline: 'Sistemas de IA para negocios de servicios en America Latina. Primero la confianza. Sin humo.',
+      servicesHeading: 'Servicios',
+      servicesLinks: ['Agentes de voz', 'Automatizacion por WhatsApp', 'Flujos de reservas', 'Plataformas personalizadas', 'Cursos de IA'],
+      contactHeading: 'Contacto',
+      contactLinks: ['Ver demo gratuita', 'WhatsApp', 'Correo', 'thefuturestudio.online'],
+      copy: '(c) 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.',
+      location: 'America Latina | Remoto y presencial'
+    }
+  }
+};
+
+function fmtNum(n) {
+  return n.toLocaleString('en-US');
+}
+
+function fmtCurrency(n) {
+  return '$' + n.toLocaleString('en-US');
+}
+
+function setVal(id, val, isCurrency, isEmpty) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (isEmpty) {
+    el.textContent = '-';
+    el.classList.add('empty');
+  } else {
+    el.textContent = isCurrency ? fmtCurrency(val) : fmtNum(val);
+    el.classList.remove('empty');
+  }
+}
+
+function setGateVal(id, val, isCurrency, isEmpty) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (isEmpty) {
+    el.textContent = '-';
+    el.classList.add('empty');
+  } else {
+    el.textContent = isCurrency ? fmtCurrency(val) : fmtNum(val);
+    el.classList.remove('empty');
+  }
+}
+
+function recalculate() {
+  var daily   = parseFloat(document.getElementById('f-daily').value);
+  var value   = parseFloat(document.getElementById('f-value').value);
+  var missed  = parseFloat(document.getElementById('f-missed').value);
+  var conv    = parseFloat(document.getElementById('f-conv').value);
+  var admin   = parseFloat(document.getElementById('f-admin').value);
+  var rate    = parseFloat(document.getElementById('f-rate').value);
+
+  // Clamp percentages
+  if (!isNaN(missed)) missed = Math.min(100, Math.max(0, missed));
+  if (!isNaN(conv))   conv   = Math.min(100, Math.max(0, conv));
+
+  var allValid = (
+    !isNaN(daily) && daily > 0 &&
+    !isNaN(value) && value > 0 &&
+    !isNaN(missed) && missed > 0 &&
+    !isNaN(conv) && conv > 0 &&
+    !isNaN(admin) && admin > 0 &&
+    !isNaN(rate) && rate > 0
+  );
+
+  if (!allValid) {
+    setVal('r-missed',     0, false, true);
+    setVal('r-lost',       0, false, true);
+    setVal('r-monthly-rev',0, true,  true);
+    setVal('r-admin-cost', 0, true,  true);
+    setVal('r-annual',     0, true,  true);
+    setGateVal('g-missed',  0, false, true);
+    setGateVal('g-lost',    0, false, true);
+    setGateVal('g-monthly', 0, true,  true);
+    setGateVal('g-admin',   0, true,  true);
+    setGateVal('g-annual',  0, true,  true);
+    document.getElementById('g-hint').style.display = '';
+    document.getElementById('g-cta-hint').style.display = 'none';
+    return;
+  }
+
+  var missedPerMonth      = Math.round(daily * (missed / 100) * 30);
+  var lostClientsPerMonth = Math.round(daily * (missed / 100) * 30 * (conv / 100));
+  var monthlyRevAtRisk    = Math.round(daily * (missed / 100) * 30 * (conv / 100) * value);
+  var monthlyAdminCost    = Math.round(admin * rate * 4.33);
+  var annualLoss          = Math.round((monthlyRevAtRisk + monthlyAdminCost) * 12);
+
+  // Guard: no negative or infinite
+  if (!isFinite(missedPerMonth) || missedPerMonth < 0) missedPerMonth = 0;
+  if (!isFinite(lostClientsPerMonth) || lostClientsPerMonth < 0) lostClientsPerMonth = 0;
+  if (!isFinite(monthlyRevAtRisk) || monthlyRevAtRisk < 0) monthlyRevAtRisk = 0;
+  if (!isFinite(monthlyAdminCost) || monthlyAdminCost < 0) monthlyAdminCost = 0;
+  if (!isFinite(annualLoss) || annualLoss < 0) annualLoss = 0;
+
+  // Update result panel
+  setVal('r-missed',      missedPerMonth,      false, false);
+  setVal('r-lost',        lostClientsPerMonth, false, false);
+  setVal('r-monthly-rev', monthlyRevAtRisk,    true,  false);
+  setVal('r-admin-cost',  monthlyAdminCost,    true,  false);
+  setVal('r-annual',      annualLoss,          true,  false);
+
+  // Update gate summary
+  setGateVal('g-missed',  missedPerMonth,      false, false);
+  setGateVal('g-lost',    lostClientsPerMonth, false, false);
+  setGateVal('g-monthly', monthlyRevAtRisk,    true,  false);
+  setGateVal('g-admin',   monthlyAdminCost,    true,  false);
+  setGateVal('g-annual',  annualLoss,          true,  false);
+  document.getElementById('g-hint').style.display = 'none';
+  document.getElementById('g-cta-hint').style.display = '';
+
+  // Sync resultData
+  resultData.dailyInquiries     = daily;
+  resultData.avgValue           = value;
+  resultData.missedPct          = missed;
+  resultData.conversionRate     = conv;
+  resultData.adminHours         = admin;
+  resultData.adminHourlyRate    = rate;
+  resultData.missedPerMonth     = missedPerMonth;
+  resultData.lostClientsPerMonth= lostClientsPerMonth;
+  resultData.monthlyRevAtRisk   = monthlyRevAtRisk;
+  resultData.monthlyAdminCost   = monthlyAdminCost;
+  resultData.annualLoss         = annualLoss;
+}
+
+function resetCalc() {
+  ['f-daily','f-value','f-missed','f-conv','f-admin','f-rate'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  recalculate();
+}
+
+function scrollToGate() {
+  document.getElementById('gate').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   GATE SUBMIT
+Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+function submitGate() {
+  var nameVal  = document.getElementById('gate-name').value.trim();
+  var emailVal = document.getElementById('gate-email').value.trim();
+  var valid = true;
+
+  var errName = document.getElementById('gate-err-name');
+  if (!nameVal) {
+    errName.classList.add('visible'); valid = false;
+  } else {
+    errName.classList.remove('visible');
+  }
+
+  var errEmail = document.getElementById('gate-err-email');
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailVal || !re.test(emailVal)) {
+    errEmail.classList.add('visible'); valid = false;
+  } else {
+    errEmail.classList.remove('visible');
+  }
+
+  if (!valid) return;
+
+  resultData.name      = nameVal;
+  resultData.email     = emailVal;
+  resultData.timestamp = new Date().toISOString();
+
+  try { localStorage.setItem('tfs_build_response', JSON.stringify(resultData)); } catch(e) {}
+
+  // Show options section
+  var optionsEl = document.getElementById('options');
+  optionsEl.style.display = 'block';
+
+  // AOS for new elements
+  setTimeout(function() {
+    document.querySelectorAll('#options .aos:not(.visible)').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 100);
+
+  // Scroll to options
+  setTimeout(function() {
+    optionsEl.scrollIntoView({ behavior: 'smooth' });
+  }, 50);
+}
+
+function bindBuildLanguageToggles() {
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var lang = btn.getAttribute('data-lang');
+      document.querySelectorAll('.lang-btn').forEach(function(other) {
+        other.classList.toggle('active', other.getAttribute('data-lang') === lang);
+      });
+      applyBuildLanguage(lang);
+    });
+  });
+}
+
+function applyDataLanguage(lang) {
+  document.querySelectorAll('[data-en][data-es]').forEach(function(el) {
+    var value = el.getAttribute(lang === 'es' ? 'data-es' : 'data-en');
+    if (value == null) return;
+    if (value.indexOf('<') !== -1) {
+      el.innerHTML = value;
+    } else {
+      el.textContent = value;
+    }
+  });
+}
+
+function applyBuildLanguage(lang) {
+  currentLang = lang;
+  var copy = buildCopy[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('.nav-links a').forEach(function(link, idx) {
+    if (copy.navLinks[idx]) link.textContent = copy.navLinks[idx];
+  });
+  document.querySelectorAll('#nav-mobile > a:not(.btn)').forEach(function(link, idx) {
+    if (copy.navLinks[idx]) link.textContent = copy.navLinks[idx];
+  });
+  document.querySelectorAll('.nav-actions .btn, #nav-mobile .btn').forEach(function(btn) {
+    btn.textContent = copy.bookCall;
+  });
+
+  document.querySelector('#build-hero .eyebrow').textContent = copy.heroEyebrow;
+  document.querySelector('.build-hero-h1').innerHTML = copy.heroHeading;
+  document.querySelector('.build-hero-body').textContent = copy.heroBody;
+  document.getElementById('hero-cta').textContent = copy.heroCta;
+  document.querySelectorAll('.hero-stat-pill').forEach(function(pill, idx) {
+    if (copy.heroPills[idx]) pill.textContent = copy.heroPills[idx];
+  });
+  document.querySelector('.calc-panel-heading').textContent = copy.calcHeading;
+  document.querySelectorAll('.calc-field').forEach(function(field, idx) {
+    var label = field.querySelector('.calc-label');
+    var input = field.querySelector('.calc-input');
+    var helper = field.querySelector('.calc-helper');
+    if (copy.labels[idx]) label.textContent = copy.labels[idx];
+    if (copy.placeholders[idx]) input.placeholder = copy.placeholders[idx];
+    if (copy.helpers[idx]) helper.textContent = copy.helpers[idx];
+  });
+  document.querySelector('.calc-reset').textContent = copy.reset;
+
+  document.querySelector('.calc-results-heading').textContent = copy.resultsHeading;
+  document.querySelector('.calc-results-sub').textContent = copy.resultsSub;
+  document.querySelectorAll('.calc-metric-label').forEach(function(label, idx) {
+    if (copy.metricLabels[idx]) label.textContent = copy.metricLabels[idx];
+  });
+  document.querySelector('.calc-total-label').textContent = copy.totalLabel;
+  document.querySelector('.calc-total-note').textContent = copy.totalNote;
+  document.querySelector('.calc-lock-btn').textContent = copy.lockBtn;
+
+  document.querySelectorAll('.stat-label').forEach(function(label, idx) {
+    if (copy.proofLabels[idx]) label.textContent = copy.proofLabels[idx];
+  });
+  document.querySelectorAll('.stat-note').forEach(function(note, idx) {
+    if (copy.proofNotes[idx]) note.textContent = copy.proofNotes[idx];
+  });
+  document.querySelector('.proof-attribution').textContent = copy.proofAttribution;
+
+  document.querySelector('.gate-summary-heading').textContent = copy.gateSummaryHeading;
+  document.querySelectorAll('.gate-metric-lbl').forEach(function(label, idx) {
+    if (copy.gateMetricLabels[idx]) label.textContent = copy.gateMetricLabels[idx];
+  });
+  document.getElementById('g-hint').textContent = copy.gateHintEmpty;
+  document.getElementById('g-cta-hint').textContent = copy.gateHintReady;
+  document.querySelector('.gate-action-eyebrow').textContent = copy.gateEyebrow;
+  document.querySelector('.gate-action-heading').textContent = copy.gateHeading;
+  document.querySelector('.gate-action-body').textContent = copy.gateBody;
+  document.getElementById('gate-name').placeholder = copy.gateNamePlaceholder;
+  document.getElementById('gate-email').placeholder = copy.gateEmailPlaceholder;
+  document.getElementById('gate-err-name').textContent = copy.gateErrName;
+  document.getElementById('gate-err-email').textContent = copy.gateErrEmail;
+  document.querySelector('.gate-action-card .btn').textContent = copy.gateSubmit;
+  document.querySelector('.gate-micro').textContent = copy.gateMicro;
+  var gateAltLinks = document.querySelectorAll('.gate-alt-links a');
+  gateAltLinks[0].textContent = copy.gateAltPrimary;
+  gateAltLinks[1].textContent = copy.gateAltSecondary;
+
+  var optionsHdr = document.querySelector('#options .sec-hdr');
+  optionsHdr.querySelector('.eyebrow').textContent = copy.optionsEyebrow;
+  optionsHdr.querySelector('h2').innerHTML = copy.optionsHeading;
+  optionsHdr.querySelector('.body-lg').textContent = copy.optionsBody;
+  document.querySelector('.svc-name').textContent = copy.optionName;
+  document.querySelector('.svc-desc').textContent = copy.optionDesc;
+  document.querySelectorAll('.svc-feat span').forEach(function(span, idx) {
+    if (copy.optionFeatures[idx]) span.textContent = copy.optionFeatures[idx];
+  });
+  document.querySelector('.svc-monthly').textContent = copy.optionMeta;
+  document.querySelector('.svc-card .btn').textContent = copy.optionCta;
+  var reassurance = document.querySelector('.options-reassurance');
+  reassurance.childNodes[0].textContent = copy.reassurancePrefix + ' ';
+  reassurance.querySelector('a').textContent = copy.reassuranceLink;
+  reassurance.lastChild.textContent = ' ' + copy.reassuranceSuffix;
+
+  document.querySelector('.footer-tagline').textContent = copy.footer.tagline;
+  var footerCols = document.querySelectorAll('footer .footer-col');
+  footerCols[0].querySelector('h5').textContent = copy.footer.servicesHeading;
+  footerCols[0].querySelectorAll('a').forEach(function(link, idx) {
+    if (copy.footer.servicesLinks[idx]) link.textContent = copy.footer.servicesLinks[idx];
+  });
+  footerCols[1].querySelector('h5').textContent = copy.footer.contactHeading;
+  footerCols[1].querySelectorAll('a').forEach(function(link, idx) {
+    if (copy.footer.contactLinks[idx]) link.textContent = copy.footer.contactLinks[idx];
+  });
+  document.querySelectorAll('.footer-copy')[0].textContent = copy.footer.copy;
+  document.querySelectorAll('.footer-copy')[1].lastChild.textContent = ' ' + copy.footer.location;
+
+  applyDataLanguage(lang);
+  recalculate();
+}
+
+function fmtNum(n) {
+  return n.toLocaleString(currentLang === 'es' ? 'es-PA' : 'en-US');
+}
+
+function fmtCurrency(n) {
+  return '$' + n.toLocaleString(currentLang === 'es' ? 'es-PA' : 'en-US');
+}
+
+function recalculate() {
+  var daily = parseFloat(document.getElementById('f-daily').value);
+  var value = parseFloat(document.getElementById('f-value').value);
+  var missed = parseFloat(document.getElementById('f-missed').value);
+  var conv = parseFloat(document.getElementById('f-conv').value);
+  var admin = parseFloat(document.getElementById('f-admin').value);
+  var rate = parseFloat(document.getElementById('f-rate').value);
+  var copy = buildCopy[currentLang];
+
+  if (!isNaN(missed)) missed = Math.min(100, Math.max(0, missed));
+  if (!isNaN(conv)) conv = Math.min(100, Math.max(0, conv));
+
+  var allValid = !isNaN(daily) && daily > 0 && !isNaN(value) && value > 0 && !isNaN(missed) && missed > 0 && !isNaN(conv) && conv > 0 && !isNaN(admin) && admin > 0 && !isNaN(rate) && rate > 0;
+
+  if (!allValid) {
+    setVal('r-missed', 0, false, true);
+    setVal('r-lost', 0, false, true);
+    setVal('r-monthly-rev', 0, true, true);
+    setVal('r-admin-cost', 0, true, true);
+    setVal('r-annual', 0, true, true);
+    setGateVal('g-missed', 0, false, true);
+    setGateVal('g-lost', 0, false, true);
+    setGateVal('g-monthly', 0, true, true);
+    setGateVal('g-admin', 0, true, true);
+    setGateVal('g-annual', 0, true, true);
+    document.getElementById('g-hint').textContent = copy.gateHintEmpty;
+    document.getElementById('g-hint').style.display = '';
+    document.getElementById('g-cta-hint').textContent = copy.gateHintReady;
+    document.getElementById('g-cta-hint').style.display = 'none';
+    return;
+  }
+
+  var missedPerMonth = Math.round(daily * (missed / 100) * 30);
+  var lostClientsPerMonth = Math.round(daily * (missed / 100) * 30 * (conv / 100));
+  var monthlyRevAtRisk = Math.round(daily * (missed / 100) * 30 * (conv / 100) * value);
+  var monthlyAdminCost = Math.round(admin * rate * 4.33);
+  var annualLoss = Math.round((monthlyRevAtRisk + monthlyAdminCost) * 12);
+
+  if (!isFinite(missedPerMonth) || missedPerMonth < 0) missedPerMonth = 0;
+  if (!isFinite(lostClientsPerMonth) || lostClientsPerMonth < 0) lostClientsPerMonth = 0;
+  if (!isFinite(monthlyRevAtRisk) || monthlyRevAtRisk < 0) monthlyRevAtRisk = 0;
+  if (!isFinite(monthlyAdminCost) || monthlyAdminCost < 0) monthlyAdminCost = 0;
+  if (!isFinite(annualLoss) || annualLoss < 0) annualLoss = 0;
+
+  setVal('r-missed', missedPerMonth, false, false);
+  setVal('r-lost', lostClientsPerMonth, false, false);
+  setVal('r-monthly-rev', monthlyRevAtRisk, true, false);
+  setVal('r-admin-cost', monthlyAdminCost, true, false);
+  setVal('r-annual', annualLoss, true, false);
+  setGateVal('g-missed', missedPerMonth, false, false);
+  setGateVal('g-lost', lostClientsPerMonth, false, false);
+  setGateVal('g-monthly', monthlyRevAtRisk, true, false);
+  setGateVal('g-admin', monthlyAdminCost, true, false);
+  setGateVal('g-annual', annualLoss, true, false);
+  document.getElementById('g-hint').style.display = 'none';
+  document.getElementById('g-cta-hint').style.display = '';
+
+  resultData.dailyInquiries = daily;
+  resultData.avgValue = value;
+  resultData.missedPct = missed;
+  resultData.conversionRate = conv;
+  resultData.adminHours = admin;
+  resultData.adminHourlyRate = rate;
+  resultData.missedPerMonth = missedPerMonth;
+  resultData.lostClientsPerMonth = lostClientsPerMonth;
+  resultData.monthlyRevAtRisk = monthlyRevAtRisk;
+  resultData.monthlyAdminCost = monthlyAdminCost;
+  resultData.annualLoss = annualLoss;
+}
+
+function submitGate() {
+  var nameVal = document.getElementById('gate-name').value.trim();
+  var emailVal = document.getElementById('gate-email').value.trim();
+  var valid = true;
+  var errName = document.getElementById('gate-err-name');
+  var errEmail = document.getElementById('gate-err-email');
+  if (!nameVal) {
+    errName.classList.add('visible');
+    valid = false;
+  } else {
+    errName.classList.remove('visible');
+  }
+  var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailVal || !re.test(emailVal)) {
+    errEmail.classList.add('visible');
+    valid = false;
+  } else {
+    errEmail.classList.remove('visible');
+  }
+  if (!valid) return;
+
+  resultData.name = nameVal;
+  resultData.email = emailVal;
+  resultData.timestamp = new Date().toISOString();
+  try { localStorage.setItem('tfs_build_response', JSON.stringify(resultData)); } catch (e) {}
+
+  var optionsEl = document.getElementById('options');
+  optionsEl.style.display = 'block';
+  setTimeout(function() {
+    document.querySelectorAll('#options .aos:not(.visible)').forEach(function(el) { el.classList.add('visible'); });
+  }, 100);
+  setTimeout(function() {
+    optionsEl.scrollIntoView({ behavior: 'smooth' });
+  }, 50);
+}
+</script>
+<script src="/assets/lead-capture.js"></script>
+  <script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
+</body>
+</html>
+
+
+
+
+
+
+
