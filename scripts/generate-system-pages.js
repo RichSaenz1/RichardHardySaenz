@@ -3,11 +3,70 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const templatePath = path.join(root, 'systems', 'voice-agent.html');
-const academyHref = '../academy/';
 const calendlyHref = 'https://calendly.com/thefuturestudio-info/30min';
 const whatsappHref = 'https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio.';
+const emailHref = 'mailto:info@thefuturestudio.online';
 
 const template = fs.readFileSync(templatePath, 'utf8');
+
+function outputRootPrefix(relativeOutputPath) {
+  const outputDir = path.dirname(relativeOutputPath).replace(/\\/g, '/');
+  if (!outputDir || outputDir === '.') return './';
+  const depth = outputDir.split('/').filter(Boolean).length;
+  return '../'.repeat(depth);
+}
+
+function normalizeGeneratedPaths(html, config) {
+  const rootPrefix = outputRootPrefix(config.output);
+  const academyPath = `${rootPrefix}academy/`;
+
+  return html
+    .replace(/src="\.\.\/logo\.png"/g, `src="${rootPrefix}logo.png"`)
+    .replace(/href="\.\.\/future-studio-favicon\.png"/g, `href="${rootPrefix}future-studio-favicon.png"`)
+    .replace(/src="\.\.\/assets\//g, `src="${rootPrefix}assets/`)
+    .replace(/poster="\.\.\/assets\//g, `poster="${rootPrefix}assets/`)
+    .replace(/href="\.\.\/#([A-Za-z0-9_-]+)"/g, `href="${rootPrefix}#$1"`)
+    .replace(/href="\.\.\/academy\/"/g, `href="${academyPath}"`)
+    .replace(/href="\.\.\/systems\/voice-agent\.html"/g, `href="${rootPrefix}systems/voice-agent.html"`);
+}
+
+function injectGeneratedPolish(html) {
+  const css = `
+
+/* Generated subpage polish: keeps the system/package/academy pages aligned with the main landing page. */
+.generated-subpage .hero{min-height:auto;overflow:hidden}
+.generated-subpage .hero-body{padding:clamp(94px,10vw,148px) 0 72px}
+.generated-subpage .hero-content{max-width:1220px;margin:0 auto}
+.generated-subpage .hero-actions .btn-grad{background:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple));color:var(--black);border:2px solid transparent}
+.generated-subpage .hero-actions .btn-grad:hover,
+.generated-subpage .final-cta .btn-dark:hover,
+.generated-subpage .pricing-card .btn-grad:hover,
+.generated-subpage .bonus-strip .btn-dark:hover{background:var(--white);color:var(--black);border-color:var(--black)}
+.generated-subpage .section{padding:clamp(82px,8vw,132px) 0}
+.generated-subpage .feature-grid{border-color:var(--cyan)}
+.generated-subpage .feature-card{background:var(--white);color:var(--black);border-color:var(--cyan)}
+.generated-subpage .feature-card:hover{background:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple));box-shadow:10px 10px 0 var(--black)}
+.generated-subpage .feature-card:hover .feature-num,
+.generated-subpage .feature-card:hover .feature-title,
+.generated-subpage .feature-card:hover .body-md{color:var(--black)}
+.generated-subpage .btn-email-white{background:var(--white);color:var(--black);border:2px solid var(--black)}
+.generated-subpage .btn-email-white:hover{background:var(--black);color:var(--white)}
+.generated-subpage .site-footer{background:var(--black);color:var(--white)}
+.generated-subpage .footer-logo img{height:92px;width:auto;object-fit:contain;filter:invert(1)}
+@media (max-width: 760px){
+  .generated-subpage .hero-body{padding:70px 0 44px}
+  .generated-subpage .hero-content{text-align:center}
+  .generated-subpage .hero-eyebrow{justify-content:center}
+  .generated-subpage .hero-actions{justify-content:center}
+  .generated-subpage .footer-logo img{height:76px}
+}
+`;
+
+  let next = html.replace('</style>', `${css}\n</style>`);
+  next = next.replace(/<body class="([^"]*)">/, '<body class="$1 generated-subpage">');
+  next = next.replace('<body>', '<body class="generated-subpage">');
+  return next;
+}
 
 function writeFile(relativePath, html) {
   const fullPath = path.join(root, relativePath);
@@ -61,9 +120,12 @@ function processHtmlText(value) {
 }
 
 function heroTitleHtml(title) {
-  return title
-    .split('\n')
-    .map((line) => `<div class="line"><span>${line}</span></div>`)
+  const lines = title.split('\n');
+  return lines
+    .map((line, index) => {
+      const isLast = index === lines.length - 1;
+      return `<span class="line"><span${isLast ? ' class="grad"' : ''}>${line}</span></span>`;
+    })
     .join('');
 }
 
@@ -95,6 +157,11 @@ function heroStats(items) {
       </div>`;
 }
 
+function normalizedPrimaryCta(config) {
+  if (!config.primaryCta) return 'Book a Free Demo';
+  return /^watch\b/i.test(config.primaryCta) ? 'Book a Free Demo' : config.primaryCta;
+}
+
 function renderFeatureCards(cards) {
   return cards.map((card, index) => `
         <article class="feature-card">
@@ -102,84 +169,6 @@ function renderFeatureCards(cards) {
           <h3 class="feature-title" ${attrPair(dual(card.title))}>${card.title}</h3>
           <p class="body-md" ${attrPair(dual(card.body))}>${card.body}</p>
         </article>`).join('');
-}
-
-function removeSectionById(html, id) {
-  const marker = `<section class="section" id="${id}">`;
-  let start = html.indexOf(marker);
-  while (start !== -1) {
-    const end = html.indexOf('</section>', start);
-    if (end === -1) break;
-    html = html.slice(0, start) + html.slice(end + '</section>'.length);
-    start = html.indexOf(marker);
-  }
-  return html;
-}
-
-function injectFlowCleanupCss(html) {
-  if (html.includes('tfs-flow-cleanup')) return html;
-
-  const css = `
-/* tfs-flow-cleanup: five-step flow cards without empty grid tiles */
-#call-flow .feature-grid {
-  display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-  gap: 20px !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  align-items: stretch !important;
-}
-#call-flow .feature-card {
-  min-height: 250px !important;
-  position: relative !important;
-  border: 2px solid var(--cyan) !important;
-  box-shadow: 8px 8px 0 rgba(0, 209, 199, .85) !important;
-}
-#call-flow .feature-card:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -21px;
-  width: 20px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
-  transform: translateY(-50%);
-  z-index: 2;
-}
-#call-flow .feature-card:not(:last-child)::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -27px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid var(--violet);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  transform: translateY(-50%);
-  z-index: 3;
-}
-#call-flow .feature-card:hover {
-  box-shadow: 10px 10px 0 rgba(0, 209, 199, .95), 0 0 28px rgba(0, 209, 199, .34) !important;
-}
-@media (max-width: 1320px) {
-  #call-flow .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  #call-flow .feature-card::before,
-  #call-flow .feature-card::after { display: none !important; }
-}
-@media (max-width: 760px) {
-  #call-flow .feature-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-  #call-flow .feature-card { min-height: auto !important; }
-}
-`;
-
-  const styleClose = html.lastIndexOf('</style>');
-  if (styleClose !== -1) {
-    return html.slice(0, styleClose) + css + '\n' + html.slice(styleClose);
-  }
-
-  return html.replace('</head>', `<style>${css}</style>\n</head>`);
 }
 
 function renderProcessRows(rows) {
@@ -217,24 +206,25 @@ function renderFaqs(faqs) {
 }
 
 function buildSystemSections(config) {
+  const primaryCta = normalizedPrimaryCta(config);
   const hero = `<section class="hero" id="hero">
+    <div class="orb hero-orb-1"></div>
+    <div class="orb hero-orb-2"></div>
+    <div class="orb hero-orb-3"></div>
     <div class="hero-body">
-      <div class="orb hero-orb-1"></div>
-      <div class="orb hero-orb-2"></div>
-      <div class="orb hero-orb-3"></div>
-      <div class="wrap hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-line"></div>
-          <p class="eyebrow" ${attrPair(dual(config.heroEyebrow))}>${config.heroEyebrow}</p>
-        </div>
-        <h1 class="headline-xl hero-h1">${heroTitleHtml(config.heroTitle)}</h1>
-        <div class="hero-bottom">
-          <div class="hero-desc">
-            <p ${attrPair(dual(config.heroBody))}>${config.heroBody}</p>
+      <div class="wrap">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-line"></span>
+            <span class="eyebrow" ${attrPair(dual(config.heroEyebrow))}>${config.heroEyebrow}</span>
           </div>
-          <div class="hero-actions">
-            <a href="${config.primaryHref || calendlyHref}" target="_blank" rel="noopener" class="btn btn-grad" ${attrPair(dual(config.primaryCta))}>${config.primaryCta}</a>
-            <a href="${config.secondaryHref || whatsappHref}" target="_blank" rel="noopener" class="btn btn-outline btn-whatsapp" ${attrPair(dual(config.secondaryCta))}>${config.secondaryCta}</a>
+          <h1 class="hero-h1 headline-xl">${heroTitleHtml(config.heroTitle)}</h1>
+          <div class="hero-bottom">
+            <p class="hero-desc" ${attrPair(dual(config.heroBody))}>${config.heroBody}</p>
+            <div class="hero-actions">
+              <a href="${config.primaryHref || calendlyHref}" target="_blank" rel="noopener" class="btn btn-grad btn-lg" ${attrPair(dual(primaryCta))}>${primaryCta}</a>
+              <a href="${config.secondaryHref || whatsappHref}" target="_blank" rel="noopener" class="btn btn-outline-dark btn-whatsapp" ${attrPair(dual(config.secondaryCta))}>${config.secondaryCta}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -242,38 +232,7 @@ function buildSystemSections(config) {
     ${heroStats(config.stats)}
   </section>`;
 
-  const liveDemo = `<section class="live-demo-section" id="live-demo">
-    <div class="wrap live-demo-grid">
-      <div class="live-demo-copy">
-        <p class="eyebrow" ${attrPair(dual(config.demoEyebrow))}>${config.demoEyebrow}</p>
-        <h2 class="headline-lg" ${attrPair(dual(config.demoTitle))}>${processHtmlText(config.demoTitle)}</h2>
-        <p class="body-lg" ${attrPair(dual(config.demoBody))}>${config.demoBody}</p>
-        <div class="live-demo-note">
-          ${config.demoNotes.map((note) => `<span ${attrPair(dual(note))}>${note}</span>`).join('')}
-        </div>
-      </div>
-      <div class="voice-demo-shell" aria-label="${escapeAttr(config.demoShellLabel)}">
-        <div class="voice-demo-topbar">
-          <div class="voice-live-meta">
-            <span class="voice-live-dot" aria-hidden="true"></span>
-            <div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-            <span class="voice-live-title" ${attrPair(dual(config.demoTopTitle))}>${config.demoTopTitle}</span>
-          </div>
-          <span class="voice-timer-pill">${config.demoTopPill}</span>
-        </div>
-        <div class="voice-transcript" aria-live="polite">
-          ${demoMessages(config.demoMessages)}
-        </div>
-        <div class="voice-demo-footer">
-          <div class="voice-demo-status">
-            <span ${attrPair(dual(config.demoFooterTitle))}>${config.demoFooterTitle}</span>
-            <div class="voice-progress" aria-hidden="true"><div></div></div>
-          </div>
-          <a href="${config.primaryHref || calendlyHref}" target="_blank" rel="noopener" class="btn btn-grad voice-call-btn" ${attrPair(dual(config.demoFooterCta))}>${config.demoFooterCta}</a>
-        </div>
-      </div>
-    </div>
-  </section>`;
+  const liveDemo = '';
 
   const video = '';
 
@@ -283,8 +242,7 @@ function buildSystemSections(config) {
     </div>
   </div>`;
 
-  const featureIsUseCaseSection = /use cases/i.test(config.featureEyebrow || '') || /where this/i.test(config.featureTitle || '');
-  const features = featureIsUseCaseSection ? '' : `<section class="section" id="features">
+  const features = `<section class="section" id="features">
     <div class="wrap">
       <div class="section-head">
         <div>
@@ -293,7 +251,7 @@ function buildSystemSections(config) {
         </div>
       </div>
       <div class="feature-grid">
-        ${renderFeatureCards((config.featureCards || []).slice(0, 5))}
+        ${renderFeatureCards(config.featureCards)}
       </div>
       <div class="image-row">
         <div class="image-frame">
@@ -372,8 +330,8 @@ function buildSystemSections(config) {
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
         <a href="${config.primaryHref || calendlyHref}" target="_blank" rel="noopener" class="btn btn-dark" ${attrPair(dual(config.finalPrimaryCta))}>${config.finalPrimaryCta}</a>
         <a href="${config.secondaryHref || whatsappHref}" target="_blank" rel="noopener" class="btn btn-outline btn-whatsapp" ${attrPair(dual(config.finalSecondaryCta))}>${config.finalSecondaryCta}</a>
+        <a href="${emailHref}" class="btn btn-email-white" data-en="Email Us" data-es="Escribenos">Email Us</a>
       </div>
-      <p class="body-sm" style="margin-top:22px;color:#0b3a38" data-en="Or email info@thefuturestudio.online" data-es="Or email info@thefuturestudio.online">Or email info@thefuturestudio.online</p>
     </div>
   </section>`;
 
@@ -382,6 +340,7 @@ function buildSystemSections(config) {
 
 function applyPageConfig(baseHtml, config) {
   let html = baseHtml;
+  const rootPrefix = outputRootPrefix(config.output);
 
   const sections = buildSystemSections(config);
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${config.pageTitle}</title>`);
@@ -392,11 +351,12 @@ function applyPageConfig(baseHtml, config) {
   html = html.replace(/<meta name="twitter:description" content="[\s\S]*?">/g, '');
 
   html = html.replace(/>\s*Courses\s*</g, '>Academy<');
+  html = html.replace(/>\s*AI Courses\s*</g, '>Academy<');
   html = html.replace(/data-en="Courses"/g, 'data-en="Academy"');
   html = html.replace(/data-es="Cursos"/g, 'data-es="Academia"');
   html = html.replace(/data-en="AI Courses"/g, 'data-en="Academy"');
   html = html.replace(/data-es="Cursos IA"/g, 'data-es="Academia"');
-  html = html.replace(/\.\.\/#courses-section/g, academyHref);
+  html = html.replace(/\.\.\/#courses-section/g, `${rootPrefix}academy/`);
 
   html = replaceSection(html, '<section class="hero" id="hero">', sections.hero);
   html = replaceSection(html, '<section class="live-demo-section" id="live-demo">', sections.liveDemo);
@@ -408,39 +368,37 @@ function applyPageConfig(baseHtml, config) {
   html = replaceSection(html, '<section class="section" id="bonus">', sections.bonus);
   html = replaceSection(html, '<section class="faq-section" id="faq">', sections.faq);
   html = replaceSection(html, '<section class="final-cta">', sections.cta);
-  html = removeSectionById(html, 'fit');
-  html = injectFlowCleanupCss(html);
 
-  return html;
+  return normalizeGeneratedPaths(injectGeneratedPolish(html), config);
 }
 
 const sharedFaqs = {
   system: [
-    { q: 'How tailored is the system to our business?', a: 'Each build starts by mapping your real offer, bottlenecks, handoff logic, and team workflow. The page shows a product category, but the installed system is shaped around how your business actually sells, books, or follows up.' },
-    { q: 'Can this connect to tools we already use?', a: 'Usually yes. We prefer working with the tools already inside your business where possible, then only adding new layers when they solve a clear problem.' },
-    { q: 'Is this bilingual?', a: 'Yes. We can shape the system in English, Spanish, or a bilingual handoff flow depending on your audience and team.' },
-    { q: 'How long does the first version usually take?', a: 'Most first versions are scoped, built, and launched in roughly 7-21 days once the workflow, assets, and integrations are confirmed.' },
-    { q: 'Will we own what gets built?', a: 'Yes. The Future Studio builds practical systems that your business can run, refine, and expand rather than trapping you inside a black-box setup.' },
-    { q: 'What happens after launch?', a: 'We review performance, refine weak points, and can continue with optimisation, reporting, or the next layer once the first version is live.' },
-    { q: 'Can we start small first?', a: 'Yes. Most clients start with the smallest version that solves the clearest bottleneck, then expand once the first layer proves itself.' },
+    { q: 'What exactly do we receive?', a: 'You receive a working AI system built around one clear business bottleneck: response, booking, follow-up, content, reporting, or lead handling. The exact deliverables depend on the page, but every build includes discovery, system design, implementation, testing, and a launch handover.' },
+    { q: 'How tailored is the system to our business?', a: 'Each build starts by mapping your real offer, current workflow, team handoff, customer questions, and the moments where leads usually stall. The category gives you a starting point; the installed system is shaped around how your business actually sells, books, or follows up.' },
+    { q: 'Can this connect to tools we already use?', a: 'Usually yes. We prefer using your existing website, WhatsApp, forms, calendars, CRM, email, or spreadsheets where possible. New tools are only added when they make the system clearer, faster, or easier for your team to run.' },
+    { q: 'Is this bilingual?', a: 'Yes. We can build in English, Spanish, or a bilingual flow so the system speaks to your market and hands information to your team in the format they need.' },
+    { q: 'How long does the first version usually take?', a: 'Most first versions are scoped, built, tested, and launched in roughly 7-21 days once the workflow, assets, and integrations are confirmed. Larger systems can expand in phases after the first useful version is live.' },
+    { q: 'Will we own what gets built?', a: 'Yes. The aim is to give your business a practical system it can run, understand, refine, and expand. We avoid black-box builds that leave you dependent on mystery logic or generic templates.' },
+    { q: 'What happens after launch?', a: 'We review the system in real use, identify weak points, and recommend the next improvement layer. That can be optimisation, reporting, a second automation flow, or simply leaving the first version to work before adding more.' },
   ],
   package: [
-    { q: 'Who is each package best for?', a: 'Starter is for businesses that need a strong first digital front door. Growth is for businesses that need a fuller website and assistant layer. Premium is for businesses ready for a more complete AI front office.' },
-    { q: 'Can we upgrade later?', a: 'Yes. These package pages are designed to show a clear starting point, not force you into the biggest build immediately.' },
-    { q: 'Do packages include strategy?', a: 'Yes. Every package starts with discovery so the pages, assistant flows, and system structure fit the business instead of acting like a generic template.' },
-    { q: 'What if we already have part of this?', a: 'That is fine. We can review what you already use, keep the parts that are strong, and only build the missing layers.' },
-    { q: 'How long does launch take?', a: 'Most package builds begin with a 7-21 day first phase, then expand depending on content, integrations, and the scope selected.' },
-    { q: 'Will this be bilingual?', a: 'It can be. The Future Studio supports English, Spanish, or bilingual structures depending on the market you serve.' },
-    { q: 'What happens after the first launch?', a: 'After launch, we can optimise, add new flows, improve reporting, and move into the next build layer only when it makes sense.' },
+    { q: 'What is the difference between the packages?', a: 'Starter gives you a professional front door and first AI response layer. Growth adds more website depth, search structure, and a stronger assistant. Premium combines the public website, AI assistant, call support, and authority content into a more complete AI front office.' },
+    { q: 'What do we actually receive?', a: 'You receive the mapped pages, assistant logic, handoff structure, launch setup, and walkthrough needed for your team to use the package. Each package page shows the core deliverables, and the discovery call confirms what should be included for your specific business.' },
+    { q: 'Can we upgrade later?', a: 'Yes. The packages are staged intentionally. You can start with the smallest useful version, prove the first layer, and then move into Growth or Premium when the next bottleneck is obvious.' },
+    { q: 'Do packages include strategy?', a: 'Yes. Every package starts with discovery so the page structure, assistant flows, and system logic fit your business instead of acting like a generic template.' },
+    { q: 'What if we already have part of this?', a: 'That is useful. We can keep the parts that already work, repair the weak points, and only build the missing layers instead of replacing everything for no reason.' },
+    { q: 'How long does launch take?', a: 'Most package builds begin with a 7-21 day first phase, then expand depending on content, integrations, approvals, and the scope selected.' },
+    { q: 'Will this be bilingual?', a: 'It can be. The Future Studio supports English, Spanish, or bilingual structures depending on the audience you serve and how your team works.' },
   ],
   academy: [
-    { q: 'Is the Academy for beginners or advanced teams?', a: 'Both. The Academy is designed so founders, operators, creatives, and teams can enter at the right level and keep building practical AI skills from there.' },
-    { q: 'Do I need technical experience?', a: 'No. The Academy is designed around real-world application, not coding-first complexity.' },
-    { q: 'Are sessions live or self-paced?', a: 'The Academy page presents live formats first: single workshop, studio pass, and full studio program. Recordings and materials depend on the chosen format.' },
-    { q: 'Can I join in English or Spanish?', a: 'Yes. The Academy is structured for EN, ES, and bilingual delivery where needed.' },
-    { q: 'Will I leave with practical assets?', a: 'Yes. The goal is not abstract inspiration. It is practical workflows, templates, examples, and next steps you can apply immediately.' },
-    { q: 'Can a company book team training?', a: 'Yes. Teams can use the Academy as a learning layer for internal capability building before or alongside implementation work.' },
-    { q: 'Which format should I choose first?', a: 'Single Workshop is best for focused questions. Studio Pass fits people who want repeated guided sessions. Full Studio Program is best for deeper transformation.' },
+    { q: 'What do I receive inside the Academy?', a: 'You receive live instruction, practical examples, selected templates, workflow guidance, and a clearer way to apply AI to real creative or business work. The exact depth depends on whether you choose a workshop, studio pass, or full program.' },
+    { q: 'Is the Academy for beginners or advanced teams?', a: 'Both. Beginners get a clear path into practical AI use, while more advanced users can focus on workflows, branding, content systems, automation thinking, and implementation quality.' },
+    { q: 'Do I need technical experience?', a: 'No. The Academy is designed around applied use, creative direction, business workflows, and practical decision-making rather than coding-first complexity.' },
+    { q: 'Are sessions live or self-paced?', a: 'The Academy focuses on live formats first: single workshop, studio pass, and full studio program. Recordings and materials depend on the chosen format.' },
+    { q: 'Can I join in English or Spanish?', a: 'Yes. The Academy is structured for English, Spanish, and bilingual delivery where needed.' },
+    { q: 'Can a company book team training?', a: 'Yes. Teams can use the Academy as a learning layer before, during, or after implementation so the people inside the business understand how to use AI properly.' },
+    { q: 'Which format should I choose first?', a: 'Choose a Single Workshop if you want one focused result, Studio Pass if you want repeated guided sessions, and Full Studio Program if you want a deeper transformation across multiple workflows.' },
   ],
 };
 
@@ -451,7 +409,7 @@ const systemPages = [
     metaDescription: 'A conversion-focused website paired with an AI assistant that answers questions, captures leads, and moves visitors into the next step.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'WEBSITE +\nAI ASSISTANT',
-    heroBody: 'A strong front door for businesses that need a clear website, better enquiry handling, and an assistant that keeps people moving instead of dropping off.',
+    heroBody: 'A conversion-focused website plus an AI assistant that explains your services, answers common questions, captures contact details, and routes serious enquiries into the right next step.',
     primaryCta: 'Watch the Website Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -463,14 +421,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nWEBSITE +\nASSISTANT\nFLOW',
-    demoBody: 'This page type is built for businesses that need a clearer digital first impression and a faster way to answer common questions before a human steps in.',
+    demoBody: 'This build gives your business a clearer digital front door: a website that explains the offer properly and an assistant that keeps visitors engaged when they need answers before contacting you.',
     demoNotes: ['Conversion-focused structure', 'Assistant-trained FAQs', 'Lead capture + WhatsApp handoff'],
     demoShellLabel: 'Website and AI assistant system snapshot',
     demoTopTitle: 'Website + assistant stack',
     demoTopPill: 'LIVE READY',
     demoMessages: [
-      { role: 'assistant', text: 'Homepage, services, FAQs, lead capture, and next-step logic are mapped together so the website sells while the assistant supports.' },
-      { role: 'user', text: 'Use this as the first build if your website looks fine on the surface but still leaves people confused or unqualified.' },
+      { role: 'assistant', text: 'Homepage, service pages, FAQs, lead capture, and next-step logic are mapped together so the website sells clearly while the assistant supports the first conversation.' },
+      { role: 'user', text: 'Choose this if your current website looks fine but visitors still leave confused, unqualified, or unsure what to do next.' },
     ],
     demoFooterTitle: 'Best when trust and clarity are the first bottleneck',
     demoFooterCta: 'Book a Free Demo',
@@ -491,18 +449,18 @@ const systemPages = [
     featureEyebrow: 'Use cases',
     featureTitle: 'WHERE THIS\nSYSTEM FITS',
     featureCards: [
-      { title: 'Clinics', body: 'Give new patients a clearer understanding of services, timing, location, and next steps before they call.' },
-      { title: 'Consultants', body: 'Answer fit questions, explain offers more clearly, and qualify discovery calls before the calendar fills.' },
-      { title: 'Education', body: 'Guide families or students toward the right program, workshop, or intake flow without losing trust.' },
-      { title: 'Real estate', body: 'Support property enquiries, capture context faster, and hand leads into the right callback path.' },
-      { title: 'Beauty brands', body: 'Clarify services, pricing expectations, and booking steps so fewer enquiries stall at the first question.' },
-      { title: 'Professional firms', body: 'Turn a static website into a more useful front door that explains, qualifies, and routes.' },
+      { title: 'Clinics', body: 'Help patients understand services, insurance or appointment requirements, opening hours, and the right next step before the phone rings.' },
+      { title: 'Consultants', body: 'Explain your offer, answer fit questions, and qualify discovery enquiries before your calendar fills with weak calls.' },
+      { title: 'Education', body: 'Guide families, students, or applicants toward the right program, intake form, or conversation without losing trust.' },
+      { title: 'Real estate', body: 'Answer property questions, collect buyer or renter context, and route serious enquiries into the correct callback path.' },
+      { title: 'Beauty brands', body: 'Clarify treatments, pricing expectations, availability, and booking steps so fewer prospects stall at the first question.' },
+      { title: 'Professional firms', body: 'Turn a static website into a guided front door that explains services, qualifies intent, and protects serious enquiries.' },
     ],
     trustImage: '../assets/funnel-images/team-client-automation-strategy-wide.png',
     trustImageAlt: 'Business team reviewing website and assistant planning on laptop and phone.',
     trustEyebrow: 'Why it matters',
     trustTitle: 'YOUR WEBSITE\nSHOULD HANDLE\nMORE OF THE FIRST ASK',
-    trustBody: 'Many service businesses do not need more traffic first. They need a front door that explains the offer, handles the first layer of questions, and gives people a confident next step.',
+    trustBody: 'Many service businesses do not need more traffic first. They need the people already arriving to understand the offer, trust the business, and know exactly how to move forward.',
     processEyebrow: 'The process',
     processTitle: 'FROM WEBSITE\nCONFUSION TO\nCLEARER DEMAND',
     processRows: [
@@ -516,9 +474,9 @@ const systemPages = [
     pricingTitle: 'CUSTOM WEB.\nGUIDED BY AI.',
     pricingBody: 'Start with the level that gives your business a stronger front door now, then expand once the website and assistant are already performing.',
     pricingCards: [
-      { badge: 'Starter', title: 'One-Page Website + Assistant', price: 'from $1,500', bullets: ['One clear homepage', 'Core copy structure', 'Website AI assistant', 'Lead capture + WhatsApp handoff'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Multi-Page Website + Assistant', price: 'from $2,500', bullets: ['Homepage + service pages', 'Clearer SEO structure', 'Expanded assistant knowledge', 'Stronger enquiry routing'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Web + Assistant + Visibility Layer', price: 'from $3,800', bullets: ['Multi-page build', 'Assistant + FAQs + handoffs', 'Search-ready architecture', 'Ongoing optimisation roadmap'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'One-Page Website + Assistant', price: 'from $1,500', bullets: ['One premium homepage built around your offer', 'Clear copy structure and CTA path', 'Website AI assistant for common questions', 'Lead capture with WhatsApp or email handoff'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Multi-Page Website + Assistant', price: 'from $2,500', bullets: ['Homepage plus core service pages', 'Search-ready page structure', 'Expanded assistant knowledge base', 'Clear routing for enquiries, bookings, or calls'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Web + Assistant + Visibility Layer', price: 'from $3,800', bullets: ['Fuller website and assistant system', 'FAQ, service, and handoff logic', 'Search and content structure', 'Optimisation roadmap for the next growth layer'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE WEBSITE\nMESSAGE MAP\nTHIS WEEK',
@@ -529,7 +487,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR DIGITAL\nFRONT DOOR.",
-    finalBody: 'Book a free demo and we will show you what the website and assistant should solve first.',
+    finalBody: 'Book a free demo and we will show you which website, assistant, and enquiry flow should be fixed first so your front door starts converting more clearly.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -539,7 +497,7 @@ const systemPages = [
     metaDescription: 'A WhatsApp automation system for first response, qualification, follow-up, booking support, and cleaner lead handoff.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'WHATSAPP\nAUTOMATION\nAGENT',
-    heroBody: 'Built for businesses that already receive enquiries in WhatsApp but need faster replies, stronger qualification, and a cleaner way to protect hot leads.',
+    heroBody: 'A WhatsApp response and follow-up system that replies quickly, asks the right questions, captures lead context, and hands serious enquiries to your team before they go cold.',
     primaryCta: 'Watch the WhatsApp Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -551,14 +509,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nWHATSAPP\nFLOW LIVE',
-    demoBody: 'Use this build when your enquiries already arrive through WhatsApp but the first response, qualification, or follow-up still depends too much on manual chasing.',
+    demoBody: 'This build gives your business a reliable first-response layer inside WhatsApp, so new enquiries are acknowledged, filtered, and moved forward even when the team is busy.',
     demoNotes: ['Auto-replies with context', 'Qualification before human handoff', 'Follow-up flow built in'],
     demoShellLabel: 'WhatsApp automation system snapshot',
     demoTopTitle: 'WhatsApp automation stack',
     demoTopPill: 'ALWAYS ON',
     demoMessages: [
-      { role: 'assistant', text: 'The agent greets the lead, asks what matters, sorts urgency, and keeps the conversation moving toward the right next step.' },
-      { role: 'user', text: 'This is best for missed follow-up, after-hours messages, repetitive questions, and teams that need cleaner lead handling.' },
+      { role: 'assistant', text: 'The agent greets the lead, answers common questions, collects intent, sorts urgency, and sends the conversation toward booking, callback, or human support.' },
+      { role: 'user', text: 'Choose this if good enquiries arrive in WhatsApp but replies are late, inconsistent, or too dependent on someone remembering to follow up.' },
     ],
     demoFooterTitle: 'Best when message speed is the sales bottleneck',
     demoFooterCta: 'Book a Free Demo',
@@ -590,7 +548,7 @@ const systemPages = [
     trustImageAlt: 'Business team reviewing WhatsApp automation and message-based lead handling.',
     trustEyebrow: 'Why it matters',
     trustTitle: 'THE FIRST\nMESSAGE\nSETS THE TONE',
-    trustBody: 'A lot of demand is lost because the first message sits too long, gets answered inconsistently, or never turns into a clean next step. This system fixes that layer first.',
+    trustBody: 'A lot of demand is lost because the first WhatsApp message sits too long, gets answered inconsistently, or never turns into a clear next step. This system protects that first moment.',
     processEyebrow: 'The process',
     processTitle: 'FROM INCOMING\nMESSAGE TO\nNEXT STEP',
     processRows: [
@@ -602,11 +560,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT FOR\nWHATSAPP.',
-    pricingBody: 'Choose the level that fits your current enquiry volume now, then expand once the first WhatsApp layer is already converting better.',
+    pricingBody: 'Choose the level that fits how much WhatsApp currently handles for your business: first response only, response plus follow-up, or a fuller sales and support flow.',
     pricingCards: [
-      { badge: 'Starter', title: 'WhatsApp First Response Flow', price: 'from $900', bullets: ['Greeting + FAQ layer', 'Basic qualification', 'Human handoff path', 'Bilingual option'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'WhatsApp + Follow-Up Agent', price: 'from $1,800', bullets: ['Qualification logic', 'Follow-up sequence', 'Booking or CRM handoff', 'Performance-ready structure'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'WhatsApp Sales + Support Flow', price: 'from $3,000', bullets: ['Multiple message scenarios', 'Advanced routing', 'Team notifications', 'Expansion-ready logic'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'WhatsApp First Response Flow', price: 'from $900', bullets: ['Automated welcome and first reply', 'Answers to common customer questions', 'Basic qualification questions', 'Human handoff with lead context'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'WhatsApp + Follow-Up Agent', price: 'from $1,800', bullets: ['Everything in the first-response flow', 'Follow-up reminders for silent leads', 'Booking, CRM, or form routing', 'Conversation summary for your team'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'WhatsApp Sales + Support Flow', price: 'from $3,000', bullets: ['Multiple enquiry paths by service or intent', 'Sales and support routing rules', 'Team notifications and escalation logic', 'Optimisation based on real conversations'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE WHATSAPP\nRESPONSE AUDIT\nTHIS WEEK',
@@ -617,7 +575,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR WHATSAPP\nAGENT.",
-    finalBody: 'Book a free demo and we will show you the first message flow your business should automate.',
+    finalBody: 'Book a free demo and we will show you exactly which WhatsApp replies, questions, and handoffs should be automated first so fewer enquiries slip away.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -627,7 +585,7 @@ const systemPages = [
     metaDescription: 'An AI booking agent for appointment businesses that need clearer scheduling, confirmation, rescheduling, and fewer missed opportunities.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'BOOKING\nAGENT',
-    heroBody: 'For appointment-driven businesses that need booking logic, confirmations, reminders, and rescheduling to feel cleaner without adding more admin load.',
+    heroBody: 'A booking and reminder system that guides enquiries from interest to confirmed appointment, answers scheduling questions, and reduces the manual back-and-forth your team handles every week.',
     primaryCta: 'Watch the Booking Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -639,14 +597,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nBOOKING\nJOURNEY',
-    demoBody: 'Use this when your business is losing momentum between first enquiry and confirmed appointment, especially after hours or during busy periods.',
+    demoBody: 'This build helps convert interest into confirmed appointments by handling booking questions, reminders, reschedules, and calendar handoff with less back-and-forth.',
     demoNotes: ['Booking logic + reminders', 'Reschedule-aware flows', 'Cleaner calendar handoff'],
     demoShellLabel: 'Booking agent system snapshot',
     demoTopTitle: 'Booking flow system',
     demoTopPill: 'ACTIVE',
     demoMessages: [
-      { role: 'assistant', text: 'The booking agent helps collect timing intent, confirms what matters, and routes the lead into the right appointment path.' },
-      { role: 'user', text: 'It is best for clinics, beauty brands, consultative services, and businesses where back-and-forth scheduling slows conversion.' },
+      { role: 'assistant', text: 'The booking agent collects appointment intent, confirms key details, supports reminders, and routes the person into the correct scheduling path.' },
+      { role: 'user', text: 'Choose this if your team spends too much time confirming, rescheduling, reminding, or chasing people who already wanted to book.' },
     ],
     demoFooterTitle: 'Best when admin time is blocking conversion',
     demoFooterCta: 'Book a Free Demo',
@@ -667,18 +625,18 @@ const systemPages = [
     featureEyebrow: 'Use cases',
     featureTitle: 'WHO THIS\nBOOKING LAYER\nHELPS MOST',
     featureCards: [
-      { title: 'Clinics', body: 'Handle intake questions, appointment requests, and confirmations without forcing staff to chase every booking manually.' },
-      { title: 'Beauty & wellness', body: 'Protect bookings during busy periods and make reschedules feel cleaner instead of chaotic.' },
-      { title: 'Consultants', body: 'Route serious discovery bookings faster and reduce admin drag between interest and confirmed call.' },
-      { title: 'Education', body: 'Coordinate meetings, consultations, or parent calls with less back-and-forth.' },
-      { title: 'Professional services', body: 'Keep scheduling professional, clear, and structured before the first live conversation.' },
-      { title: 'High-volume enquiry teams', body: 'Use booking automation to reduce repetitive calendar friction and keep lead response faster.' },
+      { title: 'Clinics', body: 'Handle appointment requests, intake questions, confirmations, and reminders without forcing staff to chase every booking manually.' },
+      { title: 'Beauty & wellness', body: 'Protect booking demand during busy periods, reduce missed confirmations, and make reschedules feel controlled instead of chaotic.' },
+      { title: 'Consultants', body: 'Move serious discovery enquiries into confirmed calls faster and reduce admin drag between interest and meeting.' },
+      { title: 'Education', body: 'Coordinate consultations, campus visits, parent calls, or enrolment conversations with less back-and-forth.' },
+      { title: 'Professional services', body: 'Keep scheduling professional and structured before the first live conversation, especially when timing and preparation matter.' },
+      { title: 'High-volume enquiry teams', body: 'Reduce repetitive calendar friction so the team can focus on higher-value conversations instead of constant scheduling admin.' },
     ],
     trustImage: '../assets/funnel-images/calendar-dashboard-workspace-wide.png',
     trustImageAlt: 'Team reviewing booking calendar automation and scheduling system.',
     trustEyebrow: 'Why it matters',
     trustTitle: 'SCHEDULING\nSHOULD NOT BE\nTHE BOTTLENECK',
-    trustBody: 'A lot of businesses lose easy wins in the gap between enquiry and confirmed booking. A cleaner booking flow protects revenue and saves admin energy at the same time.',
+    trustBody: 'Many businesses do the hard part and generate the enquiry, then lose momentum in the easy part: confirming a time. A cleaner booking flow protects revenue and saves admin energy.',
     processEyebrow: 'The process',
     processTitle: 'FROM ENQUIRY\nTO CONFIRMED\nBOOKING',
     processRows: [
@@ -690,11 +648,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT TO\nBOOK.',
-    pricingBody: 'Start with the booking layer your business needs now, then expand once your confirmations and next-step flow are already working better.',
+    pricingBody: 'Choose the level of booking support your business needs now: one clear booking path, booking plus reminders, or a deeper multi-service scheduling layer.',
     pricingCards: [
-      { badge: 'Starter', title: 'Booking Flow Foundation', price: 'from $1,100', bullets: ['One booking path', 'Core confirmation logic', 'Reminder-ready structure', 'Admin-friendly handoff'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Booking + Reminder System', price: 'from $2,100', bullets: ['Scheduling logic', 'Reschedule-aware flow', 'Reminder layer', 'Calendar connection'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Multi-Service Booking Layer', price: 'from $3,400', bullets: ['Multiple appointment types', 'Advanced rules', 'Team notifications', 'Performance visibility'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'Booking Flow Foundation', price: 'from $1,100', bullets: ['One primary booking path', 'Confirmation message flow', 'Reminder-ready structure', 'Admin handoff with appointment details'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Booking + Reminder System', price: 'from $2,100', bullets: ['Multiple booking scenarios', 'Reschedule and cancellation logic', 'Reminder sequence to reduce no-shows', 'Calendar or booking tool connection'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Multi-Service Booking Layer', price: 'from $3,400', bullets: ['Multiple services, staff, or locations', 'Advanced rules and staff routing', 'No-show recovery prompts', 'Booking performance visibility'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE BOOKING\nBOTTLENECK MAP\nTHIS WEEK',
@@ -705,7 +663,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR BOOKING\nAGENT.",
-    finalBody: 'Book a free demo and we will map the first scheduling flow your business should automate.',
+    finalBody: 'Book a free demo and we will map the booking, reminder, or rescheduling flow that would save your team the most time and protect the most appointments first.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -715,7 +673,7 @@ const systemPages = [
     metaDescription: 'A lead pipeline automation system for capture, qualification, follow-up, scoring, and clearer visibility across enquiries.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'LEAD PIPELINE\nAUTOMATION',
-    heroBody: 'For businesses that are already generating interest but need a cleaner pipeline, stronger follow-up rhythm, and a better way to see what should happen next.',
+    heroBody: 'For businesses already generating enquiries but losing momentum because leads are not captured, qualified, followed up, or viewed in one clear pipeline.',
     primaryCta: 'Watch the Pipeline Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -778,11 +736,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT TO\nMOVE LEADS.',
-    pricingBody: 'Choose the level of pipeline build your business needs now, then deepen the system once the first recovery layer is already visible.',
+    pricingBody: 'Choose how much of the lead journey you want built: the first capture layer, the follow-up pipeline, or the recovery dashboard that shows what is happening across the full sales flow.',
     pricingCards: [
-      { badge: 'Starter', title: 'Lead Capture Foundation', price: 'from $1,400', bullets: ['Lead intake structure', 'Basic qualification', 'Notification handoff', 'Cleaner first follow-up'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Follow-Up + Pipeline System', price: 'from $2,600', bullets: ['Lead stages + scoring', 'Automated follow-up logic', 'Team handoff rules', 'Clearer visibility layer'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Sales Recovery Dashboard', price: 'from $4,200', bullets: ['Multi-channel capture', 'Advanced scoring', 'Dashboard layer', 'Ongoing optimisation'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'Lead Capture Foundation', price: 'from $1,400', bullets: ['Lead intake form or message flow that captures details', 'Basic qualification so weak and strong leads are separated', 'Instant notification to the right person', 'First follow-up message so new enquiries do not go quiet'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Follow-Up + Pipeline System', price: 'from $2,600', bullets: ['Lead stages that show where every enquiry sits', 'Simple scoring based on urgency, fit, and next action', 'Automated follow-up for leads that stop replying', 'Team handoff rules so ownership is clear'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Sales Recovery Dashboard', price: 'from $4,200', bullets: ['Capture from calls, forms, WhatsApp, and email', 'Advanced scoring and lost-lead visibility', 'Dashboard showing opportunities and follow-up status', 'Ongoing optimisation based on real pipeline data'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE LEAD\nLEAK MAP\nTHIS WEEK',
@@ -793,7 +751,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR LEAD\nPIPELINE.",
-    finalBody: 'Book a free demo and we will show you the first part of the pipeline your business should automate.',
+    finalBody: 'Book a free demo and we will show you which part of your lead journey should be systemised first: capture, follow-up, or recovery visibility.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -803,7 +761,7 @@ const systemPages = [
     metaDescription: 'An AI content agent that turns internal clarity into content planning, production support, and more consistent publishing.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'AI CONTENT\nAGENT',
-    heroBody: 'For businesses that know they need stronger authority content but do not want to rely on random posting, weak prompts, or a full in-house content team.',
+    heroBody: 'For businesses that need consistent authority content but do not want content planning, prompts, post ideas, and publishing rhythm to depend on random inspiration.',
     primaryCta: 'Watch the Content Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -815,14 +773,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nCONTENT\nSYSTEM',
-    demoBody: 'Use this build when content matters for trust, but the business needs a clearer process for ideas, messaging, repurposing, and consistent output.',
+    demoBody: 'Use this build when content matters for trust, but the team needs a clearer system for ideas, messaging, repurposing, and consistent output that still sounds like the business.',
     demoNotes: ['Topic planning support', 'Offer-aligned prompts', 'Authority content flow'],
     demoShellLabel: 'AI content agent snapshot',
     demoTopTitle: 'Content agent stack',
     demoTopPill: 'PLANNING',
     demoMessages: [
-      { role: 'assistant', text: 'The content agent turns business clarity into ideas, prompts, post angles, and publishing support without losing the brand voice.' },
-      { role: 'user', text: 'This works best when the team knows content matters but still struggles to create consistently or strategically.' },
+      { role: 'assistant', text: 'The content agent turns business clarity into themes, post ideas, prompts, captions, repurposing angles, and publishing support without losing the brand voice.' },
+      { role: 'user', text: 'This works best when the team knows content drives trust but still struggles to create consistently, strategically, or fast enough.' },
     ],
     demoFooterTitle: 'Best when consistency and relevance are the gap',
     demoFooterCta: 'Book a Free Demo',
@@ -866,11 +824,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT FOR\nCONTENT FLOW.',
-    pricingBody: 'Start with the content planning layer your business needs now, then expand into deeper repurposing, production, or publishing support once the first cycle is working.',
+    pricingBody: 'Choose the level of content support your business needs now: planning and prompts, repurposing workflow, or a deeper authority content engine.',
     pricingCards: [
-      { badge: 'Starter', title: 'Content Planning Agent', price: 'from $900', bullets: ['Theme mapping', 'Core prompts', 'Publishing structure', 'Offer-aligned topics'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Content + Repurposing System', price: 'from $1,800', bullets: ['Planning layer', 'Repurposing workflow', 'Platform-aware prompts', 'Visibility rhythm'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Authority Content Engine', price: 'from $3,200', bullets: ['Multi-format logic', 'Publishing system', 'Campaign support', 'Ongoing optimisation'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'Content Planning Agent', price: 'from $900', bullets: ['Audience and offer theme map', 'Reusable prompt library', 'Post angle and caption support', 'Simple publishing structure'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Content + Repurposing System', price: 'from $1,800', bullets: ['Everything in the planning agent', 'Repurposing workflow for existing ideas', 'Platform-aware prompts and formats', 'Weekly or monthly visibility rhythm'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Authority Content Engine', price: 'from $3,200', bullets: ['Multi-format content logic', 'Campaign and launch support', 'Publishing system for recurring output', 'Ongoing optimisation of themes and prompts'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE CONTENT\nTHEME MAP\nTHIS WEEK',
@@ -881,7 +839,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR CONTENT\nAGENT.",
-    finalBody: 'Book a free demo and we will show you the first content workflow your business should build.',
+    finalBody: 'Book a free demo and we will show you the first content workflow your business should build so the team can publish with more consistency and less blank-page stress.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -891,7 +849,7 @@ const systemPages = [
     metaDescription: 'An AI-assisted marketing video system for short-form video production, scripting, asset planning, and campaign support.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'MARKETING\nVIDEO\nSYSTEM',
-    heroBody: 'For brands that need more consistent short-form video without building a full production team from scratch every time content is needed.',
+    heroBody: 'For brands that need more short-form video, stronger campaign assets, and a repeatable production workflow without rebuilding the process every time content is needed.',
     primaryCta: 'Watch the Video System Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -903,14 +861,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nVIDEO\nWORKFLOW',
-    demoBody: 'This build is for brands that need campaign assets, authority clips, educational content, or recurring short-form output without the usual video bottleneck.',
+    demoBody: 'This build is for brands that need campaign assets, authority clips, educational content, or recurring short-form output with clearer ideas, scripts, production priorities, and repurposing logic.',
     demoNotes: ['Concept + script layer', 'Short-form production logic', 'Repurposing-ready workflow'],
     demoShellLabel: 'Marketing video system snapshot',
     demoTopTitle: 'Video system stack',
     demoTopPill: 'CONTENT READY',
     demoMessages: [
-      { role: 'assistant', text: 'The system helps shape concepts, scripts, AI visuals, and repeatable short-form output around your offer and audience.' },
-      { role: 'user', text: 'It is best for businesses that need visible authority content but do not want production to stay stuck in chaos.' },
+      { role: 'assistant', text: 'The system helps shape concepts, hooks, scripts, AI visual prompts, shot priorities, and repeatable short-form output around your offer and audience.' },
+      { role: 'user', text: 'It is best for businesses that need visible authority content but do not want production to stay slow, improvised, or unclear.' },
     ],
     demoFooterTitle: 'Best when video matters but production is too slow',
     demoFooterCta: 'Book a Free Demo',
@@ -954,11 +912,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT FOR\nVIDEO OUTPUT.',
-    pricingBody: 'Choose the level of video system your brand needs now, then expand into deeper production or campaign layers once the first output flow is active.',
+    pricingBody: 'Choose the level of video system your brand needs now: a starter short-form workflow, campaign support, or a deeper content engine for recurring output.',
     pricingCards: [
-      { badge: 'Starter', title: 'Short-Form Video Starter', price: 'from $1,500', bullets: ['Content angle planning', 'Script support', 'Short-form system', 'Repurposing-ready flow'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Video + Campaign Support', price: 'from $2,800', bullets: ['Script + asset workflow', 'Campaign-ready structure', 'Authority content support', 'Repeatable production logic'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Video Content Engine', price: 'from $4,500', bullets: ['Advanced production workflow', 'Multi-format system', 'Campaign asset layer', 'Ongoing optimisation'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'Short-Form Video Starter', price: 'from $1,500', bullets: ['Video angle and hook planning', 'Script support for short-form clips', 'Production checklist and prompt flow', 'Repurposing-ready structure'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Video + Campaign Support', price: 'from $2,800', bullets: ['Everything in the starter workflow', 'Campaign-ready script and asset structure', 'Authority content sequence support', 'Repeatable production logic for your team'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Video Content Engine', price: 'from $4,500', bullets: ['Advanced production workflow', 'Multi-format video and content system', 'Campaign asset layer across channels', 'Ongoing optimisation of angles and output'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE VIDEO\nCONTENT MAP\nTHIS WEEK',
@@ -969,7 +927,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR VIDEO\nSYSTEM.",
-    finalBody: 'Book a free demo and we will show you the first video workflow your business should build.',
+    finalBody: 'Book a free demo and we will show you the first video workflow your brand should build so content becomes easier to plan, produce, and repeat.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -979,7 +937,7 @@ const systemPages = [
     metaDescription: 'Custom business apps and dashboards for tracking, admin flow, reporting, and the practical tools around your AI system.',
     heroEyebrow: 'Flagship system',
     heroTitle: 'CUSTOM APPS\n& DASHBOARDS',
-    heroBody: 'For businesses that need a more practical operating layer around enquiries, bookings, reporting, or AI workflows instead of living inside scattered tools.',
+    heroBody: 'For businesses that need a practical internal app or dashboard to manage enquiries, bookings, reporting, tasks, or AI workflow results without living inside scattered tools.',
     primaryCta: 'Watch the App Demo',
     secondaryCta: 'WhatsApp About This Build',
     stats: [
@@ -991,14 +949,14 @@ const systemPages = [
     ],
     demoEyebrow: 'Product snapshot',
     demoTitle: 'SEE THE\nAPP LAYER\nIN ACTION',
-    demoBody: 'Use this when the business needs a clearer internal tool, dashboard, or workflow system around operations, reporting, bookings, or lead handling.',
+    demoBody: 'Use this when the business needs one clearer internal place to see data, track work, manage handoffs, and act on leads, bookings, reports, or AI workflow outputs.',
     demoNotes: ['Internal workflow support', 'Custom reporting views', 'Built around real admin use'],
     demoShellLabel: 'Custom apps and dashboards snapshot',
     demoTopTitle: 'Operations app stack',
     demoTopPill: 'CONNECTED',
     demoMessages: [
-      { role: 'assistant', text: 'The app layer gives the business a cleaner place to manage data, view performance, and act on what matters instead of juggling scattered tabs.' },
-      { role: 'user', text: 'This fits best when spreadsheets, inboxes, or disconnected tools are slowing daily execution down.' },
+      { role: 'assistant', text: 'The app layer gives the business a cleaner place to manage data, view performance, update records, and act on what matters instead of juggling scattered tabs.' },
+      { role: 'user', text: 'This fits best when spreadsheets, inboxes, dashboards, or disconnected tools are slowing daily execution down.' },
     ],
     demoFooterTitle: 'Best when the team needs one clearer operating view',
     demoFooterCta: 'Book a Free Demo',
@@ -1042,11 +1000,11 @@ const systemPages = [
     ],
     pricingEyebrow: 'Build options',
     pricingTitle: 'CUSTOM AI.\nBUILT FOR\nOPERATIONS.',
-    pricingBody: 'Choose the level of app or dashboard your business needs now, then expand once the first operating layer is already reducing friction.',
+    pricingBody: 'Choose the level of operating layer your business needs now: one focused dashboard, a custom workflow app, or a wider multi-team operations system.',
     pricingCards: [
-      { badge: 'Starter', title: 'Internal Dashboard Starter', price: 'from $1,800', bullets: ['One focused dashboard', 'Practical reporting view', 'Core workflow support', 'Cleaner data visibility'], cta: 'Reserve Build', href: whatsappHref },
-      { badge: 'Recommended', title: 'Custom App + Dashboard', price: 'from $3,200', bullets: ['Custom workflow view', 'Operational actions', 'Connected data layer', 'Usability-first structure'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Multi-Team Operations System', price: 'from $5,200', bullets: ['Multiple user views', 'Advanced reporting', 'Operational routing', 'Expansion-ready app logic'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Starter', title: 'Internal Dashboard Starter', price: 'from $1,800', bullets: ['One focused dashboard for one key workflow', 'Practical reporting view for the team', 'Core fields and status tracking', 'Cleaner visibility without spreadsheet chaos'], cta: 'Reserve Build', href: whatsappHref },
+      { badge: 'Recommended', title: 'Custom App + Dashboard', price: 'from $3,200', bullets: ['Custom workflow views and actions', 'Connected data layer where needed', 'Team-friendly update and handoff logic', 'Usability-first structure built around daily work'], cta: 'Book a Build Call', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Multi-Team Operations System', price: 'from $5,200', bullets: ['Multiple user views or departments', 'Advanced reporting and filters', 'Operational routing and permissions', 'Expansion-ready app logic for future systems'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE WORKFLOW\nMAP REVIEW\nTHIS WEEK',
@@ -1057,7 +1015,7 @@ const systemPages = [
     faqs: sharedFaqs.system,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR APP\nLAYER.",
-    finalBody: 'Book a free demo and we will show you the first dashboard or workflow view your business should build.',
+    finalBody: 'Book a free demo and we will show you the first dashboard or workflow view your business should build to reduce admin friction and make decisions clearer.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -1070,7 +1028,7 @@ const packagePages = [
     metaDescription: 'The Starter Package pairs a premium one-page website with a web and WhatsApp AI assistant for businesses building their first AI-enabled front door.',
     heroEyebrow: 'Product package',
     heroTitle: 'STARTER\nPACKAGE',
-    heroBody: 'Best for businesses that need a premium one-page website, a web assistant, and a WhatsApp assistant as their first practical AI front door.',
+    heroBody: 'Best for businesses that need a premium one-page website, a web assistant, and WhatsApp support so customers understand the offer and know exactly how to take the next step.',
     primaryCta: 'Book a Free Demo',
     secondaryCta: 'WhatsApp About Starter',
     stats: [
@@ -1082,14 +1040,14 @@ const packagePages = [
     ],
     demoEyebrow: 'Package snapshot',
     demoTitle: 'SEE WHAT\nSTARTER\nINSTALLS',
-    demoBody: 'Starter is designed for businesses that need a clean public front door, stronger message clarity, and their first assistant layer without overbuilding too early.',
+    demoBody: 'Starter gives the business a cleaner public front door: one strong page, clearer sales structure, and first-response AI support on the website and WhatsApp without overbuilding too early.',
     demoNotes: ['Premium one-page website', 'Web AI assistant', 'WhatsApp AI assistant'],
     demoShellLabel: 'Starter package snapshot',
     demoTopTitle: 'Starter package stack',
     demoTopPill: 'ENTRY BUILD',
     demoMessages: [
-      { role: 'assistant', text: 'Starter is the cleanest way to turn a weak or outdated front door into something clearer, more useful, and AI-supported.' },
-      { role: 'user', text: 'It is best for businesses that want a practical first AI layer without jumping straight into a full front-office build.' },
+      { role: 'assistant', text: 'Starter turns a weak or outdated digital front door into something clearer, more useful, and supported by practical AI responses.' },
+      { role: 'user', text: 'It is best for businesses that want a professional first AI layer before investing in a larger front-office system.' },
     ],
     demoFooterTitle: 'Best for first-stage implementation',
     demoFooterCta: 'Book a Free Demo',
@@ -1133,11 +1091,11 @@ const packagePages = [
     ],
     pricingEyebrow: 'Package pricing',
     pricingTitle: 'CLEAR AI.\nBUILT TO\nSTART WELL.',
-    pricingBody: 'Starter is the right first move when your business needs a stronger website and practical AI support before investing in the larger front-office layers.',
+    pricingBody: 'Starter is the right first move when the business needs a better website and first AI support before investing in deeper call, booking, content, or dashboard layers.',
     pricingCards: [
-      { badge: 'Starter', title: 'Starter Package', price: 'from $1,500', bullets: ['Premium one-page website', 'Conversion-focused structure', 'Web AI assistant', 'WhatsApp AI assistant'], cta: 'Start This Package', href: calendlyHref, featured: true },
-      { badge: 'Next step', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website', 'SEO structure', 'Expanded assistant layer', 'More authority support'], cta: 'See Growth', href: calendlyHref },
-      { badge: 'Advanced', title: 'Premium Package', price: 'from $4,500', bullets: ['Full front office', 'Call agent layer', 'Video support', 'Broader AI stack'], cta: 'See Premium', href: calendlyHref },
+      { badge: 'Starter', title: 'Starter Package', price: 'from $1,500', bullets: ['Premium one-page website that explains the offer clearly', 'Conversion-focused page structure and CTA flow', 'Web AI assistant for first questions', 'WhatsApp AI assistant for first-response support'], cta: 'Start This Package', href: calendlyHref, featured: true },
+      { badge: 'Next step', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website for more service depth', 'SEO-ready structure for stronger discovery', 'Expanded assistant layer across more pages', 'More authority and trust support'], cta: 'See Growth', href: calendlyHref },
+      { badge: 'Advanced', title: 'Premium Package', price: 'from $4,500', bullets: ['Fuller AI front office', 'Call agent layer for missed calls and qualification', 'Authority video or content support', 'Broader AI stack working together'], cta: 'See Premium', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE STARTER\nMESSAGE MAP\nTHIS WEEK',
@@ -1148,7 +1106,7 @@ const packagePages = [
     faqs: sharedFaqs.package,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR STARTER\nPACKAGE.",
-    finalBody: 'Book a free demo and we will show you whether Starter is the right first move for your business.',
+    finalBody: 'Book a free demo and we will show you whether Starter is the right first move, what would be included, and what the business should avoid overbuilding too early.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -1158,7 +1116,7 @@ const packagePages = [
     metaDescription: 'The Growth Package combines a multi-page website, AI assistant, and SEO structure for businesses ready for a stronger digital front office.',
     heroEyebrow: 'Product package',
     heroTitle: 'GROWTH\nPACKAGE',
-    heroBody: 'Best for businesses that need a stronger website, clearer service pages, search-ready structure, and an AI assistant working across a wider public-facing system.',
+    heroBody: 'Best for businesses that need more than one page: clearer service pages, search-ready structure, and an AI assistant that supports visitors across a wider public-facing website.',
     primaryCta: 'Book a Free Demo',
     secondaryCta: 'WhatsApp About Growth',
     stats: [
@@ -1170,7 +1128,7 @@ const packagePages = [
     ],
     demoEyebrow: 'Package snapshot',
     demoTitle: 'SEE WHAT\nGROWTH\nINSTALLS',
-    demoBody: 'Growth is built for businesses that have outgrown the smallest front door and now need stronger structure, service depth, and better support for search and enquiry flow.',
+    demoBody: 'Growth is built for businesses that have outgrown the smallest front door and now need service depth, search structure, stronger trust, and better enquiry support across the site.',
     demoNotes: ['Multi-page website', 'SEO-aware structure', 'Expanded AI assistant'],
     demoShellLabel: 'Growth package snapshot',
     demoTopTitle: 'Growth package stack',
@@ -1221,11 +1179,11 @@ const packagePages = [
     ],
     pricingEyebrow: 'Package pricing',
     pricingTitle: 'CLEAR AI.\nBUILT TO\nGROW SMARTER.',
-    pricingBody: 'Growth is the right next step for businesses that need a more complete digital front office without jumping straight into the largest package.',
+    pricingBody: 'Growth is the right next step when the business needs a more complete website and AI assistant layer, but does not yet need the full call, video, and dashboard stack.',
     pricingCards: [
-      { badge: 'Previous step', title: 'Starter Package', price: 'from $1,500', bullets: ['One-page website', 'First assistant layer', 'Basic front door', 'Best for first-stage builds'], cta: 'See Starter', href: calendlyHref },
-      { badge: 'Recommended', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website', 'Homepage + service pages', 'SEO structure', 'Expanded AI assistant'], cta: 'Start This Package', href: calendlyHref, featured: true },
-      { badge: 'Advanced', title: 'Premium Package', price: 'from $4,500', bullets: ['Everything in Growth', 'Call agent layer', 'Authority video support', 'Broader automation stack'], cta: 'See Premium', href: calendlyHref },
+      { badge: 'Previous step', title: 'Starter Package', price: 'from $1,500', bullets: ['One-page website for a focused offer', 'First web and WhatsApp assistant layer', 'Clearer first digital front door', 'Best for first-stage builds'], cta: 'See Starter', href: calendlyHref },
+      { badge: 'Recommended', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website with homepage and service pages', 'SEO-ready structure and clearer site architecture', 'Expanded AI assistant across the customer journey', 'More space for proof, FAQs, and conversion support'], cta: 'Start This Package', href: calendlyHref, featured: true },
+      { badge: 'Advanced', title: 'Premium Package', price: 'from $4,500', bullets: ['Everything in Growth', 'AI call agent for missed calls and qualification', 'Authority video or content support', 'Broader front-office automation stack'], cta: 'See Premium', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE GROWTH\nSTRUCTURE REVIEW\nTHIS WEEK',
@@ -1236,7 +1194,7 @@ const packagePages = [
     faqs: sharedFaqs.package,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR GROWTH\nPACKAGE.",
-    finalBody: 'Book a free demo and we will show you whether Growth is the right next-stage build for your business.',
+    finalBody: 'Book a free demo and we will show you whether Growth is the right next-stage build, which pages you actually need, and where the assistant should support visitors.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -1246,7 +1204,7 @@ const packagePages = [
     metaDescription: 'The Premium Package brings together website, AI assistant, call agent, and authority content for a more complete AI-powered front office.',
     heroEyebrow: 'Product package',
     heroTitle: 'PREMIUM\nPACKAGE',
-    heroBody: 'Best for businesses that want a more complete AI-powered front office: stronger website, assistant support, call handling, and monthly authority content working together.',
+    heroBody: 'Best for businesses that want a more complete AI-powered front office: stronger website, assistant support, call handling, and authority content working together instead of as separate tools.',
     primaryCta: 'Book a Free Demo',
     secondaryCta: 'WhatsApp About Premium',
     stats: [
@@ -1258,7 +1216,7 @@ const packagePages = [
     ],
     demoEyebrow: 'Package snapshot',
     demoTitle: 'SEE WHAT\nPREMIUM\nUNLOCKS',
-    demoBody: 'Premium is for businesses that want the website, assistant, call layer, and authority content working together as one stronger operating front office.',
+    demoBody: 'Premium is for businesses that want the website, assistant, call layer, and authority content connected as one stronger front office for enquiries, trust, and follow-up.',
     demoNotes: ['Multi-page web + assistant', 'Call agent included', 'Monthly authority content support'],
     demoShellLabel: 'Premium package snapshot',
     demoTopTitle: 'Premium package stack',
@@ -1309,11 +1267,11 @@ const packagePages = [
     ],
     pricingEyebrow: 'Package pricing',
     pricingTitle: 'CLEAR AI.\nBUILT AS A\nFULL FRONT OFFICE.',
-    pricingBody: 'Premium is the strongest option for businesses that already know they need the web, assistant, call, and authority layers working together.',
+    pricingBody: 'Premium is the strongest option when the business already knows it needs the website, assistant, calls, and authority layer working together from the start.',
     pricingCards: [
-      { badge: 'Previous step', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website', 'SEO structure', 'Expanded assistant', 'Great next-stage build'], cta: 'See Growth', href: calendlyHref },
-      { badge: 'Recommended', title: 'Premium Package', price: 'from $4,500', bullets: ['Everything in Growth', 'AI call agent', 'Authority video/content support', 'More complete front office'], cta: 'Start This Package', href: calendlyHref, featured: true },
-      { badge: 'Custom', title: 'Premium + Dashboards', price: 'from $6,500', bullets: ['Premium package base', 'Internal dashboard layer', 'Deeper automation logic', 'Custom reporting expansion'], cta: 'Discuss Scope', href: calendlyHref },
+      { badge: 'Previous step', title: 'Growth Package', price: 'from $2,500', bullets: ['Multi-page website and search structure', 'Expanded AI assistant', 'Stronger digital trust layer', 'Great next-stage build before calls and content'], cta: 'See Growth', href: calendlyHref },
+      { badge: 'Recommended', title: 'Premium Package', price: 'from $4,500', bullets: ['Everything in Growth', 'AI call agent for missed calls and qualification', 'Authority video or content support', 'More complete AI front office'], cta: 'Start This Package', href: calendlyHref, featured: true },
+      { badge: 'Custom', title: 'Premium + Dashboards', price: 'from $6,500', bullets: ['Premium package base', 'Internal dashboard or reporting layer', 'Deeper automation logic across the business', 'Custom reporting expansion for decision-making'], cta: 'Discuss Scope', href: calendlyHref },
     ],
     bonusEyebrow: 'Limited bonus',
     bonusTitle: 'FREE PREMIUM\nSYSTEM MAP\nTHIS WEEK',
@@ -1324,7 +1282,7 @@ const packagePages = [
     faqs: sharedFaqs.package,
     finalEyebrow: 'Ready to start?',
     finalTitle: "LET'S BUILD\nYOUR PREMIUM\nPACKAGE.",
-    finalBody: 'Book a free demo and we will show you whether Premium is the right full front-office move for your business.',
+    finalBody: 'Book a free demo and we will show you whether Premium is the right full front-office move, what should be included first, and what can wait.',
     finalPrimaryCta: 'Book a Free Demo',
     finalSecondaryCta: 'WhatsApp Us',
   },
@@ -1336,7 +1294,7 @@ const academyPage = {
   metaDescription: 'Join The Future Studio Academy for practical AI programs, workshops, studio passes, and full guided learning built around real business use.',
   heroEyebrow: 'AI programs & pricing',
   heroTitle: 'JOIN THE\nFUTURE STUDIO\nACADEMY',
-  heroBody: 'Live programs designed to give you real AI skills, practical workflows, and studio-level guidance without generic fluff or abstract theory.',
+  heroBody: 'Live AI training for founders, creatives, and teams who want to use AI in real work: branding, websites, content, automation, visual storytelling, and implementation thinking.',
   primaryCta: 'Book a Free Demo',
   secondaryCta: 'WhatsApp About The Academy',
   stats: [
@@ -1348,14 +1306,14 @@ const academyPage = {
   ],
   demoEyebrow: 'Academy snapshot',
   demoTitle: 'SEE THE\nLEARNING\nFORMAT',
-  demoBody: 'The Academy is for people and teams who want to learn how to use AI practically, with the same design-led and implementation-aware thinking behind The Future Studio systems.',
+  demoBody: 'The Academy gives people a practical place to learn how The Future Studio thinks: clear workflows, useful AI tools, stronger creative systems, and business applications that can be used immediately.',
   demoNotes: ['Single workshop', 'Studio pass', 'Full studio program'],
   demoShellLabel: 'Future Studio Academy snapshot',
   demoTopTitle: 'Academy program stack',
   demoTopPill: 'LIVE LEARNING',
   demoMessages: [
-    { role: 'assistant', text: 'The Academy is designed to turn interest in AI into practical skills, clearer workflows, and stronger implementation confidence.' },
-    { role: 'user', text: 'It works for founders, operators, creatives, and teams who want applied learning rather than generic surface-level content.' },
+    { role: 'assistant', text: 'The Academy turns AI interest into guided practice: live sessions, templates, examples, feedback, and clearer workflows for real creative or business output.' },
+    { role: 'user', text: 'It works for founders, operators, creatives, and teams who want applied learning instead of another passive course they never finish.' },
   ],
   demoFooterTitle: 'Best for practical AI skill-building',
   demoFooterCta: 'Book a Free Demo',
@@ -1377,18 +1335,18 @@ const academyPage = {
   featureEyebrow: 'Academy tracks',
   featureTitle: 'WHAT YOU\nCAN LEARN\nINSIDE',
   featureCards: [
-    { title: 'AI: Design, Branding & AI', body: 'Create complete brand identities from concept to presentation using traditional design and AI tools.' },
-    { title: 'AI for Creatives & Business', body: 'Build and launch your brand using AI to design visual identity, create websites, and automate marketing.' },
-    { title: 'AI Portfolio & Personal Branding', body: 'Design, write, and build your professional creative identity using AI to refine presentation and craft narratives.' },
-    { title: 'AI Visual Storytelling & Branding', body: 'Master AI-powered motion design with storyboarding, animation, and sound to craft cinematic brand narratives.' },
-    { title: 'Workflow Design', body: 'Learn how to build practical AI workflows that connect prompts, systems, and business operations more intelligently.' },
-    { title: 'Implementation Thinking', body: 'Understand how to move from AI curiosity into real systems, cleaner decisions, and stronger execution.' },
+    { title: 'AI: Design, Branding & AI', body: 'Learn how to shape a brand identity, visual direction, and presentation system using AI as a creative partner, not a shortcut.' },
+    { title: 'AI for Creatives & Business', body: 'Use AI to design visual identity, plan a website, create launch assets, and turn ideas into practical business workflows.' },
+    { title: 'AI Portfolio & Personal Branding', body: 'Build a clearer professional presence with portfolio structure, bio/story support, visual direction, and narrative refinement.' },
+    { title: 'AI Visual Storytelling & Branding', body: 'Use AI-assisted motion, storyboarding, animation direction, and sound planning to create stronger brand narratives.' },
+    { title: 'Workflow Design', body: 'Learn how to connect prompts, tools, assets, and repeatable steps into workflows that save time after the session ends.' },
+    { title: 'Implementation Thinking', body: 'Understand how to move from experimentation into real systems, cleaner decisions, and outputs that can be used in the business.' },
   ],
   trustImage: '../assets/funnel-images/founder-ai-learning-workflow-wide.png',
   trustImageAlt: 'Founder teaching AI workflow concepts with laptop and tablet.',
   trustEyebrow: 'Why it matters',
   trustTitle: 'THE ACADEMY\nIS BUILT FOR\nREAL APPLICATION',
-  trustBody: 'A lot of AI education stays abstract. The Future Studio Academy is designed to make the learning useful fast, so the work, business, or creative practice actually changes after the session.',
+  trustBody: 'The Academy is designed so people leave with usable skills, not just inspiration. The goal is practical confidence: knowing what to build, what to ignore, and how to use AI with better taste and control.',
   processEyebrow: 'The process',
   processTitle: 'HOW THE\nACADEMY\nWORKS',
   processRows: [
@@ -1400,11 +1358,11 @@ const academyPage = {
   ],
   pricingEyebrow: 'Academy formats',
   pricingTitle: 'PICK THE\nFORMAT THAT\nFITS YOUR STAGE.',
-  pricingBody: 'Choose the right level of access now: a focused workshop, a repeated studio learning format, or a deeper guided journey.',
+  pricingBody: 'Choose the learning format that matches your stage: one focused workshop, a repeated studio pass, or a deeper guided program with more feedback and progression.',
   pricingCards: [
-    { badge: 'Workshop', title: 'Single Workshop', price: 'from $175', bullets: ['1 live studio session', 'Topic-specific guidance', 'Session recording', 'Selected templates'], cta: 'Enroll Now', href: calendlyHref },
-    { badge: 'Recommended', title: 'Studio Pass', price: 'from $499', bullets: ['4 live studio sessions', 'Session recordings', 'Module-specific templates', 'Community access'], cta: 'Enroll Now', href: calendlyHref, featured: true },
-    { badge: 'Advanced', title: 'Full Studio Program', price: 'from $1,500', bullets: ['Up to 8-10 live sessions', 'Guided progression', 'Personalised feedback', 'All templates and resources'], cta: 'Enroll Now', href: calendlyHref },
+    { badge: 'Workshop', title: 'Single Workshop', price: 'from $175', bullets: ['One focused live session on one AI use case', 'Topic-specific walkthrough and examples', 'Recording or recap where available', 'Selected prompts, templates, or next steps'], cta: 'Enroll Now', href: calendlyHref },
+    { badge: 'Recommended', title: 'Studio Pass', price: 'from $499', bullets: ['Four live studio sessions', 'Guided progression across chosen modules', 'Recordings and module-specific templates', 'Community access and continued practice'], cta: 'Enroll Now', href: calendlyHref, featured: true },
+    { badge: 'Advanced', title: 'Full Studio Program', price: 'from $1,500', bullets: ['Up to 8-10 live sessions', 'Guided learning journey and progression', 'Personalised feedback on your outputs', 'Full template and resource access'], cta: 'Enroll Now', href: calendlyHref },
   ],
   bonusEyebrow: 'Limited bonus',
   bonusTitle: 'FREE ACADEMY\nFIT CALL\nTHIS WEEK',
@@ -1415,7 +1373,7 @@ const academyPage = {
   faqs: sharedFaqs.academy,
   finalEyebrow: 'Ready to start?',
   finalTitle: "LET'S BUILD\nYOUR AI\nCAPABILITY.",
-  finalBody: 'Book a free call and we will help you choose the right Academy format or point you toward the best next step.',
+  finalBody: 'Book a free demo and we will help you choose the right Academy format, track, and level of depth for the way you want to use AI.',
   finalPrimaryCta: 'Book a Free Demo',
   finalSecondaryCta: 'WhatsApp Us',
 };
