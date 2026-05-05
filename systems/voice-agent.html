@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Agent System | The Future Studio</title>
+<meta name="description" content="A bilingual AI voice agent system for inbound calls, client intake, routing, follow-up, transcripts, and call analytics.">
+<link rel="icon" type="image/png" href="../future-studio-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
+<style>
+:root{
+  --cream:#fff8f5;
+  --white:#ffffff;
+  --black:#0a0a0a;
+  --cyan:#00e5cc;
+  --violet:#9b59ff;
+  --cyan-glow:rgba(0,229,204,0.34);
+  --violet-glow:rgba(155,89,255,0.28);
+  --text-mid:#444;
+  --text-muted:#7b7b7b;
+  --font-d:'Barlow Condensed',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--cream);color:var(--black);font-family:var(--font-b);overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:0;background:none;font-family:inherit}
+ul{list-style:none}
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+section,nav,footer{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.wrap-wide{max-width:1440px;margin:0 auto;padding:0 32px}
+.headline-xl{font-family:var(--font-d);font-size:clamp(68px,10vw,148px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.88;letter-spacing:-.01em}
+.headline-lg{font-family:var(--font-d);font-size:clamp(46px,6vw,92px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9;letter-spacing:-.01em}
+.headline-md{font-family:var(--font-d);font-size:clamp(34px,4vw,58px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.94}
+.headline-sm{font-family:var(--font-d);font-size:clamp(24px,3vw,38px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:1}
+.eyebrow{font-family:var(--font-d);font-size:18px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.body-lg{font-size:18px;line-height:1.75;color:var(--text-mid)}
+.body-sm{font-size:14px;line-height:1.65;color:var(--text-muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;font-family:var(--font-d);font-weight:800;font-size:17px;letter-spacing:.08em;text-transform:uppercase;transition:all .24s var(--ease);border:2px solid transparent}
+.btn-grad{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
+.btn-grad:hover{background:var(--black);color:var(--white);box-shadow:0 10px 28px rgba(0,0,0,.25);transform:translateY(-2px)}
+.btn-dark{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-dark:hover{background:var(--white);color:var(--black)}
+.btn-outline-dark{border-color:var(--black);color:var(--black);background:transparent}
+.btn-outline-dark:hover{background:var(--black);color:var(--white)}
+.btn-outline-white{border-color:rgba(255,255,255,.45);color:var(--white);background:transparent}
+.btn-outline-white:hover{background:var(--white);color:var(--black)}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,248,245,.95);backdrop-filter:blur(18px);border-bottom:1px solid rgba(10,10,10,.08);transition:transform .32s ease,background .32s ease}
+#nav.nav-hidden{transform:translateY(-100%)}
+.nav-inner{height:82px;display:flex;align-items:center;justify-content:space-between;max-width:1440px;margin:0 auto;padding:0 28px;position:relative}
+.nav-links,.nav-actions{display:flex;align-items:center;gap:24px}
+.nav-links a{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:var(--cyan)}
+.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.nav-logo img{height:118px;width:auto;object-fit:contain;padding:18px 0}
+.lang-toggle{display:flex;border:2px solid var(--black);height:40px;background:rgba(255,255,255,.55)}
+.lang-btn{min-width:44px;padding:0 12px;font-family:var(--font-d);font-weight:800;letter-spacing:.08em;color:var(--black)}
+.lang-btn.active{background:var(--black);color:var(--white)}
+.nav-hamburger{display:none;width:48px;height:48px;border:2px solid var(--black);align-items:center;justify-content:center;flex-direction:column;gap:5px;background:var(--cream)}
+.nav-hamburger span{width:22px;height:2px;background:var(--black)}
+.nav-mobile{display:none;position:absolute;top:82px;left:0;right:0;background:var(--cream);border-bottom:2px solid var(--black);padding:22px 28px}
+.nav-mobile.open{display:grid;gap:14px}
+.nav-mobile a{font-family:var(--font-d);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+
+.hero{min-height:calc(100vh - 82px);padding:156px 0 88px;background:
+  radial-gradient(circle at 8% 18%, rgba(0,229,204,.35), transparent 28%),
+  radial-gradient(circle at 86% 72%, rgba(155,89,255,.32), transparent 34%),
+  linear-gradient(135deg,#f5fffb 0%,#fff8f5 48%,#ead8ff 100%);
+  overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.82fr);gap:54px;align-items:end}
+.hero-kicker{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.hero-kicker::before,.mini-line{content:'';display:block;width:54px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.hero-copy{max-width:920px}
+.hero-copy .body-lg{max-width:760px;margin-top:32px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.proof-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.proof-pill{border:2px solid var(--black);background:rgba(255,255,255,.7);padding:12px 16px;font-family:var(--font-d);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.hero-card{border:2px solid var(--black);background:var(--white);box-shadow:14px 14px 0 var(--cyan);padding:22px;align-self:center}
+.hero-video{border:2px solid var(--black);background:var(--black);overflow:hidden}
+.hero-video video{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--black)}
+.video-caption{display:flex;align-items:center;gap:10px;padding:16px 18px;background:var(--black);color:var(--white);font-family:var(--font-d);font-size:17px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.video-caption span{width:10px;height:10px;background:var(--cyan);display:inline-block}
+.section{padding:104px 0}
+.section-tight{padding:80px 0}
+.section-dark{background:var(--black);color:var(--white)}
+.section-dark .body-lg,.section-dark .body-sm{color:rgba(255,255,255,.68)}
+.section-head{display:grid;grid-template-columns:.8fr 1fr;gap:42px;align-items:end;margin-bottom:44px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--black)}
+.feature-card{background:var(--white);border-right:1px solid var(--black);border-bottom:1px solid var(--black);padding:34px;min-height:250px;transition:all .26s ease}
+.feature-card:nth-child(3n){border-right:0}
+.feature-card:nth-child(n+4){border-bottom:0}
+.feature-card:hover{background:var(--black);color:var(--white);transform:translate(-6px,-8px);box-shadow:10px 10px 0 var(--cyan)}
+.feature-icon{font-family:var(--font-d);font-size:48px;font-weight:800;font-style:italic;color:var(--cyan);line-height:1;margin-bottom:22px}
+.feature-title{font-family:var(--font-d);font-size:31px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1;margin-bottom:14px}
+.feature-card p{color:var(--text-mid);line-height:1.65}
+.feature-card:hover p{color:rgba(255,255,255,.72)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.black-panel{background:var(--black);color:var(--white);border:2px solid var(--black);padding:44px;box-shadow:14px 14px 0 var(--cyan)}
+.white-panel{background:var(--white);color:var(--black);border:2px solid var(--black);padding:44px;box-shadow:14px 14px 0 rgba(155,89,255,.75)}
+.step-list{display:grid;gap:18px;margin-top:28px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:18px;align-items:start}
+.step-num{height:54px;width:54px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--cyan),var(--violet));font-family:var(--font-d);font-size:28px;font-weight:800;font-style:italic;color:var(--black)}
+.step strong{display:block;font-family:var(--font-d);font-size:24px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.system-image{border:2px solid var(--black);box-shadow:14px 14px 0 var(--cyan);background:var(--black);overflow:hidden}
+.system-image img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 42%}
+.price-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:0;border:2px solid var(--black);box-shadow:14px 14px 0 var(--black);background:linear-gradient(120deg,rgba(0,229,204,.18),rgba(155,89,255,.18));overflow:hidden}
+.price-left{padding:44px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;flex-direction:column;justify-content:center}
+.price-label{font-family:var(--font-d);font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.price-big{font-family:var(--font-d);font-size:clamp(62px,8vw,112px);font-weight:800;font-style:italic;line-height:.82}
+.price-right{padding:44px;background:rgba(255,255,255,.78)}
+.included{display:grid;gap:13px;margin:24px 0}
+.included li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.5}
+.included li::before{content:'';width:10px;height:10px;background:var(--cyan);margin-top:8px;flex:0 0 auto}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.faq-card{border:2px solid var(--black);background:var(--white);padding:28px}
+.faq-card h3{font-family:var(--font-d);font-size:26px;font-style:italic;text-transform:uppercase;margin-bottom:12px}
+footer{background:var(--black);color:var(--white);padding:72px 0 36px}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:38px;align-items:start}
+.footer-logo img{height:86px;filter:invert(1)}
+.footer-links{display:grid;gap:10px}
+.footer-links a{font-family:var(--font-d);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.footer-links a:hover{color:var(--cyan)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:24px;color:rgba(255,255,255,.48);font-size:13px;text-align:center}
+#whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.35);transition:all .24s ease}
+#whatsapp-btn:hover{background:var(--black);transform:scale(1.05)}
+#whatsapp-btn svg{width:28px;height:28px}
+#scroll-top{position:fixed;bottom:96px;right:28px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);opacity:0;pointer-events:none;transition:all .25s ease;display:flex;align-items:center;justify-content:center;font-size:28px}
+#scroll-top.visible{opacity:1;pointer-events:all}
+#scroll-top:hover{background:var(--cyan);color:var(--black)}
+.vapi-float{position:fixed;left:18px;bottom:18px;z-index:99999;pointer-events:none}
+.vapi-float vapi-widget{pointer-events:auto;display:block;max-width:calc(100vw - 36px)}
+@media(max-width:980px){
+  .nav-links,.nav-actions{display:none}
+  .nav-inner{height:112px;justify-content:center;align-items:flex-start;padding-top:4px}
+  .nav-logo img{height:94px;padding:6px 0}
+  .nav-hamburger{display:flex;position:absolute;left:50%;top:70px;transform:translateX(-50%)}
+  .nav-mobile{top:112px;text-align:center}
+  .hero{padding:154px 0 64px;min-height:auto}
+  .hero-grid,.section-head,.split,.price-panel{grid-template-columns:1fr}
+  .feature-grid,.faq-grid{grid-template-columns:1fr}
+  .feature-card{border-right:0!important;border-bottom:1px solid var(--black)!important;text-align:center}
+  .feature-card:last-child{border-bottom:0!important}
+  .step{text-align:left}
+  .footer-grid{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .footer-links{justify-items:center}
+}
+@media(max-width:620px){
+  .wrap,.wrap-wide{padding:0 22px}
+  .headline-xl{font-size:clamp(50px,15vw,78px);text-align:center}
+  .headline-lg,.headline-md{text-align:center}
+  .hero-kicker,.hero-actions,.proof-strip,.cta-row{justify-content:center;text-align:center}
+  .hero-copy .body-lg{text-align:center}
+  .hero-card,.black-panel,.white-panel,.price-left,.price-right{padding:28px}
+  .section{padding:72px 0}
+  .section-tight{padding:60px 0}
+  .system-image img{aspect-ratio:4/3}
+  #whatsapp-btn{bottom:22px;right:18px}
+  #scroll-top{bottom:88px;right:18px}
+  .vapi-float{bottom:80px;left:14px}
+  .vapi-float vapi-widget{max-width:calc(100vw - 28px)}
+}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
+      <a href="../#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+      <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+      <a href="../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+    </div>
+    <a href="../" class="nav-logo">
+      <img src="../logo.png" alt="The Future Studio">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-toggle" id="lang-toggle-d">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <div class="lang-toggle" id="lang-toggle-m">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+    <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="#buy" data-en="Buy" data-es="Comprar">Buy</a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="wrap-wide">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker">
+            <span class="eyebrow" data-en="Ready-to-install system" data-es="Sistema listo para instalar">Ready-to-install system</span>
+          </div>
+          <h1 class="headline-xl" data-en="VOICE AGENT<br><span class='grad'>FOR 24/7</span><br>CLIENT RESPONSE" data-es="AGENTE DE VOZ<br><span class='grad'>PARA RESPUESTA</span><br>24/7">VOICE AGENT<br><span class="grad">FOR 24/7</span><br>CLIENT RESPONSE</h1>
+          <p class="body-lg" data-en="A bilingual AI voice agent that answers inbound calls, qualifies enquiries, captures details, routes urgent cases, and sends every conversation back to your team with transcripts and next steps." data-es="Un agente de voz bilingue con IA que responde llamadas, califica consultas, recopila datos, enruta casos urgentes y devuelve cada conversacion a tu equipo con transcripciones y proximos pasos.">A bilingual AI voice agent that answers inbound calls, qualifies enquiries, captures details, routes urgent cases, and sends every conversation back to your team with transcripts and next steps.</p>
+          <div class="hero-actions">
+            <a href="#buy" class="btn btn-grad" data-en="Buy / Reserve This System" data-es="Comprar / Reservar Sistema">Buy / Reserve This System</a>
+            <a href="#walkthrough" class="btn btn-outline-dark" data-en="Watch the Product Video" data-es="Ver el Video">Watch the Product Video</a>
+          </div>
+          <div class="proof-strip">
+            <span class="proof-pill" data-en="Inbound + outbound" data-es="Entrante + saliente">Inbound + outbound</span>
+            <span class="proof-pill" data-en="Bilingual EN/ES" data-es="Bilingue EN/ES">Bilingual EN/ES</span>
+            <span class="proof-pill" data-en="CRM ready" data-es="Listo para CRM">CRM ready</span>
+          </div>
+        </div>
+        <aside class="hero-card" id="walkthrough">
+          <div class="hero-video">
+            <video controls playsinline preload="metadata" poster="../assets/funnel-images/team-automation-dashboard-review-wide.png">
+              <source src="../videos/Richard%20Hardy%20-%20Use%20Cases%20_%20Who%20This%20Is%20For.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption"><span></span><span data-en="Watch this before buying" data-es="Mira esto antes de comprar">Watch this before buying</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap-wide">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="What it handles" data-es="Que maneja">What it handles</p>
+          <h2 class="headline-lg" data-en="CALLS WITHOUT<br>THE BOT FEEL" data-es="LLAMADAS SIN<br>SENTIRSE BOT">CALLS WITHOUT<br>THE BOT FEEL</h2>
+        </div>
+        <p class="body-lg" data-en="This page is the deeper version of the Voice Agent card: what it does, what gets installed, and why it protects the first response moment." data-es="Esta pagina es la version detallada de la tarjeta de Agente de Voz: que hace, que se instala y por que protege el momento de primera respuesta.">This page is the deeper version of the Voice Agent card: what it does, what gets installed, and why it protects the first response moment.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon">01</div><h3 class="feature-title" data-en="Answers calls" data-es="Responde llamadas">Answers calls</h3><p data-en="Handles common enquiries, opening hours, availability, service questions, and basic triage when your team is busy or closed." data-es="Maneja consultas comunes, horarios, disponibilidad, preguntas de servicio y triaje basico cuando tu equipo esta ocupado o cerrado.">Handles common enquiries, opening hours, availability, service questions, and basic triage when your team is busy or closed.</p></article>
+        <article class="feature-card"><div class="feature-icon">02</div><h3 class="feature-title" data-en="Qualifies leads" data-es="Califica leads">Qualifies leads</h3><p data-en="Asks the right questions, captures context, scores urgency, and sends clean notes to your CRM or inbox." data-es="Hace las preguntas correctas, captura contexto, puntua urgencia y envia notas claras a tu CRM o inbox.">Asks the right questions, captures context, scores urgency, and sends clean notes to your CRM or inbox.</p></article>
+        <article class="feature-card"><div class="feature-icon">03</div><h3 class="feature-title" data-en="Books next steps" data-es="Agenda proximos pasos">Books next steps</h3><p data-en="Routes callers to appointment links, callback flows, human escalation, or follow-up messages depending on the conversation." data-es="Enruta a enlaces de cita, llamadas de regreso, escalada humana o mensajes de seguimiento segun la conversacion.">Routes callers to appointment links, callback flows, human escalation, or follow-up messages depending on the conversation.</p></article>
+        <article class="feature-card"><div class="feature-icon">04</div><h3 class="feature-title" data-en="Creates transcripts" data-es="Crea transcripciones">Creates transcripts</h3><p data-en="Every call can create a transcript, summary, action list, and contact record so your team does not lose context." data-es="Cada llamada puede crear una transcripcion, resumen, lista de acciones y registro de contacto para no perder contexto.">Every call can create a transcript, summary, action list, and contact record so your team does not lose context.</p></article>
+        <article class="feature-card"><div class="feature-icon">05</div><h3 class="feature-title" data-en="Escalates humans" data-es="Escala a humanos">Escalates humans</h3><p data-en="Sensitive, urgent, or high-value conversations can be routed to a real person instead of being trapped inside automation." data-es="Conversaciones sensibles, urgentes o de alto valor pueden pasar a una persona real en lugar de quedarse dentro de la automatizacion.">Sensitive, urgent, or high-value conversations can be routed to a real person instead of being trapped inside automation.</p></article>
+        <article class="feature-card"><div class="feature-icon">06</div><h3 class="feature-title" data-en="Reports performance" data-es="Reporta rendimiento">Reports performance</h3><p data-en="See call volume, missed-call recovery, common questions, response quality, and where your team should improve the script." data-es="Ve volumen de llamadas, recuperacion de llamadas perdidas, preguntas comunes, calidad de respuesta y donde mejorar el guion.">See call volume, missed-call recovery, common questions, response quality, and where your team should improve the script.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap-wide">
+      <div class="split">
+        <div class="system-image">
+          <img src="../assets/funnel-images/team-automation-dashboard-review-wide.png" alt="Business team reviewing AI voice agent call flows and dashboard.">
+        </div>
+        <div class="black-panel">
+          <p class="eyebrow" data-en="Installed around your business" data-es="Instalado alrededor de tu negocio">Installed around your business</p>
+          <h2 class="headline-md" data-en="NOT A GENERIC<br>PHONE BOT" data-es="NO ES UN BOT<br>TELEFONICO GENERICO">NOT A GENERIC<br>PHONE BOT</h2>
+          <p class="body-lg" style="margin-top:22px" data-en="We design the call logic, voice style, qualifying questions, escalation rules, and summaries around your actual client experience." data-es="Disenamos la logica de llamada, estilo de voz, preguntas de calificacion, reglas de escalada y resumenes alrededor de tu experiencia real de cliente.">We design the call logic, voice style, qualifying questions, escalation rules, and summaries around your actual client experience.</p>
+          <div class="step-list">
+            <div class="step"><div class="step-num">1</div><div><strong data-en="Map the calls" data-es="Mapear llamadas">Map the calls</strong><p class="body-sm" data-en="We identify the highest-value call types and the information your team needs." data-es="Identificamos los tipos de llamada de mayor valor y la informacion que necesita tu equipo.">We identify the highest-value call types and the information your team needs.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div><strong data-en="Build the agent" data-es="Construir el agente">Build the agent</strong><p class="body-sm" data-en="We create the voice, prompt, flow, handoff rules, and integrations." data-es="Creamos la voz, prompt, flujo, reglas de transferencia e integraciones.">We create the voice, prompt, flow, handoff rules, and integrations.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div><strong data-en="Launch and tune" data-es="Lanzar y ajustar">Launch and tune</strong><p class="body-sm" data-en="We test real scenarios, review transcripts, and improve the agent after launch." data-es="Probamos escenarios reales, revisamos transcripciones y mejoramos el agente despues del lanzamiento.">We test real scenarios, review transcripts, and improve the agent after launch.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="buy">
+    <div class="wrap">
+      <div class="price-panel">
+        <div class="price-left">
+          <div class="price-label" data-en="Voice Agent System" data-es="Sistema Agente de Voz">Voice Agent System</div>
+          <div class="price-big" data-en="FROM<br>$2,000" data-es="DESDE<br>$2,000">FROM<br>$2,000</div>
+          <p class="body-sm" style="color:rgba(0,0,0,.7);margin-top:18px;font-weight:700" data-en="Monthly support from $200/mo." data-es="Soporte mensual desde $200/mes.">Monthly support from $200/mo.</p>
+        </div>
+        <div class="price-right">
+          <p class="eyebrow" data-en="What you are buying" data-es="Lo que compras">What you are buying</p>
+          <h2 class="headline-md" data-en="A WORKING<br>VOICE AGENT" data-es="UN AGENTE<br>DE VOZ FUNCIONAL">A WORKING<br>VOICE AGENT</h2>
+          <ul class="included">
+            <li data-en="Custom call flow and voice personality" data-es="Flujo de llamada y personalidad de voz personalizada">Custom call flow and voice personality</li>
+            <li data-en="Inbound call handling, summaries, and transcripts" data-es="Manejo de llamadas entrantes, resumenes y transcripciones">Inbound call handling, summaries, and transcripts</li>
+            <li data-en="CRM, email, WhatsApp, or booking integration where appropriate" data-es="Integracion con CRM, email, WhatsApp o reservas donde aplique">CRM, email, WhatsApp, or booking integration where appropriate</li>
+            <li data-en="Launch testing and first round of optimisation" data-es="Pruebas de lanzamiento y primera ronda de optimizacion">Launch testing and first round of optimisation</li>
+          </ul>
+          <div class="cta-row">
+            <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Buy / Reserve by WhatsApp" data-es="Comprar / Reservar por WhatsApp">Buy / Reserve by WhatsApp</a>
+            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-outline-dark" data-en="Book Implementation Call" data-es="Agendar Implementacion">Book Implementation Call</a>
+          </div>
+          <p class="body-sm" style="margin-top:18px" data-en="Direct Stripe purchase can be added here once the high-ticket payment link is approved." data-es="La compra directa por Stripe se puede agregar aqui cuando el enlace de pago este aprobado.">Direct Stripe purchase can be added here once the high-ticket payment link is approved.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap-wide">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="Common questions" data-es="Preguntas comunes">Common questions</p>
+          <h2 class="headline-lg" data-en="BEFORE YOU<br>INSTALL IT" data-es="ANTES DE<br>INSTALARLO">BEFORE YOU<br>INSTALL IT</h2>
+        </div>
+        <p class="body-lg" data-en="The goal is not to replace your team. The goal is to protect speed, capture clean information, and make sure valuable calls do not disappear." data-es="El objetivo no es reemplazar a tu equipo. Es proteger la velocidad, capturar informacion clara y asegurar que las llamadas valiosas no se pierdan.">The goal is not to replace your team. The goal is to protect speed, capture clean information, and make sure valuable calls do not disappear.</p>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-card"><h3 data-en="Can it speak Spanish?" data-es="Puede hablar espanol?">Can it speak Spanish?</h3><p class="body-sm" data-en="Yes. The system can be built bilingual for English and Spanish, with call logic adapted to your market." data-es="Si. El sistema puede ser bilingue en ingles y espanol, con logica adaptada a tu mercado.">Yes. The system can be built bilingual for English and Spanish, with call logic adapted to your market.</p></article>
+        <article class="faq-card"><h3 data-en="Can humans take over?" data-es="Puede intervenir un humano?">Can humans take over?</h3><p class="body-sm" data-en="Yes. Escalation rules can route urgent or sensitive conversations to a person." data-es="Si. Las reglas de escalada pueden enviar conversaciones urgentes o sensibles a una persona.">Yes. Escalation rules can route urgent or sensitive conversations to a person.</p></article>
+        <article class="faq-card"><h3 data-en="How fast can it launch?" data-es="Que tan rapido se lanza?">How fast can it launch?</h3><p class="body-sm" data-en="Most simple voice agent systems can be planned, built, tested, and launched in 7 to 21 days." data-es="La mayoria de sistemas simples de agente de voz pueden planificarse, construirse, probarse y lanzarse en 7 a 21 dias.">Most simple voice agent systems can be planned, built, tested, and launched in 7 to 21 days.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="../logo.png" alt="The Future Studio"></div>
+        <p class="body-sm" style="max-width:360px;margin-top:18px;color:rgba(255,255,255,.58)" data-en="AI systems, automation, and conversion infrastructure for service businesses." data-es="Sistemas de IA, automatizacion e infraestructura de conversion para negocios de servicios.">AI systems, automation, and conversion infrastructure for service businesses.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+        <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:info@thefuturestudio.online">Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">The Future Studio. Voice Agent System draft page.</div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="Back to top">↑</button>
+<a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." id="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.22c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.51.07-.77.36-.26.29-1.01.99-1.01 2.42s1.03 2.8 1.18 2.99c.15.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z"/><path d="M16.03 3C8.86 3 3.03 8.83 3.03 16c0 2.29.6 4.53 1.74 6.5L3 29l6.66-1.75A12.94 12.94 0 0 0 16.03 29c7.17 0 13-5.83 13-13s-5.83-13-13-13zm0 23.75c-2.14 0-4.22-.63-6-1.83l-.43-.29-3.95 1.04 1.05-3.85-.28-.44A10.7 10.7 0 0 1 5.28 16c0-5.93 4.82-10.75 10.75-10.75S26.78 10.07 26.78 16 21.96 26.75 16.03 26.75z"/></svg>
+</a>
+
+<script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async></script>
+<div class="vapi-float">
+  <vapi-widget
+    public-key="64a2be75-0aeb-461e-a456-eed7b1010fa6"
+    assistant-id="b1163b98-9ff2-46ba-b828-31cc1acb578f"
+    mode="chat"
+    theme="light"
+    size="compact"
+    radius="large"
+    position="bottom-left"
+    base-color="#fff8f5"
+    accent-color="#00e5cc"
+    button-base-color="#0a0a0a"
+    button-accent-color="#00e5cc"
+  ></vapi-widget>
+</div>
+
+<script>
+(function(){
+  var lang=localStorage.getItem('tfsLang')||'en';
+  function applyLang(next){
+    lang=next;
+    localStorage.setItem('tfsLang',lang);
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var value=el.getAttribute('data-'+lang);
+      if(value)el.innerHTML=value;
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active',btn.getAttribute('data-lang')===lang);
+    });
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){applyLang(btn.getAttribute('data-lang'));});
+  });
+  applyLang(lang);
+
+  var hamburger=document.getElementById('nav-hamburger');
+  var mobile=document.getElementById('nav-mobile');
+  if(hamburger&&mobile){
+    hamburger.addEventListener('click',function(){mobile.classList.toggle('open');});
+    mobile.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mobile.classList.remove('open');});});
+  }
+
+  var nav=document.getElementById('nav');
+  var last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(nav){nav.classList.toggle('nav-hidden',y>last&&y>130);}
+    last=y;
+    var top=document.getElementById('scroll-top');
+    if(top)top.classList.toggle('visible',y>420);
+  },{passive:true});
+  var st=document.getElementById('scroll-top');
+  if(st)st.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  var canvas=document.getElementById('bg-canvas');
+  if(canvas&&canvas.getContext){
+    var ctx=canvas.getContext('2d');
+    var pts=[];
+    function size(){canvas.width=innerWidth;canvas.height=innerHeight;pts=Array.from({length:26},function(){return{x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18};});}
+    function tick(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pts.forEach(function(p,i){
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>canvas.width)p.vx*=-1;
+        if(p.y<0||p.y>canvas.height)p.vy*=-1;
+        ctx.fillStyle='rgba(0,229,204,.42)';
+        ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
+        for(var j=i+1;j<pts.length;j++){
+          var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<140){ctx.strokeStyle='rgba(0,229,204,'+(0.12*(1-d/140))+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+        }
+      });
+      requestAnimationFrame(tick);
+    }
+    size();addEventListener('resize',size);tick();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+Disallow: /checkout/
+Disallow: /thank-you/
+Disallow: /upsell/
+Disallow: /download/
+Disallow: /funnel/
+Disallow: /audit/ad.html
+Disallow: /build/ad.html
+Disallow: /learn/ad.html
+
+Sitemap: https://thefuturestudio.online/sitemap.xml

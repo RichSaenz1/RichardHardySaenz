@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You for Your Content Calendar Order | The Future Studio</title>
+<meta id="meta-description" name="description" content="Thank you for ordering your content calendar with The Future Studio. Review your next steps and two relevant upsell options.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://thefuturestudio.online/thank-you/content-calendar.html">
+<meta id="og-title" property="og:title" content="Thank You for Your Content Calendar Order">
+<meta id="og-description" property="og:description" content="A simple post-purchase thank-you page with dynamic upsells based on the content calendar purchased.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/thank-you/content-calendar.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+.page-calendar-thankyou .hero { padding: 134px 0 56px; min-height: calc(100vh - 120px); display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-calendar-thankyou .hero-panel { position: relative; padding: 42px; border: 2px solid var(--black); background: var(--black); color: var(--white); overflow: hidden; }
+.page-calendar-thankyou .hero-panel:hover { transform: none; box-shadow: none; }
+.page-calendar-thankyou .hero-panel .eyebrow,
+.page-calendar-thankyou .hero-panel p,
+.page-calendar-thankyou .hero-panel li { color: var(--white); }
+.page-calendar-thankyou .hero-copy,
+.page-calendar-thankyou .feature-card p,
+.page-calendar-thankyou .feature-card li,
+.page-calendar-thankyou .hero-note-list li { font-size: 15px; line-height: 1.7; }
+.page-calendar-thankyou .hero-copy { margin-top: 24px; max-width: 760px; color: rgba(255,255,255,0.84); }
+.page-calendar-thankyou .reserved-calendar { margin-top: 16px; display: inline-flex; align-items: center; gap: 12px; padding: 12px 18px; border: 2px solid rgba(255,255,255,0.2); font-family: var(--font-d); font-size: 18px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--white); }
+.page-calendar-thankyou .hero-note-list { list-style: none; display: grid; gap: 14px; margin-top: 22px; max-width: 760px; }
+.page-calendar-thankyou .hero-note-list li { position: relative; padding-left: 18px; color: rgba(255,255,255,0.82); }
+.page-calendar-thankyou .hero-note-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-calendar-thankyou .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+.page-calendar-thankyou .hero-actions .btn { min-width: 240px; justify-content: center; }
+.page-calendar-thankyou .hero-actions .btn:hover,
+.page-calendar-thankyou .hero-actions .btn:focus-visible { background: var(--white); color: var(--black); box-shadow: 0 10px 28px rgba(255,255,255,0.16); }
+.page-calendar-thankyou .section { padding: 18px 0 52px; }
+.page-calendar-thankyou .section-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--white); }
+.page-calendar-thankyou .section-title { margin-top: 18px; font-family: var(--font-d); font-size: clamp(44px, 6vw, 78px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; letter-spacing: -0.02em; }
+.page-calendar-thankyou .section-copy { font-size: 15px; line-height: 1.7; }
+.page-calendar-thankyou .upsell-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.page-calendar-thankyou .feature-card { min-height: 100%; padding: 28px 24px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; gap: 14px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-calendar-thankyou .feature-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); background: var(--black); color: var(--white); }
+.page-calendar-thankyou .feature-card:hover h3,
+.page-calendar-thankyou .feature-card:hover p,
+.page-calendar-thankyou .feature-card:hover .tier,
+.page-calendar-thankyou .feature-card:hover li { color: var(--white); }
+.page-calendar-thankyou .feature-card h3 { font-family: var(--font-d); font-size: clamp(34px, 4vw, 52px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; }
+.page-calendar-thankyou .feature-card .tier { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+.page-calendar-thankyou .feature-card ul { list-style: none; display: grid; gap: 12px; margin-top: 10px; }
+.page-calendar-thankyou .feature-card li { position: relative; padding-left: 18px; }
+.page-calendar-thankyou .feature-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-calendar-thankyou .feature-card .btn { margin-top: auto; width: 100%; justify-content: center; background: var(--black); color: var(--white); border: 2px solid var(--black); }
+.page-calendar-thankyou .feature-card .btn:hover,
+.page-calendar-thankyou .feature-card .btn:focus-visible { background: var(--white); color: var(--black); border-color: var(--black); box-shadow: none; }
+.page-calendar-thankyou .feature-card:hover .btn { border-color: var(--white); }
+.page-calendar-thankyou .feature-card:hover .btn:hover,
+.page-calendar-thankyou .feature-card:hover .btn:focus-visible { border-color: var(--white); }
+.page-calendar-thankyou .hero-orb-1 { width: 500px; height: 500px; top: -120px; left: -170px; }
+.page-calendar-thankyou .hero-orb-2 { width: 520px; height: 520px; bottom: -150px; right: -190px; }
+.page-calendar-thankyou footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-calendar-thankyou .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-calendar-thankyou .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-calendar-thankyou .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-calendar-thankyou .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-calendar-thankyou .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-calendar-thankyou .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-calendar-thankyou .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-calendar-thankyou .footer-col a:hover { color: var(--cyan); }
+.page-calendar-thankyou .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-calendar-thankyou .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-calendar-thankyou .upsell-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page-calendar-thankyou .hero-panel,
+  .page-calendar-thankyou .section-card,
+  .page-calendar-thankyou .feature-card { padding: 26px 22px; }
+  .page-calendar-thankyou .footer-inner { grid-template-columns: 1fr; }
+  .page-calendar-thankyou .footer-bottom { flex-direction: column; text-align: center; }
+  .page-calendar-thankyou .footer-logo { justify-content: center; }
+  .page-calendar-thankyou .footer-tagline { margin: 0 auto; }
+}
+</style>
+</head>
+<body class="page-calendar-thankyou">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+    <div class="orb orb-violet orb-2 hero-orb-2"></div>
+    <div class="wrap">
+      <div class="hero-panel aos">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 class="headline-lg" id="hero-title"></h1>
+        <div class="reserved-calendar" id="reserved-calendar"></div>
+        <p class="body-lg hero-copy" id="hero-copy"></p>
+        <ul class="hero-note-list" id="hero-note-list"></ul>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="hero-primary-cta" href="#upsells"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="upsells">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="upsell-eyebrow"></p>
+        <h2 class="section-title" id="upsell-title"></h2>
+        <p class="section-copy" id="upsell-copy"></p>
+        <div class="upsell-grid" id="upsell-grid"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="/logo.png" alt="The Future Studio"></div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var CALENDAR_THANKYOU_DATA = {
+  clinic: {
+    label: { en: "Clinic 90-Day Content Calendar", es: "Calendario de 90 Dias para Clinica" },
+    heroCopy: {
+      en: "Your clinic content calendar order is in. Start with the version built for your market first, let the visible trust layer start doing its job, and use the options below only if you want to widen the system behind it.",
+      es: "Tu orden del calendario de contenido para clinica ya entro. Empieza por la version construida para tu mercado, deja que la capa visible de confianza empiece a hacer su trabajo y usa las opciones de abajo solo si quieres ampliar el sistema detras."
+    },
+    upsells: ["stop-losing-leads", "build-what-pays"]
+  },
+  lawfirm: {
+    label: { en: "Law Firm 90-Day Content Calendar", es: "Calendario de 90 Dias para Firma Legal" },
+    heroCopy: {
+      en: "Your law-firm content calendar order is in. Start with the version built for legal trust and authority first, then use the options below only if you want to strengthen the systems behind the visible content.",
+      es: "Tu orden del calendario de contenido para firma legal ya entro. Empieza por la version construida para autoridad y confianza legal, y luego usa las opciones de abajo solo si quieres fortalecer los sistemas detras del contenido visible."
+    },
+    upsells: ["stop-losing-leads", "build-what-pays"]
+  },
+  realestate: {
+    label: { en: "Real Estate 90-Day Content Calendar", es: "Calendario de 90 Dias para Bienes Raices" },
+    heroCopy: {
+      en: "Your real-estate content calendar order is in. Use it to keep listings, buyer trust, and inquiry movement visible first, then use the options below if you want to build the deeper systems around that visibility.",
+      es: "Tu orden del calendario de contenido inmobiliario ya entro. Usalo para mantener visibles los listings, la confianza del comprador y el movimiento hacia la consulta, y luego usa las opciones de abajo si quieres construir los sistemas mas profundos alrededor de esa visibilidad."
+    },
+    upsells: ["build-what-pays", "first-ai-system"]
+  },
+  dentists: {
+    label: { en: "Dental 90-Day Content Calendar", es: "Calendario de 90 Dias para Clinica Dental" },
+    heroCopy: {
+      en: "Your dental content calendar order is in. Start with the content layer that reduces hesitation before booking, then use the options below only if you want to strengthen the follow-up and ROI systems behind it.",
+      es: "Tu orden del calendario de contenido dental ya entro. Empieza por la capa de contenido que reduce la duda antes de reservar, y luego usa las opciones de abajo solo si quieres fortalecer los sistemas de seguimiento y ROI detras."
+    },
+    upsells: ["stop-losing-leads", "build-what-pays"]
+  },
+  beauty: {
+    label: { en: "Beauty 90-Day Content Calendar", es: "Calendario de 90 Dias para Belleza" },
+    heroCopy: {
+      en: "Your beauty content calendar order is in. Use it to make the brand feel more premium and more consistent first, then use the options below if you want the system underneath to get stronger too.",
+      es: "Tu orden del calendario de contenido de belleza ya entro. Usalo para hacer que la marca se sienta mas premium y mas consistente primero, y luego usa las opciones de abajo si quieres que el sistema de abajo tambien se haga mas fuerte."
+    },
+    upsells: ["first-ai-system", "build-what-pays"]
+  },
+  education: {
+    label: { en: "Education 90-Day Content Calendar", es: "Calendario de 90 Dias para Educacion" },
+    heroCopy: {
+      en: "Your education content calendar order is in. Start with the version that makes the offer clearer and more authoritative first, then use the options below if you want to add stronger systems behind the public content layer.",
+      es: "Tu orden del calendario de contenido educativo ya entro. Empieza por la version que hace la oferta mas clara y mas autoritaria, y luego usa las opciones de abajo si quieres sumar sistemas mas fuertes detras de la capa publica de contenido."
+    },
+    upsells: ["first-ai-system", "build-what-pays"]
+  }
+};
+
+var CALENDAR_UPSELL_LIBRARY = {
+  "stop-losing-leads": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "Stop Losing Leads", es: "Deja de perder leads" },
+    summary: {
+      en: "Build the response system that catches missed enquiries, replies faster, moves people toward booking, and keeps recovery visible every week.",
+      es: "Construye el sistema de respuesta que captura consultas perdidas, responde mas rapido, mueve personas hacia la reserva y mantiene visible la recuperacion cada semana."
+    },
+    bullets: {
+      en: ["Built for businesses leaking demand after the first contact", "Helps the visible content layer convert into actual enquiry movement"],
+      es: ["Creado para negocios que pierden demanda despues del primer contacto", "Ayuda a que la capa visible de contenido se convierta en movimiento real hacia la consulta"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=stop-losing-leads"
+  },
+  "first-ai-system": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "From Zero to Your First AI System", es: "De cero a tu primer sistema de IA" },
+    summary: {
+      en: "Choose the stack, build the first bot, write the AI brain, automate the follow-up, and leave with a 90-day execution order your team can use.",
+      es: "Elige el stack, construye el primer bot, escribe el cerebro de IA, automatiza el seguimiento y sal con un orden de ejecucion de 90 dias que tu equipo pueda usar."
+    },
+    bullets: {
+      en: ["Best when the business still needs the first complete AI build path", "Turns interest into a real system your team can follow"],
+      es: ["Ideal cuando el negocio todavia necesita el primer camino completo de build con IA", "Convierte el interes en un sistema real que tu equipo pueda seguir"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=first-ai-system"
+  },
+  "build-what-pays": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "Build What Pays", es: "Construye lo que paga" },
+    summary: {
+      en: "Prioritize the highest-return automation, reduce no-shows, score warm leads, and see which system move pays back first.",
+      es: "Prioriza la automatizacion de mayor retorno, reduce ausencias, puntua leads calientes y ve que movimiento del sistema se paga primero."
+    },
+    bullets: {
+      en: ["Built for owners who want measurable ROI from the next implementation step", "Helps turn visible market trust into stronger operational return"],
+      es: ["Creado para duenos que quieren ROI medible del siguiente paso de implementacion", "Ayuda a convertir la confianza visible del mercado en un retorno operativo mas fuerte"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=build-what-pays"
+  }
+};
+
+var CALENDAR_COMMON_COPY = {
+  heroNotes: {
+    en: [
+      "Your confirmation and access details should arrive by email.",
+      "If you do not see them within a few minutes, check spam or promotions."
+    ],
+    es: [
+      "Tu confirmacion y los detalles de acceso deberian llegar por correo.",
+      "Si no los ves en unos minutos, revisa spam o promociones."
+    ]
+  },
+  upsellEyebrow: { en: "Next moves", es: "Siguientes pasos" },
+  upsellTitle: {
+    en: "KEEP BUILDING IF <span class='grad'>THE TIMING IS RIGHT</span>",
+    es: "SIGUE CONSTRUYENDO SI <span class='grad'>EL MOMENTO ES EL CORRECTO</span>"
+  },
+  upsellCopy: {
+    en: "These are the two cleanest next moves after the calendar you just bought. They are here only if you want to strengthen the systems behind the visible content layer.",
+    es: "Estos son los dos siguientes pasos mas claros despues del calendario que acabas de comprar. Estan aqui solo si quieres fortalecer los sistemas detras de la capa visible de contenido."
+  }
+};
+
+function uniqueSlugs(list) {
+  return list.filter(function(item, index) {
+    return item && list.indexOf(item) === index;
+  });
+}
+
+function getPurchasedIndustries() {
+  var params = new URLSearchParams(window.location.search);
+  var multi = params.get("industries");
+  var single = params.get("industry");
+  var slugs = [];
+
+  if (multi) {
+    slugs = multi.split(",").map(function(item) {
+      return item.trim();
+    }).filter(Boolean);
+  } else if (single) {
+    slugs = [single.trim()];
+  }
+
+  slugs = uniqueSlugs(slugs).filter(function(slug) {
+    return !!CALENDAR_THANKYOU_DATA[slug];
+  });
+
+  if (!slugs.length) {
+    slugs = ["clinic"];
+  }
+
+  return slugs;
+}
+
+function formatList(items, lang) {
+  if (!items.length) return "";
+  if (items.length === 1) return items[0];
+  if (items.length === 2) {
+    return items[0] + (lang === "es" ? " y " : " and ") + items[1];
+  }
+  var last = items[items.length - 1];
+  var head = items.slice(0, -1).join(", ");
+  return head + (lang === "es" ? " y " : ", and ") + last;
+}
+
+function buildBundleHeroCopy(labels, lang) {
+  if (lang === "es") {
+    return "Tu orden ya entro para " + formatList(labels, lang) + ". Empieza por el calendario que necesitas activar primero y deja las opciones de abajo solo para lo que todavia tenga sentido sumar despues.";
+  }
+  return "Your order is in for " + formatList(labels, lang) + ". Start with the calendar you need to activate first, and leave the options below only for what still makes sense to add after that.";
+}
+
+function buildReservedCalendarLabel(purchasedIndustries, lang) {
+  if (purchasedIndustries.length === 1) {
+    return CALENDAR_THANKYOU_DATA[purchasedIndustries[0]].label[lang];
+  }
+  return purchasedIndustries.length + (lang === "es" ? " calendarios reservados" : " calendars reserved");
+}
+
+function buildCalendarUpsellSlugs(purchasedIndustries) {
+  var suggestions = [];
+
+  purchasedIndustries.forEach(function(slug) {
+    var data = CALENDAR_THANKYOU_DATA[slug];
+    if (data && Array.isArray(data.upsells)) {
+      suggestions = suggestions.concat(data.upsells);
+    }
+  });
+
+  suggestions = uniqueSlugs(suggestions);
+
+  if (suggestions.length < 2) {
+    ["first-ai-system", "build-what-pays", "stop-losing-leads"].forEach(function(fallbackSlug) {
+      if (suggestions.length < 2 && suggestions.indexOf(fallbackSlug) === -1) {
+        suggestions.push(fallbackSlug);
+      }
+    });
+  }
+
+  return suggestions.slice(0, 2);
+}
+
+function renderCalendarThankYou() {
+  var purchasedIndustries = getPurchasedIndustries();
+  var primarySlug = purchasedIndustries[0];
+  var data = CALENDAR_THANKYOU_DATA[primarySlug] || CALENDAR_THANKYOU_DATA.clinic;
+  var lang = (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+  var isBundle = purchasedIndustries.length > 1;
+  var purchasedLabels = purchasedIndustries.map(function(slug) {
+    return CALENDAR_THANKYOU_DATA[slug].label[lang];
+  });
+
+  document.title = isBundle
+    ? (lang === "es" ? "Gracias por reservar tus calendarios | The Future Studio" : "Thank You for Reserving Your Calendars | The Future Studio")
+    : (lang === "es" ? "Gracias por reservar tu calendario | The Future Studio" : "Thank You for Reserving Your Calendar | The Future Studio");
+
+  if (metaDescription) metaDescription.setAttribute("content", isBundle
+    ? (lang === "es" ? "Gracias por reservar tus calendarios. Revisa los siguientes pasos y dos upsells relevantes." : "Thank you for reserving your calendars. Review the next moves and two relevant upsells.")
+    : (lang === "es" ? "Gracias por reservar tu calendario. Revisa los siguientes pasos y dos upsells relevantes." : "Thank you for reserving your calendar. Review the next moves and two relevant upsells."));
+  if (ogTitle) ogTitle.setAttribute("content", isBundle
+    ? (lang === "es" ? "Gracias por reservar tus calendarios" : "Thank You for Reserving Your Calendars")
+    : (lang === "es" ? "Gracias por reservar tu calendario" : "Thank You for Reserving Your Calendar"));
+  if (ogDescription) ogDescription.setAttribute("content", isBundle
+    ? (lang === "es" ? "Una pagina simple de agradecimiento para varias compras de calendarios." : "A simple thank-you page for multiple calendar purchases.")
+    : (lang === "es" ? "Una pagina simple de agradecimiento para la compra de un calendario." : "A simple thank-you page for a calendar purchase."));
+
+  document.getElementById("hero-eyebrow").textContent = lang === "es" ? "Gracias" : "Thank you";
+  document.getElementById("hero-title").innerHTML = isBundle
+    ? (lang === "es" ? "GRACIAS.<br><span class='grad'>TUS CALENDARIOS YA ENTRARON.</span>" : "THANK YOU.<br><span class='grad'>YOUR CALENDARS ARE IN.</span>")
+    : (lang === "es" ? "GRACIAS.<br><span class='grad'>TU CALENDARIO YA ENTRO.</span>" : "THANK YOU.<br><span class='grad'>YOUR CALENDAR IS IN.</span>");
+  document.getElementById("reserved-calendar").textContent = buildReservedCalendarLabel(purchasedIndustries, lang);
+  document.getElementById("hero-copy").textContent = isBundle ? buildBundleHeroCopy(purchasedLabels, lang) : data.heroCopy[lang];
+  document.getElementById("hero-note-list").innerHTML = CALENDAR_COMMON_COPY.heroNotes[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("hero-primary-cta").textContent = lang === "es" ? "Ver siguientes pasos" : "See Next Moves";
+
+  document.getElementById("upsell-eyebrow").textContent = CALENDAR_COMMON_COPY.upsellEyebrow[lang];
+  document.getElementById("upsell-title").innerHTML = CALENDAR_COMMON_COPY.upsellTitle[lang];
+  document.getElementById("upsell-copy").textContent = CALENDAR_COMMON_COPY.upsellCopy[lang];
+
+  var upsellGrid = document.getElementById("upsell-grid");
+  var upsellSlugs = buildCalendarUpsellSlugs(purchasedIndustries);
+  upsellGrid.innerHTML = upsellSlugs.map(function(upsellSlug) {
+    var upsell = CALENDAR_UPSELL_LIBRARY[upsellSlug];
+    return "<article class='feature-card'>" +
+      "<p class='tier'>" + upsell.tier[lang] + "</p>" +
+      "<h3>" + upsell.title[lang] + "</h3>" +
+      "<p>" + upsell.summary[lang] + "</p>" +
+      "<ul>" + upsell.bullets[lang].map(function(item) { return "<li>" + item + "</li>"; }).join("") + "</ul>" +
+      "<a class='btn btn-primary' href='" + upsell.href + "'>" + upsell.cta[lang] + "</a>" +
+    "</article>";
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderCalendarThankYou);
+document.addEventListener("tfs:langchange", renderCalendarThankYou);
+</script>
+</body>
+</html>

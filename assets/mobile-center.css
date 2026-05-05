@@ -1,0 +1,83 @@
+@media (max-width: 760px) {
+  body,
+  body :where(h1, h2, h3, h4, h5, h6, p, span, small, strong, em, li, blockquote, figcaption, label, legend, summary, div) {
+    text-align: center !important;
+  }
+
+  body :where(.container, .wrapper, .wrap, .shell, .inner, .content, .hero, .hero-inner, .hero-content, .section-inner, .section-head, .section-header, .card, .panel, .box, .footer-grid, .footer-col, .site-footer, .summary-card, .payment-panel, .checkout-card, .feature-card, .product-card, .timeline-card, .testimonial-card, .objection-card, .faq-item) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+
+  body :where(.grid, .cards, .list, .hero-grid, .summary-grid, .checkout-grid, .footer-grid, .products-grid, .industry-grid, .journey-grid, .proof-list, .stage-signal-grid, .catalog-grid, .teaser-grid, .pricing-grid, .feature-grid, .metric-grid) {
+    justify-items: center !important;
+  }
+
+  body :where(.hero-grid, .summary-grid, .checkout-shell, .footer-grid, .products-grid, .industry-grid, .journey-grid, .proof-list, .stage-signal-grid) > * {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body :where(.eyebrow, .section-kicker, .micro-meta, .hero-badges, .badge-row, .trust-list, .secure-points, .checkout-access-strip, .payment-trust-strip, .lang-switch, .language-toggle, .nav-actions, .mobile-actions, .header-actions, .footer-links, .social-links) {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  body :where(ul, ol) {
+    padding-left: 0 !important;
+    list-style-position: inside !important;
+  }
+
+  body :where(li) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body :where(img, picture, svg, video, iframe, canvas) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body :where(a.btn, .btn, .button, .cta, .cta-button, .primary-button, .secondary-button, button, input[type="submit"], input[type="button"]) {
+    display: inline-flex;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body :where(.button-row, .cta-row, .hero-actions, .actions, .payment-actions, .form-actions, .nav-buttons) {
+    justify-content: center !important;
+    justify-items: center !important;
+    align-items: center !important;
+  }
+
+  body :where(form, fieldset, .form-grid, .field-grid, .field-group, .form-row, .input-row, .choice-grid, .option-grid, .checkbox-grid, .radio-grid) {
+    justify-items: center !important;
+    align-items: center !important;
+  }
+
+  body :where(input, textarea, select) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body :where(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+    text-align: left !important;
+  }
+
+  body :where(.choice-card, .option-card, .radio-card, .checkbox-card, .answer-option, .pill, .tag, .industry-button, .industry-btn) {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  body :where(.offer-price-banner, .price-strip, .after-purchase-steps, .checkout-mini-faq, .thankyou-bridge, .delivery-promise, .checkout-best-for) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}

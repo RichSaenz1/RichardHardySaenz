@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You for Your Order | The Future Studio</title>
+<meta id="meta-description" name="description" content="Thank you for your order with The Future Studio. Review your next steps and two relevant upsell options.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://thefuturestudio.online/thank-you/product.html">
+<meta id="og-title" property="og:title" content="Thank You for Your Order">
+<meta id="og-description" property="og:description" content="A simple post-purchase thank-you page with dynamic upsells based on the product purchased.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/thank-you/product.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+.page-product-thankyou .hero { padding: 134px 0 56px; min-height: calc(100vh - 120px); display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-product-thankyou .hero-panel { position: relative; padding: 42px; border: 2px solid var(--black); background: var(--black); color: var(--white); overflow: hidden; }
+.page-product-thankyou .hero-panel:hover { transform: none; box-shadow: none; }
+.page-product-thankyou .hero-panel .eyebrow,
+.page-product-thankyou .hero-panel p,
+.page-product-thankyou .hero-panel li { color: var(--white); }
+.page-product-thankyou .hero-copy,
+.page-product-thankyou .feature-card p,
+.page-product-thankyou .feature-card li,
+.page-product-thankyou .hero-note-list li { font-size: 15px; line-height: 1.7; }
+.page-product-thankyou .hero-copy { margin-top: 24px; max-width: 760px; color: rgba(255,255,255,0.84); }
+.page-product-thankyou .reserved-product { margin-top: 16px; display: inline-flex; align-items: center; gap: 12px; padding: 12px 18px; border: 2px solid rgba(255,255,255,0.2); font-family: var(--font-d); font-size: 18px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--white); }
+.page-product-thankyou .hero-note-list { list-style: none; display: grid; gap: 14px; margin-top: 22px; max-width: 760px; }
+.page-product-thankyou .hero-note-list li { position: relative; padding-left: 18px; color: rgba(255,255,255,0.82); }
+.page-product-thankyou .hero-note-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-product-thankyou .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+.page-product-thankyou .hero-actions .btn { min-width: 240px; justify-content: center; }
+.page-product-thankyou .hero-actions .btn:hover,
+.page-product-thankyou .hero-actions .btn:focus-visible { background: var(--white); color: var(--black); box-shadow: 0 10px 28px rgba(255,255,255,0.16); }
+.page-product-thankyou .section { padding: 18px 0 52px; }
+.page-product-thankyou .section-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--white); }
+.page-product-thankyou .section-title { margin-top: 18px; font-family: var(--font-d); font-size: clamp(44px, 6vw, 78px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; letter-spacing: -0.02em; }
+.page-product-thankyou .section-copy { font-size: 15px; line-height: 1.7; }
+.page-product-thankyou .upsell-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.page-product-thankyou .feature-card { min-height: 100%; padding: 28px 24px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; gap: 14px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-product-thankyou .feature-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); background: var(--black); color: var(--white); }
+.page-product-thankyou .feature-card:hover h3,
+.page-product-thankyou .feature-card:hover p,
+.page-product-thankyou .feature-card:hover .tier,
+.page-product-thankyou .feature-card:hover li { color: var(--white); }
+.page-product-thankyou .feature-card h3 { font-family: var(--font-d); font-size: clamp(34px, 4vw, 52px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; }
+.page-product-thankyou .feature-card .tier { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+.page-product-thankyou .feature-card ul { list-style: none; display: grid; gap: 12px; margin-top: 10px; }
+.page-product-thankyou .feature-card li { position: relative; padding-left: 18px; }
+.page-product-thankyou .feature-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-product-thankyou .feature-card .btn { margin-top: auto; width: 100%; justify-content: center; background: var(--black); color: var(--white); border: 2px solid var(--black); }
+.page-product-thankyou .feature-card .btn:hover,
+.page-product-thankyou .feature-card .btn:focus-visible { background: var(--white); color: var(--black); border-color: var(--black); box-shadow: none; }
+.page-product-thankyou .feature-card:hover .btn { border-color: var(--white); }
+.page-product-thankyou .feature-card:hover .btn:hover,
+.page-product-thankyou .feature-card:hover .btn:focus-visible { border-color: var(--white); }
+.page-product-thankyou .hero-orb-1 { width: 500px; height: 500px; top: -120px; left: -170px; }
+.page-product-thankyou .hero-orb-2 { width: 520px; height: 520px; bottom: -150px; right: -190px; }
+.page-product-thankyou footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-product-thankyou .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-product-thankyou .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-product-thankyou .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-product-thankyou .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-product-thankyou .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-product-thankyou .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-product-thankyou .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-product-thankyou .footer-col a:hover { color: var(--cyan); }
+.page-product-thankyou .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-product-thankyou .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-product-thankyou .upsell-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page-product-thankyou .hero-panel,
+  .page-product-thankyou .section-card,
+  .page-product-thankyou .feature-card { padding: 26px 22px; }
+  .page-product-thankyou .footer-inner { grid-template-columns: 1fr; }
+  .page-product-thankyou .footer-bottom { flex-direction: column; text-align: center; }
+  .page-product-thankyou .footer-logo { justify-content: center; }
+  .page-product-thankyou .footer-tagline { margin: 0 auto; }
+}
+</style>
+</head>
+<body class="page-product-thankyou">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+    <div class="orb orb-violet orb-2 hero-orb-2"></div>
+    <div class="wrap">
+      <div class="hero-panel aos">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 class="headline-lg" id="hero-title"></h1>
+        <div class="reserved-product" id="reserved-product"></div>
+        <p class="body-lg hero-copy" id="hero-copy"></p>
+        <ul class="hero-note-list" id="hero-note-list"></ul>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="hero-primary-cta" href="#upsells"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="upsells">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="upsell-eyebrow"></p>
+        <h2 class="section-title" id="upsell-title"></h2>
+        <p class="section-copy" id="upsell-copy"></p>
+        <div class="upsell-grid" id="upsell-grid"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="/logo.png" alt="The Future Studio"></div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var PRODUCT_THANKYOU_DATA = {
+  "whatsapp-automation-guide": {
+    titleTag: {
+      en: "Thank You for Ordering The Future Studio WhatsApp Automation Guide | The Future Studio",
+      es: "Gracias por comprar la Guia de Automatizacion WhatsApp de The Future Studio | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering The Future Studio WhatsApp Automation Guide. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar la Guia de Automatizacion WhatsApp de The Future Studio. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering The Future Studio WhatsApp Automation Guide",
+      es: "Gracias por comprar la Guia de Automatizacion WhatsApp de The Future Studio"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "The Future Studio WhatsApp Automation Guide", es: "Guia de Automatizacion WhatsApp de The Future Studio" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for The Future Studio WhatsApp Automation Guide is in. Start there first, tighten the intake layer, and then use the options below only if you want to deepen the follow-up system after that.",
+      es: "Tu orden de la Guia de Automatizacion WhatsApp de The Future Studio ya entro. Empieza por ahi, fortalece la capa de entrada, y luego usa las opciones de abajo solo si quieres profundizar el sistema de seguimiento despues."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["lead-conversion-sequence", "course-stop-losing-leads"]
+  },
+  "rollout-timeline": {
+    titleTag: {
+      en: "Thank You for Ordering the 90-Day AI Rollout Timeline | The Future Studio",
+      es: "Gracias por comprar el Timeline de IA para 90 Dias | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering the 90-Day AI Rollout Timeline. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar el Timeline de IA para 90 Dias. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering the 90-Day AI Rollout Timeline",
+      es: "Gracias por comprar el Timeline de IA para 90 Dias"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "90-Day AI Rollout Timeline", es: "Timeline de IA para 90 Dias" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for the 90-Day AI Rollout Timeline is in. Start with the rollout order first, then use the options below only if you want the fuller implementation layer or the complete series behind it.",
+      es: "Tu orden del Timeline de IA para 90 Dias ya entro. Empieza primero por el orden del rollout, y luego usa las opciones de abajo solo si quieres la capa mas completa de implementacion o la serie completa detras."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["ai-implementation-playbook", "course-first-ai-system"]
+  },
+  "service-business-prompts": {
+    titleTag: {
+      en: "Thank You for Ordering 20 Prompts for Service Businesses | The Future Studio",
+      es: "Gracias por comprar 20 Prompts para Negocios de Servicios | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering 20 Prompts for Service Businesses. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar 20 Prompts para Negocios de Servicios. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering 20 Prompts for Service Businesses",
+      es: "Gracias por comprar 20 Prompts para Negocios de Servicios"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "20 Prompts for Service Businesses", es: "20 Prompts para Negocios de Servicios" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for 20 Prompts for Service Businesses is in. Put the prompts into real use first, then use the options below if you want a clearer buying framework or the wider ROI series that comes after that.",
+      es: "Tu orden de 20 Prompts para Negocios de Servicios ya entro. Usa los prompts en situaciones reales primero, y luego usa las opciones de abajo si quieres un marco de compra mas claro o la serie mas amplia de ROI que viene despues."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["ai-system-investment-guide", "course-build-what-pays"]
+  },
+  "lead-conversion-sequence": {
+    titleTag: {
+      en: "Thank You for Ordering the 30-Day Lead Conversion Sequence | The Future Studio",
+      es: "Gracias por comprar la Secuencia de Conversion de Leads de 30 Dias | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering the 30-Day Lead Conversion Sequence. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar la Secuencia de Conversion de Leads de 30 Dias. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering the 30-Day Lead Conversion Sequence",
+      es: "Gracias por comprar la Secuencia de Conversion de Leads de 30 Dias"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "30-Day Lead Conversion Sequence", es: "Secuencia de Conversion de Leads de 30 Dias" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for the 30-Day Lead Conversion Sequence is in. Apply the stronger follow-up rhythm first, then use the options below if you want the visible content layer or the full series behind the response system.",
+      es: "Tu orden de la Secuencia de Conversion de Leads de 30 Dias ya entro. Aplica primero el ritmo de seguimiento mas fuerte, y luego usa las opciones de abajo si quieres la capa visible de contenido o la serie completa detras del sistema de respuesta."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["content-calendar", "course-stop-losing-leads"]
+  },
+  "ai-implementation-playbook": {
+    titleTag: {
+      en: "Thank You for Ordering the AI Implementation Playbook | The Future Studio",
+      es: "Gracias por comprar el Playbook de Implementacion de IA | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering the AI Implementation Playbook. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar el Playbook de Implementacion de IA. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering the AI Implementation Playbook",
+      es: "Gracias por comprar el Playbook de Implementacion de IA"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "AI Implementation Playbook", es: "Playbook de Implementacion de IA" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for the AI Implementation Playbook is in. Use it to make the rollout stronger first, then use the options below if you want the public-facing content layer or the wider first-build series beside it.",
+      es: "Tu orden del Playbook de Implementacion de IA ya entro. Usalo primero para hacer mas fuerte el rollout, y luego usa las opciones de abajo si quieres la capa publica de contenido o la serie mas amplia de primer build a su alrededor."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["content-calendar", "course-first-ai-system"]
+  },
+  "ai-system-investment-guide": {
+    titleTag: {
+      en: "Thank You for Ordering the AI System Investment Guide | The Future Studio",
+      es: "Gracias por comprar la Guia de Inversion en Sistemas de IA | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for ordering the AI System Investment Guide. Review your next steps and two relevant upsell options.",
+      es: "Gracias por comprar la Guia de Inversion en Sistemas de IA. Revisa tus siguientes pasos y dos upsells relevantes."
+    },
+    ogTitle: {
+      en: "Thank You for Ordering the AI System Investment Guide",
+      es: "Gracias por comprar la Guia de Inversion en Sistemas de IA"
+    },
+    ogDescription: {
+      en: "A simple post-purchase thank-you page with upsells based on the product purchased.",
+      es: "Una pagina simple de agradecimiento con upsells segun el producto comprado."
+    },
+    productLabel: { en: "AI System Investment Guide", es: "Guia de Inversion en Sistemas de IA" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOUR ORDER IS IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU ORDEN YA ENTRO.</span>"
+    },
+    heroCopy: {
+      en: "Your order for the AI System Investment Guide is in. Use it to sharpen the buying decision first, then use the options below if you want the public-facing content layer or the wider ROI series that comes after that.",
+      es: "Tu orden de la Guia de Inversion en Sistemas de IA ya entro. Usala primero para afinar la decision de compra, y luego usa las opciones de abajo si quieres la capa publica de contenido o la serie mas amplia de ROI que viene despues."
+    },
+    heroCta: { en: "See Next Moves", es: "Ver siguientes pasos" },
+    upsells: ["content-calendar", "course-build-what-pays"]
+  }
+};
+
+var PRODUCT_UPSELL_LIBRARY = {
+  "lead-conversion-sequence": {
+    tier: { en: "Next Product", es: "Siguiente producto" },
+    title: { en: "30-Day Lead Conversion Sequence", es: "Secuencia de Conversion de Leads de 30 Dias" },
+    summary: {
+      en: "If the first reply is cleaner and you now want stronger re-engagement, timing, and booking movement, this is the next product in the system.",
+      es: "Si la primera respuesta ya esta mas limpia y ahora quieres mejor reenganche, mejor timing y mas movimiento hacia la reserva, este es el siguiente producto del sistema."
+    },
+    bullets: {
+      en: ["A clearer follow-up rhythm after the first reply", "Built to keep qualified leads from cooling off too early"],
+      es: ["Un ritmo de seguimiento mas claro despues de la primera respuesta", "Creado para evitar que los leads calificados se enfrien demasiado pronto"]
+    },
+    cta: { en: "Reserve This Product", es: "Reservar este producto" },
+    href: "/checkout/lead-conversion-sequence.html"
+  },
+  "ai-implementation-playbook": {
+    tier: { en: "Next Product", es: "Siguiente producto" },
+    title: { en: "AI Implementation Playbook", es: "Playbook de Implementacion de IA" },
+    summary: {
+      en: "If the rollout order is clear and you now want the fuller operator guide, this is the next practical layer to reserve.",
+      es: "Si el orden del rollout ya esta claro y ahora quieres la guia operativa mas completa, esta es la siguiente capa practica para reservar."
+    },
+    bullets: {
+      en: ["A deeper implementation guide after the rollout plan", "Helps the team move from sequence into execution"],
+      es: ["Una guia mas profunda de implementacion despues del plan de rollout", "Ayuda al equipo a pasar de la secuencia a la ejecucion"]
+    },
+    cta: { en: "Reserve This Product", es: "Reservar este producto" },
+    href: "/checkout/ai-implementation-playbook.html"
+  },
+  "ai-system-investment-guide": {
+    tier: { en: "Next Product", es: "Siguiente producto" },
+    title: { en: "AI System Investment Guide", es: "Guia de Inversion en Sistemas de IA" },
+    summary: {
+      en: "If your team now sees AI in real use and wants clearer buying decisions before the next build, this is the next strategic layer.",
+      es: "Si tu equipo ya ve la IA en uso real y quiere decisiones de compra mas claras antes del siguiente build, esta es la siguiente capa estrategica."
+    },
+    bullets: {
+      en: ["A sharper framework for what deserves budget next", "Built to reduce tool noise before deeper investment"],
+      es: ["Un marco mas claro para decidir que merece presupuesto despues", "Creado para reducir ruido de herramientas antes de una inversion mas profunda"]
+    },
+    cta: { en: "Reserve This Product", es: "Reservar este producto" },
+    href: "/checkout/ai-system-investment-guide.html"
+  },
+  "content-calendar": {
+    tier: { en: "Next Product", es: "Siguiente producto" },
+    title: { en: "90-Day Content Calendar", es: "Calendario de Contenido de 90 Dias" },
+    summary: {
+      en: "If you want the visible market-facing layer to match the stronger system underneath, the next clean move is choosing the right 90-day content calendar for your industry.",
+      es: "Si quieres que la capa visible hacia el mercado coincida con el sistema mas fuerte que ya construiste por dentro, el siguiente paso claro es elegir el calendario de contenido de 90 dias correcto para tu industria."
+    },
+    bullets: {
+      en: ["Choose the version that matches your market", "Turn stronger internal clarity into more credible public content"],
+      es: ["Elige la version que coincide con tu mercado", "Convierte una claridad interna mas fuerte en contenido publico mas creible"]
+    },
+    cta: { en: "Choose Your Calendar", es: "Elegir tu calendario" },
+    href: "/shop/step-4/"
+  },
+  "course-stop-losing-leads": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "Stop Losing Leads", es: "Deja de perder leads" },
+    summary: {
+      en: "If you want the full implementation series behind the response system, this five-video series shows how to close the leaks one layer at a time.",
+      es: "Si quieres la serie completa de implementacion detras del sistema de respuesta, esta serie de cinco videos muestra como cerrar las fugas una capa a la vez."
+    },
+    bullets: {
+      en: ["Map the leaks, automate the reply, connect booking", "Keep revenue recovery visible week by week"],
+      es: ["Mapea las fugas, automatiza la respuesta, conecta la reserva", "Mantiene visible la recuperacion de ingresos semana a semana"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=stop-losing-leads"
+  },
+  "course-first-ai-system": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "From Zero to Your First AI System", es: "De cero a tu primer sistema de IA" },
+    summary: {
+      en: "If you want the complete first-build path behind the rollout, this five-video series helps your business choose the stack, build the bot, and go live in the right order.",
+      es: "Si quieres el camino completo del primer build detras del rollout, esta serie de cinco videos ayuda a tu negocio a elegir el stack, construir el bot y salir en vivo en el orden correcto."
+    },
+    bullets: {
+      en: ["Choose the stack, build the chatbot, write the AI brain", "Finish with a 90-day implementation order"],
+      es: ["Elige el stack, construye el chatbot, escribe el cerebro de IA", "Termina con un orden de implementacion de 90 dias"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=first-ai-system"
+  },
+  "course-build-what-pays": {
+    tier: { en: "Course Series", es: "Serie del curso" },
+    title: { en: "Build What Pays", es: "Construye lo que paga" },
+    summary: {
+      en: "If you want the wider ROI-first implementation series, this five-video course shows how to build the highest-return automation and measure what it recovers.",
+      es: "Si quieres la serie mas amplia de implementacion enfocada en ROI, este curso de cinco videos muestra como construir la automatizacion de mayor retorno y medir lo que recupera."
+    },
+    bullets: {
+      en: ["Prioritize the highest-return build first", "Track recovered revenue inside one system view"],
+      es: ["Prioriza primero el build de mayor retorno", "Sigue los ingresos recuperados dentro de una sola vista del sistema"]
+    },
+    cta: { en: "Reserve This Series", es: "Reservar esta serie" },
+    href: "/checkout/course-series.html?series=build-what-pays"
+  }
+};
+
+var PRODUCT_COMMON_COPY = {
+  heroNotes: {
+    en: [
+      "Your confirmation and access details should arrive by email.",
+      "If you do not see them within a few minutes, check spam or promotions."
+    ],
+    es: [
+      "Tu confirmacion y los detalles de acceso deberian llegar por correo.",
+      "Si no los ves en unos minutos, revisa spam o promociones."
+    ]
+  },
+  upsellEyebrow: { en: "Next moves", es: "Siguientes pasos" },
+  upsellTitle: {
+    en: "KEEP BUILDING IF <span class='grad'>THE TIMING IS RIGHT</span>",
+    es: "SIGUE CONSTRUYENDO SI <span class='grad'>EL MOMENTO ES EL CORRECTO</span>"
+  },
+  upsellCopy: {
+    en: "These are the two cleanest next moves after the product you just bought. They are here only if you want to keep building while the decision is still fresh.",
+    es: "Estos son los dos siguientes pasos mas claros despues del producto que acabas de comprar. Estan aqui solo si quieres seguir construyendo mientras la decision todavia esta fresca."
+  }
+};
+
+function renderProductThankYou() {
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get("product") || "rollout-timeline";
+  var data = PRODUCT_THANKYOU_DATA[slug] || PRODUCT_THANKYOU_DATA["rollout-timeline"];
+  var lang = (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+
+  document.title = data.titleTag[lang];
+  if (metaDescription) metaDescription.setAttribute("content", data.metaDescription[lang]);
+  if (ogTitle) ogTitle.setAttribute("content", data.ogTitle[lang]);
+  if (ogDescription) ogDescription.setAttribute("content", data.ogDescription[lang]);
+
+  document.getElementById("hero-eyebrow").textContent = lang === "es" ? "Gracias" : "Thank you";
+  document.getElementById("hero-title").innerHTML = data.heroTitle[lang];
+  document.getElementById("reserved-product").textContent = data.productLabel[lang];
+  document.getElementById("hero-copy").textContent = data.heroCopy[lang];
+  document.getElementById("hero-note-list").innerHTML = PRODUCT_COMMON_COPY.heroNotes[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("hero-primary-cta").textContent = data.heroCta[lang];
+
+  document.getElementById("upsell-eyebrow").textContent = PRODUCT_COMMON_COPY.upsellEyebrow[lang];
+  document.getElementById("upsell-title").innerHTML = PRODUCT_COMMON_COPY.upsellTitle[lang];
+  document.getElementById("upsell-copy").textContent = PRODUCT_COMMON_COPY.upsellCopy[lang];
+
+  document.getElementById("upsell-grid").innerHTML = data.upsells.map(function(key) {
+    var item = PRODUCT_UPSELL_LIBRARY[key];
+    return "<article class='feature-card'>" +
+      "<p class='tier'>" + item.tier[lang] + "</p>" +
+      "<h3>" + item.title[lang] + "</h3>" +
+      "<p>" + item.summary[lang] + "</p>" +
+      "<ul>" + item.bullets[lang].map(function(bullet) { return "<li>" + bullet + "</li>"; }).join("") + "</ul>" +
+      "<a class='btn btn-primary' href='" + item.href + "'>" + item.cta[lang] + "</a>" +
+    "</article>";
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderProductThankYou);
+document.addEventListener("tfs:langchange", renderProductThankYou);
+</script>
+</body>
+</html>

@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intake | The Future Studio</title>
+<meta name="description" content="A premium pre-meeting intake for prospective clients of The Future Studio. Share your business numbers, priorities, and pain points so we can prepare a more relevant proposal before the meeting.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thefuturestudio.online/client-intake/">
+<meta property="og:title" content="Client Intake | The Future Studio">
+<meta property="og:description" content="A short pre-meeting audit to help The Future Studio prepare a more relevant proposal before your discovery call.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/client-intake/">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="./future-studio-favicon.png">
+<link rel="apple-touch-icon" href="./future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fff8f5;
+  --white:#ffffff;
+  --black:#0a0a0a;
+  --cyan:#00e5cc;
+  --violet:#9b59ff;
+  --text-dark:#0a0a0a;
+  --text-mid:#444;
+  --text-muted:#777;
+  --border-dark:rgba(10,10,10,0.14);
+  --border-soft:rgba(10,10,10,0.08);
+  --font-display:'Barlow Condensed',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--text-dark);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+#bg-canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+.wrap,
+.wrap-wide{
+  position:relative;
+  z-index:1;
+  margin:0 auto;
+  padding:0 32px;
+}
+.wrap{max-width:1240px}
+.wrap-wide{max-width:1440px}
+
+.headline-xl,
+.headline-lg,
+.headline-md,
+.headline-sm{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:-0.02em;
+  line-height:0.9;
+  margin:0;
+}
+.headline-xl{font-size:clamp(72px,10vw,150px)}
+.headline-lg{font-size:clamp(48px,7vw,92px)}
+.headline-md{font-size:clamp(34px,4.8vw,64px)}
+.headline-sm{font-size:clamp(24px,3vw,38px)}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+}
+.eyebrow::before,
+.eyebrow::after{
+  content:"";
+  width:54px;
+  height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+}
+.body-lg{
+  font-size:18px;
+  line-height:1.8;
+  color:var(--text-mid);
+}
+.body-md{
+  font-size:16px;
+  line-height:1.7;
+  color:var(--text-mid);
+}
+.body-sm{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--text-muted);
+}
+.grad{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes orbFloatA{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(24px,-24px) scale(1.06)}
+}
+@keyframes orbFloatB{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-20px,20px) scale(0.95)}
+}
+.shimmer{
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--cyan));
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer 3s ease infinite;
+}
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0.32;
+  pointer-events:none;
+}
+.orb-cyan{background:var(--cyan);animation:orbFloatA 13s ease-in-out infinite}
+.orb-violet{background:var(--violet);animation:orbFloatB 17s ease-in-out infinite}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px 30px;
+  border:2px solid var(--black);
+  font-family:var(--font-display);
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  transition:all 0.25s var(--ease);
+  background:transparent;
+}
+.btn-grad{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  color:var(--black);
+}
+.btn-grad:hover{
+  background:var(--white);
+  color:var(--black);
+  transform:translateY(-2px);
+  box-shadow:14px 14px 0 rgba(10,10,10,0.08);
+}
+.btn-dark{
+  background:var(--black);
+  color:var(--white);
+}
+.btn-dark:hover{
+  background:var(--white);
+  color:var(--black);
+  transform:translateY(-2px);
+}
+.btn-outline{
+  background:transparent;
+  color:var(--black);
+}
+.btn-outline:hover{
+  background:var(--black);
+  color:var(--white);
+}
+
+#nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:100;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-top:1px solid rgba(0,0,0,0.12);
+  border-bottom:1px solid var(--border-dark);
+  transition:background 0.3s,border-color 0.3s,transform 0.35s var(--ease);
+}
+#nav.scrolled{
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom-color:var(--border-dark);
+}
+#nav.nav-hidden{
+  transform:translateY(-100%);
+}
+.nav-inner{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:20px;
+  height:96px;
+  max-width:1440px;
+  margin:0 auto;
+  padding:0 32px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.nav-links a{
+  position:relative;
+  font-family:var(--font-display);
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text-mid);
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:var(--cyan);
+  transition:width 0.25s var(--ease);
+}
+.nav-links a:hover::after{width:100%}
+.nav-logo{
+  justify-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.nav-logo img{height:68px;width:auto}
+.nav-actions{
+  justify-self:end;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.lang-toggle{
+  display:flex;
+  gap:2px;
+  padding:3px;
+  border:1px solid var(--border-dark);
+  background:rgba(10,10,10,0.04);
+}
+.lang-btn{
+  border:none;
+  background:none;
+  padding:6px 12px;
+  font-family:var(--font-display);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+.lang-btn.active{
+  background:var(--black);
+  color:var(--white);
+}
+.nav-hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  padding:8px;
+}
+.nav-hamburger span{
+  width:24px;
+  height:2px;
+  background:var(--black);
+  transition:transform 0.3s,opacity 0.3s;
+}
+.nav-hamburger.open span:first-child{transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:last-child{transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{
+  display:none;
+  background:var(--cream);
+  border-top:2px solid var(--black);
+  padding:20px 32px 30px;
+}
+.nav-mobile.open{display:block}
+.nav-mobile a{
+  display:block;
+  padding:12px 0;
+  border-bottom:1px solid var(--border-dark);
+  font-family:var(--font-display);
+  font-size:22px;
+  font-weight:700;
+  font-style:italic;
+  text-transform:uppercase;
+}
+.nav-mobile .lang-toggle{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  margin:16px 0 0;
+  padding-top:16px;
+  border-top:1px solid var(--border-dark);
+}
+.nav-mobile .btn{width:100%}
+
+#hero{
+  position:relative;
+  padding:164px 0 96px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  align-items:center;
+}
+.hero-copy{
+  position:relative;
+  z-index:2;
+  max-width:none;
+}
+.hero-copy .eyebrow{
+  color:var(--cyan);
+  margin-bottom:24px;
+}
+.hero-copy .headline-lg{
+  max-width:1280px;
+  font-size:clamp(88px,12vw,176px);
+}
+.hero-copy .body-lg{
+  max-width:860px;
+  margin-top:28px;
+}
+.hero-copy .body-sm{
+  max-width:620px;
+  margin-top:18px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:34px;
+}
+.hero-card{
+  position:relative;
+  z-index:2;
+  border:2px solid var(--black);
+  background:rgba(255,255,255,0.68);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:34px;
+  box-shadow:22px 22px 0 rgba(155,89,255,0.08);
+}
+.hero-card .headline-sm{
+  margin:18px 0 10px;
+}
+.hero-card-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:24px;
+}
+.hero-card-item{
+  border:2px solid var(--black);
+  background:var(--white);
+  padding:16px;
+}
+.hero-card-item strong{
+  display:block;
+  margin-bottom:6px;
+  font-family:var(--font-display);
+  font-size:18px;
+  font-style:italic;
+  text-transform:uppercase;
+}
+.microcopy{
+  font-size:13px;
+  line-height:1.7;
+  color:var(--text-muted);
+}
+
+#form-zone{
+  position:relative;
+  background:var(--black);
+  color:var(--white);
+  padding:38px 0 100px;
+}
+.progress-shell{
+  position:relative;
+  z-index:10;
+  margin-bottom:34px;
+  background:rgba(10,10,10,0.84);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.progress-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:14px 0;
+}
+.progress-copy{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.progress-copy strong{
+  font-family:var(--font-display);
+  font-size:15px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.progress-copy span{
+  color:rgba(255,255,255,0.6);
+  font-size:13px;
+}
+.progress-bar{
+  width:min(220px,44vw);
+  height:8px;
+  background:rgba(255,255,255,0.12);
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  transition:width 0.35s var(--ease);
+}
+.progress-steps{display:none}
+
+.form-shell{
+  display:grid;
+  gap:22px;
+}
+.section-card{
+  border:2px solid var(--black);
+  background:var(--cream);
+  color:var(--text-dark);
+  padding:34px;
+  transition:transform 0.28s var(--ease),box-shadow 0.28s var(--ease);
+}
+.section-card:hover{
+  transform:translateY(-10px) translateX(-10px);
+  box-shadow:10px 10px 0 var(--cyan);
+}
+.section-header{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:18px;
+  align-items:start;
+  margin-bottom:26px;
+}
+.section-number{
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--black);
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  font-family:var(--font-display);
+  font-size:26px;
+  font-weight:800;
+  font-style:italic;
+  text-transform:uppercase;
+}
+.section-header-copy .eyebrow{
+  margin-bottom:10px;
+}
+.section-header-copy .headline-sm{
+  margin-bottom:14px;
+}
+.field-grid{
+  display:grid;
+  gap:18px 20px;
+}
+.field-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.field-grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.field-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.field.full{grid-column:1 / -1}
+.field label,
+.field legend{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.5;
+}
+.field legend{
+  padding:0;
+}
+.required{
+  color:#d12b2b;
+  margin-left:4px;
+}
+.field-hint{
+  margin-top:6px;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-muted);
+}
+.field input[type="text"],
+.field input[type="number"],
+.field select,
+.field textarea{
+  width:100%;
+  border:2px solid var(--black);
+  background:var(--white);
+  padding:15px 16px;
+  font-size:15px;
+  color:var(--text-dark);
+  transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+  resize:vertical;
+}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--black) 50%),linear-gradient(135deg,var(--black) 50%,transparent 50%);background-position:calc(100% - 20px) calc(1em + 6px),calc(100% - 15px) calc(1em + 6px);background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:42px}
+.field textarea{min-height:124px}
+#section-2 .field{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:150px;
+  padding:18px;
+  border:2px solid var(--black);
+  background:var(--white);
+}
+#section-2 .field label{
+  min-height:42px;
+}
+#section-2 .field input{
+  margin-top:14px;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--cyan);
+  box-shadow:0 0 0 4px rgba(0,229,204,0.12);
+}
+.choice-grid{
+  display:grid;
+  gap:12px;
+}
+.choice-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.choice-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choice-card{
+  position:relative;
+  display:block;
+}
+.choice-card input{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  cursor:pointer;
+}
+.choice-card span{
+  display:flex;
+  align-items:flex-start;
+  min-height:100%;
+  border:2px solid var(--black);
+  background:var(--white);
+  padding:16px;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--text-mid);
+  transition:transform 0.2s var(--ease),background 0.2s,color 0.2s,border-color 0.2s,box-shadow 0.2s;
+}
+.choice-card input:focus + span{
+  box-shadow:0 0 0 4px rgba(0,229,204,0.12);
+}
+.choice-card input:checked + span{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  color:var(--black);
+  border-color:transparent;
+  box-shadow:12px 12px 0 rgba(10,10,10,0.08);
+  transform:translateY(-4px);
+}
+.choice-card span strong{
+  display:block;
+  font-family:var(--font-display);
+  font-size:18px;
+  font-style:italic;
+  text-transform:uppercase;
+  margin-bottom:4px;
+  color:inherit;
+}
+
+.conditional{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-8px);
+  transition:max-height 0.35s var(--ease),opacity 0.25s var(--ease),transform 0.25s var(--ease),margin-top 0.25s var(--ease);
+  margin-top:0;
+}
+.conditional.open{
+  opacity:1;
+  transform:none;
+  margin-top:14px;
+}
+
+.error-text{
+  display:none;
+  margin-top:8px;
+  color:#d12b2b;
+  font-size:13px;
+  line-height:1.5;
+}
+.error-text.visible{display:block}
+.field.group-error .choice-card span,
+.field.group-error .field-shell{
+  border-color:#d12b2b;
+}
+
+.submit-card{
+  border:2px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.04);
+  color:var(--white);
+  padding:36px;
+  text-align:center;
+}
+.submit-card .eyebrow{justify-content:center}
+.submit-card .headline-sm{
+  margin:14px 0 14px;
+}
+.submit-card .body-md{
+  max-width:780px;
+  margin:0 auto;
+}
+.submit-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:24px;
+  margin-top:26px;
+}
+.submit-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  min-width:260px;
+}
+.submit-button{
+  min-width:260px;
+}
+.submit-status{
+  min-height:22px;
+  font-size:13px;
+  color:rgba(255,255,255,0.7);
+  text-align:center;
+}
+
+.honeypot{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  pointer-events:none;
+}
+
+#success-state{
+  display:none;
+  padding:96px 0 110px;
+}
+#success-state.visible{display:block}
+.success-card{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,0.95fr);
+  gap:24px;
+  align-items:stretch;
+}
+.success-main,
+.success-side{
+  border:2px solid var(--black);
+  padding:36px;
+}
+.success-main{
+  background:var(--black);
+  color:var(--white);
+}
+.success-main .headline-md{
+  margin:18px 0 18px;
+}
+.success-main .body-lg{
+  color:rgba(255,255,255,0.72);
+}
+.success-side{
+  background:var(--white);
+}
+.success-list{
+  margin:18px 0 0;
+  display:grid;
+  gap:12px;
+}
+.success-list li{
+  position:relative;
+  padding-left:20px;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--text-mid);
+}
+.success-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:10px;
+  width:8px;
+  height:8px;
+  background:var(--cyan);
+}
+.success-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:28px;
+}
+
+footer{
+  background:var(--black);
+  color:var(--white);
+  padding:56px 0 40px;
+}
+.footer-inner{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  gap:48px;
+  align-items:start;
+}
+.footer-logo{
+  display:flex;
+  justify-content:flex-start;
+  margin-bottom:12px;
+}
+.footer-logo img{
+  height:80px;
+  width:auto;
+  filter:brightness(0) invert(1);
+}
+.footer-tagline{
+  max-width:320px;
+  font-size:13px;
+  line-height:1.7;
+  color:rgba(255,255,255,0.45);
+}
+.footer-col h5{
+  margin:0 0 16px;
+  font-family:var(--font-display);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.28);
+}
+.footer-col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+}
+.footer-col a,
+.footer-col span{
+  font-size:13px;
+  line-height:1.7;
+  color:rgba(255,255,255,0.54);
+}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{
+  margin-top:42px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footer-copy{
+  font-size:12px;
+  color:rgba(255,255,255,0.28);
+}
+
+@media (max-width:1100px){
+  .success-card{
+    grid-template-columns:1fr;
+  }
+  .field-grid.cols-4{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .field-grid.cols-3{
+    grid-template-columns:1fr;
+  }
+  .progress-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+@media (max-width:900px){
+  .nav-inner{
+    grid-template-columns:1fr;
+    justify-items:center;
+    height:auto;
+    padding-top:16px;
+    padding-bottom:14px;
+  }
+  .nav-links,
+  .nav-actions,
+  .nav-actions .btn{
+    display:none;
+  }
+  .nav-logo{
+    justify-self:center;
+    order:1;
+  }
+  .nav-hamburger{
+    display:flex;
+    justify-self:center;
+    order:2;
+    margin-top:8px;
+  }
+  .field-grid.cols-2,
+  .choice-grid.cols-2,
+  .choice-grid.cols-3{
+    grid-template-columns:1fr;
+  }
+  .submit-row{
+    flex-direction:column;
+    align-items:center;
+  }
+  .submit-actions{
+    align-items:center;
+    width:100%;
+  }
+  .submit-button{
+    width:min(100%,360px);
+  }
+  .footer-inner{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  #hero{
+    padding-top:192px;
+  }
+}
+
+@media (max-width:640px){
+  .wrap,
+  .wrap-wide{
+    padding:0 18px;
+  }
+  #hero{
+    padding-top:186px;
+    padding-bottom:56px;
+  }
+  .hero-copy .headline-lg{
+    font-size:clamp(66px,18vw,112px);
+  }
+  .hero-card,
+  .section-card,
+  .submit-card,
+  .success-main,
+  .success-side{
+    padding:24px;
+  }
+  .field-grid.cols-4{
+    grid-template-columns:1fr;
+  }
+  .footer-logo{
+    justify-content:flex-start;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="https://thefuturestudio.online/" data-en="Home" data-es="Inicio">Home</a>
+      <a href="https://thefuturestudio.online/#services" data-en="Services" data-es="Servicios">Services</a>
+      <a href="https://thefuturestudio.online/tfs-pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+      <a href="https://thefuturestudio.online/#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+    </div>
+    <a class="nav-logo" href="https://thefuturestudio.online/" aria-label="The Future Studio">
+      <img src="./logo.png" alt="The Future Studio">
+    </a>
+    <div class="nav-actions">
+      <div class="lang-toggle" id="lang-toggle-desktop">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
+    <button type="button" class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="https://thefuturestudio.online/" data-en="Home" data-es="Inicio">Home</a>
+    <a href="https://thefuturestudio.online/#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="https://thefuturestudio.online/tfs-pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="https://thefuturestudio.online/#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+    <div class="lang-toggle" id="lang-toggle-mobile">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section id="hero">
+    <div class="orb orb-cyan" style="width:240px;height:240px;top:48px;left:-20px"></div>
+    <div class="orb orb-violet" style="width:280px;height:280px;right:-40px;bottom:10px"></div>
+    <div class="wrap-wide">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow" data-en="Pre-Meeting Intake" data-es="Formulario Previo">Pre-Meeting Intake</div>
+          <h1 class="headline-lg">
+            <span data-en="Tell Us" data-es="Cuéntanos">Tell Us</span><br>
+            <span class="shimmer" data-en="Where The" data-es="Dónde Está">Where The</span><br>
+            <span data-en="Business Stands" data-es="Tu Negocio">Business Stands</span>
+          </h1>
+          <p class="body-lg" data-en="This short audit helps us prepare a more relevant proposal before the meeting. It gives us a clearer view of your business numbers, current friction, urgency, and where AI, automation, website, or brand work could create the most value first." data-es="Este breve formulario nos ayuda a preparar una propuesta más relevante antes de la reunión. Nos da una visión más clara de tus números, tus fricciones actuales, tu urgencia y dónde la IA, la automatización, la web o la marca podrían generar más valor primero.">
+            This short audit helps us prepare a more relevant proposal before the meeting. It gives us a clearer view of your business numbers, current friction, urgency, and where AI, automation, website, or brand work could create the most value first.
+          </p>
+          <div class="hero-actions">
+            <a href="#intake-form" class="btn btn-grad" data-en="Start The Intake" data-es="Empezar Formulario">Start The Intake</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="form-zone">
+    <div class="progress-shell">
+      <div class="wrap">
+        <div class="progress-inner">
+          <div class="progress-copy">
+            <strong data-en="Client Intake Progress" data-es="Progreso Del Formulario">Client Intake Progress</strong>
+            <span id="progress-text" data-en-template="{value}% complete" data-es-template="{value}% completado">0% complete</span>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <form id="intake-form" class="form-shell" name="future-studio-client-intake" method="POST" action="/" accept-charset="UTF-8" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="future-studio-client-intake">
+        <input type="hidden" name="subject" value="New Client Intake - The Future Studio">
+        <input type="hidden" name="preferred_language" id="preferred-language" value="en">
+        <input type="hidden" name="priority_summary" id="priority-summary">
+        <input type="hidden" name="interest_summary" id="interest-summary">
+        <input type="hidden" name="estimated_revenue_3_months" id="estimated-revenue-3-months">
+        <input type="hidden" name="qualification_score" id="qualification-score">
+        <input type="hidden" name="qualification_band" id="qualification-band">
+        <input type="hidden" name="service_tags" id="service-tags">
+        <p class="honeypot">
+          <label data-en="Do not fill this out if you are human." data-es="No completes esto si eres humano.">
+            Do not fill this out if you are human.
+            <input name="bot-field">
+          </label>
+        </p>
+
+        <article class="section-card form-section" id="section-1" data-section-title-en="Business basics" data-section-title-es="Datos del negocio">
+          <div class="section-header">
+            <div class="section-number">1</div>
+            <div class="section-header-copy">
+              <div class="eyebrow" data-en="Business Basics" data-es="Datos Del Negocio">Business Basics</div>
+              <h2 class="headline-sm" data-en="Start With The Business Context" data-es="Empecemos Por El Contexto Del Negocio">Start With The Business Context</h2>
+              <p class="body-md" data-en="Tell us what the business is, then rank the top priorities in order. This helps us see where value matters first instead of guessing what the meeting should focus on." data-es="Cuéntanos qué tipo de negocio es y ordena las prioridades principales. Esto nos ayuda a ver dónde importa primero el valor, en lugar de adivinar en qué debe enfocarse la reunión.">
+                Tell us what the business is, then rank the top priorities in order. This helps us see where value matters first instead of guessing what the meeting should focus on.
+              </p>
+            </div>
+          </div>
+          <div class="field-grid cols-2">
+            <div class="field">
+              <label for="business_name"><span data-en="Business name" data-es="Nombre del negocio">Business name</span><span class="required">*</span></label>
+              <input id="business_name" name="business_name" type="text" required autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="industry"><span data-en="Industry / business type" data-es="Industria / tipo de negocio">Industry / business type</span><span class="required">*</span></label>
+              <select id="industry" name="industry" required>
+                <option value="" data-en="Select one" data-es="Selecciona una opción">Select one</option>
+                <option value="Clinic" data-en="Clinic" data-es="Clínica">Clinic</option>
+                <option value="Dental Practice" data-en="Dental Practice" data-es="Clínica dental">Dental Practice</option>
+                <option value="Salon / Aesthetics" data-en="Salon / Aesthetics" data-es="Salón / estética">Salon / Aesthetics</option>
+                <option value="Legal" data-en="Legal" data-es="Legal">Legal</option>
+                <option value="Real Estate" data-en="Real Estate" data-es="Bienes raíces">Real Estate</option>
+                <option value="Education" data-en="Education" data-es="Educación">Education</option>
+                <option value="Ecommerce" data-en="Ecommerce" data-es="Ecommerce">Ecommerce</option>
+                <option value="Hospitality" data-en="Hospitality" data-es="Hospitalidad">Hospitality</option>
+                <option value="Other" data-en="Other" data-es="Otro">Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="priority_1"><span data-en="Top priorities (choose up to 3 in order)" data-es="Prioridades principales (elige hasta 3 en orden)">Top priorities (choose up to 3 in order)</span><span class="required">*</span></label>
+              <p class="field-hint" data-en="Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention." data-es="La prioridad 1 es obligatoria. La prioridad 2 y 3 son opcionales, pero úsalas si hay más de una presión comercial compitiendo por atención.">Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention.</p>
+              <div class="field-grid cols-3">
+                <div class="field">
+                  <label for="priority_1"><span data-en="Priority 1" data-es="Prioridad 1">Priority 1</span><span class="required">*</span></label>
+                  <select id="priority_1" name="priority_1" required data-priority-select="true">
+                    <option value="" data-en="Select top priority" data-es="Selecciona la prioridad principal">Select top priority</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir más leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir más consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatización">Save time with automation</option>
+                    <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
+                    <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
+                    <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentación">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guía">Unsure, need guidance</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="priority_2"><span data-en="Priority 2" data-es="Prioridad 2">Priority 2</span></label>
+                  <select id="priority_2" name="priority_2" data-priority-select="true">
+                    <option value="" data-en="Optional second priority" data-es="Segunda prioridad opcional">Optional second priority</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir más leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir más consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatización">Save time with automation</option>
+                    <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
+                    <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
+                    <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentación">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guía">Unsure, need guidance</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="priority_3"><span data-en="Priority 3" data-es="Prioridad 3">Priority 3</span></label>
+                  <select id="priority_3" name="priority_3" data-priority-select="true">
+                    <option value="" data-en="Optional third priority" data-es="Tercera prioridad opcional">Optional third priority</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir más leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir más consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatización">Save time with automation</option>
+                    <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
+                    <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
+                    <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentación">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guía">Unsure, need guidance</option>
+                  </select>
+                </div>
+              </div>
+              <div class="error-text" id="priority-error" data-en="Please do not repeat the same priority more than once." data-es="Por favor no repitas la misma prioridad más de una vez.">Please do not repeat the same priority more than once.</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="section-card form-section" id="section-2" data-section-title-en="Commercial snapshot" data-section-title-es="Resumen comercial">
+          <div class="section-header">
+            <div class="section-number">2</div>
+            <div class="section-header-copy">
+              <div class="eyebrow" data-en="Commercial Snapshot" data-es="Resumen Comercial">Commercial Snapshot</div>
+              <h2 class="headline-sm" data-en="Give Us The Numbers That Matter" data-es="Compártenos Los Números Clave">Give Us The Numbers That Matter</h2>
+              <p class="body-md" data-en="We use these numbers to understand commercial weight quickly: deal size, recurring value, and where missed opportunities may already be affecting revenue." data-es="Usamos estos números para entender rápidamente el peso comercial: tamaño del ticket, valor recurrente y dónde las oportunidades perdidas ya pueden estar afectando los ingresos.">
+                We use these numbers to understand commercial weight quickly: deal size, recurring value, and where missed opportunities may already be affecting revenue.
+              </p>
+            </div>
+          </div>
+          <div class="field-grid cols-4">
+            <div class="field">
+              <label for="new_clients_last_3_months"><span data-en="New clients closed in the last 3 months" data-es="Nuevos clientes cerrados en los últimos 3 meses">New clients closed in the last 3 months</span><span class="required">*</span></label>
+              <input id="new_clients_last_3_months" name="new_clients_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
+            </div>
+            <div class="field">
+              <label for="average_ticket_usd"><span data-en="Average ticket per client (USD)" data-es="Ticket promedio por cliente (USD)">Average ticket per client (USD)</span><span class="required">*</span></label>
+              <input id="average_ticket_usd" name="average_ticket_usd" type="number" min="0" step="0.01" inputmode="decimal" required>
+            </div>
+            <div class="field">
+              <label for="memberships_sold_last_3_months"><span data-en="Memberships sold in the last 3 months" data-es="Membresías vendidas en los últimos 3 meses">Memberships sold in the last 3 months</span><span class="required">*</span></label>
+              <input id="memberships_sold_last_3_months" name="memberships_sold_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
+            </div>
+            <div class="field">
+              <label for="gift_cards_sold_last_3_months"><span data-en="Gift cards sold in the last 3 months" data-es="Tarjetas regalo vendidas en los últimos 3 meses">Gift cards sold in the last 3 months</span><span class="required">*</span></label>
+              <input id="gift_cards_sold_last_3_months" name="gift_cards_sold_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
+            </div>
+          </div>
+        </article>
+
+        <article class="section-card form-section" id="section-3" data-section-title-en="Pain points" data-section-title-es="Fricciones">
+          <div class="section-header">
+            <div class="section-number">3</div>
+            <div class="section-header-copy">
+              <div class="eyebrow" data-en="Pain Points" data-es="Puntos De Fricción">Pain Points</div>
+              <h2 class="headline-sm" data-en="Show Us Where The Friction Lives" data-es="Muéstranos Dónde Está La Fricción">Show Us Where The Friction Lives</h2>
+              <p class="body-md" data-en="This section helps us see where trust, speed, and conversion may be breaking down - especially in lead handling, website credibility, and how premium the business feels." data-es="Esta sección nos ayuda a ver dónde pueden estar rompiéndose la confianza, la velocidad y la conversión, especialmente en la gestión de leads, la credibilidad de la web y qué tan premium se siente el negocio.">
+                This section helps us see where trust, speed, and conversion may be breaking down - especially in lead handling, website credibility, and how premium the business feels.
+              </p>
+            </div>
+          </div>
+          <div class="field-grid">
+            <fieldset class="field full" data-conditional-group="sales_loss">
+              <legend><span data-en="Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?" data-es="¿Crees que hoy estás perdiendo ventas por mensajes perdidos, seguimiento lento, llamadas perdidas o administración inconsistente?">Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?</span><span class="required">*</span></legend>
+              <div class="choice-grid cols-2">
+                <label class="choice-card">
+                  <input type="radio" name="sales_loss" value="Yes" required>
+                  <span data-en="Yes" data-es="Sí">Yes</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="sales_loss" value="No">
+                  <span data-en="No" data-es="No">No</span>
+                </label>
+              </div>
+              <div class="conditional" data-show-for="sales_loss" data-show-value="Yes">
+                <div class="field field-shell">
+                  <label for="sales_loss_details"><span data-en="Tell us where you think opportunities are being lost." data-es="Cuéntanos dónde crees que se están perdiendo oportunidades.">Tell us where you think opportunities are being lost.</span></label>
+                  <textarea id="sales_loss_details" name="sales_loss_details" data-placeholder-en="Examples: slow replies after hours, missed WhatsApp messages, no one owning the follow-up, poor handoff between staff." data-placeholder-es="Ejemplos: respuestas lentas fuera de horario, mensajes de WhatsApp perdidos, nadie se hace cargo del seguimiento, mal handoff entre el equipo." placeholder="Examples: slow replies after hours, missed WhatsApp messages, no one owning the follow-up, poor handoff between staff."></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="field full" data-conditional-group="website_issue">
+              <legend><span data-en="Do you feel your current website needs improvement or no longer reflects the level of your business?" data-es="¿Sientes que tu web actual necesita mejorar o ya no refleja el nivel de tu negocio?">Do you feel your current website needs improvement or no longer reflects the level of your business?</span><span class="required">*</span></legend>
+              <div class="choice-grid cols-2">
+                <label class="choice-card">
+                  <input type="radio" name="website_issue" value="Yes" required>
+                  <span data-en="Yes" data-es="Sí">Yes</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="website_issue" value="No">
+                  <span data-en="No" data-es="No">No</span>
+                </label>
+              </div>
+              <div class="conditional" data-show-for="website_issue" data-show-value="Yes">
+                <div class="field field-shell">
+                  <label for="website_issue_details"><span data-en="What feels outdated or ineffective about it?" data-es="¿Qué se siente desactualizado o poco efectivo?">What feels outdated or ineffective about it?</span></label>
+                  <textarea id="website_issue_details" name="website_issue_details" data-placeholder-en="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience." data-placeholder-es="Ejemplos: mala primera impresión, poca confianza, estructura confusa, lentitud, diseño anticuado, mala experiencia móvil." placeholder="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience."></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="field full" data-conditional-group="brand_issue">
+              <legend><span data-en="Do you feel your brand presentation could be improved?" data-es="¿Sientes que la presentación de tu marca podría mejorar?">Do you feel your brand presentation could be improved?</span><span class="required">*</span></legend>
+              <p class="field-hint" data-en="This could include logo, visual identity, design consistency, trust, clarity, or how premium the business feels." data-es="Esto puede incluir logo, identidad visual, consistencia de diseño, confianza, claridad o qué tan premium se percibe el negocio.">
+                This could include logo, visual identity, design consistency, trust, clarity, or how premium the business feels.
+              </p>
+              <div class="choice-grid cols-2">
+                <label class="choice-card">
+                  <input type="radio" name="brand_issue" value="Yes" required>
+                  <span data-en="Yes" data-es="Sí">Yes</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="brand_issue" value="No">
+                  <span data-en="No" data-es="No">No</span>
+                </label>
+              </div>
+              <div class="conditional" data-show-for="brand_issue" data-show-value="Yes">
+                <div class="field field-shell">
+                  <label for="brand_issue_details"><span data-en="What would you most like to improve?" data-es="¿Qué te gustaría mejorar principalmente?">What would you most like to improve?</span></label>
+                  <textarea id="brand_issue_details" name="brand_issue_details" data-placeholder-en="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction." data-placeholder-es="Ejemplos: calidad del logo, confianza, consistencia de marca, presentación, posicionamiento, sensación premium, dirección visual más clara." placeholder="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction."></textarea>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </article>
+
+        <article class="section-card form-section" id="section-4" data-section-title-en="AI / service fit" data-section-title-es="Encaje con IA">
+          <div class="section-header">
+            <div class="section-number">4</div>
+            <div class="section-header-copy">
+              <div class="eyebrow" data-en="AI / Service Fit" data-es="Encaje Con IA">AI / Service Fit</div>
+              <h2 class="headline-sm" data-en="Tell Us What You Want AI To Improve" data-es="Dinos Qué Quieres Mejorar Con IA">Tell Us What You Want AI To Improve</h2>
+              <p class="body-md" data-en="Tell us where you see the biggest upside. We use this to separate real implementation priorities from broad interest, so the proposal feels focused instead of generic." data-es="Cuéntanos dónde ves el mayor potencial. Usamos esto para separar prioridades reales de implementación del interés general, para que la propuesta se sienta enfocada y no genérica.">
+                Tell us where you see the biggest upside. We use this to separate real implementation priorities from broad interest, so the proposal feels focused instead of generic.
+              </p>
+            </div>
+          </div>
+          <div class="field-grid">
+            <fieldset class="field full" id="interest-group">
+              <legend><span data-en="Which areas are you most interested in improving with AI or automation?" data-es="¿Qué áreas te interesa mejorar más con IA o automatización?">Which areas are you most interested in improving with AI or automation?</span><span class="required">*</span></legend>
+              <div class="choice-grid cols-3">
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Lead capture"><span data-en="Lead capture" data-es="Captación de leads">Lead capture</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Follow-up automation"><span data-en="Follow-up automation" data-es="Automatización de seguimiento">Follow-up automation</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="WhatsApp automation"><span data-en="WhatsApp automation" data-es="Automatización de WhatsApp">WhatsApp automation</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="AI phone assistant"><span data-en="AI phone assistant" data-es="Asistente telefónico con IA">AI phone assistant</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Appointment booking"><span data-en="Appointment booking" data-es="Reserva de citas">Appointment booking</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Website improvement"><span data-en="Website improvement" data-es="Mejora web">Website improvement</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Customer support"><span data-en="Customer support" data-es="Atención al cliente">Customer support</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Internal admin / operations"><span data-en="Internal admin / operations" data-es="Administración interna / operaciones">Internal admin / operations</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Reporting / analytics"><span data-en="Reporting / analytics" data-es="Reportes / analítica">Reporting / analytics</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Brand / design refresh"><span data-en="Brand / design refresh" data-es="Actualización de marca / diseño">Brand / design refresh</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Not sure yet"><span data-en="Not sure yet" data-es="Aún no estoy seguro">Not sure yet</span></label>
+              </div>
+              <div class="error-text" id="interest-error" data-en="Please choose at least one area." data-es="Por favor elige al menos un área.">Please choose at least one area.</div>
+            </fieldset>
+            <div class="field full">
+              <label for="desired_result"><span data-en="What result are you hoping to achieve by implementing AI or automation?" data-es="¿Qué resultado esperas conseguir implementando IA o automatización?">What result are you hoping to achieve by implementing AI or automation?</span><span class="required">*</span></label>
+              <textarea id="desired_result" name="desired_result" required data-placeholder-en="Examples: increase bookings, reduce missed enquiries, save staff time, improve response speed, modernise the business, increase sales." data-placeholder-es="Ejemplos: aumentar reservas, reducir consultas perdidas, ahorrar tiempo al equipo, mejorar la velocidad de respuesta, modernizar el negocio, aumentar ventas." placeholder="Examples: increase bookings, reduce missed enquiries, save staff time, improve response speed, modernise the business, increase sales."></textarea>
+            </div>
+          </div>
+        </article>
+
+        <article class="section-card form-section" id="section-5" data-section-title-en="Budget and readiness" data-section-title-es="Presupuesto y decisión">
+          <div class="section-header">
+            <div class="section-number">5</div>
+            <div class="section-header-copy">
+              <div class="eyebrow" data-en="Budget And Readiness" data-es="Presupuesto Y Decisión">Budget And Readiness</div>
+              <h2 class="headline-sm" data-en="Help Us Gauge The Right Scope" data-es="Ayúdanos A Medir El Alcance Correcto">Help Us Gauge The Right Scope</h2>
+              <p class="body-md" data-en="This gives us decision context. It helps us shape the right scope, understand urgency, and avoid recommending something that does not match the commercial reality of the business." data-es="Esto nos da contexto de decisión. Nos ayuda a definir el alcance correcto, entender la urgencia y evitar recomendar algo que no encaje con la realidad comercial del negocio.">
+                This gives us decision context. It helps us shape the right scope, understand urgency, and avoid recommending something that does not match the commercial reality of the business.
+              </p>
+            </div>
+          </div>
+          <div class="field-grid cols-2">
+            <div class="field">
+              <label for="budget_range"><span data-en="What budget range are you comfortable investing?" data-es="¿Qué rango de inversión te resulta cómodo?">What budget range are you comfortable investing?</span><span class="required">*</span></label>
+              <select id="budget_range" name="budget_range" required>
+                <option value="" data-en="Select one" data-es="Selecciona una opción">Select one</option>
+                <option value="Under $500" data-en="Under $500" data-es="Menos de $500">Under $500</option>
+                <option value="$500-$1,500" data-en="$500-$1,500" data-es="$500-$1,500">$500-$1,500</option>
+                <option value="$1,500-$3,000" data-en="$1,500-$3,000" data-es="$1,500-$3,000">$1,500-$3,000</option>
+                <option value="$3,000-$7,500" data-en="$3,000-$7,500" data-es="$3,000-$7,500">$3,000-$7,500</option>
+                <option value="$7,500+" data-en="$7,500+" data-es="$7,500+">$7,500+</option>
+                <option value="Not sure yet" data-en="Not sure yet" data-es="Aún no estoy seguro">Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="start_timeline"><span data-en="If the right solution is presented, when would you want to begin?" data-es="Si se presenta la solución correcta, ¿cuándo te gustaría empezar?">If the right solution is presented, when would you want to begin?</span><span class="required">*</span></label>
+              <select id="start_timeline" name="start_timeline" required>
+                <option value="" data-en="Select one" data-es="Selecciona una opción">Select one</option>
+                <option value="Within 7 days" data-en="Within 7 days" data-es="Dentro de 7 días">Within 7 days</option>
+                <option value="Within 30 days" data-en="Within 30 days" data-es="Dentro de 30 días">Within 30 days</option>
+                <option value="Within 60 days" data-en="Within 60 days" data-es="Dentro de 60 días">Within 60 days</option>
+                <option value="Later / exploring options" data-en="Later / exploring options" data-es="Más adelante / explorando opciones">Later / exploring options</option>
+              </select>
+            </div>
+            <fieldset class="field full" data-conditional-group="budget_allocated">
+              <legend><span data-en="Do you already have budget allocated for this project?" data-es="¿Ya tienes presupuesto asignado para este proyecto?">Do you already have budget allocated for this project?</span><span class="required">*</span></legend>
+              <div class="choice-grid cols-2">
+                <label class="choice-card"><input type="radio" name="budget_allocated" value="Yes" required><span data-en="Yes" data-es="Sí">Yes</span></label>
+                <label class="choice-card"><input type="radio" name="budget_allocated" value="Partially"><span data-en="Partially" data-es="Parcialmente">Partially</span></label>
+                <label class="choice-card"><input type="radio" name="budget_allocated" value="No"><span data-en="No" data-es="No">No</span></label>
+              </div>
+              <div class="conditional" data-show-for="budget_allocated" data-show-value="Yes,Partially">
+                <div class="field field-shell">
+                  <label for="budget_notes"><span data-en="Anything useful to know about budget, approval, or decision-making?" data-es="¿Hay algo útil que debamos saber sobre presupuesto, aprobación o decisión?">Anything useful to know about budget, approval, or decision-making?</span></label>
+                  <textarea id="budget_notes" name="budget_notes" data-placeholder-en="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month." data-placeholder-es="Ejemplos: necesita aprobación del dueño, firma de un socio, esperando cierre del trimestre, comparando opciones este mes." placeholder="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month."></textarea>
+                </div>
+              </div>
+            </fieldset>
+            <div class="field full">
+              <label for="anything_else"><span data-en="Anything else we should know before the meeting?" data-es="¿Algo más que debamos saber antes de la reunión?">Anything else we should know before the meeting?</span></label>
+              <textarea id="anything_else" name="anything_else" data-placeholder-en="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve." data-placeholder-es="Comparte cualquier detalle útil sobre tus objetivos, limitaciones internas, equipo, herramientas actuales o lo que te gustaría resolver en esta conversación." placeholder="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve."></textarea>
+            </div>
+          </div>
+        </article>
+
+        <section class="submit-card" aria-label="Submit the intake">
+          <div class="eyebrow" data-en="Ready To Send" data-es="Listo Para Enviar">Ready To Send</div>
+          <h2 class="headline-sm" data-en="Send The Intake And We'll Prepare The Meeting Properly" data-es="Envía El Formulario Y Prepararemos La Reunión Correctamente">Send The Intake And We'll Prepare The Meeting Properly</h2>
+          <p class="body-md" style="color:rgba(255,255,255,0.7)" data-en="Once this is in, we can come into the meeting with better context, sharper questions, and a more relevant proposal direction from the start." data-es="Una vez recibido, podremos llegar a la reunión con mejor contexto, preguntas más precisas y una dirección de propuesta mucho más relevante desde el inicio.">
+            Once this is in, we can come into the meeting with better context, sharper questions, and a more relevant proposal direction from the start.
+          </p>
+          <div class="submit-row">
+            <div class="submit-actions">
+              <button type="submit" class="btn btn-grad submit-button" id="submit-button" data-en="Send Client Intake" data-es="Enviar Formulario">Send Client Intake</button>
+              <div class="submit-status" id="submit-status" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+  </section>
+
+  <section id="success-state" aria-live="polite">
+    <div class="wrap">
+      <div class="success-card">
+        <div class="success-main">
+          <div class="eyebrow" data-en="Thank You" data-es="Gracias">Thank You</div>
+          <h2 class="headline-md" data-en="We Have What We Need To Prepare Properly" data-es="Ya Tenemos Lo Necesario Para Preparar Bien La Reunión">We Have What We Need To Prepare Properly</h2>
+          <p class="body-lg" data-en="Your intake has been received. We will review it before the meeting so we can come in with better context, better questions, and a proposal direction that actually fits the business." data-es="Hemos recibido tu formulario. Lo revisaremos antes de la reunión para llegar con mejor contexto, mejores preguntas y una dirección de propuesta que realmente encaje con tu negocio.">
+            Your intake has been received. We will review it before the meeting so we can come in with better context, better questions, and a proposal direction that actually fits the business.
+          </p>
+          <div class="success-actions">
+            <a href="https://thefuturestudio.online/" class="btn btn-outline" data-en="Back To Site" data-es="Volver Al Sitio">Back To Site</a>
+          </div>
+        </div>
+        <div class="success-side">
+          <div class="eyebrow" data-en="What Happens Next" data-es="Lo Que Sigue">What Happens Next</div>
+          <h3 class="headline-sm" data-en="A More Relevant Meeting" data-es="Una Reunión Más Relevante">A More Relevant Meeting</h3>
+          <ul class="success-list">
+            <li data-en="We review your numbers, current friction, and service-fit signals before the call." data-es="Revisamos tus números, tus fricciones actuales y las señales de encaje con nuestros servicios antes de la llamada.">We review your numbers, current friction, and service-fit signals before the call.</li>
+            <li data-en="We use this to make the meeting sharper and avoid generic discovery questions." data-es="Usamos esto para hacer la reunión más precisa y evitar preguntas genéricas de discovery.">We use this to make the meeting sharper and avoid generic discovery questions.</li>
+            <li data-en="If there is a strong fit, we can move faster into a proposal that is actually useful." data-es="Si hay un encaje sólido, podremos avanzar más rápido hacia una propuesta que realmente sea útil.">If there is a strong fit, we can move faster into a proposal that is actually useful.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="./logo.png" alt="The Future Studio">
+        </div>
+        <p class="footer-tagline" data-en="Strategic AI, automation, websites, and brand systems for businesses that want to look sharper, respond faster, and grow with more structure." data-es="IA estratégica, automatización, sitios web y sistemas de marca para negocios que quieren verse mejor, responder más rápido y crecer con más estructura.">
+          Strategic AI, automation, websites, and brand systems for businesses that want to look sharper, respond faster, and grow with more structure.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="https://thefuturestudio.online/#services" data-en="AI & Automation" data-es="IA y automatización">AI & Automation</a></li>
+          <li><a href="https://thefuturestudio.online/#services" data-en="Website Systems" data-es="Sistemas web">Website Systems</a></li>
+          <li><a href="https://thefuturestudio.online/#services" data-en="Brand Refresh" data-es="Actualización de marca">Brand Refresh</a></li>
+          <li><a href="https://thefuturestudio.online/tfs-pricing.html" data-en="Pricing" data-es="Precios">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Agenda llamada">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><span>info&#64;thefuturestudio.online</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-en="© 2026 The Future Studio. All rights reserved." data-es="© 2026 The Future Studio. Todos los derechos reservados.">© 2026 The Future Studio. All rights reserved.</div>
+      <div class="footer-copy" data-en="Client intake for discovery preparation." data-es="Formulario de preparación para discovery.">Client intake for discovery preparation.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const languageButtons = document.querySelectorAll('.lang-btn');
+  const translatableNodes = document.querySelectorAll('[data-en][data-es]');
+  const placeholderNodes = document.querySelectorAll('[data-placeholder-en][data-placeholder-es]');
+  const progressText = document.getElementById('progress-text');
+  const progressFill = document.getElementById('progress-fill');
+  const form = document.getElementById('intake-form');
+  const submitButton = document.getElementById('submit-button');
+  const submitStatus = document.getElementById('submit-status');
+  const preferredLanguage = document.getElementById('preferred-language');
+  const priorityError = document.getElementById('priority-error');
+  const prioritySummary = document.getElementById('priority-summary');
+  const interestSummary = document.getElementById('interest-summary');
+  const estimatedRevenue = document.getElementById('estimated-revenue-3-months');
+  const qualificationScore = document.getElementById('qualification-score');
+  const qualificationBand = document.getElementById('qualification-band');
+  const serviceTags = document.getElementById('service-tags');
+  const successState = document.getElementById('success-state');
+  const formZone = document.getElementById('form-zone');
+  const nav = document.getElementById('nav');
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileNav = document.getElementById('nav-mobile');
+  let currentLang = 'en';
+  let lastScrollY = window.scrollY;
+
+  const conditionalRules = [
+    { name: 'sales_loss', values: ['Yes'] },
+    { name: 'website_issue', values: ['Yes'] },
+    { name: 'brand_issue', values: ['Yes'] },
+    { name: 'budget_allocated', values: ['Yes', 'Partially'] }
+  ];
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    preferredLanguage.value = lang;
+
+    translatableNodes.forEach(function (node) {
+      node.innerHTML = node.getAttribute('data-' + lang);
+    });
+
+    placeholderNodes.forEach(function (node) {
+      node.setAttribute('placeholder', node.getAttribute('data-placeholder-' + lang));
+    });
+
+    document.querySelectorAll('option[data-en][data-es]').forEach(function (option) {
+      option.textContent = option.getAttribute('data-' + lang);
+    });
+
+    const percent = calculateCompletion();
+    const template = progressText.getAttribute('data-' + lang + '-template');
+    progressText.textContent = template.replace('{value}', percent);
+
+    languageButtons.forEach(function (button) {
+      button.classList.toggle('active', button.getAttribute('data-lang') === lang);
+    });
+
+    updateConditionalSections();
+  }
+
+  function encodeFormData(data) {
+    return new URLSearchParams(data).toString();
+  }
+
+  function getRadioValue(name) {
+    const checked = form.querySelector('input[name="' + name + '"]:checked');
+    return checked ? checked.value : '';
+  }
+
+  function getPriorityValues() {
+    return ['priority_1', 'priority_2', 'priority_3']
+      .map(function (name) {
+        const field = form.elements[name];
+        return field ? String(field.value).trim() : '';
+      })
+      .filter(Boolean);
+  }
+
+  function toggleConditional(wrapper, shouldOpen) {
+    if (!wrapper) return;
+    if (shouldOpen) {
+      wrapper.classList.add('open');
+      wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+    } else {
+      wrapper.classList.remove('open');
+      wrapper.style.maxHeight = '0px';
+    }
+  }
+
+  function updateConditionalSections() {
+    conditionalRules.forEach(function (rule) {
+      const value = getRadioValue(rule.name);
+      document.querySelectorAll('[data-show-for="' + rule.name + '"]').forEach(function (wrapper) {
+        const showValues = wrapper.getAttribute('data-show-value').split(',');
+        toggleConditional(wrapper, showValues.includes(value));
+      });
+    });
+  }
+
+  function validatePriorityOrder() {
+    const values = getPriorityValues();
+    const uniqueValues = new Set(values);
+    const isValid = values.length === uniqueValues.size;
+    priorityError.classList.toggle('visible', !isValid);
+    return isValid;
+  }
+
+  function updateQualificationTags() {
+    const priorities = getPriorityValues();
+    const selectedInterests = Array.from(form.querySelectorAll('input[name="ai_interest"]:checked')).map(function (input) {
+      return input.value;
+    });
+    const newClients = parseFloat(form.elements.new_clients_last_3_months.value) || 0;
+    const averageTicket = parseFloat(form.elements.average_ticket_usd.value) || 0;
+    const memberships = parseFloat(form.elements.memberships_sold_last_3_months.value) || 0;
+    const giftCards = parseFloat(form.elements.gift_cards_sold_last_3_months.value) || 0;
+    const revenueValue = Math.round((newClients * averageTicket) + (memberships * averageTicket) + (giftCards * averageTicket));
+    const tags = [];
+    let score = 0;
+
+    if (getRadioValue('sales_loss') === 'Yes') { tags.push('lead-friction'); score += 3; }
+    if (getRadioValue('website_issue') === 'Yes') { tags.push('website-refresh'); score += 2; }
+    if (getRadioValue('brand_issue') === 'Yes') { tags.push('brand-refresh'); score += 2; }
+
+    if (selectedInterests.includes('Lead capture') || selectedInterests.includes('Follow-up automation') || selectedInterests.includes('WhatsApp automation')) {
+      tags.push('automation-opportunity');
+      score += 2;
+    }
+    if (selectedInterests.includes('Website improvement')) tags.push('website-opportunity');
+    if (selectedInterests.includes('Brand / design refresh')) tags.push('brand-opportunity');
+    if (selectedInterests.includes('Reporting / analytics')) tags.push('reporting-opportunity');
+    if (selectedInterests.includes('AI phone assistant') || selectedInterests.includes('Appointment booking')) tags.push('conversion-opportunity');
+
+    const budget = form.elements.budget_range.value;
+    if (budget === '$7,500+') score += 4;
+    else if (budget === '$3,000-$7,500') score += 3;
+    else if (budget === '$1,500-$3,000') score += 2;
+    else if (budget === '$500-$1,500') score += 1;
+
+    const startTimeline = form.elements.start_timeline.value;
+    if (startTimeline === 'Within 7 days') score += 4;
+    else if (startTimeline === 'Within 30 days') score += 3;
+    else if (startTimeline === 'Within 60 days') score += 2;
+
+    const budgetAllocated = getRadioValue('budget_allocated');
+    if (budgetAllocated === 'Yes') score += 3;
+    else if (budgetAllocated === 'Partially') score += 2;
+
+    if (revenueValue >= 50000) score += 4;
+    else if (revenueValue >= 20000) score += 3;
+    else if (revenueValue >= 8000) score += 2;
+    else if (revenueValue > 0) score += 1;
+
+    let band = 'Early-stage lead';
+    if (score >= 14) band = 'High-intent lead';
+    else if (score >= 9) band = 'Qualified lead';
+    else if (score >= 5) band = 'Warm lead';
+
+    prioritySummary.value = priorities.join(' | ');
+    interestSummary.value = selectedInterests.join(' | ');
+    estimatedRevenue.value = revenueValue ? '$' + revenueValue : '';
+    qualificationScore.value = String(score);
+    qualificationBand.value = band;
+    serviceTags.value = Array.from(new Set(tags)).join(' | ');
+  }
+
+  function countCompletedRequired() {
+    let completed = 0;
+    const requiredTextFields = [
+      'business_name',
+      'industry',
+      'new_clients_last_3_months',
+      'average_ticket_usd',
+      'memberships_sold_last_3_months',
+      'gift_cards_sold_last_3_months',
+      'budget_range',
+      'start_timeline',
+      'desired_result'
+    ];
+
+    requiredTextFields.forEach(function (name) {
+      const field = form.elements[name];
+      if (field && String(field.value).trim() !== '') completed += 1;
+    });
+
+    ['sales_loss', 'website_issue', 'brand_issue', 'budget_allocated'].forEach(function (name) {
+      if (getRadioValue(name)) completed += 1;
+    });
+
+    if (form.elements.priority_1 && String(form.elements.priority_1.value).trim() !== '') completed += 1;
+
+    const interests = form.querySelectorAll('input[name="ai_interest"]:checked');
+    if (interests.length > 0) completed += 1;
+
+    return completed;
+  }
+
+  function calculateCompletion() {
+    const totalRequiredGroups = 15;
+    return Math.round((countCompletedRequired() / totalRequiredGroups) * 100);
+  }
+
+  function updateProgress() {
+    const percent = calculateCompletion();
+    const template = progressText.getAttribute('data-' + currentLang + '-template');
+    progressText.textContent = template.replace('{value}', percent);
+    progressFill.style.width = percent + '%';
+  }
+
+  function validateCheckboxGroup() {
+    const checked = form.querySelectorAll('input[name="ai_interest"]:checked').length > 0;
+    const group = document.getElementById('interest-group');
+    const error = document.getElementById('interest-error');
+    group.classList.toggle('group-error', !checked);
+    error.classList.toggle('visible', !checked);
+    return checked;
+  }
+
+  function showSuccessState() {
+    formZone.style.display = 'none';
+    successState.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function setSubmitStatus(messageEn, messageEs, isError) {
+    submitStatus.textContent = currentLang === 'es' ? messageEs : messageEn;
+    submitStatus.style.color = isError ? '#ffb0b0' : 'rgba(255,255,255,0.7)';
+  }
+
+  languageButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      applyLanguage(button.getAttribute('data-lang'));
+    });
+  });
+
+  hamburger.addEventListener('click', function () {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+
+  document.querySelectorAll('#nav a, #nav-mobile a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    const currentScrollY = window.scrollY;
+    nav.classList.toggle('scrolled', currentScrollY > 40);
+    if (currentScrollY <= 20 || mobileNav.classList.contains('open')) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentScrollY > lastScrollY + 8 && currentScrollY > 140) {
+      nav.classList.add('nav-hidden');
+    } else if (currentScrollY < lastScrollY - 8) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastScrollY = currentScrollY;
+  });
+
+  conditionalRules.forEach(function (rule) {
+    form.querySelectorAll('input[name="' + rule.name + '"]').forEach(function (input) {
+      input.addEventListener('change', updateConditionalSections);
+      input.addEventListener('change', updateProgress);
+      input.addEventListener('change', updateQualificationTags);
+    });
+  });
+
+  form.querySelectorAll('[data-priority-select="true"]').forEach(function (select) {
+    select.addEventListener('change', function () {
+      validatePriorityOrder();
+      updateProgress();
+      updateQualificationTags();
+    });
+  });
+
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', function (event) {
+    if (event.target.name === 'ai_interest') validateCheckboxGroup();
+    updateProgress();
+    updateQualificationTags();
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    submitStatus.textContent = '';
+    validateCheckboxGroup();
+    validatePriorityOrder();
+    updateQualificationTags();
+
+    if (!form.reportValidity() || !validateCheckboxGroup() || !validatePriorityOrder()) {
+      setSubmitStatus('Please complete the required fields before sending.', 'Por favor completa los campos obligatorios antes de enviar.', true);
+      const firstError = form.querySelector(':invalid, .group-error') || document.querySelector('#priority-error.visible');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    submitButton.disabled = true;
+    setSubmitStatus('Sending your intake...', 'Enviando tu formulario...', false);
+
+    const formData = new FormData(form);
+    const isLocalPreview = /^(127\.0\.0\.1|localhost)$/.test(window.location.hostname);
+
+    if (isLocalPreview) {
+      window.setTimeout(function () {
+        submitButton.disabled = false;
+        form.reset();
+        updateConditionalSections();
+        updateProgress();
+        validatePriorityOrder();
+        updateQualificationTags();
+        showSuccessState();
+      }, 650);
+      return;
+    }
+
+    const submitTarget = form.getAttribute('action') || window.location.pathname;
+
+    fetch(submitTarget, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(formData)
+    })
+      .then(function () {
+        submitButton.disabled = false;
+        form.reset();
+        updateConditionalSections();
+        updateProgress();
+        validatePriorityOrder();
+        updateQualificationTags();
+        showSuccessState();
+      })
+      .catch(function () {
+        submitButton.disabled = false;
+        setSubmitStatus(
+          'There was a problem sending the form. Please try again or email info@thefuturestudio.online.',
+          'Hubo un problema al enviar el formulario. Inténtalo de nuevo o escribe a info@thefuturestudio.online.',
+          true
+        );
+      });
+  });
+
+  function initCanvas() {
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let nodes = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      nodes = Array.from({ length: Math.max(24, Math.floor(width / 72)) }, function () {
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35
+        };
+      });
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, width, height);
+
+      nodes.forEach(function (node) {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+      });
+
+      for (let i = 0; i < nodes.length; i += 1) {
+        const a = nodes[i];
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(0,229,204,0.42)';
+        ctx.arc(a.x, a.y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(0,229,204,' + (0.16 - dist / 1000) + ')';
+            ctx.lineWidth = 1;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    tick();
+  }
+
+  applyLanguage('en');
+  updateConditionalSections();
+  validatePriorityOrder();
+  updateQualificationTags();
+  updateProgress();
+  initCanvas();
+});
+</script>
+</body>
+</html>
