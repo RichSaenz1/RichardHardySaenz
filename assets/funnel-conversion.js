@@ -774,6 +774,27 @@
     });
   }
 
+  function forceCheckoutContrast() {
+    var path = window.location.pathname.toLowerCase();
+    if (path.indexOf("/checkout/") === -1 && !document.querySelector(".payment-panel")) return;
+
+    document.querySelectorAll(".payment-panel").forEach(function (panel) {
+      panel.style.background = "#050505";
+      panel.style.color = "#fffdfa";
+      panel.style.opacity = "1";
+      panel.style.transform = "none";
+      panel.style.filter = "none";
+
+      var parent = panel.parentElement;
+      while (parent && parent !== document.body) {
+        parent.style.opacity = "1";
+        parent.style.filter = "none";
+        if (parent.tagName && parent.tagName.toLowerCase() === "main") break;
+        parent = parent.parentElement;
+      }
+    });
+  }
+
   function boot() {
     tagFunnelPage();
     cleanupEncodingIssues();
@@ -794,6 +815,7 @@
     updateCtas();
     cleanupEncodingIssues();
     cleanupTextIssues();
+    forceCheckoutContrast();
     syncBilingual();
     simplifyCheckoutHeroTitles();
     cleanupEncodingIssues();
