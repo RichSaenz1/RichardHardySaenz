@@ -175,7 +175,7 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 
 /*  PLATFORMS xxxxxxxxxxxxxxxxxxxxxxxx */
 #platforms{padding:56px 0;background:var(--black);overflow:hidden}
-.platforms-eyebrow{text-align:center;color:rgba(255,255,255,0.5);margin-bottom:32px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-family:var(--font-d)}
+.platforms-eyebrow{text-align:center;margin-bottom:34px;font-size:28px;letter-spacing:.18em;text-transform:uppercase;font-family:var(--font-d);font-weight:800;background:linear-gradient(90deg,var(--cyan),#4dbded,var(--violet),#e040fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .marquee-wrap{overflow:hidden;position:relative}
 .marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
 .marquee-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent)}
@@ -386,6 +386,18 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .flagship-info-panel{border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,rgba(0,229,204,.16),rgba(155,89,255,.18),rgba(224,64,251,.1));padding:26px;display:flex;flex-direction:column;gap:18px;box-shadow:inset 0 0 50px rgba(0,229,204,.06)}
 .flagship-info-title{font-family:var(--font-d);font-size:clamp(28px,3vw,42px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95;color:var(--white)}
 .flagship-info-copy{font-size:15px;line-height:1.75;color:rgba(255,255,255,.7)}
+.flagship-diagram{min-height:100%;border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,rgba(0,229,204,.14),rgba(27,39,70,.6),rgba(155,89,255,.22));padding:28px;display:flex;flex-direction:column;gap:24px;box-shadow:inset 0 0 54px rgba(0,229,204,.08),0 22px 70px rgba(0,0,0,.28)}
+.flagship-flow-head{display:grid;gap:8px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.16)}
+.flagship-flow-kicker{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),#55aaff,var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.flagship-flow-name{font-family:var(--font-d);font-size:clamp(26px,3.4vw,46px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95;color:var(--white)}
+.flagship-flow-steps{display:grid;gap:16px;flex:1}
+.flagship-flow-step{display:grid;grid-template-columns:58px minmax(0,1fr);align-items:center;gap:18px;min-height:72px;padding:0 18px;border:1px solid rgba(255,255,255,.18);background:rgba(5,5,8,.68);box-shadow:0 0 0 1px rgba(0,229,204,.04);transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease)}
+.flagship-flow-step:hover{transform:translateX(6px);border-color:rgba(0,229,204,.7);background:linear-gradient(135deg,rgba(0,229,204,.22),rgba(155,89,255,.18));box-shadow:0 14px 34px rgba(0,229,204,.16),0 0 28px rgba(155,89,255,.18)}
+.flagship-flow-index{display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(135deg,var(--cyan),#55aaff,var(--violet));color:var(--black);font-family:var(--font-d);font-size:16px;font-weight:800;letter-spacing:.04em}
+.flagship-flow-text{font-family:var(--font-d);font-size:20px;font-weight:800;font-style:italic;text-transform:uppercase;color:var(--white);line-height:1}
+.flagship-flow-arrow{width:2px;height:18px;justify-self:center;background:linear-gradient(180deg,var(--cyan),var(--violet));box-shadow:0 0 18px rgba(0,229,204,.45)}
+.flagship-flow-finish{min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,.2);background:rgba(5,5,8,.72);font-family:var(--font-d);font-size:18px;font-weight:800;font-style:italic;text-transform:uppercase;color:var(--white);letter-spacing:.04em;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
+.flagship-flow-finish:hover{transform:translateY(-4px);border-color:rgba(0,229,204,.75);box-shadow:0 14px 34px rgba(0,229,204,.16),0 0 28px rgba(155,89,255,.18)}
 .svc-card{padding:28px;border:2px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px;transition:all 0.4s cubic-bezier(0.23,1,0.32,1);cursor:default;position:relative;background:#0a0a0f}
 .svc-card:hover{background:#ffffff;border:2px solid #0a0a0f;transform:translateY(-16px) translateX(-8px);box-shadow:16px 16px 0px #00e5cc}
 .svc-card:hover .svc-name{color:#0a0a0f;-webkit-text-fill-color:#0a0a0f;background:none;-webkit-background-clip:unset;background-clip:unset}
@@ -644,6 +656,8 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .cta-h2{font-family:var(--font-d);font-size:clamp(60px,10vw,140px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.85;letter-spacing:-.01em;margin:20px 0 28px;color:var(--black)}
 .cta-sub{font-size:18px;color:rgba(0,0,0,0.6);max-width:500px;margin:0 auto 44px;line-height:1.75}
 .cta-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px}
+.btn-email-grad{background:linear-gradient(90deg,var(--cyan),#55aaff,var(--violet),#e040fb);color:var(--black);border:2px solid transparent}
+.btn-email-grad:hover{background:var(--black);color:var(--white);border-color:var(--black);box-shadow:0 12px 34px rgba(0,229,204,.22);transform:translateY(-1px)}
 .cta-note{font-size:15px;color:rgba(0,0,0,0.55);margin-top:20px;font-family:var(--font-d);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .cta-note a{text-decoration:underline;text-underline-offset:4px;color:var(--black);font-size:17px;letter-spacing:.02em}
 
@@ -779,8 +793,11 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .flagship-meta{gap:12px}
   .flagship-meta-item{padding:16px}
   .flagship-meta-value{font-size:14px}
-  .flagship-diagram{min-height:420px}
-  .flagship-flow-steps{min-height:340px}
+  .flagship-diagram{min-height:0;padding:20px;gap:18px}
+  .flagship-flow-steps{min-height:0;gap:12px}
+  .flagship-flow-step{grid-template-columns:48px minmax(0,1fr);min-height:62px;padding:0 14px;gap:14px}
+  .flagship-flow-index{width:40px;height:40px;font-size:14px}
+  .flagship-flow-text{font-size:17px}
   .testimonials-head{gap:28px}
   .testimonials-image{height:220px}
   .pricing-image{height:240px}
@@ -1579,8 +1596,8 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <div class="cta-actions aos d2">
         <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark btn-lg" data-en="Book a Free AI Systems Demo" data-es="Reservar demo gratuita de IA">Book a Free AI Systems Demo</a>
         <a href="https://wa.me/50766753870?text=Hola%2C%20me%20gustaria%20saber%20que%20sistema%20de%20IA%20tiene%20mas%20sentido%20para%20mi%20negocio.%20Me%20pueden%20ayudar%20a%20elegir%3F" target="_blank" rel="noopener" class="btn btn-outline-dark btn-lg" data-wa-link data-en="Ask about your first AI system" data-es="Preguntar por mi primer sistema IA">Ask about your first AI system</a>
+        <a href="mailto:info@thefuturestudio.online" class="btn btn-email-grad btn-lg" data-en="Email The Studio" data-es="Escribir al Studio">Email The Studio</a>
       </div>
-      <p class="cta-note"><span data-en="Or email " data-es="O escribe a ">Or email </span><a href="mailto:info@thefuturestudio.online">info@thefuturestudio.online</a></p>
     </div>
   </div>
 </section>
