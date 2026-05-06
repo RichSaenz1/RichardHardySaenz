@@ -386,9 +386,9 @@ const pages = [
     pricingTitle: 'CHOOSE THE VOICE SYSTEM YOUR BUSINESS NEEDS',
     pricingBody: 'Start with the first reliable call flow, or build a deeper voice and follow-up system that protects more of the client journey.',
     pricing: [
-      ['Voice Agent Foundation', 'from $1,999', ['One main call flow', 'Bilingual voice option', 'Call summaries and transcripts', 'Email or WhatsApp handoff'], 'Reserve Build'],
-      ['Voice + Follow-Up System', 'from $2,999', ['Voice agent plus follow-up messages', 'Lead qualification logic', 'Human escalation rules', 'Booking, CRM, or form handoff'], 'Book a Build Call', true],
-      ['Multi-Flow Voice System', 'from $4,999', ['Multiple departments or locations', 'Advanced routing and reporting', 'Dashboard or custom app layer', 'Ongoing optimisation plan'], 'Discuss Scope']
+      ['Voice Agent Foundation', 'from $1,999', ['One main call flow', 'Bilingual voice option', 'Call summaries and transcripts', 'Email or WhatsApp handoff'], 'Reserve Yours Now'],
+      ['Voice + Follow-Up System', 'from $2,999', ['Voice agent plus follow-up messages', 'Lead qualification logic', 'Human escalation rules', 'Booking, CRM, or form handoff'], 'Reserve Yours Now', true],
+      ['Multi-Flow Voice System', 'from $4,999', ['Multiple departments or locations', 'Advanced routing and reporting', 'Dashboard or custom app layer', 'Ongoing optimisation plan'], 'Reserve Yours Now']
     ],
     includeVoiceDemo: true,
     faqs: [
