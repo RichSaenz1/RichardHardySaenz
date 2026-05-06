@@ -1,0 +1,406 @@
+/* ============================================================
+   The Future Studio - Funnel Shell (shared header / footer / chrome)
+   File: /assets/funnel/funnel-shell.css
+   Status: Phase B build. Not yet applied to any page.
+   ------------------------------------------------------------
+   What this file is
+   - Self-contained visual styles for the shared funnel header,
+     urgency bar, language toggle, footer, scroll-to-top, WhatsApp
+     button, and mobile sticky CTA bar.
+   - Class names are namespaced with "tfs-" so they NEVER conflict
+     with the existing /assets/funnel-layout.css or
+     /shop/assets/shop.css selectors.
+   - Visually matches the main landing page (cream + cyan/violet,
+     Barlow Condensed italic uppercase, hard borders).
+   - No external @imports. Fonts are expected to be loaded by the
+     host page via Google Fonts (see README in this folder).
+   ============================================================ */
+
+/*  TOKENS - scoped to .tfs-shell wrapper so they don't leak  */
+.tfs-shell {
+  --tfs-cream:#fff8f5;
+  --tfs-white:#ffffff;
+  --tfs-black:#0a0a0a;
+  --tfs-cyan:#00e5cc;
+  --tfs-violet:#9b59ff;
+  --tfs-pink:#e040fb;
+  --tfs-gold:#f4c542;
+  --tfs-text-dark:#0a0a0a;
+  --tfs-text-mid:#444;
+  --tfs-text-muted:#888;
+  --tfs-border-dark:rgba(10,10,10,0.15);
+  --tfs-cyan-glow:rgba(0,229,204,0.3);
+  --tfs-grad:linear-gradient(90deg,var(--tfs-cyan),var(--tfs-violet));
+  --tfs-grad-full:linear-gradient(90deg,var(--tfs-cyan),#00bcd4,var(--tfs-violet),var(--tfs-pink));
+  --tfs-font-d:'Barlow Condensed',Impact,sans-serif;
+  --tfs-font-b:'DM Sans',Arial,sans-serif;
+  --tfs-ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/*  PAGE OFFSETS for fixed nav (and the existing global yellow urgency bar)
+    --------------------------------------------------------------------
+    The yellow urgency bar is injected by /assets/funnel-conversion.js
+    (class: .funnel-urgency-bar). When that script runs, it adds the
+    body class "has-funnel-urgency", which the existing
+    /assets/funnel-layout.css already styles (padding-top, etc).
+    Our shared shell adds a fixed nav 112px tall on top of that, so we
+    extend the existing layout's padding accordingly.
+
+    Pages that want the bottom mobile sticky CTA must opt in with
+    body.tfs-has-mobile-cta (see end of file). We do NOT add bottom
+    padding by default because most funnel pages do not have a sticky
+    bottom bar.                                                          */
+body.tfs-has-shell { padding-top:112px; }
+body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 52px) + 112px); }
+
+@media(max-width:1100px){
+  body.tfs-has-shell { padding-top:96px; }
+  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 52px) + 96px); }
+}
+@media(max-width:768px){
+  body.tfs-has-shell { padding-top:88px; }
+  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 76px) + 88px); }
+}
+@media(max-width:480px){
+  body.tfs-has-shell { padding-top:82px; }
+  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 76px) + 82px); }
+}
+
+/*  Bottom padding ONLY for pages that explicitly opt in to the sticky
+    mobile checkout bar. Without this opt-in, the footer sits flush with
+    the bottom of the page (no empty whitespace under the footer). */
+@media(max-width:768px){
+  body.tfs-has-shell.tfs-has-mobile-cta { padding-bottom:76px; }
+}
+
+/* ===========================================================
+   1. URGENCY BAR
+   =========================================================== */
+/* The yellow urgency bar is injected globally by
+   /assets/funnel-conversion.js (class: .funnel-urgency-bar) and styled
+   in /assets/funnel-layout.css. We do NOT inject a second bar from the
+   shared shell; if we did, two bars would stack at the top of the page.
+   Older Phase B revisions of this file defined .tfs-urgency* selectors
+   for an alternative bar markup; those have been removed to avoid
+   confusion / dead code. */
+
+/* ===========================================================
+   2. NAV
+   =========================================================== */
+#tfs-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  border-top:1px solid rgba(0,0,0,0.12);
+  border-bottom:1px solid transparent;
+  transition:transform .4s var(--tfs-ease), top .3s, background .3s, border-color .3s;
+}
+/* When the existing yellow urgency bar is present, push the nav below
+   it. The variable --funnel-urgency-height is defined in
+   /assets/funnel-layout.css (52px desktop / 76px mobile). */
+body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
+#tfs-nav.tfs-scrolled {
+  background:rgba(255,248,245,0.92);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-bottom-color:var(--tfs-border-dark);
+}
+#tfs-nav.tfs-nav-hidden { transform:translateY(-100%); }
+
+.tfs-nav-inner {
+  display:flex; align-items:center; justify-content:space-between;
+  height:112px; padding:0 32px; gap:20px; position:relative;
+  max-width:100%; margin:0;
+}
+.tfs-nav-logo { display:flex; align-items:center; gap:12px; }
+.tfs-nav-logo img {
+  height:130px; width:auto; object-fit:contain; padding:18px 0;
+}
+
+.tfs-nav-links {
+  display:flex; align-items:center; gap:32px;
+}
+.tfs-nav-links a {
+  font-family:var(--tfs-font-d);
+  font-size:17px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--tfs-black);
+  position:relative; transition:all .2s;
+}
+.tfs-nav-links a::after {
+  content:''; position:absolute; left:0; bottom:-2px;
+  width:0; height:2px;
+  background:var(--tfs-grad);
+  transition:width .25s var(--tfs-ease);
+}
+.tfs-nav-links a:hover {
+  background:var(--tfs-grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+.tfs-nav-links a:hover::after { width:100%; }
+
+.tfs-nav-actions {
+  display:flex; align-items:center; gap:14px;
+}
+.tfs-nav-linkedin {
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px;
+  background:var(--tfs-black); color:var(--tfs-white);
+  flex-shrink:0; line-height:1; font-size:0;
+  transition:all .25s var(--tfs-ease);
+}
+.tfs-nav-linkedin svg { display:block; }
+.tfs-nav-linkedin:hover {
+  background:linear-gradient(135deg,var(--tfs-cyan),var(--tfs-violet));
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px var(--tfs-cyan-glow);
+}
+
+/* Language toggle */
+.tfs-lang-toggle {
+  display:flex; gap:2px; padding:3px;
+  background:rgba(10,10,10,0.06);
+  border:1px solid var(--tfs-border-dark);
+}
+.tfs-lang-btn {
+  padding:5px 13px;
+  font-family:var(--tfs-font-d);
+  font-size:11px; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--tfs-text-muted);
+  background:none; border:none; cursor:pointer;
+  transition:all .2s;
+}
+.tfs-lang-btn.tfs-active { background:var(--tfs-black); color:var(--tfs-white); }
+
+/* Hamburger (mobile only) */
+.tfs-nav-hamburger {
+  display:none; flex-direction:column; gap:5px;
+  width:40px; padding:8px;
+  background:none; border:none; cursor:pointer;
+}
+.tfs-nav-hamburger span {
+  display:block; width:24px; height:1.5px;
+  background:var(--tfs-black);
+  transition:all .3s;
+}
+.tfs-nav-hamburger.tfs-open span:first-child { transform:translateY(6.5px) rotate(45deg); }
+.tfs-nav-hamburger.tfs-open span:nth-child(2) { opacity:0; }
+.tfs-nav-hamburger.tfs-open span:last-child  { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile menu */
+.tfs-nav-mobile {
+  display:none;
+  background:var(--tfs-cream);
+  border-top:2px solid var(--tfs-black);
+  padding:24px 32px 32px;
+}
+.tfs-nav-mobile.tfs-open { display:block; }
+.tfs-nav-mobile a {
+  display:block; padding:14px 0;
+  font-family:var(--tfs-font-d);
+  font-size:22px; font-weight:700; font-style:italic;
+  text-transform:uppercase; text-align:center;
+  color:var(--tfs-text-mid);
+  border-bottom:1px solid var(--tfs-border-dark);
+}
+.tfs-nav-mobile a:hover { color:var(--tfs-black); }
+.tfs-nav-mobile-meta {
+  display:flex; align-items:center; justify-content:center;
+  gap:14px; padding:16px 0 20px; margin-bottom:4px;
+}
+.tfs-nav-mobile .tfs-lang-toggle { display:inline-flex; }
+.tfs-nav-mobile .tfs-btn { margin-top:20px; width:100%; justify-content:center; }
+
+/* Responsive nav */
+@media(max-width:1100px){
+  .tfs-nav-inner{ height:96px; padding:0 28px; }
+  .tfs-nav-links, .tfs-nav-actions{ display:none; }
+  .tfs-nav-hamburger{
+    display:flex; align-items:center; justify-content:center;
+    position:absolute; right:28px; top:50%; transform:translateY(-50%);
+    z-index:3; min-width:44px; min-height:44px;
+  }
+  .tfs-nav-logo img{ height:106px; padding:14px 0; }
+  .tfs-nav-mobile{ max-height:calc(100vh - 96px); overflow-y:auto; padding:18px 28px 28px; }
+  .tfs-nav-mobile a{ font-size:20px; }
+}
+@media(max-width:768px){
+  .tfs-nav-inner{ height:88px; }
+  .tfs-nav-logo img{ height:98px; padding:12px 0; }
+  .tfs-nav-mobile{ max-height:calc(100vh - 88px); }
+}
+@media(max-width:480px){
+  .tfs-nav-inner{ height:82px; padding:0 20px; }
+  .tfs-nav-logo img{ height:88px; padding:10px 0; }
+  .tfs-nav-hamburger{ right:20px; }
+  .tfs-nav-mobile{ max-height:calc(100vh - 82px); padding:14px 20px 24px; }
+}
+
+/* ===========================================================
+   3. BUTTONS (header + mobile menu only)
+   =========================================================== */
+.tfs-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 32px;
+  font-family:var(--tfs-font-d);
+  font-size:16px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--tfs-black);
+  background:transparent; border:none;
+  cursor:pointer; position:relative; overflow:hidden;
+  transition:all .25s var(--tfs-ease);
+}
+.tfs-btn-grad { background:var(--tfs-grad); color:var(--tfs-black); }
+.tfs-btn-grad:hover {
+  background:var(--tfs-white); color:var(--tfs-black);
+  box-shadow:0 0 0 2px var(--tfs-black), 0 12px 34px rgba(0,229,204,.22);
+  transform:translateY(-1px);
+}
+.tfs-btn-outline-dark { background:transparent; color:var(--tfs-black); border:2px solid var(--tfs-black); }
+.tfs-btn-outline-dark:hover { background:var(--tfs-black); color:var(--tfs-white); }
+.tfs-btn-outline-white { background:transparent; color:var(--tfs-white); border:2px solid rgba(255,255,255,0.4); }
+.tfs-btn-outline-white:hover { background:var(--tfs-white); color:var(--tfs-black); }
+.tfs-btn-sm { padding:10px 22px; font-size:13px; }
+.tfs-btn-lg { padding:18px 44px; font-size:18px; }
+
+/* ===========================================================
+   4. FOOTER
+   =========================================================== */
+.tfs-footer {
+  background:var(--tfs-black); color:var(--tfs-white);
+  padding:56px 0 40px;
+}
+.tfs-footer-wrap { max-width:1280px; margin:0 auto; padding:0 32px; }
+.tfs-footer-inner {
+  display:grid; grid-template-columns:1.6fr 1fr 1fr;
+  gap:48px; align-items:start;
+}
+.tfs-footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.tfs-footer-logo img {
+  height:80px; width:auto; object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+.tfs-footer-tagline {
+  font-size:13px; line-height:1.65;
+  color:rgba(255,255,255,0.4);
+  max-width:360px;
+}
+.tfs-footer-col h5 {
+  font-family:var(--tfs-font-d);
+  font-size:11px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+  margin-bottom:16px;
+}
+.tfs-footer-col ul { display:flex; flex-direction:column; gap:10px; list-style:none; padding:0; margin:0; }
+.tfs-footer-col a {
+  font-size:13px; color:rgba(255,255,255,0.5);
+  transition:color .2s;
+}
+.tfs-footer-col a:hover { color:var(--tfs-cyan); }
+.tfs-footer-bottom {
+  margin-top:48px; padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:10px;
+}
+.tfs-footer-copy {
+  font-size:12px;
+  color:rgba(255,255,255,0.25);
+}
+
+@media(max-width:1100px){
+  .tfs-footer-inner{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:768px){
+  .tfs-footer-inner{ grid-template-columns:1fr; text-align:center; }
+  .tfs-footer-logo{ justify-content:center; }
+  .tfs-footer-tagline{ margin:0 auto; }
+  .tfs-footer-col ul{ align-items:center; }
+  .tfs-footer-bottom{ flex-direction:column; text-align:center; }
+}
+
+/* ===========================================================
+   5. FLOATING UI - WhatsApp, scroll-top, mobile sticky CTA
+   =========================================================== */
+#tfs-whatsapp-btn {
+  position:fixed; bottom:28px; right:28px; z-index:200;
+  min-width:146px; height:54px;
+  padding:0 18px 0 16px;
+  background:#25D366; color:var(--tfs-white);
+  border:1px solid rgba(255,255,255,.22);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow:0 18px 50px rgba(37,211,102,.26);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transition:background .25s var(--tfs-ease), box-shadow .25s, transform .25s, border-color .25s;
+}
+#tfs-whatsapp-btn::after {
+  content:''; position:absolute;
+  left:10px; right:10px; bottom:7px;
+  height:2px; background:rgba(255,255,255,.72); opacity:.9;
+}
+#tfs-whatsapp-btn:hover {
+  background:#1ebe5d; border-color:#25D366;
+  box-shadow:0 18px 52px rgba(37,211,102,.48);
+  transform:translateY(-2px);
+}
+#tfs-whatsapp-btn svg {
+  width:22px; height:22px; fill:currentColor; flex-shrink:0;
+}
+.tfs-wa-label {
+  font-family:var(--tfs-font-d);
+  font-size:12px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase;
+  white-space:nowrap;
+}
+
+#tfs-scroll-top {
+  position:fixed; bottom:96px; right:28px; z-index:200;
+  width:44px; height:44px;
+  background:var(--tfs-black); color:var(--tfs-white);
+  display:flex; align-items:center; justify-content:center;
+  border:none; cursor:pointer;
+  opacity:0; pointer-events:none;
+  transform:translateY(10px);
+  transition:background .25s, opacity .3s, transform .3s;
+}
+#tfs-scroll-top.tfs-visible {
+  opacity:1; pointer-events:all; transform:none;
+}
+#tfs-scroll-top:hover { background:var(--tfs-cyan); color:var(--tfs-black); }
+
+.tfs-mobile-sticky-cta {
+  display:none;
+  position:fixed; left:0; right:0; bottom:0; z-index:130;
+  background:rgba(10,10,10,.94);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  padding:10px 12px; gap:10px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.tfs-mobile-sticky-cta .tfs-btn {
+  flex:1; justify-content:center;
+  padding:12px 14px; font-size:13px;
+}
+
+@media(max-width:768px){
+  .tfs-mobile-sticky-cta{ display:flex; }
+}
+@media(max-width:480px){
+  #tfs-whatsapp-btn{
+    min-width:54px; width:54px; height:54px; padding:0;
+    right:20px; bottom:22px;
+  }
+  #tfs-whatsapp-btn::after{ left:12px; right:12px; }
+  .tfs-wa-label{ display:none; }
+}
+
+/* If a page has a sticky checkout bar, it should set body class
+   "tfs-has-checkout-bar" so we move WhatsApp/scroll-top up to
+   avoid overlap. Phase C wires this. */
+body.tfs-has-checkout-bar #tfs-whatsapp-btn { bottom:96px; }
+body.tfs-has-checkout-bar #tfs-scroll-top   { bottom:160px; }
+@media(max-width:480px){
+  body.tfs-has-checkout-bar #tfs-whatsapp-btn { bottom:88px; }
+  body.tfs-has-checkout-bar #tfs-scroll-top   { bottom:148px; }
+}
+
+/* End of file */
