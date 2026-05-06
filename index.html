@@ -1959,6 +1959,15 @@ document.addEventListener('DOMContentLoaded', function() {
         '<div class="flagship-system-kicker">'+(lang==='en'?'Flagship System':'Sistema Principal')+'</div>'+
         '<h3 class="flagship-system-title">'+s.name+'</h3>'+
         '<p class="flagship-system-copy">'+s.summary+'</p>'+
+        '<p class="flagship-system-copy">'+(lang==='en'?'This page shows what the system does, who it helps, what it connects to, and how it can become part of your first package build.':'Esta pagina muestra que hace el sistema, a quien ayuda, con que se conecta y como puede formar parte de su primera implementacion.')+'</p>'+
+        '<div class="flagship-actions">'+
+          '<a href="'+s.url+'" class="btn btn-dark">'+(lang==='en'?'View System':'Ver sistema')+'</a>'+
+          '<a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad">'+(lang==='en'?'Book AI Systems Demo':'Reservar demo de IA')+'</a>'+
+        '</div>'+
+      '</div>'+
+      '<div class="flagship-info-panel">'+
+        '<h3 class="flagship-info-title">'+(lang==='en'?'System Snapshot':'Resumen del Sistema')+'</h3>'+
+        '<p class="flagship-info-copy">'+(lang==='en'?'Use this to compare the practical value of each flagship product before choosing the package or standalone page that fits.':'Use esto para comparar el valor practico de cada producto principal antes de elegir el paquete o la pagina individual que encaja.')+'</p>'+
         '<div class="flagship-meta">'+
           '<div class="flagship-meta-item"><div class="flagship-meta-label">'+(lang==='en'?'Best for':'Ideal para')+'</div><div class="flagship-meta-value">'+s.best+'</div></div>'+
           '<div class="flagship-meta-item"><div class="flagship-meta-label">'+(lang==='en'?'Solves':'Resuelve')+'</div><div class="flagship-meta-value">'+(commercial.solves||s.summary)+'</div></div>'+
@@ -1966,23 +1975,6 @@ document.addEventListener('DOMContentLoaded', function() {
           '<div class="flagship-meta-item"><div class="flagship-meta-label">'+(lang==='en'?'Starts from':'Desde')+'</div><div class="flagship-meta-value">'+(commercial.price||'Scoped after demo')+'</div></div>'+
           '<div class="flagship-meta-item"><div class="flagship-meta-label">'+(lang==='en'?'Timeline':'Tiempo')+'</div><div class="flagship-meta-value">'+(commercial.timeline||'After scope')+'</div></div>'+
         '</div>'+
-        '<div class="flagship-actions">'+
-          '<a href="'+s.url+'" class="btn btn-dark">'+(lang==='en'?'View System':'Ver sistema')+'</a>'+
-          '<a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad">'+(lang==='en'?'Watch a Free Demo':'Ver demo gratuita')+'</a>'+
-        '</div>'+
-      '</div>'+
-      '<div class="flagship-diagram" aria-hidden="true">'+
-        '<div class="flagship-flow-head">'+
-          '<div class="flagship-flow-kicker">'+(lang==='en'?'System Flow':'Flujo del Sistema')+'</div>'+
-          '<div class="flagship-flow-name">'+s.name+'</div>'+
-        '</div>'+
-        '<div class="flagship-flow-steps">'+
-        s.flow.map(function(step,idx){
-          var n=String(idx+1).padStart(2,'0');
-          return '<div class="flagship-flow-step"><span class="flagship-flow-index">'+n+'</span><span class="flagship-flow-text">'+step+'</span></div>'+(idx<s.flow.length-1?'<span class="flagship-flow-arrow"></span>':'');
-        }).join('')+
-        '</div>'+
-        '<div class="flagship-flow-finish">'+(lang==='en'?'Ready for handoff':'Listo para entregar')+'</div>'+
       '</div>';
     tabs.querySelectorAll('.flagship-tab').forEach(function(btn){
       btn.addEventListener('click',function(){
