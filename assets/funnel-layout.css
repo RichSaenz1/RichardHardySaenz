@@ -2288,6 +2288,141 @@ body.has-funnel-urgency #nav {
   color: #fffdfa !important;
 }
 
+/* Recovery guard: keep restored course-series heroes visible and compact. */
+.page-series .hero {
+  min-height: auto !important;
+  align-items: flex-start !important;
+}
+
+@media (min-width: 901px) {
+  .page-series .hero {
+    padding-top: clamp(34px, 4vw, 64px) !important;
+    padding-bottom: clamp(64px, 7vw, 112px) !important;
+  }
+
+  .page-series .hero-title {
+    max-width: min(100%, 1160px) !important;
+    color: #050505 !important;
+    -webkit-text-fill-color: #050505 !important;
+    overflow: visible !important;
+    font-size: clamp(78px, 10vw, 146px) !important;
+    line-height: 0.9 !important;
+  }
+
+  .page-series .hero-title .line {
+    overflow: visible !important;
+  }
+
+  .page-series .hero-title .line > span {
+    display: block !important;
+    color: #050505 !important;
+    -webkit-text-fill-color: #050505 !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .page-series .hero-title .shimmer {
+    display: inline !important;
+    background: linear-gradient(90deg, var(--cyan, #12d8c8), #37b7f3, var(--violet, #8b5cf6)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+}
+
+/* -----------------------------------------------------------------
+   Rebuild pass: shared funnel polish from May reference screenshots.
+   These are layout/visual-only rules; they do not touch routes, forms,
+   Stripe behavior, or funnel logic.
+----------------------------------------------------------------- */
+.hero-title,
+.section-title,
+.funnel-fit-grid h3,
+.funnel-mini-faq-grid h3,
+.checkout-card h2,
+.feature-card h3 {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+.hero-title,
+.hero-title .line,
+.hero-title span {
+  overflow: visible !important;
+}
+
+.funnel-image-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: var(--funnel-image-position, center 36%) !important;
+}
+
+.funnel-image-frame--portrait img {
+  object-position: var(--funnel-image-position, center 30%) !important;
+}
+
+.funnel-product-fit-section {
+  clear: both !important;
+}
+
+.funnel-fit-grid article {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: clamp(30px, 3vw, 48px) clamp(24px, 3vw, 42px) !important;
+  box-shadow: 10px 10px 0 rgba(8, 216, 200, 0.18) !important;
+}
+
+.funnel-fit-grid h3 {
+  width: 100% !important;
+  margin: 0 auto clamp(18px, 2vw, 28px) !important;
+  font-size: clamp(38px, 4.1vw, 62px) !important;
+  line-height: 0.94 !important;
+}
+
+.funnel-fit-grid ul {
+  display: grid !important;
+  gap: 16px !important;
+  width: min(100%, 520px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.funnel-fit-grid li {
+  display: grid !important;
+  grid-template-columns: 10px minmax(0, 1fr) !important;
+  align-items: start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.funnel-fit-grid li::before {
+  content: "" !important;
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  margin-top: 0.58em !important;
+  background: var(--cyan, #12d8c8) !important;
+}
+
+.funnel-fit-grid article:nth-child(odd) {
+  background: #fffdfa !important;
+  color: #050505 !important;
+}
+
+.funnel-fit-grid article:nth-child(even) {
+  background: #050505 !important;
+  color: #fffdfa !important;
+}
+
 .checkout-restored .payment-panel *,
 .page-checkout-series .payment-panel *,
 .page-checkout-calendar .payment-panel *,
@@ -2434,5 +2569,223 @@ body.has-funnel-urgency #nav {
 
   .page-checkout-clean .hero {
     padding-top: 148px !important;
+  }
+}
+
+.funnel-fit-grid article:nth-child(even) h3,
+.funnel-fit-grid article:nth-child(even) li,
+.funnel-fit-grid article:nth-child(even) p {
+  color: #fffdfa !important;
+}
+
+.funnel-mini-faq-grid article {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  min-height: 100% !important;
+}
+
+.funnel-mini-faq-grid h3 {
+  font-size: clamp(34px, 3.3vw, 52px) !important;
+  line-height: 0.96 !important;
+}
+
+.funnel-deal-strip,
+.funnel-sticky-value-bar {
+  isolation: isolate !important;
+}
+
+.funnel-deal-strip {
+  z-index: 8 !important;
+}
+
+.funnel-deal-strip strong,
+.funnel-sticky-value-bar strong,
+.funnel-countdown,
+.funnel-deal-save {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.funnel-proof-quotes article,
+.funnel-testimonial-grid article {
+  position: relative !important;
+  border-color: #050505 !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 202, 40, 0.16), transparent 38%),
+    #fffdfa !important;
+  box-shadow:
+    10px 10px 0 rgba(8, 216, 200, 0.2),
+    0 0 38px rgba(255, 198, 35, 0.28) !important;
+}
+
+.funnel-proof-quotes article::before,
+.funnel-testimonial-grid article::before {
+  content: "" !important;
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 auto 18px !important;
+  background: var(--cyan, #12d8c8) !important;
+}
+
+.funnel-stars {
+  color: #ffbe00 !important;
+  letter-spacing: 0.08em !important;
+  text-shadow:
+    0 0 10px rgba(255, 190, 0, 0.7),
+    0 0 22px rgba(255, 190, 0, 0.35) !important;
+}
+
+.page-step-4 .picker,
+.page-step-4-product .picker,
+.page-step-4 .hero-actions,
+.page-step-4-product .hero-actions,
+.page-step-4 .section-cta,
+.page-step-4-product .section-cta {
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.page-step-4 .picker button,
+.page-step-4-product .picker button,
+.page-step-4 .step4-buy-trigger,
+.page-step-4-product .step4-buy-trigger {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+@media (min-width: 901px) {
+  .funnel-fit-grid:has(article:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    max-width: 1120px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .funnel-fit-grid:has(article:nth-child(3):last-child) {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .page-step-3-product .funnel-deal-strip,
+  .page-step-4-product .funnel-deal-strip,
+  .page-step-4 .funnel-deal-strip,
+  .page-series .funnel-deal-strip {
+    margin-top: clamp(62px, 6.6vw, 108px) !important;
+  }
+
+  .page-step-4 .funnel-sticky-value-bar,
+  .page-step-4-product .funnel-sticky-value-bar,
+  .page-step-3-product .funnel-sticky-value-bar {
+    margin-top: clamp(56px, 6vw, 96px) !important;
+  }
+
+  .page-checkout-series .hero-grid,
+  .page-checkout-calendar .hero-grid,
+  .page-checkout-rollout .hero-grid,
+  .page-checkout-playbook .hero-grid,
+  .page-checkout-investment .hero-grid,
+  .page-checkout-prompts .hero-grid,
+  .page-checkout-whatsapp .hero-grid,
+  .page-checkout-lead .hero-grid {
+    align-items: start !important;
+  }
+
+  .page-checkout-series .hero-panel,
+  .page-checkout-calendar .hero-panel,
+  .page-checkout-rollout .hero-panel,
+  .page-checkout-playbook .hero-panel,
+  .page-checkout-investment .hero-panel,
+  .page-checkout-prompts .hero-panel,
+  .page-checkout-whatsapp .hero-panel,
+  .page-checkout-lead .hero-panel {
+    align-self: start !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-title,
+  .section-title,
+  .funnel-fit-grid h3,
+  .funnel-mini-faq-grid h3 {
+    overflow-wrap: anywhere !important;
+  }
+
+  .funnel-fit-grid article {
+    padding: 30px 22px !important;
+  }
+
+  .funnel-fit-grid h3,
+  .funnel-fit-grid ul,
+  .funnel-fit-grid li {
+    max-width: 100% !important;
+  }
+}
+
+/* Rebuild recovery contrast and cropping corrections */
+.hero-title,
+.section-title,
+.checkout-hero-title {
+  overflow: visible !important;
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
+.hero-title .line,
+.section-title .line {
+  overflow: visible !important;
+}
+
+@media (min-width: 901px) {
+  .page-step-4 .hero-title,
+  .page-step-4 .hero-title .line span,
+  .page-step-4 .hero-title span:not(.grad):not(.shimmer),
+  .page-step-4-product .hero-title,
+  .page-step-4-product .hero-title .line span,
+  .page-step-4-product .hero-title span:not(.grad):not(.shimmer) {
+    background: none !important;
+    color: #050505 !important;
+    -webkit-text-fill-color: #050505 !important;
+  }
+
+  .page-step-4 .hero-title .grad,
+  .page-step-4 .hero-title .shimmer,
+  .page-step-4-product .hero-title .grad,
+  .page-step-4-product .hero-title .shimmer,
+  .page-series .hero-title .grad,
+  .page-series .hero-title .shimmer {
+    background: linear-gradient(90deg, var(--cyan, #12d8c8), #37b7f3, var(--violet, #8b5cf6)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  .page-series .hero-title {
+    color: #050505 !important;
+    -webkit-text-fill-color: #050505 !important;
+  }
+
+  .page-series .hero-title .line span:not(.grad):not(.shimmer) {
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-step-4 .hero-title .grad,
+  .page-step-4 .hero-title .shimmer,
+  .page-step-4-product .hero-title .grad,
+  .page-step-4-product .hero-title .shimmer,
+  .page-series .hero-title .grad,
+  .page-series .hero-title .shimmer {
+    background: linear-gradient(90deg, var(--cyan, #12d8c8), #37b7f3, var(--violet, #8b5cf6)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
   }
 }

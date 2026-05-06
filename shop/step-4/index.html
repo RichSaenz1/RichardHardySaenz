@@ -1,261 +1,1132 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>90-Day Content Calendars for Service Businesses | The Future Studio</title>
-<meta name="description" content="Choose the 90-day content calendar that matches your industry and get a done-for-you content structure for clinics, law firms, real estate, beauty, education, or dental businesses.">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script><meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>90-Day Content Calendars for Service Businesses | TFS</title>
+<meta name="description" content="Choose a bilingual 90-day content calendar for clinics, dentists, legal, real estate, beauty, or education. Build a consistent, market-facing brand. EN/ES.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://thefuturestudio.online/shop/step-4/">
-<meta property="og:title" content="90-Day Content Calendars for Service Businesses">
-<meta property="og:description" content="One product line, six industry versions. Choose the content calendar built for your business.">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-4/">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-4/">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-4/">
+<meta property="og:title" content="90-Day Content Calendars for Service Businesses | TFS">
+<meta property="og:description" content="Six bilingual industry versions Ã¢â‚¬â€ clinics, dental, legal, real estate, beauty, education. Trust-building content, done for you.">
 <meta property="og:type" content="product">
 <meta property="og:url" content="https://thefuturestudio.online/shop/step-4/">
 <meta property="og:image" content="https://thefuturestudio.online/logo.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/shop.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"90-Day Content Calendars for Service Businesses","description":"A done-for-you content-calendar product line with industry variants for clinics, law firms, real estate, dental businesses, beauty studios, and education brands.","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/step-4/"},"brand":{"@type":"Organization","name":"The Future Studio"}}
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+@keyframes step4HeroSlideUp {
+  from { transform: translateY(105%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes step4HeroShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.page-step-4 .hero {
+  padding: 134px 0 72px;
+  min-height: calc(100vh - 40px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.page-step-4 .hero-panel {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  z-index: 2;
+}
+
+.page-step-4 .hero-panel:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.page-step-4 .hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.page-step-4 .hero-eyebrow-line {
+  width: 48px;
+  height: 2px;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+
+.page-step-4 .hero-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--font-d);
+  font-size: clamp(68px, 10.4vw, 150px);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.page-step-4 .hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.page-step-4 .hero-title .line span {
+  display: block;
+  animation: step4HeroSlideUp .9s var(--ease) both;
+}
+
+.page-step-4 .hero-title .line:nth-child(1) span { animation-delay: .08s; }
+.page-step-4 .hero-title .line:nth-child(2) span { animation-delay: .2s; }
+.page-step-4 .hero-title .line:nth-child(3) span { animation-delay: .32s; }
+
+.page-step-4 .hero-title .shimmer {
+  background: linear-gradient(90deg, var(--cyan), #38b7f3, var(--violet), var(--cyan));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: step4HeroShimmer 3s ease infinite;
+}
+
+.page-step-4 .hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -150px;
+}
+
+.page-step-4 .hero-orb-2 {
+  width: 600px;
+  height: 600px;
+  bottom: -100px;
+  right: -200px;
+}
+
+.page-step-4 .hero-orb-3 {
+  width: 180px;
+  height: 180px;
+  top: 42%;
+  left: 56%;
+  opacity: .25;
+}
+
+.page-step-4 .hero-copy,
+.page-step-4 .hero-bridge-copy,
+.page-step-4 .section-copy,
+.page-step-4 .feature-card p,
+.page-step-4 .faq-answer,
+.page-step-4 .checkout-card p,
+.page-step-4 .cta-points li {
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.page-step-4 .hero-copy {
+  margin-top: 28px;
+  max-width: 760px;
+  font-size: 17px;
+  color: var(--text-mid);
+}
+
+.page-step-4 .hero-bridge-copy {
+  margin-top: 16px;
+  max-width: 760px;
+  color: var(--text-mid);
+}
+
+.page-step-4 .picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.page-step-4 .picker button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 12px 18px;
+  border: 2px solid var(--black);
+  background: transparent;
+  font-family: var(--font-d);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+
+.page-step-4 .picker button.active,
+.page-step-4 .picker button:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: translate(-6px,-6px);
+  box-shadow: 6px 6px 0 var(--cyan);
+}
+
+.page-step-4 .hero-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.page-step-4 .section {
+  padding: 18px 0 52px;
+}
+
+.page-step-4 .section-title,
+.page-step-4 .checkout-card h2 {
+  margin-top: 18px;
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.page-step-4 .diagnostic-grid,
+.page-step-4 .feature-grid {
+  display: grid;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.page-step-4 .diagnostic-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  margin-top: 14px;
+}
+
+.page-step-4 .diagnostic-card {
+  min-height: 260px;
+  padding: 24px 22px;
+  border: 2px solid var(--black);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s cubic-bezier(0.23,1,0.32,1), box-shadow .3s cubic-bezier(0.23,1,0.32,1), background .3s var(--ease), color .3s var(--ease);
+}
+
+.page-step-4 .diagnostic-card.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.page-step-4 .diagnostic-card.dark p,
+.page-step-4 .diagnostic-card.dark strong {
+  color: var(--white);
+}
+
+.page-step-4 .diagnostic-card:hover {
+  transform: translate(-12px,-12px);
+  box-shadow: 12px 12px 0 var(--cyan);
+  background: var(--white);
+  color: var(--black);
+}
+
+.page-step-4 .diagnostic-card:not(.dark):hover {
+  background: var(--black);
+  color: var(--white);
+  box-shadow: 12px 12px 0 var(--violet);
+}
+
+.page-step-4 .diagnostic-card.dark:hover strong,
+.page-step-4 .diagnostic-card.dark:hover .eyebrow,
+.page-step-4 .diagnostic-card.dark:hover .score-number,
+.page-step-4 .diagnostic-card.dark:hover p,
+.page-step-4 .diagnostic-card.dark:hover .micro-note {
+  color: var(--black);
+}
+
+.page-step-4 .diagnostic-card:not(.dark):hover p,
+.page-step-4 .diagnostic-card:not(.dark):hover .micro-note,
+.page-step-4 .diagnostic-card:not(.dark):hover strong {
+  color: var(--white);
+}
+
+.page-step-4 .diagnostic-card .eyebrow {
+  margin-bottom: 12px;
+}
+
+.page-step-4 .diagnostic-card strong {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.page-step-4 .diagnostic-divider {
+  width: 72px;
+  height: 2px;
+  margin-top: 20px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+.page-step-4 .diagnostic-mark {
+  display: flex;
+  gap: 4px;
+  margin-top: 22px;
+}
+
+.page-step-4 .diagnostic-mark span {
+  width: 28px;
+  height: 14px;
+  background: var(--cyan);
+  transform: skewX(-14deg);
+}
+
+.page-step-4 .diagnostic-card:not(.dark) .diagnostic-divider {
+  background: var(--violet);
+}
+
+.page-step-4 .diagnostic-body {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-step-4 .diagnostic-card .micro-note {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .82;
+}
+
+.page-step-4 .score-number {
+  margin-top: 8px;
+}
+
+.page-step-4 .feature-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  margin-top: 26px;
+}
+
+.page-step-4 .feature-card {
+  min-height: 100%;
+  padding: 22px 20px;
+}
+
+.page-step-4 .feature-card h3 {
+  font-size: 24px;
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -0.02em;
+}
+
+.page-step-4 .feature-card p {
+  margin-top: 12px;
+}
+
+.page-step-4 .feature-card .micro-note {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.page-step-4 .faq-wrap {
+  margin-top: 26px;
+}
+
+.page-step-4 .faq-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 0;
+}
+
+.page-step-4 .faq-question {
+  font-size: 22px;
+  font-family: var(--font-d);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.page-step-4 .faq-answer {
+  color: var(--text-mid);
+}
+
+.page-step-4 .faq-wrap .section-copy {
+  margin-top: 28px;
+}
+
+.page-step-4 .checkout-card {
+  padding: 40px 38px;
+  text-align: center;
+}
+
+.page-step-4 .checkout-card h2 {
+  font-size: clamp(42px, 5vw, 72px);
+}
+
+.page-step-4 .checkout-summary {
+  margin-top: 22px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-step-4 .cta-points {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+  text-align: center;
+}
+
+.page-step-4 .cta-points li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.68;
+  color: rgba(255,255,255,0.78);
+  text-align: center;
+}
+
+.page-step-4 .cta-points li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-top: 0;
+  flex: 0 0 auto;
+  background: var(--cyan);
+}
+
+.page-step-4 .cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  justify-content: center;
+}
+
+.page-step-4 .checkout-helper {
+  margin-top: 18px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-step-4 .cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 22px;
+  margin-top: 18px;
+}
+
+.page-step-4 .cta-links a {
+  font-size: 14px;
+  line-height: 1.6;
+  color: transparent;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(155,89,255,0.35);
+}
+
+.page-step-4 .cta-links a:hover {
+  border-bottom-color: rgba(255,255,255,0.75);
+  filter: brightness(1.12);
+}
+
+.page-step-4 .section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.page-step-4 footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 96px 0 32px;
+}
+
+.page-step-4 .footer-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px;
+}
+
+.page-step-4 .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.page-step-4 .footer-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.page-step-4 .footer-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  max-width: 260px;
+  line-height: 1.65;
+}
+
+.page-step-4 .footer-col h5 {
+  font-family: var(--font-d);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 16px;
+}
+
+.page-step-4 .footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-step-4 .footer-col a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.page-step-4 .footer-col a:hover {
+  color: var(--cyan);
+}
+
+.page-step-4 .footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-step-4 .footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 1180px) {
+  .page-step-4 .feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .page-step-4 .hero {
+    min-height: auto;
+    padding: 124px 0 56px;
+  }
+
+  .page-step-4 .diagnostic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-step-4 .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .page-step-4 .hero-title {
+    font-size: clamp(52px, 16vw, 92px);
+  }
+
+  .page-step-4 .hero-copy,
+  .page-step-4 .hero-bridge-copy,
+  .page-step-4 .section-copy,
+  .page-step-4 .feature-card p,
+  .page-step-4 .faq-answer,
+  .page-step-4 .checkout-card p,
+  .page-step-4 .cta-points li {
+    font-size: 14px;
+  }
+
+  .page-step-4 .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-step-4 .picker {
+    justify-content: center;
+  }
+
+  .page-step-4 .checkout-card {
+    padding: 32px 24px;
+  }
+
+  .page-step-4 .footer-inner,
+  .page-step-4 .footer-bottom {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"90-Day Content Calendars for Service Businesses","description":"One core product line with six industry-specific content calendar versions for service businesses.","offers":{"@type":"Offer","price":"24.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/step-4/"}}</script>
+<script>
+window.TFS_INDUSTRY_DATA = {
+  clinic: {title:{en:'90 Days of Content for Your Clinic',es:'90 Dias de Contenido para tu Clinica'},copy:{en:'Use a 90-day clinic content rhythm built to educate patients, build reassurance before the visit, and keep appointment demand moving without scrambling for ideas each week.',es:'Usa un ritmo de contenido de 90 dias para clinicas, hecho para educar pacientes, generar tranquilidad antes de la visita y mantener el flujo de citas sin improvisar ideas cada semana.'},side:{en:'A done-for-you clinic content structure built to make your brand look more organized, more trustworthy, and easier to choose when someone is ready to book.',es:'Una estructura de contenido para clinicas, hecha para que tu marca se vea mas organizada, mas confiable y mas facil de elegir cuando alguien esta listo para agendar.'},trust:[{en:'90 days of clinic content planned around trust, education, and visible consistency.',es:'90 dias de contenido para clinicas, planeado alrededor de confianza, educacion y consistencia visible.'},{en:'Patient-trust angles, educational themes, and reassurance topics that support better first impressions.',es:'Angulos de confianza, temas educativos y mensajes de tranquilidad que mejoran la primera impresion.'},{en:'Built to support appointment demand, stronger authority, and a cleaner public-facing brand rhythm.',es:'Hecho para apoyar la demanda de citas, una autoridad mas fuerte y un ritmo de marca mas limpio frente al mercado.'}],note:{en:'Clinic version selected.',es:'Version de clinica seleccionada.'},next:{en:'Best next step: reserve this version and use it as the visible content layer that keeps clinic trust active between inquiries and appointments.',es:'Mejor siguiente paso: reserva esta version y usala como la capa visible de contenido que mantiene activa la confianza entre consultas y citas.'},detail:{en:'A 90-day clinic content calendar built for education, reassurance, and stronger appointment demand across the full patient journey.',es:'Un calendario de contenido de 90 dias para clinicas, hecho para educacion, tranquilidad y mas demanda de citas a lo largo de todo el recorrido del paciente.'},product:{en:'Clinic 90-Day Content Calendar',es:'Calendario de 90 Dias para Clinica'}},
+  lawfirm: {title:{en:'90 Days of Content for Your Law Firm',es:'90 Dias de Contenido para tu Firma Legal'},copy:{en:'Use a 90-day legal content rhythm built to project authority, reduce hesitation, and create more consultation trust before a prospect ever fills out a form or books a call.',es:'Usa un ritmo de contenido legal de 90 dias, hecho para proyectar autoridad, reducir dudas y generar mas confianza antes de que un prospecto complete un formulario o reserve una llamada.'},side:{en:'A done-for-you legal content structure built for firms that need to look more credible, more specialized, and more consistent in how they show up to the market.',es:'Una estructura de contenido legal hecha para firmas que necesitan verse mas creibles, mas especializadas y mas consistentes frente al mercado.'},trust:[{en:'90 days of legal content planned around trust, authority, and consultation demand.',es:'90 dias de contenido legal planeado alrededor de confianza, autoridad y demanda de consultas.'},{en:'Expertise-led themes that help prospects understand your value before the first conversation.',es:'Temas orientados a experiencia que ayudan a que el prospecto entienda tu valor antes de la primera conversacion.'},{en:'Built to support consultation-driven marketing and stronger authority in a competitive market.',es:'Hecho para apoyar un marketing orientado a consultas y una autoridad mas fuerte en un mercado competitivo.'}],note:{en:'Law firm version selected.',es:'Version legal seleccionada.'},next:{en:'Best next step: reserve this version and use it as the visible authority layer that keeps your firm top of mind between legal needs and consultation decisions.',es:'Mejor siguiente paso: reserva esta version y usala como la capa visible de autoridad que mantiene a tu firma presente entre la necesidad legal y la decision de consulta.'},detail:{en:'A 90-day legal content calendar built for authority, reassurance, and stronger consultation demand without relying on generic content themes.',es:'Un calendario legal de 90 dias hecho para autoridad, tranquilidad y mas demanda de consultas sin depender de temas genericos.'},product:{en:'Law Firm 90-Day Content Calendar',es:'Calendario de 90 Dias para Firma Legal'}},
+  realestate: {title:{en:'90 Days of Content for Your Real Estate Business',es:'90 Dias de Contenido para tu Negocio Inmobiliario'},copy:{en:'Use a 90-day real-estate content rhythm built to keep listings visible, build buyer confidence, and create steadier inquiry momentum between campaigns, viewings, and launches.',es:'Usa un ritmo de contenido inmobiliario de 90 dias, hecho para mantener listings visibles, construir confianza del comprador y generar un impulso mas estable de consultas entre campanas, visitas y lanzamientos.'},side:{en:'A done-for-you real-estate content structure built for agents and agencies that need more visibility, more trust, and a cleaner path from attention to inquiry.',es:'Una estructura de contenido inmobiliario hecha para agentes y agencias que necesitan mas visibilidad, mas confianza y un camino mas limpio entre atencion y consulta.'},trust:[{en:'90 days of real-estate content planned to keep listings, projects, and brand authority visible.',es:'90 dias de contenido inmobiliario planeado para mantener visibles listings, proyectos y autoridad de marca.'},{en:'Buyer-trust angles, listing themes, and inquiry-driven content that keeps your market warm.',es:'Angulos de confianza, temas de listings y contenido orientado a consultas que mantiene activo tu mercado.'},{en:'Built for cleaner inquiry momentum and more consistent market-facing visibility.',es:'Hecho para un impulso de consultas mas limpio y una visibilidad mas consistente frente al mercado.'}],note:{en:'Real estate version selected.',es:'Version inmobiliaria seleccionada.'},next:{en:'Best next step: reserve this version and use it to keep trust active between listing views, direct messages, and buyer conversations.',es:'Mejor siguiente paso: reserva esta version y usala para mantener activa la confianza entre vistas de listings, mensajes directos y conversaciones con compradores.'},detail:{en:'A 90-day real-estate content calendar built for listing visibility, buyer trust, and stronger inquiry flow across your active market.',es:'Un calendario inmobiliario de 90 dias hecho para visibilidad de listings, confianza del comprador y mejor flujo de consultas en tu mercado activo.'},product:{en:'Real Estate 90-Day Content Calendar',es:'Calendario de 90 Dias para Bienes Raices'}},
+  dentists: {title:{en:'90 Days of Content for Your Dental Clinic',es:'90 Dias de Contenido para tu Clinica Dental'},copy:{en:'Use a 90-day dental content rhythm built to reduce treatment hesitation, increase trust before booking, and keep your clinic visible with educational and reassurance-led content.',es:'Usa un ritmo de contenido dental de 90 dias, hecho para reducir la duda antes del tratamiento, aumentar la confianza antes de reservar y mantener visible tu clinica con contenido educativo y de tranquilidad.'},side:{en:'A done-for-you dental content structure built for clinics that need more booking confidence, more treatment trust, and a cleaner way to stay visible.',es:'Una estructura de contenido dental hecha para clinicas que necesitan mas confianza para reservar, mas credibilidad en tratamientos y una forma mas limpia de mantenerse visibles.'},trust:[{en:'90 days of dental content planned to educate, reassure, and support stronger booking confidence.',es:'90 dias de contenido dental planeado para educar, tranquilizar y apoyar una mayor confianza para reservar.'},{en:'Treatment education, reassurance themes, and visible trust signals for prospective patients.',es:'Educacion sobre tratamientos, temas de tranquilidad y senales visibles de confianza para pacientes potenciales.'},{en:'Built to support trust before booking, better treatment understanding, and steadier demand.',es:'Hecho para apoyar confianza antes de reservar, mejor entendimiento de tratamientos y una demanda mas constante.'}],note:{en:'Dental version selected.',es:'Version dental seleccionada.'},next:{en:'Best next step: reserve this version and use it to turn reassurance into stronger booking confidence across your patient journey.',es:'Mejor siguiente paso: reserva esta version y usala para convertir tranquilidad en una confianza mas fuerte para reservar a lo largo del recorrido del paciente.'},detail:{en:'A 90-day dental content calendar built for treatment education, reassurance, and stronger booking confidence without relying on generic health content.',es:'Un calendario dental de 90 dias hecho para educacion de tratamientos, tranquilidad y mas confianza para reservar sin depender de contenido generico de salud.'},product:{en:'Dental 90-Day Content Calendar',es:'Calendario de 90 Dias para Clinica Dental'}},
+  beauty: {title:{en:'90 Days of Content for Your Beauty Business',es:'90 Dias de Contenido para tu Negocio de Belleza'},copy:{en:'Use a 90-day beauty content rhythm built to turn attention into trust, repeat visits, and stronger premium positioning across the services you most want to sell.',es:'Usa un ritmo de contenido de belleza de 90 dias, hecho para convertir atencion en confianza, visitas repetidas y un posicionamiento premium mas fuerte en los servicios que mas quieres vender.'},side:{en:'A done-for-you beauty content structure built for brands that need more consistency, more repeat demand, and a more polished public-facing image.',es:'Una estructura de contenido de belleza hecha para marcas que necesitan mas consistencia, mas demanda repetida y una imagen mas pulida frente al mercado.'},trust:[{en:'90 days of beauty content planned around visibility, trust, and premium service positioning.',es:'90 dias de contenido de belleza planeado alrededor de visibilidad, confianza y posicionamiento premium.'},{en:'Transformation angles, reassurance themes, and repeat-visit content that supports loyalty.',es:'Angulos de transformacion, temas de tranquilidad y contenido para visitas repetidas que apoya la lealtad.'},{en:'Built to support premium positioning, repeat demand, and a cleaner visual brand rhythm.',es:'Hecho para apoyar posicionamiento premium, demanda repetida y un ritmo visual de marca mas limpio.'}],note:{en:'Beauty version selected.',es:'Version belleza seleccionada.'},next:{en:'Best next step: reserve this version and use it to turn attention into stronger repeat demand and a more premium market presence.',es:'Mejor siguiente paso: reserva esta version y usala para convertir atencion en una demanda repetida mas fuerte y una presencia mas premium en el mercado.'},detail:{en:'A 90-day beauty content calendar built for trust, differentiation, and stronger repeat-visit momentum across your service brand.',es:'Un calendario de belleza de 90 dias hecho para confianza, diferenciacion y un impulso mas fuerte de visitas repetidas en tu marca de servicios.'},product:{en:'Beauty 90-Day Content Calendar',es:'Calendario de 90 Dias para Belleza'}},
+  education: {title:{en:'90 Days of Content for Your Education Business',es:'90 Dias de Contenido para tu Negocio Educativo'},copy:{en:'Use a 90-day education content rhythm built to strengthen authority, explain your offer more clearly, and keep inquiry flow active among parents, students, or decision-makers.',es:'Usa un ritmo de contenido educativo de 90 dias, hecho para fortalecer autoridad, explicar tu oferta con mas claridad y mantener activo el flujo de consultas entre padres, estudiantes o tomadores de decision.'},side:{en:'A done-for-you education content structure built for tutors, academies, and learning brands that need more authority and more consistent inbound interest.',es:'Una estructura de contenido educativo hecha para tutores, academias y marcas de aprendizaje que necesitan mas autoridad y un interes entrante mas constante.'},trust:[{en:'90 days of education content planned around authority, clarity, and steady inquiry generation.',es:'90 dias de contenido educativo planeado alrededor de autoridad, claridad y generacion constante de consultas.'},{en:'Trust-building themes that help parents and students understand your offer faster.',es:'Temas de construccion de confianza que ayudan a padres y estudiantes a entender tu oferta mas rapido.'},{en:'Built for tutors and academies that need a stronger public-facing brand rhythm.',es:'Hecho para tutores y academias que necesitan un ritmo de marca mas fuerte frente al mercado.'}],note:{en:'Education version selected.',es:'Version educacion seleccionada.'},next:{en:'Best next step: reserve this version and use it to build trust before the next inquiry, application, or enrollment push.',es:'Mejor siguiente paso: reserva esta version y usala para construir confianza antes de la siguiente consulta, aplicacion o empuje de inscripcion.'},detail:{en:'A 90-day education content calendar built for authority, clarity, and stronger inquiry flow across your education brand.',es:'Un calendario educativo de 90 dias hecho para autoridad, claridad y mejor flujo de consultas en tu marca educativa.'},product:{en:'Education 90-Day Content Calendar',es:'Calendario de 90 Dias para Educacion'}}
+};
 </script>
+  <link rel="stylesheet" href="/assets/mobile-center.css">
+  <link rel="stylesheet" href="/assets/funnel-layout.css?v=20260426-layout-9">
 </head>
-<body>
+<body class="page-step-4 has-urgency-bar">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 <div class="shop-page">
-  <nav class="site-nav">
-    <div class="wrap site-nav-inner">
-      <a class="site-brand" href="../../"><img src="../../logo.png" alt="The Future Studio logo"><span class="site-brand-name">The Future Studio</span></a>
-      <div class="site-nav-links">
-        <a href="../" data-en="Shop" data-es="Tienda">Shop</a>
-        <a href="../step-3/learn/" data-en="Step 3" data-es="Paso 3">Step 3</a>
-        <div class="lang-toggle"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="es">ES</button></div>
+<div class="top-urgency-bar">
+  <div class="wrap-wide top-urgency-inner">
+    <p class="top-urgency-copy" data-en="Industry-specific 90-day content calendar. <strong>$24.99 today.</strong> <span>Choose your version and get instant access.</span>" data-es="Calendario de contenido de 90 dias por industria. <strong>$24.99 hoy.</strong> <span>Elige tu version y obten acceso inmediato.</span>">Industry-specific 90-day content calendar. <strong>$24.99 today.</strong> <span>Choose your version and get instant access.</span></p>
+    <a class="top-urgency-cta" href="#industry-picker" data-en="Choose my version" data-es="Elegir mi version">Choose my version</a>
+  </div>
+</div>
+<nav class="site-nav"><div class="wrap-wide site-nav-inner"><div class="site-nav-links"><div class="nav-primary"><a href="/#services">Services</a><a href="/#courses-section">Courses</a><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a></div><div class="nav-actions"><div class="lang-toggle"><button class="lang-btn active" data-lang="en" type="button">EN</button><button class="lang-btn" data-lang="es" type="button">ES</button></div><a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch a Free Demo</a></div></div><a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a><button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button></div></nav>
+<main class="page-shell">
+<section class="hero">
+  <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+  <div class="orb orb-violet orb-2 hero-orb-2"></div>
+  <div class="orb orb-cyan orb-3 hero-orb-3"></div>
+  <div class="wrap">
+    <div class="hero-panel aos">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <p class="eyebrow" data-en="90-Day Content Calendar" data-es="90-Day Content Calendar">90-Day Content Calendar</p>
+      </div>
+      <h1 class="hero-title" aria-label="Create 90 days of industry-specific content that builds trust">
+        <span class="line"><span data-en="CREATE 90 DAYS OF" data-es="CREA 90 DIAS DE">CREATE 90 DAYS OF</span></span>
+        <span class="line"><span data-en="<span class='shimmer'>INDUSTRY-SPECIFIC</span>" data-es="<span class='shimmer'>CONTENIDO ESPECIFICO</span>"><span class='shimmer'>INDUSTRY-SPECIFIC</span></span></span>
+        <span class="line"><span data-en="CONTENT THAT BUILDS TRUST" data-es="QUE GENERA CONFIANZA">CONTENT THAT BUILDS TRUST</span></span>
+      </h1>
+      <p class="hero-copy" data-en="Choose the version that matches your industry and get a structured 90-day content calendar designed to help your business stay visible, educate your market, and build trust before people are ready to book." data-es="Elige la version que coincide con tu industria y obten un calendario estructurado de 90 dias, disenado para ayudar a tu negocio a mantenerse visible, educar a tu mercado y generar confianza antes de que la gente este lista para reservar.">Choose the version that matches your industry and get a structured 90-day content calendar designed to help your business stay visible, educate your market, and build trust before people are ready to book.</p>
+      <p class="hero-bridge-copy" data-en="Instead of improvising generic posts every week, you get a clearer publishing rhythm, stronger trust angles, and a market-specific way to stay relevant for the next 90 days." data-es="En lugar de improvisar publicaciones genericas cada semana, obtienes un ritmo de publicacion mas claro, angulos de confianza mas fuertes y una forma especifica para tu mercado de mantenerte relevante durante los proximos 90 dias.">Instead of improvising generic posts every week, you get a clearer publishing rhythm, stronger trust angles, and a market-specific way to stay relevant for the next 90 days.</p><div class="offer-price-banner" aria-label="Offer price"><div class="offer-price-main"><span class="offer-price-label" data-en="Instant-access offer" data-es="Oferta con acceso inmediato">Instant-access offer</span><span class="offer-price-amount">$24.99</span></div><div class="offer-price-detail"><span class="offer-price-was" data-en="Industry-specific content calendar" data-es="Calendario de contenido por industria">Industry-specific content calendar</span><span class="offer-price-save" data-en="Digital delivery" data-es="Entrega digital">Digital delivery</span><span class="offer-price-bestfor" data-en="Best for: service businesses that want more consistent content without overbuying a larger service." data-es="Ideal para: negocios de servicios que quieren contenido mas consistente sin comprar un servicio mayor antes de tiempo.">Best for: service businesses that want more consistent content without overbuying a larger service.</span><span class="offer-price-value" data-en="Secure Stripe checkout, instant access, email receipt, and USD pricing." data-es="Checkout seguro con Stripe, acceso inmediato, recibo por email y precio en USD.">Secure Stripe checkout, instant access, email receipt, and USD pricing.</span></div></div>
+      <p class="section-micro-note" data-en="Industry-specific 90-day content calendar · $24.99 · Instant access" data-es="Calendario de contenido de 90 dias por industria · $24.99 · Acceso inmediato">Industry-specific 90-day content calendar · $24.99 · Instant access</p>
+      <p class="section-copy" style="margin-top:18px;" data-en="Choose the version closest to your market so the topics, trust angles, and calls to action match the way your clients actually buy." data-es="Elige la version mas cercana a tu mercado para que los temas, los angulos de confianza y los llamados a la accion coincidan con la forma en que tus clientes realmente compran.">Choose the version closest to your market so the topics, trust angles, and calls to action match the way your clients actually buy.</p>
+      <div class="picker" id="industry-picker">
+        <button data-industry="clinic">Clinic</button>
+        <button data-industry="lawfirm">Law Firm</button>
+        <button data-industry="realestate">Real Estate</button>
+        <button data-industry="dentists">Dentists</button>
+        <button data-industry="beauty">Beauty</button>
+        <button data-industry="education">Education</button>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary buy-trigger step4-buy-trigger" id="main-buy-trigger" href="/checkout/content-calendar.html?industry=clinic" data-checkout-url="/checkout/content-calendar.html?industry=clinic" data-product-name="Clinic 90-Day Content Calendar" data-price-label="$24.99" data-product-detail="A 90-day clinic content calendar built for education, reassurance, and stronger appointment demand." data-next-step="Best next step: reserve this version and use it as the visible content layer of your funnel." data-product-note="Clinic version selected." data-en="Get My 90-Day Content Calendar" data-es="Obtener mi calendario de 90 dias">Get My 90-Day Content Calendar</a>
       </div>
     </div>
-  </nav>
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-panel">
-          <p class="eyebrow" data-en="Step 4 · Core Product Line" data-es="Paso 4 · Línea Core">Step 4 · Core Product Line</p>
-          <h1 class="hero-title" data-en="CHOOSE THE <span class='grad'>90-DAY CALENDAR</span> FOR YOUR INDUSTRY" data-es="ELIGE EL <span class='grad'>CALENDARIO DE 90 DÍAS</span> PARA TU INDUSTRIA">CHOOSE THE <span class="grad">90-DAY CALENDAR</span> FOR YOUR INDUSTRY</h1>
-          <p class="hero-copy" data-en="This is one product line with six market-specific versions. The structure is shared, the language and topic direction changes by industry, and the buyer selects the version that matches their business." data-es="Esta es una línea de producto con seis versiones específicas por mercado. La estructura es compartida, el lenguaje y la dirección temática cambian por industria, y el comprador selecciona la versión que coincide con su negocio.">This is one product line with six market-specific versions. The structure is shared, the language and topic direction changes by industry, and the buyer selects the version that matches their business.</p>
-          <div class="hero-pills">
-            <span class="hero-pill" data-en="Price: $29.99" data-es="Precio: $29.99">Price: $29.99</span>
-            <span class="hero-pill" data-en="6 industry variants" data-es="6 variantes por industria">6 industry variants</span>
-            <span class="hero-pill" data-en="Query-param preselection enabled" data-es="Preselección por query param activa">Query-param preselection enabled</span>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-card aos">
+      <p class="eyebrow" data-en="What you get" data-es="Lo que obtienes">What you get</p>
+      <h2 class="section-title" data-en="WHAT YOU GET <span class='grad'>BEFORE YOU POST</span>" data-es="LO QUE OBTIENES <span class='grad'>ANTES DE PUBLICAR</span>">WHAT YOU GET <span class="grad">BEFORE YOU POST</span></h2>
+      <p class="section-copy" data-en="This product gives you a visible content structure, not vague inspiration. You receive a practical 90-day planning layer your business can actually use." data-es="Este producto te da una estructura visible de contenido, no inspiracion vaga. Recibes una capa practica de planeacion de 90 dias que tu negocio realmente puede usar.">This product gives you a visible content structure, not vague inspiration. You receive a practical 90-day planning layer your business can actually use.</p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="90-DAY PLAN" data-es="PLAN DE 90 DIAS">90-DAY PLAN</h3>
+          <p data-en="A structured 90-day content path so your business is not inventing topics every week." data-es="Un camino estructurado de contenido de 90 dias para que tu negocio no tenga que inventar temas cada semana.">A structured 90-day content path so your business is not inventing topics every week.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="TRUST ANGLES" data-es="ANGULOS DE CONFIANZA">TRUST ANGLES</h3>
+          <p data-en="Industry-specific themes designed to make your market trust the content faster." data-es="Temas especificos para tu industria, disenados para que tu mercado confie mas rapido en el contenido.">Industry-specific themes designed to make your market trust the content faster.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="WEEKLY RHYTHM" data-es="RITMO SEMANAL">WEEKLY RHYTHM</h3>
+          <p data-en="A cleaner publishing rhythm that helps you stay visible without overthinking every post." data-es="Un ritmo de publicacion mas limpio que te ayuda a mantenerte visible sin pensar demasiado cada publicacion.">A cleaner publishing rhythm that helps you stay visible without overthinking every post.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="EDUCATIONAL PROMPTS" data-es="PROMPTS EDUCATIVOS">EDUCATIONAL PROMPTS</h3>
+          <p data-en="Content directions that help your clients understand the value of your service before they book." data-es="Direcciones de contenido que ayudan a tus clientes a entender el valor de tu servicio antes de reservar.">Content directions that help your clients understand the value of your service before they book.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-card aos">
+      <p class="eyebrow" data-en="Sample preview" data-es="Vista previa de muestra">Sample preview</p>
+      <h2 class="section-title" data-en="SEE A <span class='grad'>SMALL CALENDAR PREVIEW</span>" data-es="MIRA UNA <span class='grad'>PEQUENA VISTA PREVIA</span>">SEE A <span class="grad">SMALL CALENDAR PREVIEW</span></h2>
+      <p class="section-copy" data-en="The selected industry version follows this structure: planned topics, a post angle, a CTA, and a clear purpose behind each entry." data-es="La version seleccionada sigue esta estructura: temas planeados, angulo de publicacion, CTA y un proposito claro detras de cada entrada.">The selected industry version follows this structure: planned topics, a post angle, a CTA, and a clear purpose behind each entry.</p>
+      <div class="sample-preview-card">
+        <div class="sample-preview-head">
+          <strong id="sample-preview-title">Clinic 90-Day Content Calendar</strong>
+          <span class="sample-preview-note" data-en="Preview only. Full product delivered after checkout." data-es="Solo vista previa. El producto completo se entrega despues del checkout.">Preview only. Full product delivered after checkout.</span>
+        </div>
+        <div class="sample-preview-table">
+          <div class="sample-preview-row sample-preview-row--head">
+            <span data-en="Day" data-es="Dia">Day</span>
+            <span data-en="Topic" data-es="Tema">Topic</span>
+            <span data-en="Post Angle" data-es="Angulo">Post Angle</span>
+            <span data-en="CTA" data-es="CTA">CTA</span>
+            <span data-en="Purpose" data-es="Proposito">Purpose</span>
           </div>
-          <div class="picker" id="industry-picker">
-            <button data-industry="clinic">Clinic</button>
-            <button data-industry="lawfirm">Law Firm</button>
-            <button data-industry="realestate">Real Estate</button>
-            <button data-industry="dentists">Dentists</button>
-            <button data-industry="beauty">Beauty</button>
-            <button data-industry="education">Education</button>
+          <div class="sample-preview-row">
+            <span>01</span>
+            <span data-en="Common patient question" data-es="Pregunta comun del paciente">Common patient question</span>
+            <span data-en="Educational" data-es="Educativo">Educational</span>
+            <span data-en="Book a consultation" data-es="Reservar consulta">Book a consultation</span>
+            <span data-en="Build trust early" data-es="Generar confianza temprano">Build trust early</span>
           </div>
-          <div class="hero-actions">
-            <a class="btn btn-primary buy-trigger" id="main-buy-trigger" href="#checkout-slot" data-product-name="90-Day Content Calendar" data-price-label="$29.99" data-en="Unlock This Calendar" data-es="Desbloquear Calendario">Unlock This Calendar</a>
-            <a class="btn btn-secondary" href="../" data-en="Back to the Shop" data-es="Volver a la Tienda">Back to the Shop</a>
+          <div class="sample-preview-row">
+            <span>08</span>
+            <span data-en="Before the appointment" data-es="Antes de la cita">Before the appointment</span>
+            <span data-en="Reassurance" data-es="Tranquilidad">Reassurance</span>
+            <span data-en="Send a message" data-es="Enviar mensaje">Send a message</span>
+            <span data-en="Reduce hesitation" data-es="Reducir dudas">Reduce hesitation</span>
+          </div>
+          <div class="sample-preview-row">
+            <span>15</span>
+            <span data-en="Why clients choose you" data-es="Por que te eligen">Why clients choose you</span>
+            <span data-en="Authority" data-es="Autoridad">Authority</span>
+            <span data-en="Ask about availability" data-es="Preguntar disponibilidad">Ask about availability</span>
+            <span data-en="Support demand" data-es="Apoyar la demanda">Support demand</span>
           </div>
         </div>
-        <aside class="side-panel">
-          <div class="panel-kicker" data-en="What this solves" data-es="Qué resuelve">What this solves</div>
-          <div class="panel-price">$29.99</div>
-          <p class="panel-desc" id="industry-side-copy">A done-for-you content structure for service businesses that need consistency, relevance, and market-facing trust without inventing every post from scratch.</p>
-          <ul class="trust-list">
-            <li id="trust-1">90 days of content direction</li>
-            <li id="trust-2">Built for bilingual service-business marketing</li>
-            <li id="trust-3">Best after the step-3 playbook layer</li>
+      </div>
+      <p class="section-micro-note" data-en="This is a planning product, not a done-for-you content service. It gives your business structure so publishing feels clearer and more consistent." data-es="Este es un producto de planeacion, no un servicio done-for-you de contenido. Le da a tu negocio estructura para que publicar se sienta mas claro y mas consistente.">This is a planning product, not a done-for-you content service. It gives your business structure so publishing feels clearer and more consistent.</p>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="video-showcase-card aos">
+      <p class="eyebrow" data-en="Founder walkthrough" data-es="Recorrido del fundador">Founder walkthrough</p>
+      <div class="video-showcase-head">
+        <div>
+          <h2 class="video-showcase-title" data-en="SEE HOW THE <span class='grad'>CALENDAR HELPS YOU STAY VISIBLE</span>" data-es="MIRA COMO EL <span class='grad'>CALENDARIO TE AYUDA A MANTENERTE VISIBLE</span>">SEE HOW THE <span class="grad">CALENDAR HELPS YOU STAY VISIBLE</span></h2>
+        </div>
+        <p class="video-showcase-intro" data-en="Watch Richard explain why this product exists, how to use the selected version, and why industry-specific content helps service businesses look more credible before the next inquiry arrives." data-es="Mira a Richard explicar por que existe este producto, como usar la version seleccionada y por que el contenido especifico por industria ayuda a los negocios de servicios a verse mas creibles antes de que llegue la siguiente consulta.">Watch Richard explain why this product exists, how to use the selected version, and why industry-specific content helps service businesses look more credible before the next inquiry arrives.</p>
+      </div>
+      <div class="video-showcase-frame">
+        <video class="video-showcase-player" controls preload="metadata" playsinline aria-label="90-Day Content Calendar video">
+          <source src="/shop/assets/videos/90-day-content-calendar.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-showcase-meta">
+        <div class="video-showcase-author">
+          <span class="video-showcase-label" data-en="Presented by" data-es="Presentado por">Presented by</span>
+          <strong>Richard Hardy</strong>
+          <span data-en="Founder, The Future Studio" data-es="Fundador, The Future Studio">Founder, The Future Studio</span>
+        </div>
+        <p class="video-showcase-summary" data-en="This walkthrough shows how the calendar helps service businesses stop posting generic content and start showing up with clearer market relevance for the next 90 days." data-es="Este recorrido muestra como el calendario ayuda a los negocios de servicios a dejar de publicar contenido generico y empezar a mostrarse con una relevancia de mercado mas clara durante los proximos 90 dias.">This walkthrough shows how the calendar helps service businesses stop posting generic content and start showing up with clearer market relevance for the next 90 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="diagnostic-grid">
+      <article class="diagnostic-card dark aos">
+        <p class="eyebrow" data-en="Diagnostic read" data-es="Lectura diagnostica">Diagnostic read</p>
+        <strong data-en="YOUR MARKET-FACING LAYER NEEDS INDUSTRY-SPECIFIC CONTENT" data-es="TU CAPA VISIBLE NECESITA CONTENIDO ESPECIFICO PARA TU INDUSTRIA">YOUR MARKET-FACING LAYER NEEDS INDUSTRY-SPECIFIC CONTENT</strong>
+        <div class="diagnostic-divider" aria-hidden="true"></div>
+        <div class="diagnostic-body">
+          <div class="score-number" data-en="90 DAYS" data-es="90 DIAS">90 DAYS</div>
+          <p data-en="At this stage, the business does not need more generic content ideas. It needs a visible content rhythm that sounds credible in the market it actually sells into." data-es="En esta etapa, el negocio no necesita mas ideas genericas de contenido. Necesita un ritmo visible de contenido que suene creible en el mercado al que realmente vende.">At this stage, the business does not need more generic content ideas. It needs a visible content rhythm that sounds credible in the market it actually sells into.</p>
+          <p class="micro-note" data-en="That usually means choosing the version that matches your audience, so trust, authority, and demand all feel more specific from the first post onward." data-es="Eso normalmente significa elegir la version que coincide con tu audiencia, para que confianza, autoridad y demanda se sientan mas especificas desde la primera publicacion.">That usually means choosing the version that matches your audience, so trust, authority, and demand all feel more specific from the first post onward.</p>
+        </div>
+      </article>
+      <article class="diagnostic-card aos d2">
+        <p class="eyebrow" data-en="Why this product now" data-es="Por que este producto ahora">Why this product now</p>
+        <strong data-en="MOVE NEXT INTO THE RIGHT 90-DAY CONTENT CALENDAR" data-es="AVANZA HACIA EL 90-DAY CONTENT CALENDAR CORRECTO">MOVE NEXT INTO THE RIGHT 90-DAY CONTENT CALENDAR</strong>
+        <div class="diagnostic-divider" aria-hidden="true"></div>
+        <div class="diagnostic-body">
+          <p id="industry-copy">Build patient trust, education, and appointment demand without inventing topics every week.</p>
+          <p class="micro-note" data-en="The right version makes the business sound more intentional, more relevant, and easier for the market to trust before the next inquiry ever arrives." data-es="La version correcta hace que el negocio suene mas intencional, mas relevante y mas facil de confiar antes de que llegue la siguiente consulta.">The right version makes the business sound more intentional, more relevant, and easier for the market to trust before the next inquiry ever arrives.</p>
+          <p class="micro-note" id="industry-next-step-copy">Best next step: reserve this version and use it as the visible content layer of your funnel.</p>
+        </div>
+      </article>
+    </div>
+    <div class="section-cta aos" style="display:flex;justify-content:center;margin-top:26px;">
+      <a class="btn btn-primary buy-trigger step4-buy-trigger" href="/checkout/content-calendar.html?industry=clinic" data-checkout-url="/checkout/content-calendar.html?industry=clinic" data-product-name="Clinic 90-Day Content Calendar" data-price-label="$24.99" data-product-detail="A 90-day clinic content calendar built for education, reassurance, and stronger appointment demand." data-next-step="Best next step: reserve this version and use it as the visible content layer of your funnel." data-product-note="Clinic version selected." data-en="Get Your Content Calendar Now" data-es="Obten tu calendario ahora">Get Your Content Calendar Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-card aos">
+      <p class="eyebrow" data-en="What this calendar includes" data-es="Lo que incluye este calendario">What this calendar includes</p>
+      <div class="section-title-wrap">
+        <h2 class="section-title" data-en="WHAT THE <span class='grad'>90-DAY CONTENT CALENDAR</span> ACTUALLY COVERS" data-es="LO QUE REALMENTE CUBRE EL <span class='grad'>90-DAY CONTENT CALENDAR</span>">WHAT THE <span class="grad">90-DAY CONTENT CALENDAR</span> ACTUALLY COVERS</h2>
+        <div class="diagnostic-divider" aria-hidden="true"></div>
+      </div>
+      <p class="section-copy" id="industry-side-copy">A done-for-you content structure for clinics that need trust, clarity, and more appointment momentum.</p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="SELECTED VERSION" data-es="VERSION ELEGIDA">SELECTED VERSION</h3>
+          <p id="industry-title">90 Days of Content for Your Clinic</p>
+          <p class="micro-note" data-en="This keeps the offer aligned to the market you actually serve, so the content sounds more believable from the first post." data-es="Esto mantiene la oferta alineada con el mercado que realmente atiendes, para que el contenido se sienta mas creible desde la primera publicacion.">This keeps the offer aligned to the market you actually serve, so the content sounds more believable from the first post.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="CONTENT DIRECTION" data-es="DIRECCION DE CONTENIDO">CONTENT DIRECTION</h3>
+          <p id="trust-1">90 days of clinic content direction</p>
+          <p class="micro-note" data-en="You are not starting from a blank page. The content is organized around the kind of trust your audience needs before they buy." data-es="No empiezas desde una hoja en blanco. El contenido esta organizado alrededor del tipo de confianza que tu audiencia necesita antes de comprar.">You are not starting from a blank page. The content is organized around the kind of trust your audience needs before they buy.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="TRUST ANGLES" data-es="ANGULOS DE CONFIANZA">TRUST ANGLES</h3>
+          <p id="trust-2">Patient-trust angles and educational themes</p>
+          <p class="micro-note" data-en="These angles help your content feel more useful, more specific, and more likely to build confidence instead of being ignored." data-es="Estos angulos ayudan a que tu contenido se sienta mas util, mas especifico y mas capaz de generar confianza en lugar de ser ignorado.">These angles help your content feel more useful, more specific, and more likely to build confidence instead of being ignored.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="COMMERCIAL USE" data-es="USO COMERCIAL">COMMERCIAL USE</h3>
+          <p id="trust-3">Built to support booking intent</p>
+          <p class="micro-note" data-en="The goal is not to post more. The goal is to stay visible in a way that supports demand, trust, and easier next steps." data-es="La meta no es publicar mas. La meta es mantenerse visible de una forma que apoye demanda, confianza y siguientes pasos mas faciles.">The goal is not to post more. The goal is to stay visible in a way that supports demand, trust, and easier next steps.</p>
+        </article>
+        <article class="feature-card">
+          <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+          <h3 data-en="WHAT IT HELPS YOU DO" data-es="LO QUE TE AYUDA A LOGRAR">WHAT IT HELPS YOU DO</h3>
+          <p data-en="Show up with content that feels more relevant, more intentional, and easier for your market to trust." data-es="Aparecer con contenido que se sienta mas relevante, mas intencional y mas facil de confiar para tu mercado.">Show up with content that feels more relevant, more intentional, and easier for your market to trust.</p>
+          <p class="micro-note" data-en="That makes your business easier to remember between inquiries and gives the market more reasons to choose you when they are ready." data-es="Eso hace que tu negocio sea mas facil de recordar entre consultas y le da al mercado mas razones para elegirte cuando este listo.">That makes your business easier to remember between inquiries and gives the market more reasons to choose you when they are ready.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-card aos">
+      <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
+      <h2 class="section-title" data-en="FROM <span class='grad'>RANDOM POSTS</span> TO A 90-DAY RHYTHM" data-es="DE <span class='grad'>PUBLICACIONES ALEATORIAS</span> A UN RITMO DE 90 DIAS">FROM <span class="grad">RANDOM POSTS</span> TO A 90-DAY RHYTHM</h2>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
+          <h3 data-en="Generic content drift" data-es="Deriva de contenido generico">Generic content drift</h3>
+          <ul>
+            <li data-en="Random posts with no weekly rhythm" data-es="Publicaciones aleatorias sin ritmo semanal">Random posts with no weekly rhythm</li>
+            <li data-en="Generic captions that blur into other brands" data-es="Captions genericos que se mezclan con otras marcas">Generic captions that blur into other brands</li>
+            <li data-en="No clear trust path before someone books" data-es="Sin una ruta clara de confianza antes de que alguien reserve">No clear trust path before someone books</li>
           </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-card">
-        <p class="eyebrow" data-en="Industry Version" data-es="Versión por Industria">Industry Version</p>
-        <h2 class="section-title" id="industry-title">90 Days of Content for Your Clinic</h2>
-        <p class="section-copy" id="industry-copy">Give your clinic a consistent stream of educational, trust-building, and conversion-oriented content without inventing topics every week.</p>
-        <div class="industry-grid" id="industry-grid">
-          <article class="industry-card" data-industry="clinic"><div class="tier">Clinic</div><h3>Clinic</h3><p>Content built for patient trust, education, and appointment demand.</p><div class="industry-stat">Medical / Wellness</div></article>
-          <article class="industry-card" data-industry="lawfirm"><div class="tier">Law Firm</div><h3>Law Firm</h3><p>Content designed to build authority, credibility, and consultation demand.</p><div class="industry-stat">Professional Services</div></article>
-          <article class="industry-card" data-industry="realestate"><div class="tier">Real Estate</div><h3>Real Estate</h3><p>Content for listing visibility, buyer trust, and inquiry generation.</p><div class="industry-stat">Property Marketing</div></article>
-          <article class="industry-card" data-industry="dentists"><div class="tier">Dentists</div><h3>Dentists</h3><p>Content focused on treatment education, reassurance, and booking confidence.</p><div class="industry-stat">Dental Demand</div></article>
-          <article class="industry-card" data-industry="beauty"><div class="tier">Beauty</div><h3>Beauty</h3><p>Content that turns attention into trust, repeat visits, and premium positioning.</p><div class="industry-stat">Beauty / Wellness</div></article>
-          <article class="industry-card" data-industry="education"><div class="tier">Education</div><h3>Education</h3><p>Content for tutors, academies, and learning brands that need clarity and authority.</p><div class="industry-stat">Education / Tutoring</div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="split">
-        <div class="section-card">
-          <p class="eyebrow" data-en="Inside the Product" data-es="Dentro del Producto">Inside the Product</p>
-          <h2 class="section-title" data-en="ONE CORE PRODUCT, DIFFERENT MARKET ANGLES" data-es="UN PRODUCTO CORE, DISTINTOS ÁNGULOS DE MERCADO">ONE CORE PRODUCT, DIFFERENT MARKET ANGLES</h2>
-          <ul class="summary-list">
-            <li><div><strong data-en="90-day structure" data-es="Estructura de 90 días">90-day structure</strong><span data-en="Give the team a repeatable publishing rhythm instead of ad hoc posting." data-es="Dale al equipo un ritmo repetible de publicación en vez de posteos improvisados.">Give the team a repeatable publishing rhythm instead of ad hoc posting.</span></div></li>
-            <li><div><strong data-en="Industry relevance" data-es="Relevancia por industria">Industry relevance</strong><span data-en="Each version speaks the pain points, trust signals, and client expectations of its market." data-es="Cada versión habla los dolores, señales de confianza y expectativas del cliente de su mercado.">Each version speaks the pain points, trust signals, and client expectations of its market.</span></div></li>
-            <li><div><strong data-en="Bridge to bigger offers" data-es="Puente a ofertas mayores">Bridge to bigger offers</strong><span data-en="This is the visible, market-facing layer that can later support courses, strategy, or done-for-you service." data-es="Esta es la capa visible hacia el mercado que luego puede sostener cursos, estrategia o servicio done-for-you.">This is the visible, market-facing layer that can later support courses, strategy, or done-for-you service.</span></div></li>
+        </article>
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
+          <h3 data-en="Clearer market visibility" data-es="Visibilidad de mercado mas clara">Clearer market visibility</h3>
+          <ul>
+            <li data-en="A 90-day plan with clearer weekly direction" data-es="Un plan de 90 dias con una direccion semanal mas clara">A 90-day plan with clearer weekly direction</li>
+            <li data-en="Industry-specific trust angles and stronger relevance" data-es="Angulos de confianza por industria y mas relevancia">Industry-specific trust angles and stronger relevance</li>
+            <li data-en="An easier path from visibility to inquiry" data-es="Un camino mas facil de la visibilidad a la consulta">An easier path from visibility to inquiry</li>
           </ul>
-        </div>
-        <aside class="soft-proof">
-          <h3 data-en="Where the ladder goes next" data-es="Hacia dónde va la escalera">Where the ladder goes next</h3>
-          <p data-en="This page is still a single product sale. Higher-ticket layers stay visible only as context so the buyer understands the calendar is part of a larger value ladder, not a dead-end one-off." data-es="Esta página sigue siendo una venta de un solo producto. Las capas higher-ticket solo quedan visibles como contexto para que el comprador entienda que el calendario forma parte de una escalera mayor, no de un one-off sin continuación.">This page is still a single product sale. Higher-ticket layers stay visible only as context so the buyer understands the calendar is part of a larger value ladder, not a dead-end one-off.</p>
-          <div class="proof-list">
-            <div><strong data-en="Live on site" data-es="Vivo en sitio">Live on site</strong><span data-en="Single Workshop, Studio Pass, and Full Studio Program remain the education layer above this." data-es="Single Workshop, Studio Pass y Full Studio Program siguen siendo la capa educativa arriba de esto.">Single Workshop, Studio Pass, and Full Studio Program remain the education layer above this.</span></div>
-            <div><strong data-en="Agency path" data-es="Ruta agency">Agency path</strong><span data-en="Studio Activation remains the done-for-you path after buyers trust the process." data-es="Studio Activation sigue siendo la ruta done-for-you después de que el comprador confía en el proceso.">Studio Activation remains the done-for-you path after buyers trust the process.</span></div>
-          </div>
-        </aside>
+        </article>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section">
-      <div class="checkout-card" id="checkout-slot">
-        <p class="eyebrow" data-en="Checkout Slot" data-es="Espacio de Checkout">Checkout Slot</p>
-        <h2 data-en="READY TO UNLOCK <span class='grad'>YOUR INDUSTRY VERSION</span>?" data-es="LISTO PARA DESBLOQUEAR <span class='grad'>TU VERSIÓN DE INDUSTRIA</span>?">READY TO UNLOCK <span class="grad">YOUR INDUSTRY VERSION</span>?</h2>
-        <p data-en="This checkout block updates with the industry you select. Stripe can be connected here later without rebuilding the page or duplicating six separate versions." data-es="Este bloque de checkout se actualiza con la industria que selecciones. Stripe puede conectarse aquí después sin reconstruir la página ni duplicar seis versiones separadas.">This checkout block updates with the industry you select. Stripe can be connected here later without rebuilding the page or duplicating six separate versions.</p>
-        <div class="checkout-grid">
-          <div class="checkout-box"><strong id="checkout-product-name">Clinic 90-Day Content Calendar</strong><span id="checkout-product-price">$29.99</span></div>
-          <div class="checkout-box"><strong data-en="Selection rule" data-es="Regla de selección">Selection rule</strong><span id="industry-selection-note">Clinic version selected.</span></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-card aos">
+      <p class="eyebrow" data-en="For you / not for you" data-es="Para ti / no para ti">For you / not for you</p>
+      <h2 class="section-title" data-en="WHO THIS <span class='grad'>CONTENT CALENDAR</span> FITS" data-es="PARA QUIEN ENCAJA ESTE <span class='grad'>CALENDARIO</span>">WHO THIS <span class="grad">CONTENT CALENDAR</span> FITS</h2>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="For you if" data-es="Para ti si">For you if</div>
+          <h3 data-en="You want more visible trust" data-es="Quieres mas confianza visible">You want more visible trust</h3>
+          <ul>
+            <li data-en="You run a service business with real client demand" data-es="Diriges un negocio de servicios con demanda real">You run a service business with real client demand</li>
+            <li data-en="You want more consistent content without starting from zero each week" data-es="Quieres contenido mas consistente sin empezar de cero cada semana">You want more consistent content without starting from zero each week</li>
+            <li data-en="You want a version shaped around how your market actually buys" data-es="Quieres una version adaptada a como tu mercado realmente compra">You want a version shaped around how your market actually buys</li>
+          </ul>
+        </article>
+        <article class="compare-card">
+          <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
+          <h3 data-en="You want a full done-for-you service" data-es="Quieres un servicio total done-for-you">You want a full done-for-you service</h3>
+          <ul>
+            <li data-en="You expect viral growth without publishing consistently" data-es="Esperas crecimiento viral sin publicar con constancia">You expect viral growth without publishing consistently</li>
+            <li data-en="You need custom brand strategy before any planning product" data-es="Necesitas estrategia de marca custom antes de cualquier producto de planeacion">You need custom brand strategy before any planning product</li>
+            <li data-en="You want generic AI ideas rather than an industry-specific content rhythm" data-es="Quieres ideas genericas de IA en lugar de un ritmo de contenido por industria">You want generic AI ideas rather than an industry-specific content rhythm</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="aos faq-wrap">
+      <p class="eyebrow" data-en="Questions before you buy" data-es="Preguntas antes de comprar">Questions before you buy</p>
+      <h2 class="section-title" data-en="COMMON QUESTIONS BEFORE YOU <span class='grad'>LOCK YOUR INDUSTRY VERSION</span>" data-es="PREGUNTAS COMUNES ANTES DE <span class='grad'>ELEGIR TU VERSION</span>">COMMON QUESTIONS BEFORE YOU <span class="grad">LOCK YOUR INDUSTRY VERSION</span></h2>
+      <p class="section-copy" data-en="This product is for service businesses that want their content to look more intentional in the market. The right version gives your business a visible rhythm that feels more relevant, more credible, and easier to act on." data-es="Este producto es para negocios de servicios que quieren que su contenido se vea mas intencional en el mercado. La version correcta le da a tu negocio un ritmo visible que se siente mas relevante, mas creible y mas facil de ejecutar.">This product is for service businesses that want their content to look more intentional in the market. The right version gives your business a visible rhythm that feels more relevant, more credible, and easier to act on.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="How do I choose the right version?" data-es="Como elijo la version correcta?">How do I choose the right version?</button>
+          <div class="faq-answer" data-en="Choose the version that matches the market you actively sell into today. If your business serves more than one niche, start with the version tied to your best clients or strongest revenue source. The goal is to make your message feel more specific where your next growth is most likely to come from." data-es="Elige la version que coincide con el mercado al que hoy si vendes. Si tu negocio atiende mas de un nicho, empieza por la version ligada a tus mejores clientes o a tu fuente de ingresos mas fuerte. La meta es hacer que tu mensaje se sienta mas especifico donde es mas probable que venga tu siguiente crecimiento.">Choose the version that matches the market you actively sell into today. If your business serves more than one niche, start with the version tied to your best clients or strongest revenue source. The goal is to make your message feel more specific where your next growth is most likely to come from.</div>
         </div>
-        <div class="checkout-actions">
-          <a class="btn btn-primary" id="manual-order-email" href="mailto:info@thefuturestudio.online" data-en="Reserve by Email" data-es="Reservar por Email">Reserve by Email</a>
-          <a class="btn btn-light" id="manual-order-whatsapp" href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" data-en="Reserve by WhatsApp" data-es="Reservar por WhatsApp">Reserve by WhatsApp</a>
-          <a class="btn btn-light" href="../../" data-en="Back to Shop" data-es="Volver a la Tienda">Back to Shop</a>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="Will this still feel specific to my business?" data-es="Igual se sentira especifico para mi negocio?">Will this still feel specific to my business?</button>
+          <div class="faq-answer" data-en="Yes. The structure stays consistent, but the market language, trust themes, and content direction shift by industry so the result feels more specific than a generic content pack. That matters because people trust content faster when it sounds like it understands their exact context, not just business in general." data-es="Si. La estructura se mantiene consistente, pero el lenguaje de mercado, los temas de confianza y la direccion del contenido cambian por industria para que el resultado se sienta mas especifico que un paquete generico. Eso importa porque la gente confia mas rapido cuando el contenido suena como si entendiera su contexto exacto, no solo los negocios en general.">Yes. The structure stays consistent, but the market language, trust themes, and content direction shift by industry so the result feels more specific than a generic content pack. That matters because people trust content faster when it sounds like it understands their exact context, not just business in general.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="What happens after I reserve it?" data-es="Que pasa despues de reservarlo?">What happens after I reserve it?</button>
+          <div class="faq-answer" data-en="You move straight into the selected version, so your business can start using a clearer content rhythm without waiting on a larger implementation project first. That means you can stay visible, sound more intentional, and start benefiting from stronger trust cues much sooner." data-es="Pasas directo a la version seleccionada, para que tu negocio pueda empezar a usar un ritmo de contenido mas claro sin esperar primero un proyecto de implementacion mas grande. Eso significa que puedes mantenerte visible, sonar mas intencional y empezar a beneficiarte de senales de confianza mas fuertes mucho antes.">You move straight into the selected version, so your business can start using a clearer content rhythm without waiting on a larger implementation project first. That means you can stay visible, sound more intentional, and start benefiting from stronger trust cues much sooner.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="Why does this come after the earlier products?" data-es="Por que esto viene despues de los productos anteriores?">Why does this come after the earlier products?</button>
+          <div class="faq-answer" data-en="Because this is the visible market-facing layer. The earlier products help your business make stronger internal decisions first. This product turns that clarity into consistency your market can actually see, which makes your brand feel more stable before the next inquiry, booking, or buying decision." data-es="Porque esta es la capa visible frente al mercado. Los productos anteriores ayudan a tu negocio a tomar mejores decisiones internas primero. Este producto convierte esa claridad en consistencia que tu mercado realmente puede ver, lo que hace que tu marca se sienta mas estable antes de la siguiente consulta, reserva o decision de compra.">Because this is the visible market-facing layer. The earlier products help your business make stronger internal decisions first. This product turns that clarity into consistency your market can actually see, which makes your brand feel more stable before the next inquiry, booking, or buying decision.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="Do I need to post every day?" data-es="Necesito publicar todos los dias?">Do I need to post every day?</button>
+          <div class="faq-answer" data-en="No. The goal is not to post more for the sake of it. The goal is to publish with more clarity and consistency using a rhythm your business can actually sustain." data-es="No. La meta no es publicar mas por publicar. La meta es publicar con mas claridad y constancia usando un ritmo que tu negocio realmente pueda sostener.">No. The goal is not to post more for the sake of it. The goal is to publish with more clarity and consistency using a rhythm your business can actually sustain.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="Can I adapt this to my brand voice?" data-es="Puedo adaptarlo a la voz de mi marca?">Can I adapt this to my brand voice?</button>
+          <div class="faq-answer" data-en="Yes. The calendar gives you the structure, topics, and trust direction. You can still adapt each post to your tone, visuals, and specific service offers." data-es="Si. El calendario te da la estructura, los temas y la direccion de confianza. Aun puedes adaptar cada publicacion a tu tono, visuales y ofertas de servicio especificas.">Yes. The calendar gives you the structure, topics, and trust direction. You can still adapt each post to your tone, visuals, and specific service offers.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-en="Can I use this in English and Spanish?" data-es="Puedo usar esto en ingles y espanol?">Can I use this in English and Spanish?</button>
+          <div class="faq-answer" data-en="Yes. The planning layer is flexible enough to support bilingual businesses. You can adapt the weekly ideas into English, Spanish, or a mixed client communication rhythm." data-es="Si. La capa de planeacion es lo bastante flexible para negocios bilingues. Puedes adaptar las ideas semanales a ingles, espanol o a un ritmo mixto de comunicacion con clientes.">Yes. The planning layer is flexible enough to support bilingual businesses. You can adapt the weekly ideas into English, Spanish, or a mixed client communication rhythm.</div>
         </div>
       </div>
-    </section>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><div data-en="Step 4 shared product page · One product line, six industry versions." data-es="Página compartida paso 4 · Una línea de producto, seis versiones por industria.">Step 4 shared product page · One product line, six industry versions.</div><div class="footer-links"><a href="../" data-en="Back to Shop" data-es="Volver a Tienda">Back to Shop</a><a href="../../" data-en="Main Site" data-es="Sitio Principal">Main Site</a></div></div></footer>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="checkout-card aos" id="checkout-slot">
+      <p class="eyebrow" data-en="Level up" data-es="Sube de nivel">Level up</p>
+      <h2 data-en="GET THE <span class='grad'>SELECTED INDUSTRY VERSION</span>" data-es="OBTEN LA <span class='grad'>VERSION DE INDUSTRIA SELECCIONADA</span>">GET THE <span class="grad">SELECTED INDUSTRY VERSION</span></h2>
+      <p class="checkout-summary" data-en="You are buying the selected 90-Day Content Calendar version. Digital access is delivered after checkout so your business can plan the next 90 days with more clarity, trust, and consistency." data-es="Estas comprando la version seleccionada del 90-Day Content Calendar. El acceso digital se entrega despues del checkout para que tu negocio pueda planear los proximos 90 dias con mas claridad, confianza y consistencia.">You are buying the selected 90-Day Content Calendar version. Digital access is delivered after checkout so your business can plan the next 90 days with more clarity, trust, and consistency.</p>
+      <ul class="cta-points">
+        <li id="checkout-product-detail">A 90-day clinic content calendar built for education, reassurance, and stronger appointment demand.</li>
+        <li id="checkout-next-step">Best next step: reserve this version and use it as the visible content layer of your funnel.</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-primary buy-trigger" id="manual-order-email" href="/checkout/content-calendar.html?industry=clinic" data-checkout-url="/checkout/content-calendar.html?industry=clinic">
+          <span id="checkout-product-name">Clinic 90-Day Content Calendar</span>
+        </a>
+      </div>
+      <div class="cta-links">
+        <a href="https://wa.me/50766753870?text=Hola%2C%20quiero%20saber%20que%20version%20del%2090-Day%20Content%20Calendar%20encaja%20mejor%20con%20mi%20negocio." target="_blank" rel="noopener" id="manual-order-whatsapp" data-en="Ask which version fits my business" data-es="Preguntar que version encaja con mi negocio">Ask which version fits my business</a>
+        <a href="#industry-picker" data-en="Choose a different industry" data-es="Elegir otra industria">Choose a different industry</a>
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a free demo if you want implementation help" data-es="Ver demo gratuita si quieres ayuda de implementacion">Watch a free demo if you want implementation help</a>
+      </div>
+      <p class="checkout-helper" data-en="This is a planning product, not a done-for-you content service. It gives your business structure so publishing feels more intentional from the first week." data-es="Este es un producto de planeacion, no un servicio done-for-you de contenido. Le da a tu negocio estructura para que publicar se sienta mas intencional desde la primera semana.">This is a planning product, not a done-for-you content service. It gives your business structure so publishing feels more intentional from the first week.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="/logo.png" alt="The Future Studio">
+        </div>
+        <p class="footer-tagline">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/#services">Voice Agents</a></li>
+          <li><a href="/#services">WhatsApp Automation</a></li>
+          <li><a href="/#services">Booking Flows</a></li>
+          <li><a href="/#services">Custom Platforms</a></li>
+          <li><a href="/#courses-section">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        Latin America - Remote &amp; In-person
+      </span>
+    </div>
+  </div>
+</footer>
 </div>
-<script src="../assets/shop.js"></script>
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
 <script>
-const industries = {
-  clinic: {
-    title: { en: '90 Days of Content for Your Clinic', es: '90 Días de Contenido para tu Clínica' },
-    copy: { en: 'Give your clinic a consistent stream of educational, trust-building, and conversion-oriented content without inventing topics every week.', es: 'Dale a tu clínica un flujo constante de contenido educativo, de confianza y orientado a conversión sin inventar temas cada semana.' },
-    side: { en: 'A done-for-you content structure for clinics that need patient trust, clearer education, and more appointment demand.', es: 'Una estructura de contenido hecha para clínicas que necesitan confianza del paciente, educación más clara y mayor demanda de citas.' },
-    trust: [
-      { en: '90 days of clinic content direction', es: '90 días de dirección de contenido para clínicas' },
-      { en: 'Patient-trust angles and educational themes', es: 'Ángulos de confianza del paciente y temas educativos' },
-      { en: 'Best after the implementation layer', es: 'Ideal después de la capa de implementación' }
-    ],
-    note: { en: 'Clinic version selected.', es: 'Versión de clínica seleccionada.' },
-    product: { en: 'Clinic 90-Day Content Calendar', es: 'Calendario de 90 Días para Clínica' }
-  },
-  lawfirm: {
-    title: { en: '90 Days of Content for Your Law Firm', es: '90 Días de Contenido para tu Firma Legal' },
-    copy: { en: 'Build authority and trust with content angles designed for consultation-driven legal marketing.', es: 'Construye autoridad y confianza con ángulos de contenido diseñados para marketing legal orientado a consultas.' },
-    side: { en: 'A done-for-you structure for firms that need clearer authority, stronger trust, and more consultation demand.', es: 'Una estructura hecha para firmas que necesitan autoridad más clara, mayor confianza y más demanda de consultas.' },
-    trust: [
-      { en: '90 days of legal content direction', es: '90 días de dirección de contenido legal' },
-      { en: 'Authority and trust themes', es: 'Temas de autoridad y confianza' },
-      { en: 'Built for professional-service positioning', es: 'Hecho para posicionamiento profesional' }
-    ],
-    note: { en: 'Law firm version selected.', es: 'Versión legal seleccionada.' },
-    product: { en: 'Law Firm 90-Day Content Calendar', es: 'Calendario de 90 Días para Firma Legal' }
-  },
-  realestate: {
-    title: { en: '90 Days of Content for Your Real Estate Business', es: '90 Días de Contenido para tu Negocio Inmobiliario' },
-    copy: { en: 'Stay visible with a content rhythm built for listings, buyer trust, and steady inquiry generation.', es: 'Mantente visible con un ritmo de contenido construido para listings, confianza del comprador y generación constante de consultas.' },
-    side: { en: 'A done-for-you structure for agencies and agents who need trust-building visibility and more inquiry momentum.', es: 'Una estructura hecha para agencias y agentes que necesitan visibilidad con confianza y más momentum de consultas.' },
-    trust: [
-      { en: '90 days of real-estate content direction', es: '90 días de dirección de contenido inmobiliario' },
-      { en: 'Listing, trust, and inquiry angles', es: 'Ángulos de listings, confianza y consultas' },
-      { en: 'Built for market-facing consistency', es: 'Hecho para consistencia frente al mercado' }
-    ],
-    note: { en: 'Real estate version selected.', es: 'Versión inmobiliaria seleccionada.' },
-    product: { en: 'Real Estate 90-Day Content Calendar', es: 'Calendario de 90 Días para Bienes Raíces' }
-  },
-  dentists: {
-    title: { en: '90 Days of Content for Your Dental Clinic', es: '90 Días de Contenido para tu Clínica Dental' },
-    copy: { en: 'Use educational, reassuring, and booking-friendly content angles built for dental trust and treatment demand.', es: 'Usa ángulos de contenido educativos, tranquilizadores y orientados a reservas construidos para confianza dental y demanda de tratamientos.' },
-    side: { en: 'A done-for-you structure for dental teams that need patient confidence, reassurance, and booking intent.', es: 'Una estructura hecha para equipos dentales que necesitan confianza del paciente, tranquilidad e intención de reserva.' },
-    trust: [
-      { en: '90 days of dental content direction', es: '90 días de dirección de contenido dental' },
-      { en: 'Treatment education and reassurance themes', es: 'Temas de educación de tratamiento y tranquilidad' },
-      { en: 'Built for trust before booking', es: 'Hecho para generar confianza antes de reservar' }
-    ],
-    note: { en: 'Dental version selected.', es: 'Versión dental seleccionada.' },
-    product: { en: 'Dental 90-Day Content Calendar', es: 'Calendario de 90 Días para Clínica Dental' }
-  },
-  beauty: {
-    title: { en: '90 Days of Content for Your Beauty Business', es: '90 Días de Contenido para tu Negocio de Belleza' },
-    copy: { en: 'Stay visible with content angles that turn attention into trust, repeat visits, and premium service positioning.', es: 'Mantente visible con ángulos de contenido que convierten atención en confianza, visitas repetidas y posicionamiento premium.' },
-    side: { en: 'A done-for-you structure for beauty and wellness brands that need more visibility, trust, and repeat demand.', es: 'Una estructura hecha para marcas de belleza y bienestar que necesitan más visibilidad, confianza y demanda repetida.' },
-    trust: [
-      { en: '90 days of beauty content direction', es: '90 días de dirección de contenido de belleza' },
-      { en: 'Trust, transformation, and repeat-visit themes', es: 'Temas de confianza, transformación y repetición' },
-      { en: 'Built for premium positioning', es: 'Hecho para posicionamiento premium' }
-    ],
-    note: { en: 'Beauty version selected.', es: 'Versión belleza seleccionada.' },
-    product: { en: 'Beauty 90-Day Content Calendar', es: 'Calendario de 90 Días para Belleza' }
-  },
-  education: {
-    title: { en: '90 Days of Content for Your Education Business', es: '90 Días de Contenido para tu Negocio Educativo' },
-    copy: { en: 'Use a 90-day content rhythm built for tutors, academies, and learning brands that need authority and consistent lead flow.', es: 'Usa un ritmo de contenido de 90 días construido para tutores, academias y marcas educativas que necesitan autoridad y flujo constante de leads.' },
-    side: { en: 'A done-for-you structure for education brands that need clarity, authority, and parent/student trust.', es: 'Una estructura hecha para marcas educativas que necesitan claridad, autoridad y confianza de padres/estudiantes.' },
-    trust: [
-      { en: '90 days of education content direction', es: '90 días de dirección de contenido educativo' },
-      { en: 'Authority and trust-building themes', es: 'Temas de autoridad y construcción de confianza' },
-      { en: 'Built for tutors and academies', es: 'Hecho para tutores y academias' }
-    ],
-    note: { en: 'Education version selected.', es: 'Versión educación seleccionada.' },
-    product: { en: 'Education 90-Day Content Calendar', es: 'Calendario de 90 Días para Educación' }
-  }
-};
-
-function selectedLang() {
-  try { return localStorage.getItem('tfs_shop_lang') || 'en'; } catch (e) { return 'en'; }
-}
-
-function renderIndustry(slug) {
-  var key = industries[slug] ? slug : 'clinic';
-  var lang = selectedLang() === 'es' ? 'es' : 'en';
-  var data = industries[key];
-
-  document.getElementById('industry-title').textContent = data.title[lang];
-  document.getElementById('industry-copy').textContent = data.copy[lang];
-  document.getElementById('industry-side-copy').textContent = data.side[lang];
-  document.getElementById('trust-1').textContent = data.trust[0][lang];
-  document.getElementById('trust-2').textContent = data.trust[1][lang];
-  document.getElementById('trust-3').textContent = data.trust[2][lang];
-  document.getElementById('industry-selection-note').textContent = data.note[lang];
-  document.getElementById('checkout-product-name').textContent = data.product[lang];
-
-  var trigger = document.getElementById('main-buy-trigger');
-  trigger.setAttribute('data-product-name', data.product[lang]);
-
-  document.querySelectorAll('#industry-picker button').forEach(function(btn) {
-    btn.classList.toggle('active', btn.dataset.industry === key);
-  });
-  document.querySelectorAll('.industry-card').forEach(function(card) {
-    card.classList.toggle('active', card.dataset.industry === key);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  var params = new URLSearchParams(window.location.search);
-  var initial = params.get('industry') || 'clinic';
-
-  document.querySelectorAll('#industry-picker button').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      renderIndustry(btn.dataset.industry);
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.faq-question').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var item = button.closest('.faq-item');
+      if (!item) return;
+      var isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('is-open'); });
+      if (!isOpen) item.classList.add('is-open');
     });
   });
-  document.querySelectorAll('.industry-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      renderIndustry(card.dataset.industry);
-    });
-  });
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      setTimeout(function() { renderIndustry(initial); }, 0);
-    });
-  });
-
-  renderIndustry(initial);
 });
 </script>
+  <script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
 </body>
 </html>
+
+
+
+
+
+
+

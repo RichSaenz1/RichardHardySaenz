@@ -1,36 +1,1264 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script><meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>AI System Investment Guide | The Future Studio</title>
-<meta name="description" content="A buyer's guide for owners who need to understand AI tool stacks, hosting, monitoring, and cost decisions before building a bigger system.">
+<meta name="description" content="Understand tools, stack layers, and budget decisions before investing in AI for your service business. Bilingual buyer's guide for smarter implementation. EN/ES.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://thefuturestudio.online/shop/step-3/build/">
-<meta property="og:title" content="AI System Investment Guide">
-<meta property="og:description" content="Understand stack, hosting, costs, and the smartest path to investing in your first real AI system.">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-3/build/">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-3/build/">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-3/build/">
+<meta property="og:title" content="AI System Investment Guide | The Future Studio">
+<meta property="og:description" content="A bilingual buyer's guide for service-business owners making tool, hosting, and budget decisions for AI implementation.">
 <meta property="og:type" content="product">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"AI System Investment Guide","description":"A bilingual buyer's guide for service businesses making tool and budget decisions for AI implementation.","offers":{"@type":"Offer","price":"12.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/step-3/build/"}}</script>
 <meta property="og:url" content="https://thefuturestudio.online/shop/step-3/build/">
 <meta property="og:image" content="https://thefuturestudio.online/logo.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/shop.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"AI System Investment Guide","description":"A buyer's guide for service-business owners making tooling, hosting, and cost decisions before building a real AI system.","offers":{"@type":"Offer","price":"10.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/step-3/build/"},"brand":{"@type":"Organization","name":"The Future Studio"}}
-</script>
+<link rel="stylesheet" href="/shop/assets/shop.css?v=20260427-step3-desktop-1">
+<style>
+@keyframes auditHeroSlideUp {
+  from { transform: translateY(105%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes auditHeroShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.page-thank-you-audit .hero {
+  padding: 134px 0 72px;
+  min-height: calc(100vh - 40px);
+  display: flex;
+  align-items: center;
+}
+
+.page-thank-you-audit .hero-shell {
+  position: relative;
+  padding: 0;
+}
+
+.page-thank-you-audit .hero-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-thank-you-audit .hero-panel:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.page-thank-you-audit .hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -110px;
+  left: -160px;
+}
+
+.page-thank-you-audit .hero-orb-2 {
+  width: 560px;
+  height: 560px;
+  bottom: -120px;
+  right: -220px;
+}
+
+.page-thank-you-audit .hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.page-thank-you-audit .hero-eyebrow-line {
+  width: 48px;
+  height: 2px;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+
+.page-thank-you-audit .hero-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--font-d);
+  font-size: clamp(68px, 10.4vw, 150px);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.page-thank-you-audit .hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.page-thank-you-audit .hero-title .line span {
+  display: block;
+  animation: auditHeroSlideUp .9s var(--ease) both;
+}
+
+.page-thank-you-audit .hero-title .line:nth-child(1) span { animation-delay: .08s; }
+.page-thank-you-audit .hero-title .line:nth-child(2) span { animation-delay: .2s; }
+.page-thank-you-audit .hero-title .line:nth-child(3) span { animation-delay: .32s; }
+
+.page-thank-you-audit .hero-title .shimmer {
+  background: linear-gradient(90deg, var(--cyan), #38b7f3, var(--violet), var(--cyan));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: auditHeroShimmer 3s ease infinite;
+}
+
+.page-thank-you-audit .hero-copy,
+.page-thank-you-audit .hero-bridge-copy,
+.page-thank-you-audit .section-copy,
+.page-thank-you-audit .feature-card p,
+.page-thank-you-audit .compare-card p,
+.page-thank-you-audit .proof-copy,
+.page-thank-you-audit .faq-answer,
+.page-thank-you-audit .checkout-card p,
+.page-thank-you-audit .score-label,
+.page-thank-you-audit .signal-card p {
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.page-thank-you-audit .hero-copy {
+  margin-top: 28px;
+  max-width: 760px;
+  font-size: 17px;
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .hero-bridge-copy {
+  margin-top: 16px;
+  max-width: 760px;
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .hero-copy .inline-emphasis,
+.page-thank-you-audit .hero-bridge-copy .inline-emphasis {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.page-thank-you-audit .hero-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.page-thank-you-audit .hero-video-inline {
+  margin-top: 34px;
+  padding: 22px;
+  border: 2px solid var(--black);
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(8px);
+}
+
+.page-thank-you-audit .hero-video-inline .eyebrow {
+  margin-bottom: 14px;
+}
+
+.page-thank-you-audit .hero-video-inline .video-showcase-match {
+  margin-bottom: 10px;
+}
+
+.page-thank-you-audit .hero-video-inline .video-showcase-title {
+  margin-bottom: 14px;
+}
+
+.page-thank-you-audit .hero-video-inline .video-showcase-intro {
+  max-width: 820px;
+  margin-bottom: 18px;
+}
+
+.page-thank-you-audit .hero-video-inline .video-showcase-frame {
+  margin-top: 0;
+}
+
+.page-thank-you-audit .hero-actions .btn-secondary {
+  background: transparent;
+  color: var(--black);
+  border: 2px solid var(--black);
+}
+
+.page-thank-you-audit .hero-actions .btn-secondary:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.page-thank-you-audit .section {
+  padding: 18px 0 52px;
+}
+
+.page-thank-you-audit .section-title,
+.page-thank-you-audit .checkout-card h2 {
+  margin-top: 18px;
+}
+
+.page-thank-you-audit .diagnostic-grid,
+.page-thank-you-audit .feature-grid,
+.page-thank-you-audit .compare-grid {
+  display: grid;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.page-thank-you-audit .diagnostic-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  margin-top: 14px;
+}
+
+.page-thank-you-audit .diagnostic-card {
+  min-height: 260px;
+  padding: 24px 22px;
+  border: 2px solid var(--black);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.page-thank-you-audit .diagnostic-card.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.page-thank-you-audit .diagnostic-card.dark p,
+.page-thank-you-audit .diagnostic-card.dark .score-label,
+.page-thank-you-audit .diagnostic-card.dark strong {
+  color: var(--white);
+}
+
+.page-thank-you-audit .diagnostic-card:hover {
+  transform: translate(-12px, -12px);
+  box-shadow: 12px 12px 0 var(--cyan);
+  background: var(--white);
+  color: var(--black);
+}
+
+.page-thank-you-audit .diagnostic-card:not(.dark):hover {
+  background: var(--black);
+  color: var(--white);
+  box-shadow: 12px 12px 0 var(--violet);
+}
+
+.page-thank-you-audit .diagnostic-card.dark:hover .score-label,
+.page-thank-you-audit .diagnostic-card.dark:hover .signal-card p,
+.page-thank-you-audit .diagnostic-card.dark:hover p {
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .diagnostic-card.dark:hover strong,
+.page-thank-you-audit .diagnostic-card.dark:hover .eyebrow {
+  color: var(--black);
+}
+
+.page-thank-you-audit .diagnostic-card:not(.dark):hover p,
+.page-thank-you-audit .diagnostic-card:not(.dark):hover .score-label,
+.page-thank-you-audit .diagnostic-card:not(.dark):hover .micro-note,
+.page-thank-you-audit .diagnostic-card:not(.dark):hover strong {
+  color: var(--white);
+}
+
+.page-thank-you-audit .diagnostic-card .eyebrow {
+  margin-bottom: 12px;
+}
+
+.page-thank-you-audit .diagnostic-card strong {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: color 0.3s var(--ease);
+}
+
+.page-thank-you-audit .diagnostic-divider {
+  width: 72px;
+  height: 2px;
+  margin-top: 20px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+.page-thank-you-audit .diagnostic-mark {
+  display: flex;
+  gap: 4px;
+  margin-top: 22px;
+}
+
+.page-thank-you-audit .diagnostic-mark span {
+  width: 28px;
+  height: 14px;
+  background: var(--cyan);
+  transform: skewX(-14deg);
+}
+
+.page-thank-you-audit .diagnostic-card:not(.dark) .diagnostic-divider,
+.page-thank-you-audit .testimonial-card .diagnostic-divider,
+.page-thank-you-audit .testimonial-support .diagnostic-divider {
+  background: var(--violet);
+}
+
+.page-thank-you-audit .diagnostic-card p {
+  margin-top: 12px;
+}
+
+.page-thank-you-audit .diagnostic-body {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.page-thank-you-audit .diagnostic-body p,
+.page-thank-you-audit .diagnostic-body .score-label,
+.page-thank-you-audit .diagnostic-body .micro-note,
+.page-thank-you-audit .diagnostic-body .score-number {
+  margin-top: 0;
+}
+
+.page-thank-you-audit .diagnostic-card .micro-note {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+.page-thank-you-audit .score-number {
+  margin-top: 8px;
+}
+
+.page-thank-you-audit .feature-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  margin-top: 26px;
+}
+
+.page-thank-you-audit .feature-card,
+.page-thank-you-audit .compare-card {
+  height: 100%;
+  padding: 22px 20px;
+}
+
+.page-thank-you-audit .feature-card {
+  min-height: 100%;
+}
+
+.page-thank-you-audit .feature-card h3,
+.page-thank-you-audit .compare-card h3 {
+  font-size: 24px;
+}
+
+.page-thank-you-audit .feature-card p,
+.page-thank-you-audit .compare-card p {
+  margin-top: 12px;
+}
+
+.page-thank-you-audit .compare-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.page-thank-you-audit .proof-band {
+  padding: 42px 42px 30px;
+  border: 2px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.page-thank-you-audit .proof-band .eyebrow {
+  color: rgba(255,255,255,0.68);
+}
+
+.page-thank-you-audit .proof-band h2 {
+  margin-top: 18px;
+  font-family: var(--font-d);
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.page-thank-you-audit .proof-copy {
+  margin-top: 22px;
+  max-width: 880px;
+  color: rgba(255,255,255,0.74);
+}
+
+.page-thank-you-audit .proof-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.page-thank-you-audit .proof-list div {
+  padding: 18px;
+  border: 2px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.04);
+}
+
+.page-thank-you-audit .proof-list div:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.page-thank-you-audit .proof-list div:hover strong,
+.page-thank-you-audit .proof-list div:hover span {
+  color: var(--black);
+}
+
+.page-thank-you-audit .proof-list strong {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.page-thank-you-audit .proof-list span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.76);
+}
+
+.page-thank-you-audit .quote-card {
+  margin-top: 26px;
+  max-width: 780px;
+  padding-top: 18px;
+  border-top: 2px solid rgba(255,255,255,0.16);
+}
+
+.page-thank-you-audit .quote-card p {
+  margin-top: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.9);
+}
+
+.page-thank-you-audit .quote-meta {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.66);
+}
+
+.page-thank-you-audit .quote-meta strong {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.page-thank-you-audit .faq-wrap {
+  margin-top: 26px;
+}
+
+.page-thank-you-audit .faq-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 0;
+}
+
+.page-thank-you-audit .faq-question {
+  font-size: 22px;
+}
+
+.page-thank-you-audit .faq-answer {
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .testimonial-split {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.page-thank-you-audit .testimonial-card,
+.page-thank-you-audit .testimonial-support {
+  height: 100%;
+  padding: 28px 24px;
+}
+
+.page-thank-you-audit .testimonial-card blockquote {
+  margin: 18px 0 0;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .testimonial-card .quote-meta {
+  color: var(--text-mid);
+}
+
+.page-thank-you-audit .testimonial-card .quote-meta strong {
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-thank-you-audit .testimonial-support h3 {
+  margin-top: 18px;
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.page-thank-you-audit .section-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.page-thank-you-audit .section-title-wrap .diagnostic-divider {
+  margin-top: 0;
+}
+
+.page-thank-you-audit .testimonial-support p {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.page-thank-you-audit .support-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.page-thank-you-audit .support-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.page-thank-you-audit .support-list li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-top: 7px;
+  flex: 0 0 auto;
+  background: var(--cyan);
+}
+
+.page-thank-you-audit .checkout-card {
+  padding: 40px 38px;
+  text-align: center;
+}
+
+.page-thank-you-audit .checkout-card h2 {
+  font-size: clamp(42px, 5vw, 72px);
+}
+
+.page-thank-you-audit .checkout-summary {
+  margin-top: 22px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-thank-you-audit .checkout-summary strong {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.page-thank-you-audit .cta-points {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+  text-align: center;
+}
+
+.page-thank-you-audit .cta-points li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.68;
+  color: rgba(255,255,255,0.78);
+  text-align: left;
+}
+
+.page-thank-you-audit .cta-points li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-top: 7px;
+  flex: 0 0 auto;
+  background: var(--cyan);
+}
+
+.page-thank-you-audit .cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  justify-content: center;
+}
+
+.page-thank-you-audit .cta-row .btn-light {
+  border: 2px solid rgba(255,255,255,0.24);
+}
+
+.page-thank-you-audit .cta-row .btn-light:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.page-thank-you-audit .checkout-helper {
+  margin-top: 18px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-thank-you-audit .cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 22px;
+  margin-top: 18px;
+}
+
+.page-thank-you-audit .cta-links a {
+  font-size: 14px;
+  line-height: 1.6;
+  color: transparent;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(155,89,255,0.35);
+}
+
+.page-thank-you-audit .cta-links a:hover {
+  border-bottom-color: rgba(255,255,255,0.75);
+  filter: brightness(1.12);
+}
+
+.page-thank-you-audit .section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.page-thank-you-audit footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 96px 0 32px;
+}
+
+.page-thank-you-audit .footer-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px;
+}
+
+.page-thank-you-audit .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.page-thank-you-audit .footer-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.page-thank-you-audit .footer-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  max-width: 260px;
+  line-height: 1.65;
+}
+
+.page-thank-you-audit .footer-col h5 {
+  font-family: var(--font-d);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 16px;
+}
+
+.page-thank-you-audit .footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-thank-you-audit .footer-col a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.page-thank-you-audit .footer-col a:hover {
+  color: var(--cyan);
+}
+
+.page-thank-you-audit .footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-thank-you-audit .footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 1180px) {
+  .page-thank-you-audit .feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .page-thank-you-audit .hero {
+    min-height: auto;
+    padding: 124px 0 56px;
+  }
+
+  .page-thank-you-audit .diagnostic-grid,
+  .page-thank-you-audit .compare-grid,
+  .page-thank-you-audit .proof-list,
+  .page-thank-you-audit .testimonial-split {
+    grid-template-columns: 1fr;
+  }
+
+  .page-thank-you-audit .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .page-thank-you-audit .hero-title {
+    font-size: clamp(52px, 16vw, 92px);
+  }
+
+  .page-thank-you-audit .hero-copy,
+  .page-thank-you-audit .hero-bridge-copy,
+  .page-thank-you-audit .section-copy,
+  .page-thank-you-audit .feature-card p,
+  .page-thank-you-audit .compare-card p,
+  .page-thank-you-audit .proof-copy,
+  .page-thank-you-audit .faq-answer,
+  .page-thank-you-audit .checkout-card p,
+  .page-thank-you-audit .score-label,
+  .page-thank-you-audit .signal-card p,
+  .page-thank-you-audit .cta-points li {
+    font-size: 14px;
+  }
+
+  .page-thank-you-audit .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-thank-you-audit .checkout-card {
+    padding: 32px 24px;
+  }
+
+  .page-thank-you-audit .footer-inner,
+  .page-thank-you-audit .footer-bottom {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"30-Day Lead Conversion Sequence","url":"https://thefuturestudio.online/shop/step-3/build/","description":"A product page for the AI System Investment Guide, helping service businesses make clearer AI investment decisions before a larger build.","isPartOf":{"@type":"WebSite","name":"The Future Studio","url":"https://thefuturestudio.online/"}}</script>
+    <link rel="stylesheet" href="/assets/mobile-center.css?v=20260427-step3-mobile-2">
+  <link rel="stylesheet" href="/assets/funnel-layout.css?v=20260428-step3-build-headline-5">
+  <style>
+    html body.page-step-3-build .hero-panel h1.hero-title.hero-title .line.line > span,
+    html body.page-step-3-build .hero-panel h1.hero-title.hero-title .line.line span.shimmer,
+    html body.page-step-3-build .hero-panel h1.hero-title.hero-title .line.line span .shimmer {
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+      -webkit-text-fill-color: var(--black, #050505) !important;
+      color: var(--black, #050505) !important;
+      animation: none !important;
+    }
+  </style>
 </head>
-<body>
+<body class="page-thank-you-audit page-step-3-product page-step-3-build has-urgency-bar">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 <div class="shop-page">
-  <nav class="site-nav"><div class="wrap site-nav-inner"><a class="site-brand" href="../../../"><img src="../../../logo.png" alt="The Future Studio logo"><span class="site-brand-name">The Future Studio</span></a><div class="site-nav-links"><a href="../../" data-en="Shop" data-es="Tienda">Shop</a><a href="../../step-2/build/" data-en="Step 2 Guide" data-es="Guía Paso 2">Step 2 Guide</a><a href="../../../funnel/step-3/Build/STEP3_build_ProductF_Investment_Guide.html" data-en="Source Asset" data-es="Activo Fuente">Source Asset</a><div class="lang-toggle"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="es">ES</button></div></div></div></nav>
-  <main class="wrap">
-    <section class="hero"><div class="hero-grid"><div class="hero-panel"><p class="eyebrow" data-en="Step 3 · Build Funnel" data-es="Paso 3 · Funnel Build">Step 3 · Build Funnel</p><h1 class="hero-title" data-en="INVEST IN <span class='grad'>THE RIGHT STACK</span>, NOT THE WRONG TOOLS" data-es="INVIERTE EN <span class='grad'>EL STACK CORRECTO</span>, NO EN LAS HERRAMIENTAS EQUIVOCADAS">INVEST IN <span class="grad">THE RIGHT STACK</span>, NOT THE WRONG TOOLS</h1><p class="hero-copy" data-en="This guide helps owners who can already see the opportunity, but do not want to overspend, overbuild, or buy a stack they do not understand. It turns curiosity into a buying framework." data-es="Esta guía ayuda a dueños que ya ven la oportunidad, pero no quieren gastar de más, sobreconstruir o comprar un stack que no entienden. Convierte curiosidad en un marco de compra.">This guide helps owners who can already see the opportunity, but do not want to overspend, overbuild, or buy a stack they do not understand. It turns curiosity into a buying framework.</p><div class="hero-pills"><span class="hero-pill" data-en="Price: $10" data-es="Precio: $10">Price: $10</span><span class="hero-pill" data-en="Buyer-confidence product" data-es="Producto de confianza de compra">Buyer-confidence product</span><span class="hero-pill" data-en="Bridges into the content product line" data-es="Puente hacia la línea de contenido">Bridges into the content product line</span></div><div class="hero-actions"><a class="btn btn-primary buy-trigger" href="#checkout-slot" data-product-name="AI System Investment Guide" data-price-label="$10" data-en="Unlock This Guide" data-es="Desbloquear Guía">Unlock This Guide</a><a class="btn btn-secondary" href="../../step-4/" data-en="See the $29.99 Calendar" data-es="Ver el Calendario de $29.99">See the $29.99 Calendar</a></div></div><aside class="side-panel"><div class="panel-kicker" data-en="What you get" data-es="Qué recibes">What you get</div><div class="panel-price">$10</div><p class="panel-desc" data-en="A decision-making guide for owners who want to understand tool layers, monitoring, and cost boundaries before they commit." data-es="Una guía de toma de decisiones para dueños que quieren entender capas de herramientas, monitoreo y límites de costo antes de comprometerse.">A decision-making guide for owners who want to understand tool layers, monitoring, and cost boundaries before they commit.</p><ul class="trust-list"><li data-en="Tool and hosting context" data-es="Contexto de herramientas y hosting">Tool and hosting context</li><li data-en="Cost awareness before implementation" data-es="Claridad de costos antes de implementar">Cost awareness before implementation</li><li data-en="Better buying decisions" data-es="Mejores decisiones de compra">Better buying decisions</li></ul></aside></div></section>
-    <section class="section"><div class="section-card"><p class="eyebrow" data-en="Why this matters" data-es="Por qué importa">Why this matters</p><h2 class="section-title" data-en="IF YOU BUY WRONG, YOU PAY TWICE" data-es="SI COMPRAS MAL, PAGAS DOS VECES">IF YOU BUY WRONG, YOU PAY TWICE</h2><div class="feature-grid"><div class="feature-card"><h3 data-en="Avoid overspending" data-es="Evita gastar de más">Avoid overspending</h3><p data-en="Understand what each layer of the stack actually does before paying for subscriptions or setup." data-es="Entiende qué hace realmente cada capa del stack antes de pagar suscripciones o setup.">Understand what each layer of the stack actually does before paying for subscriptions or setup.</p></div><div class="feature-card"><h3 data-en="Avoid underbuying" data-es="Evita comprar de menos">Avoid underbuying</h3><p data-en="See why some cheap shortcuts create bigger operational problems later." data-es="Ve por qué algunos atajos baratos crean problemas operativos más grandes después.">See why some cheap shortcuts create bigger operational problems later.</p></div><div class="feature-card"><h3 data-en="Buy with intent" data-es="Compra con intención">Buy with intent</h3><p data-en="Make clearer choices about tools, hosting, and who should manage the system." data-es="Toma decisiones más claras sobre herramientas, hosting y quién debe gestionar el sistema.">Make clearer choices about tools, hosting, and who should manage the system.</p></div></div></div></section>
-    <section class="section"><div class="checkout-card" id="checkout-slot"><p class="eyebrow" data-en="Checkout Slot" data-es="Espacio de Checkout">Checkout Slot</p><h2 data-en="READY TO UNLOCK <span class='grad'>THIS GUIDE</span>?" data-es="LISTO PARA DESBLOQUEAR <span class='grad'>ESTA GUÍA</span>?">READY TO UNLOCK <span class="grad">THIS GUIDE</span>?</h2><p data-en="Use the manual fallback today. When Stripe is dropped in later, the button can convert directly without changing the product page." data-es="Usa la alternativa manual hoy. Cuando Stripe se conecte después, el botón puede convertir directo sin cambiar la página del producto.">Use the manual fallback today. When Stripe is dropped in later, the button can convert directly without changing the product page.</p><div class="checkout-grid"><div class="checkout-box"><strong id="checkout-product-name">AI System Investment Guide</strong><span id="checkout-product-price">$10</span></div><div class="checkout-box"><strong data-en="Best next step" data-es="Siguiente mejor paso">Best next step</strong><span data-en="Move into the shared content-calendar product line when you want implementation support that becomes visible to the market." data-es="Pasa a la línea compartida de calendarios cuando quieras soporte de implementación visible para el mercado.">Move into the shared content-calendar product line when you want implementation support that becomes visible to the market.</span></div></div><div class="checkout-actions"><a class="btn btn-primary" id="manual-order-email" href="mailto:info@thefuturestudio.online" data-en="Reserve by Email" data-es="Reservar por Email">Reserve by Email</a><a class="btn btn-light" id="manual-order-whatsapp" href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" data-en="Reserve by WhatsApp" data-es="Reservar por WhatsApp">Reserve by WhatsApp</a><a class="btn btn-light" href="../../step-4/" data-en="Go to Step 4" data-es="Ir al Paso 4">Go to Step 4</a></div></div></section>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><div data-en="Build funnel · Step 3 product page." data-es="Funnel build · Página de producto paso 3.">Build funnel · Step 3 product page.</div><div class="footer-links"><a href="../../" data-en="Back to Shop" data-es="Volver a Tienda">Back to Shop</a><a href="../../step-2/build/" data-en="Step 2 Guide" data-es="Guía Paso 2">Step 2 Guide</a><a href="../../step-4/" data-en="Step 4" data-es="Paso 4">Step 4</a></div></div></footer>
+<div class="top-urgency-bar">
+  <div class="wrap-wide top-urgency-inner">
+    <p class="top-urgency-copy" data-en="Buy clarity before complexity. <strong>The AI System Investment Guide is $12.99 today.</strong> <span>Use it before your next bigger AI spend.</span>" data-es="Compra claridad antes que complejidad. <strong>La AI System Investment Guide cuesta $12.99 hoy.</strong> <span>Usala antes de tu siguiente gasto grande en IA.</span>">Buy clarity before complexity. <strong>The AI System Investment Guide is $12.99 today.</strong> <span>Use it before your next bigger AI spend.</span></p>
+    <a class="top-urgency-cta" href="/checkout/ai-system-investment-guide.html?previous=service-business-prompts" data-en="Get the guide" data-es="Obten la guia">Get the guide</a>
+  </div>
 </div>
-<script src="../../assets/shop.js"></script>
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="page-shell">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-shell">
+        <span class="orb orb-cyan orb-1 hero-orb-1"></span>
+        <span class="orb orb-violet orb-2 hero-orb-2"></span>
+        <div class="hero-panel aos">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-line"></span>
+            <p class="eyebrow" data-en="AI System Investment Guide" data-es="AI System Investment Guide">AI System Investment Guide</p>
+          </div>
+          <h1 class="hero-title" aria-label="Know what to buy before you build your AI system">
+            <span class="line"><span data-en="KNOW WHAT TO" data-es="SABE QUE">KNOW WHAT TO</span></span>
+            <span class="line"><span data-en="<span class='shimmer'>BUY</span> BEFORE" data-es="<span class='shimmer'>COMPRAR</span> ANTES DE">BUY BEFORE</span></span>
+            <span class="line"><span data-en="YOU BUILD" data-es="CONSTRUIR">YOU BUILD</span></span>
+          </h1>
+          <p class="hero-copy" data-en="A practical buying guide for service businesses that want to invest in AI with more confidence. Understand what belongs in your stack, what can wait, where costs usually hide, and what should be clarified before paying for a larger implementation." data-es="Una guia practica de compra para negocios de servicios que quieren invertir en IA con mas confianza. Entiende que debe entrar en tu stack, que puede esperar, donde suelen esconderse los costos y que deberia aclararse antes de pagar una implementacion mayor.">A practical buying guide for service businesses that want to invest in AI with more confidence. Understand what belongs in your stack, what can wait, where costs usually hide, and what should be clarified before paying for a larger implementation.</p>
+          <p class="hero-bridge-copy" data-en="<strong>AI System Investment Guide</strong> is for owners and operators who want clearer stack decisions, better budget discipline, and a smarter path into implementation. It shows what belongs in the system now, what should wait, and what is not worth buying at all." data-es="<strong>AI System Investment Guide</strong> es para duenos y operadores que quieren decisiones mas claras sobre el stack, mejor disciplina de presupuesto y un camino mas inteligente hacia la implementacion. Te muestra que debe entrar al sistema ahora, que puede esperar y que simplemente no vale la pena comprar."><strong>AI System Investment Guide</strong> is for owners and operators who want clearer stack decisions, better budget discipline, and a smarter path into implementation. It shows what belongs in the system now, what should wait, and what is not worth buying at all.</p><div class="offer-price-banner" aria-label="Offer price"><div class="offer-price-main"><span class="offer-price-label" data-en="Today only" data-es="Solo hoy">Today only</span><span class="offer-price-amount">$12.99</span></div><div class="offer-price-detail"><span class="offer-price-was" data-en="Before bigger AI spend" data-es="Antes de un gasto mayor en IA">Before bigger AI spend</span><span class="offer-price-save" data-en="Clarity before implementation" data-es="Claridad antes de implementar">Clarity before implementation</span><span class="offer-price-bestfor" data-en="Best for: businesses comparing tools, stack layers, hosting, and budget discipline before a larger build." data-es="Ideal para: negocios que comparan herramientas, capas del stack, hosting y disciplina de presupuesto antes de un build mayor.">Best for: businesses comparing tools, stack layers, hosting, and budget discipline before a larger build.</span><span class="offer-price-value" data-en="Secure Stripe checkout, instant access, email receipt, USD pricing, and a safer decision path into implementation." data-es="Checkout seguro con Stripe, acceso inmediato, recibo por email, precio en USD y un camino de decision mas seguro hacia la implementacion.">Secure Stripe checkout, instant access, email receipt, USD pricing, and a safer decision path into implementation.</span></div></div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/checkout/ai-system-investment-guide.html?previous=service-business-prompts" data-en="Get the AI System Investment Guide" data-es="Obten el AI System Investment Guide">Get the AI System Investment Guide</a>
+          </div>
+          <p class="hero-inline-note" data-en="For less than the cost of a small lunch, this guide can help your business avoid a far more expensive stack mistake." data-es="Por menos que el costo de un almuerzo pequeno, esta guia puede ayudar a tu negocio a evitar un error de stack mucho mas costoso.">For less than the cost of a small lunch, this guide can help your business avoid a far more expensive stack mistake.</p>
+          <div class="hero-video-inline visible">
+            <p class="eyebrow" data-en="Watch this before you buy" data-es="Mira esto antes de comprar">Watch this before you buy</p>
+            <h2 class="video-showcase-title" data-en="WATCH THIS <span class='grad'>BEFORE YOU BUY</span>" data-es="MIRA ESTO <span class='grad'>ANTES DE COMPRAR</span>">WATCH THIS <span class="grad">BEFORE YOU BUY</span></h2>
+            <p class="video-showcase-intro" data-en="This short walkthrough shows where the real cost of AI implementation lives, what belongs in your stack, and what should be clarified before you spend more money." data-es="Este recorrido corto muestra donde vive realmente el costo de implementar IA, que debe entrar en tu stack y que deberia aclararse antes de gastar mas dinero.">This short walkthrough shows where the real cost of AI implementation lives, what belongs in your stack, and what should be clarified before you spend more money.</p>
+            <div class="video-showcase-frame">
+              <video class="video-showcase-player" controls preload="metadata" playsinline aria-label="AI System Investment Guide video">
+                <source src="/shop/assets/videos/ai-system-investment-guide.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="video-showcase-meta">
+              <div class="video-showcase-author">
+                <span class="video-showcase-label" data-en="Presented by" data-es="Presentado por">Presented by</span>
+                <strong>Richard Hardy</strong>
+                <span data-en="Founder, The Future Studio" data-es="Fundador, The Future Studio">Founder, The Future Studio</span>
+              </div>
+              <p class="video-showcase-summary" data-en="This walkthrough shows how the guide helps your business choose the right stack more deliberately, understand where cost actually lives, and invest with more confidence." data-es="Este recorrido muestra como la guia ayuda a tu negocio a elegir el stack correcto con mas criterio, entender donde vive realmente el costo e invertir con mas confianza.">This walkthrough shows how the guide helps your business choose the right stack more deliberately, understand where cost actually lives, and invest with more confidence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="diagnostic-grid">
+        <article class="diagnostic-card dark aos">
+          <p class="eyebrow" data-en="Diagnostic read" data-es="Lectura diagnostica">Diagnostic read</p>
+          <strong data-en="THE BUYING LAYER NEEDS MORE CLARITY" data-es="LA CAPA DE COMPRA NECESITA MAS CLARIDAD">THE BUYING LAYER NEEDS MORE CLARITY</strong>
+          <div class="diagnostic-divider" aria-hidden="true"></div>
+          <div class="diagnostic-body">
+            <div class="score-number">ROI</div>
+            <p data-en="The business can already see the AI opportunity, but still needs stronger buying clarity around tools, hosting, budget boundaries, and what a smart system investment should actually include." data-es="El negocio ya puede ver la oportunidad de la IA, pero todavia necesita mas claridad de compra sobre herramientas, hosting, limites de presupuesto y que deberia incluir realmente una inversion inteligente en sistemas.">The business can already see the AI opportunity, but still needs stronger buying clarity around tools, hosting, budget boundaries, and what a smart system investment should actually include.</p>
+            <p class="micro-note" data-en="This usually shows up as overspending on the wrong stack, underbuying what actually matters, or moving too fast without understanding the operating cost of the system." data-es="Normalmente esto aparece como gastar de mas en el stack equivocado, comprar de menos lo que realmente importa o avanzar demasiado rapido sin entender el costo operativo del sistema.">This usually shows up as overspending on the wrong stack, underbuying what actually matters, or moving too fast without understanding the operating cost of the system.</p>
+          </div>
+        </article>
+        <article class="diagnostic-card aos d2">
+          <p class="eyebrow" data-en="Why this product now" data-es="Por que este producto ahora">Why this product now</p>
+          <strong data-en="CHOOSE THE AI SYSTEM INVESTMENT GUIDE BEFORE YOU SPEND BIGGER" data-es="ELIGE EL AI SYSTEM INVESTMENT GUIDE ANTES DE GASTAR MAS GRANDE">CHOOSE THE AI SYSTEM INVESTMENT GUIDE BEFORE YOU SPEND BIGGER</strong>
+          <div class="diagnostic-divider" aria-hidden="true"></div>
+          <div class="diagnostic-mark" aria-hidden="true"><span></span><span></span></div>
+          <div class="diagnostic-body">
+            <p data-en="What looks like a tool decision is usually a business decision in disguise. The right stack can protect margin, reduce admin load, and make implementation feel cleaner. The wrong one creates drag before your system even has a chance to work." data-es="Lo que parece una decision de herramienta normalmente es una decision de negocio disfrazada. El stack correcto puede proteger margen, reducir carga administrativa y hacer que la implementacion se sienta mas limpia. El equivocado crea friccion antes de que tu sistema siquiera tenga oportunidad de funcionar.">What looks like a tool decision is usually a business decision in disguise. The right stack can protect margin, reduce admin load, and make implementation feel cleaner. The wrong one creates drag before your system even has a chance to work.</p>
+            <p class="micro-note" data-en="This guide helps your business buy with better judgment now, so the next implementation move feels lighter, smarter, and easier to defend." data-es="Esta guia ayuda a tu negocio a comprar con mejor criterio ahora, para que el siguiente movimiento de implementacion se sienta mas ligero, mas inteligente y mas facil de defender.">This guide helps your business buy with better judgment now, so the next implementation move feels lighter, smarter, and easier to defend.</p>
+          </div>
+        </article>
+      </div>
+      <div class="section-cta aos" style="display:flex;justify-content:center;margin-top:26px;">
+        <a class="btn btn-primary" href="/checkout/ai-system-investment-guide.html?previous=service-business-prompts" data-en="Get the AI System Investment Guide" data-es="Obten el AI System Investment Guide">Get the AI System Investment Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" data-en="What the guide includes" data-es="Lo que incluye la guia">What the guide includes</p>
+        <div class="section-title-wrap">
+          <h2 class="section-title" data-en="WHAT THE <span class='grad'>AI SYSTEM INVESTMENT GUIDE</span> ACTUALLY COVERS" data-es="LO QUE REALMENTE CUBRE LA <span class='grad'>AI SYSTEM INVESTMENT GUIDE</span>">WHAT THE <span class="grad">AI SYSTEM INVESTMENT GUIDE</span> ACTUALLY COVERS</h2>
+          <div class="diagnostic-divider" aria-hidden="true"></div>
+        </div>
+        <p class="section-copy" data-en="This is a practical buying guide, not a generic AI explanation. It helps the business understand stack layers, tool roles, budget boundaries, and what should be self-managed before a larger system build." data-es="Esta es una guia practica de compra, no una explicacion generica sobre IA. Ayuda al negocio a entender capas del stack, roles de herramientas, limites de presupuesto y que deberia autogestionarse antes de un build de sistema mas grande.">This is a practical buying guide, not a generic AI explanation. It helps the business understand stack layers, tool roles, budget boundaries, and what should be self-managed before a larger system build.</p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+            <h3 data-en="TOOL LAYERS" data-es="CAPAS DE HERRAMIENTAS">TOOL LAYERS</h3>
+            <p data-en="A clearer understanding of what each layer in the stack actually does." data-es="Un entendimiento mas claro de que hace realmente cada capa dentro del stack.">A clearer understanding of what each layer in the stack actually does.</p>
+          </article>
+          <article class="feature-card">
+            <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+            <h3 data-en="BUDGET BOUNDARIES" data-es="LIMITES DE PRESUPUESTO">BUDGET BOUNDARIES</h3>
+            <p data-en="Better judgment around what deserves investment now and what can wait." data-es="Mejor criterio sobre que merece inversion ahora y que puede esperar.">Better judgment around what deserves investment now and what can wait.</p>
+          </article>
+          <article class="feature-card">
+            <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+            <h3 data-en="HOSTING AWARENESS" data-es="CLARIDAD DE HOSTING">HOSTING AWARENESS</h3>
+            <p data-en="More awareness of where systems live, what maintenance they need, and what creates hidden cost later." data-es="Mas claridad sobre donde viven los sistemas, que mantenimiento necesitan y que crea costos ocultos despues.">More awareness of where systems live, what maintenance they need, and what creates hidden cost later.</p>
+          </article>
+          <article class="feature-card">
+            <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+            <h3 data-en="MONITORING COSTS" data-es="COSTOS DE MONITOREO">MONITORING COSTS</h3>
+            <p data-en="A stronger sense of the real operating cost beyond the first buying decision." data-es="Una comprension mas fuerte del costo operativo real mas alla de la primera decision de compra.">A stronger sense of the real operating cost beyond the first buying decision.</p>
+          </article>
+          <article class="feature-card">
+            <p class="tier" data-en="Included" data-es="Incluido">Included</p>
+            <h3 data-en="BUILD TIMING" data-es="TIMING DEL BUILD">BUILD TIMING</h3>
+            <p data-en="A clearer answer for when the business should stay lean and when it should invest in something deeper." data-es="Una respuesta mas clara sobre cuando el negocio deberia mantenerse ligero y cuando deberia invertir en algo mas profundo.">A clearer answer for when the business should stay lean and when it should invest in something deeper.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" data-en="Who this is for" data-es="Para quien es esto">Who this is for</p>
+        <h2 class="section-title" data-en="THE RIGHT <span class='grad'>BUYING FILTER</span> BEFORE YOU BUILD" data-es="EL <span class='grad'>FILTRO DE COMPRA</span> CORRECTO ANTES DE CONSTRUIR">THE RIGHT <span class="grad">BUYING FILTER</span> BEFORE YOU BUILD</h2>
+        <div class="compare-grid">
+          <article class="compare-card">
+            <div class="compare-kicker" data-en="For you if" data-es="Para ti si">For you if</div>
+            <h3 data-en="You need better AI buying logic" data-es="Necesitas mejor logica de compra en IA">You need better AI buying logic</h3>
+            <ul>
+              <li data-en="You know AI matters but are unsure what to buy first" data-es="Sabes que la IA importa pero no tienes claro que comprar primero">You know AI matters but are unsure what to buy first</li>
+              <li data-en="You are comparing tools, automations, CRMs, or booking systems" data-es="Estas comparando herramientas, automatizaciones, CRMs o sistemas de reserva">You are comparing tools, automations, CRMs, or booking systems</li>
+              <li data-en="You want budget discipline before a larger build" data-es="Quieres disciplina de presupuesto antes de un build mayor">You want budget discipline before a larger build</li>
+            </ul>
+          </article>
+          <article class="compare-card">
+            <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
+            <h3 data-en="You want a full custom build now" data-es="Quieres un build custom completo ahora">You want a full custom build now</h3>
+            <ul>
+              <li data-en="You already have a clear stack and rollout roadmap" data-es="Ya tienes un stack claro y un roadmap de rollout">You already have a clear stack and rollout roadmap</li>
+              <li data-en="You only want a generic list of AI tools" data-es="Solo quieres una lista generica de herramientas de IA">You only want a generic list of AI tools</li>
+              <li data-en="You expect a low-cost guide to replace implementation work" data-es="Esperas que una guia de bajo costo reemplace el trabajo de implementacion">You expect a low-cost guide to replace implementation work</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
+        <h2 class="section-title" data-en="FROM <span class='grad'>RANDOM TOOL DECISIONS</span> TO A SMARTER STACK PATH" data-es="DE <span class='grad'>DECISIONES ALEATORIAS DE HERRAMIENTAS</span> A UN CAMINO DE STACK MAS INTELIGENTE">FROM <span class="grad">RANDOM TOOL DECISIONS</span> TO A SMARTER STACK PATH</h2>
+        <div class="compare-grid">
+          <article class="compare-card">
+            <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
+            <h3 data-en="Stack confusion" data-es="Confusion de stack">Stack confusion</h3>
+            <ul>
+              <li data-en="Random AI ideas and overlapping subscriptions" data-es="Ideas aleatorias de IA y suscripciones que se superponen">Random AI ideas and overlapping subscriptions</li>
+              <li data-en="Unclear hosting, maintenance, and monitoring cost" data-es="Costo poco claro de hosting, mantenimiento y monitoreo">Unclear hosting, maintenance, and monitoring cost</li>
+              <li data-en="Risk of buying too much too soon" data-es="Riesgo de comprar demasiado y demasiado pronto">Risk of buying too much too soon</li>
+            </ul>
+          </article>
+          <article class="compare-card">
+            <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
+            <h3 data-en="Clearer investment order" data-es="Orden de inversion mas claro">Clearer investment order</h3>
+            <ul>
+              <li data-en="Better first purchase decision" data-es="Mejor primera decision de compra">Better first purchase decision</li>
+              <li data-en="Clearer stack layers and budget boundaries" data-es="Capas del stack y limites de presupuesto mas claros">Clearer stack layers and budget boundaries</li>
+              <li data-en="Stronger bridge into implementation, demo, or the next planning product" data-es="Puente mas fuerte hacia implementacion, demo o el siguiente producto de planeacion">Stronger bridge into implementation, demo, or the next planning product</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="aos faq-wrap">
+        <p class="eyebrow" data-en="Questions before you buy" data-es="Preguntas antes de comprar">Questions before you buy</p>
+        <h2 class="section-title" data-en="COMMON QUESTIONS BEFORE YOU <span class='grad'>BUY MORE INTELLIGENTLY</span>" data-es="PREGUNTAS COMUNES ANTES DE <span class='grad'>COMPRAR CON MAS INTELIGENCIA</span>">COMMON QUESTIONS BEFORE YOU <span class="grad">BUY MORE INTELLIGENTLY</span></h2>
+        <p class="section-copy" data-en="This product is for business owners who already see the AI opportunity and now want more confidence about what to buy, what to skip, and how to avoid paying twice for the wrong stack." data-es="Este producto es para duenos de negocio que ya ven la oportunidad de la IA y ahora quieren mas confianza sobre que comprar, que saltarse y como evitar pagar dos veces por el stack equivocado.">This product is for business owners who already see the AI opportunity and now want more confidence about what to buy, what to skip, and how to avoid paying twice for the wrong stack.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="Is this useful even if I am still early in buying?" data-es="Esto sirve incluso si todavia estoy temprano en la compra?">Is this useful even if I am still early in buying?</button>
+            <div class="faq-answer" data-en="Yes. This guide is most useful when the business can already see the opportunity but still wants cleaner buying logic before it spends more money on systems, tools, or infrastructure." data-es="Si. Esta guia es mas util cuando el negocio ya puede ver la oportunidad, pero todavia quiere una logica de compra mas limpia antes de gastar mas dinero en sistemas, herramientas o infraestructura.">Yes. This guide is most useful when the business can already see the opportunity but still wants cleaner buying logic before it spends more money on systems, tools, or infrastructure.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="Why buy the guide before a larger system build?" data-es="Por que comprar la guia antes de un build de sistema mas grande?">Why buy the guide before a larger system build?</button>
+            <div class="faq-answer" data-en="Because clearer buying logic usually saves more money than rushing into the wrong stack. This guide helps you understand what should be included, what should wait, and what would only create extra cost or maintenance pressure right now." data-es="Porque una logica de compra mas clara normalmente ahorra mas dinero que correr hacia el stack equivocado. Esta guia te ayuda a entender que deberia incluirse, que deberia esperar y que solo crearia mas costo o mas presion de mantenimiento ahora mismo.">Because clearer buying logic usually saves more money than rushing into the wrong stack. This guide helps you understand what should be included, what should wait, and what would only create extra cost or maintenance pressure right now.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="What happens after I buy?" data-es="Que pasa despues de comprar?">What happens after I buy?</button>
+            <div class="faq-answer" data-en="You go straight into delivery for the AI System Investment Guide, so leadership can review the framework immediately and make cleaner choices about tools, hosting, stack design, and budget discipline." data-es="Vas directo a la entrega de la AI System Investment Guide, para que liderazgo pueda revisar el marco de inmediato y tomar decisiones mas limpias sobre herramientas, hosting, diseno del stack y disciplina de presupuesto.">You go straight into delivery for the AI System Investment Guide, so leadership can review the framework immediately and make cleaner choices about tools, hosting, stack design, and budget discipline.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="Will this still help if I use different tools later?" data-es="Seguira ayudando si uso otras herramientas despues?">Will this still help if I use different tools later?</button>
+            <div class="faq-answer" data-en="Yes. The guide is designed around tool layers and buying decisions, not around locking you into one platform. That makes it useful even if your eventual stack changes later." data-es="Si. La guia esta disenada alrededor de capas de herramientas y decisiones de compra, no alrededor de amarrarte a una sola plataforma. Eso la hace util incluso si tu stack cambia despues.">Yes. The guide is designed around tool layers and buying decisions, not around locking you into one platform. That makes it useful even if your eventual stack changes later.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="What comes after this?" data-es="Que viene despues de esto?">What comes after this?</button>
+            <div class="faq-answer" data-en="After the guide is in place, the next visible layer is the 90-Day Content Calendar. That is where buying clarity turns into more visible public consistency and demand-building communication." data-es="Despues de implementar la guia, la siguiente capa visible es el 90-Day Content Calendar. Ahi es donde la claridad de compra se convierte en mas consistencia publica visible y comunicacion que construye demanda.">After the guide is in place, the next visible layer is the 90-Day Content Calendar. That is where buying clarity turns into more visible public consistency and demand-building communication.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" data-en="Can this help before a Future Studio demo?" data-es="Esto puede ayudar antes de una demo con Future Studio?">Can this help before a Future Studio demo?</button>
+            <div class="faq-answer" data-en="Yes. It helps you arrive at a demo with clearer questions, better budget awareness, and a stronger idea of what your business should buy, delay, or avoid." data-es="Si. Te ayuda a llegar a una demo con preguntas mas claras, mejor conciencia de presupuesto y una idea mas fuerte de lo que tu negocio deberia comprar, retrasar o evitar.">Yes. It helps you arrive at a demo with clearer questions, better budget awareness, and a stronger idea of what your business should buy, delay, or avoid.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="checkout-card aos">
+        <p class="eyebrow" data-en="Level Up" data-es="Level Up">Level Up</p>
+        <h2 data-en="READY TO INVEST IN AI <span class='grad'>WITH MORE CLARITY</span>?" data-es="LISTO PARA INVERTIR EN IA <span class='grad'>CON MAS CLARIDAD</span>?">READY TO INVEST IN AI <span class="grad">WITH MORE CLARITY</span>?</h2>
+        <p class="checkout-summary" data-en="Get the AI System Investment Guide now and use it to understand what belongs in your stack, where costs usually hide, and what your business should clarify before spending more on implementation." data-es="Obten ahora la AI System Investment Guide y usala para entender que debe entrar en tu stack, donde suelen esconderse los costos y que deberia aclarar tu negocio antes de gastar mas en implementacion.">Get the AI System Investment Guide now and use it to understand what belongs in your stack, where costs usually hide, and what your business should clarify before spending more on implementation.</p>
+        <ul class="cta-points">
+          <li data-en="Best when you want better stack decisions before you spend more." data-es="Ideal cuando quieres mejores decisiones de stack antes de gastar mas.">Best when you want better stack decisions before you spend more.</li>
+          <li data-en="Useful when leadership wants more buyer confidence before a larger system move." data-es="Util cuando liderazgo quiere mas confianza de compra antes de un movimiento mayor de sistema.">Useful when leadership wants more buyer confidence before a larger system move.</li>
+          <li data-en="A $12.99 clarity layer that can prevent a far more expensive implementation mistake." data-es="Una capa de claridad de $12.99 que puede evitar un error de implementacion mucho mas caro.">A $12.99 clarity layer that can prevent a far more expensive implementation mistake.</li>
+        </ul>
+        <div class="cta-row">
+<a class="btn btn-primary" href="/checkout/ai-system-investment-guide.html?previous=service-business-prompts" data-en="Get the AI System Investment Guide" data-es="Obten el AI System Investment Guide">Get the AI System Investment Guide</a>
+        </div>
+        <div class="cta-links">
+          <a href="/shop/step-4/" data-en="See the 90-Day Content Calendar" data-es="Ver el 90-Day Content Calendar">See the 90-Day Content Calendar</a>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" data-en="Ask a quick question on WhatsApp" data-es="Hacer una pregunta rapida por WhatsApp">Ask a quick question on WhatsApp</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a free demo if you want implementation help" data-es="Ver demo gratuita si quieres ayuda de implementacion">Watch a free demo if you want implementation help</a>
+        </div>
+        <p class="checkout-helper" data-en="You are not being pushed into multiple products here. You are choosing one clear commercial next step to protect more of the interest your business is already earning." data-es="No te estan empujando a multiples productos aqui. Estas eligiendo un siguiente paso comercial claro para proteger mas del interes que tu negocio ya esta ganando.">You are not being pushed into multiple products here. You are choosing one clear commercial next step to protect more of the interest your business is already earning.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="/logo.png" alt="The Future Studio">
+        </div>
+        <p class="footer-tagline">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/#services">Voice Agents</a></li>
+          <li><a href="/#services">WhatsApp Automation</a></li>
+          <li><a href="/#services">Booking Flows</a></li>
+          <li><a href="/#services">Custom Platforms</a></li>
+          <li><a href="/#courses-section">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">Ã‚Â© 2026 The Future Studio Ã¢â‚¬â€ Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        Latin America Ã‚Â· Remote &amp; In-person
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.faq-question').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var item = button.closest('.faq-item');
+      if (!item) return;
+      var isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('is-open'); });
+      if (!isOpen) item.classList.add('is-open');
+    });
+  });
+});
+</script>
+  <script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
 </body>
 </html>
+
+
+
+
+
+
+

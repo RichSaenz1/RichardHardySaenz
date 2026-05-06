@@ -1,6 +1,34 @@
 var PAYMENT_LINKS = window.PAYMENT_LINKS || {};
 var WEBHOOK_URL = window.WEBHOOK_URL || "";
 
+function ensureSharedFunnelAssets() {
+  var version = "rebuild-20260505";
+
+  function hasAsset(selector, needle) {
+    return Array.prototype.some.call(document.querySelectorAll(selector), function(el) {
+      return (el.getAttribute("href") || el.getAttribute("src") || "").indexOf(needle) !== -1;
+    });
+  }
+
+  if (!hasAsset("link[rel='stylesheet']", "/assets/funnel-layout.css")) {
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/assets/funnel-layout.css?v=" + version;
+    document.head.appendChild(link);
+  }
+
+  function loadScript(src) {
+    if (hasAsset("script[src]", src)) return;
+    var script = document.createElement("script");
+    script.src = src + "?v=" + version;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+  loadScript("/assets/funnel-conversion.js");
+  loadScript("/assets/funnel-visuals.js");
+}
+
 function getTfsEmailAddress() {
   return "info" + String.fromCharCode(64) + "thefuturestudio.online";
 }
@@ -179,6 +207,8 @@ function initNav() {
   var navActions = nav.querySelector(".nav-actions");
   if (!navInner || !navPrimary || !navActions) return;
 
+  var brand = nav.querySelector(".site-brand");
+
   var hamburger = nav.querySelector(".nav-hamburger");
   if (!hamburger) {
     hamburger = document.createElement("button");
@@ -189,6 +219,23 @@ function initNav() {
     hamburger.innerHTML = "<span></span><span></span><span></span>";
     navInner.appendChild(hamburger);
   }
+
+  var mobileControls = nav.querySelector(".nav-mobile-controls");
+  if (!mobileControls) {
+    mobileControls = document.createElement("div");
+    mobileControls.className = "nav-mobile-controls";
+    if (brand && brand.nextSibling) {
+      navInner.insertBefore(mobileControls, brand.nextSibling);
+    } else {
+      navInner.appendChild(mobileControls);
+    }
+  }
+
+  if (hamburger.parentNode !== mobileControls) {
+    mobileControls.appendChild(hamburger);
+  }
+
+  var existingLang = navActions.querySelector(".lang-toggle");
 
   var mobileDrawer = nav.querySelector(".nav-mobile");
   if (!mobileDrawer) {
@@ -201,27 +248,45 @@ function initNav() {
 
   var mobilePrimary = navPrimary.cloneNode(true);
   var mobileActions = navActions.cloneNode(true);
+  var mobileActionsLang = mobileActions.querySelector(".lang-toggle");
+  if (mobileActionsLang) {
+    mobileActionsLang.remove();
+  }
   mobileDrawer.appendChild(mobilePrimary);
   mobileDrawer.appendChild(mobileActions);
+  if (existingLang) {
+    var mobileDrawerLang = existingLang.cloneNode(true);
+    mobileDrawerLang.classList.add("nav-mobile-lang");
+    mobileDrawer.appendChild(mobileDrawerLang);
+  }
 
   hamburger.addEventListener("click", function() {
     var open = mobileDrawer.classList.toggle("open");
     hamburger.classList.toggle("open", open);
     hamburger.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("nav-open", open);
+    if (open) {
+      nav.classList.remove("nav-hidden");
+    }
   });
 
-  mobileDrawer.querySelectorAll("a, button").forEach(function(target) {
+  mobileDrawer.querySelectorAll("a:not(.lang-btn), button:not(.lang-btn)").forEach(function(target) {
     target.addEventListener("click", function() {
       mobileDrawer.classList.remove("open");
       hamburger.classList.remove("open");
       hamburger.setAttribute("aria-expanded", "false");
       document.body.classList.remove("nav-open");
+      nav.classList.remove("nav-hidden");
     });
   });
 
+  var lastScrollY = window.scrollY || 0;
   function syncNav() {
-    nav.classList.toggle("scrolled", window.scrollY > 10);
+    var currentY = window.scrollY || 0;
+    var hideNav = currentY > 120 && currentY > lastScrollY && !mobileDrawer.classList.contains("open");
+    nav.classList.toggle("scrolled", currentY > 10);
+    nav.classList.toggle("nav-hidden", hideNav);
+    lastScrollY = currentY;
   }
 
   syncNav();
@@ -387,13 +452,19 @@ function initStep4() {
   ];
   var noteEl = document.getElementById("checkout-product-note");
   var nextEl = document.getElementById("checkout-next-step");
+  var nextInfoEl = document.getElementById("industry-next-step-copy");
   var detailEl = document.getElementById("checkout-product-detail");
+  var sampleTitleEl = document.getElementById("sample-preview-title");
   var trigger = document.getElementById("main-buy-trigger");
+  var extraTriggers = document.querySelectorAll(".step4-buy-trigger");
+  var checkoutNameEl = document.getElementById("checkout-product-name");
+  var checkoutButtonEl = document.getElementById("manual-order-email");
 
   function renderIndustry(slug) {
     var lang = currentLang() === "es" ? "es" : "en";
     var key = window.TFS_INDUSTRY_DATA[slug] ? slug : "clinic";
     var data = window.TFS_INDUSTRY_DATA[key];
+    var checkoutUrl = "/checkout/content-calendar.html?industry=" + encodeURIComponent(key);
 
     if (titleEl) titleEl.textContent = data.title[lang];
     if (copyEl) copyEl.textContent = data.copy[lang];
@@ -403,12 +474,36 @@ function initStep4() {
     if (trustEls[2]) trustEls[2].textContent = data.trust[2][lang];
     if (noteEl) noteEl.textContent = data.note[lang];
     if (nextEl) nextEl.textContent = data.next[lang];
+    if (nextInfoEl) nextInfoEl.textContent = data.next[lang];
     if (detailEl) detailEl.textContent = data.detail[lang];
+    if (sampleTitleEl) sampleTitleEl.textContent = data.product[lang];
+    if (checkoutNameEl) checkoutNameEl.textContent = data.product[lang];
     if (trigger) {
       trigger.setAttribute("data-product-name", data.product[lang]);
       trigger.setAttribute("data-product-detail", data.detail[lang]);
       trigger.setAttribute("data-product-note", data.note[lang]);
       trigger.setAttribute("data-next-step", data.next[lang]);
+      trigger.setAttribute("data-checkout-url", checkoutUrl);
+      trigger.setAttribute("href", checkoutUrl);
+    }
+    extraTriggers.forEach(function(btn) {
+      btn.setAttribute("data-product-name", data.product[lang]);
+      btn.setAttribute("data-product-detail", data.detail[lang]);
+      btn.setAttribute("data-product-note", data.note[lang]);
+      btn.setAttribute("data-next-step", data.next[lang]);
+      btn.setAttribute("data-checkout-url", checkoutUrl);
+      btn.setAttribute("href", checkoutUrl);
+    });
+    document.querySelectorAll(".video-buy-cta, .mobile-buy-button").forEach(function(btn) {
+      btn.setAttribute("href", checkoutUrl);
+      btn.setAttribute("data-product-name", data.product[lang]);
+    });
+    document.querySelectorAll(".mobile-buy-title").forEach(function(el) {
+      el.textContent = data.product[lang];
+    });
+    if (checkoutButtonEl) {
+      checkoutButtonEl.setAttribute("data-checkout-url", checkoutUrl);
+      checkoutButtonEl.setAttribute("href", checkoutUrl);
     }
 
     document.querySelectorAll("#industry-picker button").forEach(function(btn) {
@@ -442,6 +537,113 @@ function initStep4() {
   renderIndustry(params.get("industry") || "clinic");
 }
 
+function primaryCheckoutLink() {
+  return document.querySelector("main a.btn-primary[href*='/checkout/']") ||
+    document.querySelector("main a.buy-trigger[href*='/checkout/']") ||
+    document.querySelector("main a.series-primary-cta[href*='/checkout/']") ||
+    document.querySelector("main a[href*='/checkout/']");
+}
+
+function productPageEligible() {
+  var bodyClass = document.body ? document.body.className : "";
+  return /page-(step|series|calendar)/.test(bodyClass) && !/checkout|thank-you/.test(bodyClass);
+}
+
+function cleanText(value) {
+  return (value || "").replace(/\s+/g, " ").trim();
+}
+
+function productTitleFromPage(link) {
+  if (link && link.getAttribute("data-product-name")) {
+    return cleanText(link.getAttribute("data-product-name"));
+  }
+
+  var bridgeStrong = document.querySelector(".hero-bridge-copy strong");
+  if (bridgeStrong) return cleanText(bridgeStrong.textContent);
+
+  var title = document.querySelector("h1");
+  if (title) return cleanText(title.textContent).slice(0, 64);
+
+  return cleanText(document.title.split("|")[0]) || "This product";
+}
+
+function productPriceFromPage() {
+  var price = document.querySelector(".offer-price-banner .offer-price-amount");
+  if (price) return cleanText(price.textContent);
+
+  var seriesPrice = document.querySelector(".series-price-strip strong, .price-strip strong");
+  if (seriesPrice) return cleanText(seriesPrice.textContent);
+
+  var link = primaryCheckoutLink();
+  if (link && link.getAttribute("data-price-label")) {
+    return cleanText(link.getAttribute("data-price-label"));
+  }
+
+  return "";
+}
+
+function syncDynamicConversionCopy(root) {
+  var lang = currentLang() === "es" ? "es" : "en";
+  (root || document).querySelectorAll("[data-dynamic-en][data-dynamic-es]").forEach(function(el) {
+    el.innerHTML = el.getAttribute("data-dynamic-" + lang);
+  });
+}
+
+function initBestNextStepBadges() {
+  var firstBanner = document.querySelector("main .offer-price-banner") ||
+    document.querySelector("main .series-price-strip");
+  if (!firstBanner || firstBanner.querySelector(".best-next-step-badge")) return;
+
+  var badge = document.createElement("span");
+  badge.className = "best-next-step-badge";
+  badge.setAttribute("data-dynamic-en", "Best next step");
+  badge.setAttribute("data-dynamic-es", "Siguiente paso ideal");
+  firstBanner.insertBefore(badge, firstBanner.firstChild);
+  syncDynamicConversionCopy(firstBanner);
+}
+
+function initVideoSalesAssets() {
+  var checkoutLink = primaryCheckoutLink();
+  if (!checkoutLink) return;
+
+  document.querySelectorAll(".video-showcase-frame, .video-preview-player").forEach(function(frame) {
+    if (frame.parentNode && frame.parentNode.querySelector(".video-sales-cta")) return;
+
+    var cta = document.createElement("div");
+    cta.className = "video-sales-cta";
+    cta.innerHTML =
+      "<p><strong data-dynamic-en=\"Watch this before buying\" data-dynamic-es=\"Mira esto antes de comprar\"></strong>" +
+      "<span data-dynamic-en=\"This short preview shows what this offer helps you fix and why this step comes next.\" data-dynamic-es=\"Esta vista previa corta muestra que ayuda a resolver esta oferta y por que este paso viene ahora.\"></span></p>" +
+      "<a class=\"btn btn-primary video-buy-cta\" href=\"" + checkoutLink.href + "\" data-dynamic-en=\"Buy this product\" data-dynamic-es=\"Comprar este producto\"></a>";
+
+    frame.insertAdjacentElement("afterend", cta);
+    syncDynamicConversionCopy(cta);
+  });
+}
+
+function initMobileBuyBar() {
+  if (!productPageEligible() || document.querySelector(".mobile-buy-bar")) return;
+
+  var link = primaryCheckoutLink();
+  if (!link) return;
+
+  var bar = document.createElement("div");
+  bar.className = "mobile-buy-bar";
+  bar.setAttribute("aria-label", "Mobile purchase shortcut");
+  bar.innerHTML =
+    "<div>" +
+      "<span class=\"mobile-buy-kicker\" data-dynamic-en=\"Best next step\" data-dynamic-es=\"Siguiente paso ideal\"></span>" +
+      "<strong class=\"mobile-buy-title\"></strong>" +
+      "<span class=\"mobile-buy-price\"></span>" +
+    "</div>" +
+    "<a class=\"btn btn-primary mobile-buy-button\" href=\"" + link.href + "\" data-dynamic-en=\"Buy now\" data-dynamic-es=\"Comprar\"></a>";
+
+  document.body.appendChild(bar);
+  bar.querySelector(".mobile-buy-title").textContent = productTitleFromPage(link);
+  bar.querySelector(".mobile-buy-price").textContent = productPriceFromPage();
+  syncDynamicConversionCopy(bar);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   ensureSharedFunnelAssets();
   initCanvas();
@@ -452,4 +654,10 @@ document.addEventListener("DOMContentLoaded", function() {
   initFaqs();
   initReveals();
   initStep4();
+  initBestNextStepBadges();
+  initVideoSalesAssets();
+  initMobileBuyBar();
+  document.addEventListener("tfs:langchange", function() {
+    syncDynamicConversionCopy(document);
+  });
 });

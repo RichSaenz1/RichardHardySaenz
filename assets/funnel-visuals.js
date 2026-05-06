@@ -122,6 +122,65 @@
     }
   };
 
+  var videoMap = {
+    "/thank-you/audit.html": {
+      src: "/shop/assets/videos/whatsapp-setup-guide-for-service-businesses.mp4",
+      title: "WATCH THIS BEFORE YOUR NEXT STEP",
+      titleEs: "MIRA ESTO ANTES DEL SIGUIENTE PASO",
+      intro: "A short walkthrough of how the WhatsApp guide helps clean up the first response layer before bigger automation decisions.",
+      introEs: "Un recorrido corto de como la guia de WhatsApp ayuda a ordenar la primera respuesta antes de decisiones de automatizacion mas grandes.",
+      label: "WhatsApp Automation Guide video"
+    },
+    "/thank-you/learn.html": {
+      src: "/shop/assets/videos/90-day-ai-rollout-timeline.mp4",
+      title: "WATCH THIS BEFORE PLANNING THE ROLLOUT",
+      titleEs: "MIRA ESTO ANTES DE PLANIFICAR EL ROLLOUT",
+      intro: "A short walkthrough of how the timeline gives the first 90 days a calmer order.",
+      introEs: "Un recorrido corto de como el timeline da mas orden a los primeros 90 dias.",
+      label: "90-Day AI Rollout Timeline video"
+    },
+    "/thank-you/build.html": {
+      src: "/shop/assets/videos/20-ai-prompts-for-service-businesses.mp4",
+      title: "WATCH THIS BEFORE USING THE PROMPTS",
+      titleEs: "MIRA ESTO ANTES DE USAR LOS PROMPTS",
+      intro: "A short walkthrough of how the prompt pack helps service businesses improve replies, follow-up, and admin messages.",
+      introEs: "Un recorrido corto de como el pack de prompts ayuda a mejorar respuestas, seguimiento y mensajes administrativos.",
+      label: "20 Prompts for Service Businesses video"
+    },
+    "/shop/step-2/build/": {
+      src: "/shop/assets/videos/20-ai-prompts-for-service-businesses.mp4",
+      title: "WATCH THIS BEFORE USING THE PROMPTS",
+      titleEs: "MIRA ESTO ANTES DE USAR LOS PROMPTS",
+      intro: "See how the prompts help turn common service business tasks into cleaner AI-assisted workflows.",
+      introEs: "Mira como los prompts convierten tareas comunes de negocios de servicios en flujos mas claros con IA.",
+      label: "20 Prompts for Service Businesses video"
+    },
+    "/shop/step-3/audit/": {
+      src: "/shop/assets/videos/30-day-lead-conversion-sequence.mp4",
+      title: "WATCH THIS BEFORE BUILDING FOLLOW-UP",
+      titleEs: "MIRA ESTO ANTES DE CONSTRUIR EL SEGUIMIENTO",
+      intro: "A short walkthrough of how the sequence keeps qualified leads moving after the first reply.",
+      introEs: "Un recorrido corto de como la secuencia mantiene los leads calificados avanzando despues de la primera respuesta.",
+      label: "30-Day Lead Conversion Sequence video"
+    },
+    "/shop/step-3/learn/": {
+      src: "/shop/assets/videos/ai-implementation-playbook.mp4",
+      title: "WATCH THIS BEFORE IMPLEMENTATION",
+      titleEs: "MIRA ESTO ANTES DE IMPLEMENTAR",
+      intro: "A short walkthrough of how the playbook turns AI planning into a practical implementation order.",
+      introEs: "Un recorrido corto de como el playbook convierte la planificacion de IA en un orden practico de implementacion.",
+      label: "AI Implementation Playbook video"
+    },
+    "/shop/series/first-ai-system.html": {
+      src: "/shop/assets/videos/your-first-ai-system.mp4",
+      title: "WATCH THIS BEFORE RESERVING THE SERIES",
+      titleEs: "MIRA ESTO ANTES DE RESERVAR LA SERIE",
+      intro: "A short preview of the five-video path from AI curiosity into a working first system.",
+      introEs: "Una vista previa corta del camino de cinco videos desde curiosidad de IA hasta un primer sistema funcionando.",
+      label: "From Zero to Your First AI System video"
+    }
+  };
+
   function normalizePath() {
     return window.location.pathname.replace(/\/index\.html$/, "/");
   }
@@ -205,6 +264,38 @@
     return !!document.querySelector(".video-preview-card, .video-showcase-card, .hero-video-inline, video");
   }
 
+  function createVideoSection(config) {
+    if (!config || !config.src || hasVideoPreview()) return null;
+    var section = document.createElement("section");
+    section.className = "funnel-video-recovery-section";
+    section.setAttribute("aria-label", config.label || "The Future Studio video preview");
+    section.innerHTML =
+      "<div class='wrap'>" +
+        "<div class='hero-video-inline visible'>" +
+          "<p class='eyebrow' data-en='Watch this before buying' data-es='Mira esto antes de comprar'>Watch this before buying</p>" +
+          "<h2 class='video-showcase-title' data-en='" + config.title + "' data-es='" + (config.titleEs || config.title) + "'>" + config.title + "</h2>" +
+          "<p class='video-showcase-intro' data-en='" + config.intro + "' data-es='" + (config.introEs || config.intro) + "'>" + config.intro + "</p>" +
+          "<div class='video-showcase-frame'>" +
+            "<video class='video-showcase-player' controls preload='metadata' playsinline aria-label='" + (config.label || "The Future Studio video") + "'>" +
+              "<source src='" + config.src + "' type='video/mp4'>" +
+              "Your browser does not support the video tag." +
+            "</video>" +
+          "</div>" +
+        "</div>" +
+      "</div>";
+    return section;
+  }
+
+  function insertVideoAfterHero(config) {
+    if (!config || alreadyRendered("video-recovery")) return;
+    var hero = document.querySelector("main .hero, #audit-hero, #learn-hero, #build-hero, #hero");
+    if (!hero) return;
+    var section = createVideoSection(config);
+    if (!section) return;
+    section.setAttribute("data-funnel-visual", "video-recovery");
+    hero.parentNode.insertBefore(section, hero.nextSibling);
+  }
+
   function checkoutConfig(path) {
     var sharedCheckoutImage = {
       src: assets.checkoutTrust,
@@ -262,6 +353,28 @@
       return;
     }
 
+    if (path === "/learn/" || path === "/funnel/step-1/learn/") {
+      insertAfterHero({
+        id: "learn-trust",
+        src: assets.aiReadinessTrust,
+        alt: "Business team reviewing AI opportunity and readiness dashboards.",
+        variant: "hero",
+        position: "center 38%"
+      });
+      return;
+    }
+
+    if (path === "/build/" || path === "/funnel/step-1/build/") {
+      insertAfterHero({
+        id: "build-trust",
+        src: assets.buildSystems,
+        alt: "Business team reviewing revenue recovery and automation planning dashboards.",
+        variant: "hero",
+        position: "center 38%"
+      });
+      return;
+    }
+
     if (path === "/client-intake/") {
       insertAfterHero({
         id: "client-intake-team",
@@ -283,6 +396,44 @@
           alt: checkout.alt,
           variant: "checkout",
           position: checkout.position || "center 38%"
+        });
+      }
+      return;
+    }
+
+    if (videoMap[path]) {
+      insertVideoAfterHero(videoMap[path]);
+      return;
+    }
+
+    if (path.indexOf("/shop/step-3/") === 0 && !hasVideoPreview()) {
+      var productVisual = null;
+      if (path.indexOf("/audit/") !== -1) productVisual = productImages["lead-conversion-sequence"];
+      if (path.indexOf("/learn/") !== -1) productVisual = productImages["ai-implementation-playbook"];
+      if (path.indexOf("/build/") !== -1) productVisual = productImages["ai-system-investment-guide"];
+      if (productVisual) {
+        insertAfterHero({
+          id: "step3-product-visual",
+          src: productVisual.src,
+          alt: productVisual.alt,
+          variant: "product",
+          position: productVisual.position || "center 38%"
+        });
+      }
+      return;
+    }
+
+    if (path.indexOf("/shop/series/") === 0 && !hasVideoPreview()) {
+      var seriesSlug = path.split("/").pop().replace(".html", "");
+      var seriesVisual = seriesImages[seriesSlug];
+      if (seriesVisual) {
+        insertAfterHero({
+          id: "series-visual",
+          src: seriesVisual.src,
+          alt: seriesVisual.alt,
+          variant: "course",
+          position: seriesVisual.position || "center 38%",
+          portrait: !!seriesVisual.portrait
         });
       }
       return;

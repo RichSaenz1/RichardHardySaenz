@@ -242,18 +242,15 @@ body.has-urgency-bar #nav{top:56px}
 .section{padding:110px 0}
 main{display:flex;flex-direction:column}
 #hero{order:1}
-#live-demo{order:2}
-#call-flow{order:3}
-#walkthrough{order:4}
-.marquee{order:5}
-#features{order:6}
-#proof{order:7}
-#fit{order:8}
-#process{order:9}
-#buy{order:10}
-#bonus{order:11}
-#faq{order:12}
-.final-cta{order:13}
+#walkthrough{order:2}
+#live-demo{order:3}
+.marquee{order:4}
+#features{order:5}
+#process{order:6}
+#buy{order:7}
+#bonus{order:8}
+#faq{order:9}
+.final-cta{order:10}
 .section-dark{background:var(--black);color:var(--white)}
 .section-dark .body-lg,.section-dark .body-md,.section-dark .body-sm{color:rgba(255,255,255,.66)}
 .section-head{display:grid;grid-template-columns:1fr .82fr;gap:64px;align-items:end;margin-bottom:56px}
@@ -314,6 +311,11 @@ main{display:flex;flex-direction:column}
 .compare-card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--cyan)}
 .compare-kicker{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
 .compare-card h3{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
+.fit-merged-grid{grid-template-columns:repeat(3,1fr)}
+.fit-merged-grid .compare-card{min-height:390px}
+.fit-industries{display:grid;gap:16px;margin-top:2px}
+.fit-industry strong{display:block;font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1;color:var(--black)}
+.fit-industry span{display:block;margin-top:6px;color:var(--text-mid);font-size:15px;line-height:1.55}
 .bonus-strip{border:2px solid var(--black);background:linear-gradient(135deg,var(--cyan),#dffdf8 45%,var(--blue));padding:36px 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
 .bonus-strip .body-md{color:#173936}
 .price-fit{margin:0 0 22px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.55}
@@ -381,7 +383,7 @@ main{display:flex;flex-direction:column}
 footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start}
 .footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.footer-logo img{width:auto;height:80px;object-fit:contain;filter:invert(1)}
+  .footer-logo img{width:auto;height:80px;object-fit:contain;background:transparent;padding:0}
 .footer-logo-text{font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);max-width:360px;line-height:1.65}
 .footer-col h5{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
@@ -419,6 +421,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .live-demo-copy .body-lg,.live-demo-note{margin-left:auto;margin-right:auto}
   .live-demo-note span{justify-content:center}
   .compare-grid,.bonus-strip{grid-template-columns:1fr}
+  .fit-merged-grid{grid-template-columns:1fr}
   .feature-grid,.pricing-grid{grid-template-columns:1fr}
   .feature-card,.pricing-card{border-right:0!important;border-bottom:1px solid var(--black)}
   .pricing-card{border-bottom-color:rgba(255,255,255,.16)}
@@ -506,7 +509,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
     </div>
     <a href="../#hero" class="nav-logo" style="position:absolute;left:50%;transform:translateX(-50%)" aria-label="The Future Studio home">
-      <img src="../logo.png" alt="The Future Studio">
+      <img src="/assets/future-studio-logo.png" alt="The Future Studio">
     </a>
     <div class="nav-actions">
       <a href="https://www.linkedin.com/in/richard-hardy" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn">
@@ -594,6 +597,30 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     </div>
   </section>
 
+  <section class="video-section" id="walkthrough">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-en="Voice agent walkthrough" data-es="Recorrido del agente de voz">Voice agent walkthrough</p>
+          <h2 class="headline-lg" data-en="SEE THE<br>FULL LOGIC" data-es="MIRA LA<br>LOGICA COMPLETA">SEE THE<br>FULL LOGIC</h2>
+        </div>
+        <p class="body-lg" data-en="Watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing before you try the live demo." data-es="Mira el recorrido del fundador para ver como el sistema maneja llamadas perdidas, calificacion, traspaso humano y la ruta del siguiente paso antes de probar la demo en vivo.">Watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing before you try the live demo.</p>
+      </div>
+      <div class="video-stage">
+        <article class="video-card large">
+          <video controls playsinline preload="metadata" poster="../assets/funnel-images/team-whatsapp-automation-consulting-wide.png">
+            <source src="../videos/Richard%20Hardy%20-%20Use%20Cases%20_%20Who%20This%20Is%20For.mp4" type="video/mp4">
+          </video>
+          <span class="play-dot" aria-hidden="true"></span>
+          <div class="video-copy">
+            <span class="kicker" data-en="Product overview" data-es="Vista del producto">Product overview</span>
+            <h3 data-en="How the Voice Agent Works" data-es="Como Funciona el Agente">How the Voice Agent Works</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="live-demo-section" id="live-demo">
     <div class="wrap live-demo-grid">
       <div class="live-demo-copy">
@@ -645,49 +672,6 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     </div>
   </section>
 
-  <section class="section" id="call-flow">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="What happens when a client calls?" data-es="Que pasa cuando llama un cliente?">What happens when a client calls?</p>
-          <h2 class="headline-lg" data-en="FROM CALL<br>TO NEXT STEP" data-es="DE LA LLAMADA<br>AL SIGUIENTE PASO">FROM CALL<br>TO NEXT STEP</h2>
-        </div>
-        <p class="body-lg" data-en="The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful." data-es="El voice agent no solo debe contestar. Debe capturar el contexto correcto, decidir que importa, enrutar la conversacion y dejarle a tu equipo algo util.">The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Answer" data-es="Responder">Answer</h3><p class="body-md" data-en="The agent picks up when your team is busy, after hours, or away from the phone." data-es="El agente responde cuando tu equipo esta ocupado, fuera de horario o lejos del telefono.">The agent picks up when your team is busy, after hours, or away from the phone.</p></article>
-        <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Qualify" data-es="Calificar">Qualify</h3><p class="body-md" data-en="It asks the right questions to understand intent, urgency, fit, and what should happen next." data-es="Hace las preguntas correctas para entender intencion, urgencia, encaje y que deberia pasar despues.">It asks the right questions to understand intent, urgency, fit, and what should happen next.</p></article>
-        <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Route" data-es="Enrutar">Route</h3><p class="body-md" data-en="The system sends the caller toward booking, callback, escalation, or the right instruction path." data-es="El sistema envia al caller hacia reserva, callback, escalada o la ruta correcta de instrucciones.">The system sends the caller toward booking, callback, escalation, or the right instruction path.</p></article>
-        <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Summarize" data-es="Resumir">Summarize</h3><p class="body-md" data-en="Your team receives a clean summary instead of piecing together scattered notes." data-es="Tu equipo recibe un resumen limpio en lugar de unir notas dispersas.">Your team receives a clean summary instead of piecing together scattered notes.</p></article>
-        <article class="feature-card"><div class="feature-num">05</div><h3 class="feature-title" data-en="Push the next step" data-es="Empujar el siguiente paso">Push the next step</h3><p class="body-md" data-en="The agent helps move the caller into a clearer next action so fewer opportunities stall." data-es="El agente ayuda a mover al caller hacia una siguiente accion mas clara para que menos oportunidades se frenen.">The agent helps move the caller into a clearer next action so fewer opportunities stall.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="video-section" id="walkthrough">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Voice agent walkthrough" data-es="Recorrido del agente de voz">Voice agent walkthrough</p>
-          <h2 class="headline-lg" data-en="SEE THE<br>FULL LOGIC" data-es="MIRA LA<br>LOGICA COMPLETA">SEE THE<br>FULL LOGIC</h2>
-        </div>
-        <p class="body-lg" data-en="After trying the live demo, watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing in a more complete flow." data-es="Despues de probar la demo en vivo, mira el recorrido del fundador para ver como el sistema maneja llamadas perdidas, calificacion, traspaso humano y la ruta del siguiente paso en un flujo mas completo.">After trying the live demo, watch the founder walkthrough to see how the system handles missed calls, qualification, human handoff, and next-step routing in a more complete flow.</p>
-      </div>
-      <div class="video-stage">
-        <article class="video-card large">
-          <video controls playsinline preload="metadata" poster="../assets/funnel-images/team-whatsapp-automation-consulting-wide.png">
-            <source src="../videos/Richard%20Hardy%20-%20Use%20Cases%20_%20Who%20This%20Is%20For.mp4" type="video/mp4">
-          </video>
-          <span class="play-dot" aria-hidden="true"></span>
-          <div class="video-copy">
-            <span class="kicker" data-en="Product overview" data-es="Vista del producto">Product overview</span>
-            <h3 data-en="How the Voice Agent Works" data-es="Como Funciona el Agente">How the Voice Agent Works</h3>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <span class="accent">Calls captured.</span><span>Custom. Not templated.</span><span class="accent">Live in weeks.</span><span>Built by a practitioner.</span><span class="accent">Leads qualified.</span><span>Human handoff ready.</span><span class="accent">EN/ES voice flow.</span><span>No missed context.</span>
@@ -713,87 +697,12 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       </div>
       <div class="image-row">
         <div class="image-frame">
-          <img src="../assets/funnel-images/real-estate-content-calendar-wide.png" alt="Business owner reviewing a client response and automation dashboard on a tablet.">
+          <img src="/assets/funnel-images/voice-agent-trust-dashboard.png" alt="Business owner reviewing a client response and automation dashboard on a laptop.">
         </div>
         <div class="black-box">
           <p class="eyebrow" data-en="Why it matters" data-es="Por que importa">Why it matters</p>
           <h2 class="headline-md" style="margin-top:18px" data-en="THE FIRST RESPONSE<br>IS WHERE TRUST STARTS" data-es="LA PRIMERA RESPUESTA<br>ES DONDE EMPIEZA LA CONFIANZA">THE FIRST RESPONSE<br>IS WHERE TRUST STARTS</h2>
           <p class="body-md" style="margin-top:22px" data-en="Most service businesses do not lose opportunities because they cannot do the work. They lose them because calls arrive at the wrong time, details are incomplete, and follow-up happens too late. The voice agent protects that first moment." data-es="La mayoria de negocios de servicios no pierden oportunidades porque no sepan hacer el trabajo. Las pierden porque las llamadas llegan en mal momento, los datos quedan incompletos y el seguimiento llega tarde. El agente protege ese primer momento.">Most service businesses do not lose opportunities because they cannot do the work. They lose them because calls arrive at the wrong time, details are incomplete, and follow-up happens too late. The voice agent protects that first moment.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="proof">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
-          <h2 class="headline-lg" data-en="FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM" data-es="DE UN INTAKE<br>DESORDENADO A UN<br>SISTEMA MAS CLARO">FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM</h2>
-        </div>
-        <p class="body-lg" data-en="Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get." data-es="La mayoria de negocios no necesitan mas demanda primero. Necesitan una forma mas limpia de capturar, entender y enrutar la demanda que ya reciben.">Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get.</p>
-      </div>
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
-          <h3 data-en="Missed context" data-es="Contexto perdido">Missed context</h3>
-          <ul>
-            <li data-en="Missed calls and after-hours silence" data-es="Llamadas perdidas y silencio fuera de horario">Missed calls and after-hours silence</li>
-            <li data-en="Scattered notes and unclear follow-up" data-es="Notas dispersas y seguimiento poco claro">Scattered notes and unclear follow-up</li>
-            <li data-en="No qualification before a human jumps in" data-es="Sin calificacion antes de que entre una persona">No qualification before a human jumps in</li>
-          </ul>
-        </article>
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
-          <h3 data-en="More captured opportunities" data-es="Mas oportunidades capturadas">More captured opportunities</h3>
-          <ul>
-            <li data-en="Calls answered 24/7 with the right first questions" data-es="Llamadas respondidas 24/7 con las preguntas correctas">Calls answered 24/7 with the right first questions</li>
-            <li data-en="Clean summaries and clearer handoff" data-es="Resumenes limpios y traspaso mas claro">Clean summaries and clearer handoff</li>
-            <li data-en="Faster next steps toward booking or escalation" data-es="Siguientes pasos mas rapidos hacia reserva o escalada">Faster next steps toward booking or escalation</li>
-          </ul>
-        </article>
-      </div>
-      <div class="cta-row-inline">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="fit">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Built for you if / not for you if" data-es="Para ti si / no para ti si">Built for you if / not for you if</p>
-          <h2 class="headline-lg" data-en="WHO THIS<br>SYSTEM FITS" data-es="PARA QUIEN<br>ENCAJA ESTE SISTEMA">WHO THIS<br>SYSTEM FITS</h2>
-        </div>
-      </div>
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Built for you if" data-es="Para ti si">Built for you if</div>
-          <h3 data-en="You already have inbound demand" data-es="Ya tienes demanda entrante">You already have inbound demand</h3>
-          <ul>
-            <li data-en="You receive calls, WhatsApp messages, or booking requests every week" data-es="Recibes llamadas, mensajes de WhatsApp o solicitudes de reserva cada semana">You receive calls, WhatsApp messages, or booking requests every week</li>
-            <li data-en="Your team misses calls outside business hours or during busy periods" data-es="Tu equipo pierde llamadas fuera de horario o en momentos ocupados">Your team misses calls outside business hours or during busy periods</li>
-            <li data-en="You want bilingual English / Spanish support with real call logic" data-es="Quieres soporte bilingue ingles / espanol con logica real de llamadas">You want bilingual English / Spanish support with real call logic</li>
-          </ul>
-        </article>
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
-          <h3 data-en="You want the cheapest generic AI tool" data-es="Quieres la herramienta IA generica mas barata">You want the cheapest generic AI tool</h3>
-          <ul>
-            <li data-en="You do not receive regular enquiries yet" data-es="Todavia no recibes consultas con regularidad">You do not receive regular enquiries yet</li>
-            <li data-en="You want a simple chatbot with no real call logic" data-es="Quieres un chatbot simple sin logica real de llamadas">You want a simple chatbot with no real call logic</li>
-            <li data-en="You are not ready to map your customer journey and intake process" data-es="No estas listo para mapear tu customer journey y proceso de intake">You are not ready to map your customer journey and intake process</li>
-          </ul>
-        </article>
-      </div>
-      <div style="margin-top:44px">
-        <p class="eyebrow" data-en="Use cases" data-es="Casos de uso">Use cases</p>
-        <div class="feature-grid" style="margin-top:22px">
-          <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Clinics" data-es="Clinicas">Clinics</h3><p class="body-md" data-en="Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context." data-es="Protege solicitudes de citas, enruta consultas urgentes y dale a recepcion un contexto de llamada mas limpio.">Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context.</p></article>
-          <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Real Estate" data-es="Bienes raices">Real Estate</h3><p class="body-md" data-en="Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff." data-es="Captura mas rapido el interes por visitas y califica si el caller necesita callback, reserva o un traspaso mas urgente.">Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff.</p></article>
-          <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Service Teams" data-es="Equipos de servicio">Service Teams</h3><p class="body-md" data-en="Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in." data-es="Maneja llamadas fuera de horario, preguntas repetitivas y la primera calificacion antes de que entre alguien del equipo.">Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in.</p></article>
-          <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Consultants" data-es="Consultores">Consultants</h3><p class="body-md" data-en="Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff." data-es="Filtra prospectos serios, captura el motivo de la llamada y prepara un mejor traspaso hacia discovery.">Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff.</p></article>
         </div>
       </div>
     </div>
@@ -970,7 +879,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     <div class="footer-inner">
       <div>
         <div class="footer-logo">
-          <img src="../logo.png" alt="The Future Studio">
+          <img src="/assets/future-studio-logo-white.png" alt="The Future Studio">
         </div>
         <p class="footer-tagline" data-en="AI systems for service businesses, internationally. Precision-built. Results-driven." data-es="Sistemas de IA para negocios de servicios. Precision-built. Results-driven.">AI systems for service businesses, internationally. Precision-built. Results-driven.</p>
       </div>

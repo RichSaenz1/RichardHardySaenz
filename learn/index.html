@@ -3,6 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script>
 <title>AI Readiness Checklist for Service Businesses | The Future Studio</title>
 <meta name="description" content="Use a free AI readiness checklist to see whether your service business is actually ready for automation, rollout, and implementation before you overbuy.">
 <meta name="robots" content="noindex,follow">
