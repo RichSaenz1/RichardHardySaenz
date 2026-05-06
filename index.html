@@ -40,8 +40,8 @@ ul{list-style:none}
 section,nav,footer{position:relative;z-index:1}
 
 /*  URGENCY BAR */
-.urgency-bar{position:fixed;top:0;left:0;right:0;z-index:140;background:var(--black);color:var(--white);border-bottom:1px solid rgba(255,255,255,.12)}
-.urgency-inner{height:38px;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;text-align:center}
+.urgency-bar{position:fixed;top:0;left:0;right:0;z-index:140;background:var(--black);color:var(--white);border-bottom:2px solid rgba(255,255,255,.16)}
+.urgency-inner{height:44px;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;text-align:center}
 .urgency-copy{font-family:var(--font-d);font-size:15px;font-weight:800;font-style:italic;letter-spacing:.08em;text-transform:uppercase}
 .urgency-link{font-family:var(--font-d);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
 
@@ -96,7 +96,7 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .btn-sm{padding:10px 22px;font-size:13px}
 
 /*  NAV xxxxxxxxxxxxxxxxxxxxxxxxxxxx */
-#nav{position:fixed;top:38px;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);transition:transform .4s var(--ease),background .3s,border-color .3s;border-bottom:1px solid transparent}
+#nav{position:fixed;top:44px;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);transition:transform .4s var(--ease),background .3s,border-color .3s;border-bottom:1px solid transparent}
 #nav.scrolled{background:rgba(255,248,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border-dark)}
 #nav.nav-hidden{transform:translateY(-100%)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:112px;padding:0 32px;max-width:100%;margin:0;gap:20px;position:relative}
@@ -862,7 +862,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .testimonials-grid{grid-template-columns:1fr}
   .urgency-copy{font-size:12px;letter-spacing:.04em}
   .urgency-link{font-size:11px}
-  #nav{top:38px}
+  #nav{top:44px}
 }
 </style>
 </head>
