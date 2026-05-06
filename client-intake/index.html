@@ -13,8 +13,8 @@
 <meta property="og:url" content="https://thefuturestudio.online/client-intake/">
 <meta property="og:image" content="https://thefuturestudio.online/logo.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="./future-studio-favicon.png">
-<link rel="apple-touch-icon" href="./future-studio-favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -914,7 +914,7 @@ footer{
       <a href="https://thefuturestudio.online/#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
     </div>
     <a class="nav-logo" href="https://thefuturestudio.online/" aria-label="The Future Studio">
-      <img src="./logo.png" alt="The Future Studio">
+      <img src="/logo.png" alt="The Future Studio">
     </a>
     <div class="nav-actions">
       <div class="lang-toggle" id="lang-toggle-desktop">
@@ -947,11 +947,11 @@ footer{
         <div class="hero-copy">
           <div class="eyebrow" data-en="Pre-Meeting Intake" data-es="Formulario Previo">Pre-Meeting Intake</div>
           <h1 class="headline-lg">
-            <span data-en="Tell Us" data-es="CuÃ©ntanos">Tell Us</span><br>
-            <span class="shimmer" data-en="Where The" data-es="DÃ³nde EstÃ¡">Where The</span><br>
+            <span data-en="Tell Us" data-es="Cuentanos">Tell Us</span><br>
+            <span class="shimmer" data-en="Where The" data-es="Donde Esta">Where The</span><br>
             <span data-en="Business Stands" data-es="Tu Negocio">Business Stands</span>
           </h1>
-          <p class="body-lg" data-en="This short audit helps us prepare a more relevant proposal before the meeting. It gives us a clearer view of your business numbers, current friction, urgency, and where AI, automation, website, or brand work could create the most value first." data-es="Este breve formulario nos ayuda a preparar una propuesta mÃ¡s relevante antes de la reuniÃ³n. Nos da una visiÃ³n mÃ¡s clara de tus nÃºmeros, tus fricciones actuales, tu urgencia y dÃ³nde la IA, la automatizaciÃ³n, la web o la marca podrÃ­an generar mÃ¡s valor primero.">
+          <p class="body-lg" data-en="This short audit helps us prepare a more relevant proposal before the meeting. It gives us a clearer view of your business numbers, current friction, urgency, and where AI, automation, website, or brand work could create the most value first." data-es="Este breve formulario nos ayuda a preparar una propuesta mas relevante antes de la reunion. Nos da una vision mas clara de tus numeros, tus fricciones actuales, tu urgencia y donde la IA, la automatizacion, la web o la marca podrian generar mas valor primero.">
             This short audit helps us prepare a more relevant proposal before the meeting. It gives us a clearer view of your business numbers, current friction, urgency, and where AI, automation, website, or brand work could create the most value first.
           </p>
           <div class="hero-actions">
@@ -1001,7 +1001,7 @@ footer{
             <div class="section-header-copy">
               <div class="eyebrow" data-en="Business Basics" data-es="Datos Del Negocio">Business Basics</div>
               <h2 class="headline-sm" data-en="Start With The Business Context" data-es="Empecemos Por El Contexto Del Negocio">Start With The Business Context</h2>
-              <p class="body-md" data-en="Tell us what the business is, then rank the top priorities in order. This helps us see where value matters first instead of guessing what the meeting should focus on." data-es="CuÃ©ntanos quÃ© tipo de negocio es y ordena las prioridades principales. Esto nos ayuda a ver dÃ³nde importa primero el valor, en lugar de adivinar en quÃ© debe enfocarse la reuniÃ³n.">
+              <p class="body-md" data-en="Tell us what the business is, then rank the top priorities in order. This helps us see where value matters first instead of guessing what the meeting should focus on." data-es="Cuentanos que tipo de negocio es y ordena las prioridades principales. Esto nos ayuda a ver donde importa primero el valor, en lugar de adivinar en que debe enfocarse la reunion.">
                 Tell us what the business is, then rank the top priorities in order. This helps us see where value matters first instead of guessing what the meeting should focus on.
               </p>
             </div>
@@ -1012,15 +1012,20 @@ footer{
               <input id="business_name" name="business_name" type="text" required autocomplete="organization">
             </div>
             <div class="field">
+              <label for="business_email"><span data-en="Business email" data-es="Email del negocio">Business email</span><span class="required">*</span></label>
+              <input id="business_email" name="email" type="email" required autocomplete="email" data-consent-added="true">
+              <p class="field-hint tfs-consent-line" data-en="By submitting, you agree to receive follow-up emails from The Future Studio. You can unsubscribe anytime." data-es="Al enviar, aceptas recibir emails de seguimiento de The Future Studio. Puedes darte de baja en cualquier momento.">By submitting, you agree to receive follow-up emails from The Future Studio. You can unsubscribe anytime.</p>
+            </div>
+            <div class="field">
               <label for="industry"><span data-en="Industry / business type" data-es="Industria / tipo de negocio">Industry / business type</span><span class="required">*</span></label>
               <select id="industry" name="industry" required>
-                <option value="" data-en="Select one" data-es="Selecciona una opciÃ³n">Select one</option>
-                <option value="Clinic" data-en="Clinic" data-es="ClÃ­nica">Clinic</option>
-                <option value="Dental Practice" data-en="Dental Practice" data-es="ClÃ­nica dental">Dental Practice</option>
-                <option value="Salon / Aesthetics" data-en="Salon / Aesthetics" data-es="SalÃ³n / estÃ©tica">Salon / Aesthetics</option>
+                <option value="" data-en="Select one" data-es="Selecciona una opcion">Select one</option>
+                <option value="Clinic" data-en="Clinic" data-es="Clinica">Clinic</option>
+                <option value="Dental Practice" data-en="Dental Practice" data-es="Clinica dental">Dental Practice</option>
+                <option value="Salon / Aesthetics" data-en="Salon / Aesthetics" data-es="Salon / estetica">Salon / Aesthetics</option>
                 <option value="Legal" data-en="Legal" data-es="Legal">Legal</option>
-                <option value="Real Estate" data-en="Real Estate" data-es="Bienes raÃ­ces">Real Estate</option>
-                <option value="Education" data-en="Education" data-es="EducaciÃ³n">Education</option>
+                <option value="Real Estate" data-en="Real Estate" data-es="Bienes raices">Real Estate</option>
+                <option value="Education" data-en="Education" data-es="Educacion">Education</option>
                 <option value="Ecommerce" data-en="Ecommerce" data-es="Ecommerce">Ecommerce</option>
                 <option value="Hospitality" data-en="Hospitality" data-es="Hospitalidad">Hospitality</option>
                 <option value="Other" data-en="Other" data-es="Otro">Other</option>
@@ -1028,52 +1033,52 @@ footer{
             </div>
             <div class="field full">
               <label for="priority_1"><span data-en="Top priorities (choose up to 3 in order)" data-es="Prioridades principales (elige hasta 3 en orden)">Top priorities (choose up to 3 in order)</span><span class="required">*</span></label>
-              <p class="field-hint" data-en="Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention." data-es="La prioridad 1 es obligatoria. La prioridad 2 y 3 son opcionales, pero Ãºsalas si hay mÃ¡s de una presiÃ³n comercial compitiendo por atenciÃ³n.">Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention.</p>
+              <p class="field-hint" data-en="Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention." data-es="La prioridad 1 es obligatoria. La prioridad 2 y 3 son opcionales, pero usalas si hay mas de una presion comercial compitiendo por atencion.">Priority 1 is required. Priority 2 and 3 are optional, but use them if more than one commercial pressure is competing for attention.</p>
               <div class="field-grid cols-3">
                 <div class="field">
                   <label for="priority_1"><span data-en="Priority 1" data-es="Prioridad 1">Priority 1</span><span class="required">*</span></label>
                   <select id="priority_1" name="priority_1" required data-priority-select="true">
                     <option value="" data-en="Select top priority" data-es="Selecciona la prioridad principal">Select top priority</option>
-                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mÃ¡s leads">Get more leads</option>
-                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mÃ¡s consultas en clientes">Convert more enquiries into paying clients</option>
-                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizaciÃ³n">Save time with automation</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mas leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mas consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizacion">Save time with automation</option>
                     <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
                     <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
                     <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
-                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentaciÃ³n">Modernise brand / presentation</option>
-                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guÃ­a">Unsure, need guidance</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentacion">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guia">Unsure, need guidance</option>
                   </select>
                 </div>
                 <div class="field">
                   <label for="priority_2"><span data-en="Priority 2" data-es="Prioridad 2">Priority 2</span></label>
                   <select id="priority_2" name="priority_2" data-priority-select="true">
                     <option value="" data-en="Optional second priority" data-es="Segunda prioridad opcional">Optional second priority</option>
-                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mÃ¡s leads">Get more leads</option>
-                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mÃ¡s consultas en clientes">Convert more enquiries into paying clients</option>
-                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizaciÃ³n">Save time with automation</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mas leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mas consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizacion">Save time with automation</option>
                     <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
                     <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
                     <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
-                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentaciÃ³n">Modernise brand / presentation</option>
-                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guÃ­a">Unsure, need guidance</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentacion">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guia">Unsure, need guidance</option>
                   </select>
                 </div>
                 <div class="field">
                   <label for="priority_3"><span data-en="Priority 3" data-es="Prioridad 3">Priority 3</span></label>
                   <select id="priority_3" name="priority_3" data-priority-select="true">
                     <option value="" data-en="Optional third priority" data-es="Tercera prioridad opcional">Optional third priority</option>
-                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mÃ¡s leads">Get more leads</option>
-                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mÃ¡s consultas en clientes">Convert more enquiries into paying clients</option>
-                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizaciÃ³n">Save time with automation</option>
+                    <option value="Get more leads" data-en="Get more leads" data-es="Conseguir mas leads">Get more leads</option>
+                    <option value="Convert more enquiries into paying clients" data-en="Convert more enquiries into paying clients" data-es="Convertir mas consultas en clientes">Convert more enquiries into paying clients</option>
+                    <option value="Save time with automation" data-en="Save time with automation" data-es="Ahorrar tiempo con automatizacion">Save time with automation</option>
                     <option value="Improve customer support / follow-up" data-en="Improve customer support / follow-up" data-es="Mejorar soporte / seguimiento">Improve customer support / follow-up</option>
                     <option value="Reduce missed calls or missed messages" data-en="Reduce missed calls or missed messages" data-es="Reducir llamadas o mensajes perdidos">Reduce missed calls or missed messages</option>
                     <option value="Improve website / online presence" data-en="Improve website / online presence" data-es="Mejorar web / presencia online">Improve website / online presence</option>
-                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentaciÃ³n">Modernise brand / presentation</option>
-                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guÃ­a">Unsure, need guidance</option>
+                    <option value="Modernise brand / presentation" data-en="Modernise brand / presentation" data-es="Modernizar marca / presentacion">Modernise brand / presentation</option>
+                    <option value="Unsure, need guidance" data-en="Unsure, need guidance" data-es="No estoy seguro, necesito guia">Unsure, need guidance</option>
                   </select>
                 </div>
               </div>
-              <div class="error-text" id="priority-error" data-en="Please do not repeat the same priority more than once." data-es="Por favor no repitas la misma prioridad mÃ¡s de una vez.">Please do not repeat the same priority more than once.</div>
+              <div class="error-text" id="priority-error" data-en="Please do not repeat the same priority more than once." data-es="Por favor no repitas la misma prioridad mas de una vez.">Please do not repeat the same priority more than once.</div>
             </div>
           </div>
         </article>
@@ -1083,15 +1088,15 @@ footer{
             <div class="section-number">2</div>
             <div class="section-header-copy">
               <div class="eyebrow" data-en="Commercial Snapshot" data-es="Resumen Comercial">Commercial Snapshot</div>
-              <h2 class="headline-sm" data-en="Give Us The Numbers That Matter" data-es="CompÃ¡rtenos Los NÃºmeros Clave">Give Us The Numbers That Matter</h2>
-              <p class="body-md" data-en="We use these numbers to understand commercial weight quickly: deal size, recurring value, and where missed opportunities may already be affecting revenue." data-es="Usamos estos nÃºmeros para entender rÃ¡pidamente el peso comercial: tamaÃ±o del ticket, valor recurrente y dÃ³nde las oportunidades perdidas ya pueden estar afectando los ingresos.">
+              <h2 class="headline-sm" data-en="Give Us The Numbers That Matter" data-es="Compartenos Los Numeros Clave">Give Us The Numbers That Matter</h2>
+              <p class="body-md" data-en="We use these numbers to understand commercial weight quickly: deal size, recurring value, and where missed opportunities may already be affecting revenue." data-es="Usamos estos numeros para entender rapidamente el peso comercial: tamano del ticket, valor recurrente y donde las oportunidades perdidas ya pueden estar afectando los ingresos.">
                 We use these numbers to understand commercial weight quickly: deal size, recurring value, and where missed opportunities may already be affecting revenue.
               </p>
             </div>
           </div>
           <div class="field-grid cols-4">
             <div class="field">
-              <label for="new_clients_last_3_months"><span data-en="New clients closed in the last 3 months" data-es="Nuevos clientes cerrados en los Ãºltimos 3 meses">New clients closed in the last 3 months</span><span class="required">*</span></label>
+              <label for="new_clients_last_3_months"><span data-en="New clients closed in the last 3 months" data-es="Nuevos clientes cerrados en los ultimos 3 meses">New clients closed in the last 3 months</span><span class="required">*</span></label>
               <input id="new_clients_last_3_months" name="new_clients_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
             </div>
             <div class="field">
@@ -1099,11 +1104,11 @@ footer{
               <input id="average_ticket_usd" name="average_ticket_usd" type="number" min="0" step="0.01" inputmode="decimal" required>
             </div>
             <div class="field">
-              <label for="memberships_sold_last_3_months"><span data-en="Memberships sold in the last 3 months" data-es="MembresÃ­as vendidas en los Ãºltimos 3 meses">Memberships sold in the last 3 months</span><span class="required">*</span></label>
+              <label for="memberships_sold_last_3_months"><span data-en="Memberships sold in the last 3 months" data-es="Membresias vendidas en los ultimos 3 meses">Memberships sold in the last 3 months</span><span class="required">*</span></label>
               <input id="memberships_sold_last_3_months" name="memberships_sold_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
             </div>
             <div class="field">
-              <label for="gift_cards_sold_last_3_months"><span data-en="Gift cards sold in the last 3 months" data-es="Tarjetas regalo vendidas en los Ãºltimos 3 meses">Gift cards sold in the last 3 months</span><span class="required">*</span></label>
+              <label for="gift_cards_sold_last_3_months"><span data-en="Gift cards sold in the last 3 months" data-es="Tarjetas regalo vendidas en los ultimos 3 meses">Gift cards sold in the last 3 months</span><span class="required">*</span></label>
               <input id="gift_cards_sold_last_3_months" name="gift_cards_sold_last_3_months" type="number" min="0" step="1" inputmode="numeric" required>
             </div>
           </div>
@@ -1113,20 +1118,20 @@ footer{
           <div class="section-header">
             <div class="section-number">3</div>
             <div class="section-header-copy">
-              <div class="eyebrow" data-en="Pain Points" data-es="Puntos De FricciÃ³n">Pain Points</div>
-              <h2 class="headline-sm" data-en="Show Us Where The Friction Lives" data-es="MuÃ©stranos DÃ³nde EstÃ¡ La FricciÃ³n">Show Us Where The Friction Lives</h2>
-              <p class="body-md" data-en="This section helps us see where trust, speed, and conversion may be breaking down - especially in lead handling, website credibility, and how premium the business feels." data-es="Esta secciÃ³n nos ayuda a ver dÃ³nde pueden estar rompiÃ©ndose la confianza, la velocidad y la conversiÃ³n, especialmente en la gestiÃ³n de leads, la credibilidad de la web y quÃ© tan premium se siente el negocio.">
+              <div class="eyebrow" data-en="Pain Points" data-es="Puntos De Friccion">Pain Points</div>
+              <h2 class="headline-sm" data-en="Show Us Where The Friction Lives" data-es="Muestranos Donde Esta La Friccion">Show Us Where The Friction Lives</h2>
+              <p class="body-md" data-en="This section helps us see where trust, speed, and conversion may be breaking down - especially in lead handling, website credibility, and how premium the business feels." data-es="Esta seccion nos ayuda a ver donde pueden estar rompiendose la confianza, la velocidad y la conversion, especialmente en la gestion de leads, la credibilidad de la web y que tan premium se siente el negocio.">
                 This section helps us see where trust, speed, and conversion may be breaking down - especially in lead handling, website credibility, and how premium the business feels.
               </p>
             </div>
           </div>
           <div class="field-grid">
             <fieldset class="field full" data-conditional-group="sales_loss">
-              <legend><span data-en="Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?" data-es="Â¿Crees que hoy estÃ¡s perdiendo ventas por mensajes perdidos, seguimiento lento, llamadas perdidas o administraciÃ³n inconsistente?">Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?</span><span class="required">*</span></legend>
+              <legend><span data-en="Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?" data-es="Crees que hoy estas perdiendo ventas por mensajes perdidos, seguimiento lento, llamadas perdidas o administracion inconsistente?">Are you currently losing potential sales because of missed messages, slow follow-up, missed calls, or inconsistent admin?</span><span class="required">*</span></legend>
               <div class="choice-grid cols-2">
                 <label class="choice-card">
                   <input type="radio" name="sales_loss" value="Yes" required>
-                  <span data-en="Yes" data-es="SÃ­">Yes</span>
+                  <span data-en="Yes" data-es="Si">Yes</span>
                 </label>
                 <label class="choice-card">
                   <input type="radio" name="sales_loss" value="No">
@@ -1135,18 +1140,18 @@ footer{
               </div>
               <div class="conditional" data-show-for="sales_loss" data-show-value="Yes">
                 <div class="field field-shell">
-                  <label for="sales_loss_details"><span data-en="Tell us where you think opportunities are being lost." data-es="CuÃ©ntanos dÃ³nde crees que se estÃ¡n perdiendo oportunidades.">Tell us where you think opportunities are being lost.</span></label>
+                  <label for="sales_loss_details"><span data-en="Tell us where you think opportunities are being lost." data-es="Cuentanos donde crees que se estan perdiendo oportunidades.">Tell us where you think opportunities are being lost.</span></label>
                   <textarea id="sales_loss_details" name="sales_loss_details" data-placeholder-en="Examples: slow replies after hours, missed WhatsApp messages, no one owning the follow-up, poor handoff between staff." data-placeholder-es="Ejemplos: respuestas lentas fuera de horario, mensajes de WhatsApp perdidos, nadie se hace cargo del seguimiento, mal handoff entre el equipo." placeholder="Examples: slow replies after hours, missed WhatsApp messages, no one owning the follow-up, poor handoff between staff."></textarea>
                 </div>
               </div>
             </fieldset>
 
             <fieldset class="field full" data-conditional-group="website_issue">
-              <legend><span data-en="Do you feel your current website needs improvement or no longer reflects the level of your business?" data-es="Â¿Sientes que tu web actual necesita mejorar o ya no refleja el nivel de tu negocio?">Do you feel your current website needs improvement or no longer reflects the level of your business?</span><span class="required">*</span></legend>
+              <legend><span data-en="Do you feel your current website needs improvement or no longer reflects the level of your business?" data-es="Sientes que tu web actual necesita mejorar o ya no refleja el nivel de tu negocio?">Do you feel your current website needs improvement or no longer reflects the level of your business?</span><span class="required">*</span></legend>
               <div class="choice-grid cols-2">
                 <label class="choice-card">
                   <input type="radio" name="website_issue" value="Yes" required>
-                  <span data-en="Yes" data-es="SÃ­">Yes</span>
+                  <span data-en="Yes" data-es="Si">Yes</span>
                 </label>
                 <label class="choice-card">
                   <input type="radio" name="website_issue" value="No">
@@ -1155,21 +1160,21 @@ footer{
               </div>
               <div class="conditional" data-show-for="website_issue" data-show-value="Yes">
                 <div class="field field-shell">
-                  <label for="website_issue_details"><span data-en="What feels outdated or ineffective about it?" data-es="Â¿QuÃ© se siente desactualizado o poco efectivo?">What feels outdated or ineffective about it?</span></label>
-                  <textarea id="website_issue_details" name="website_issue_details" data-placeholder-en="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience." data-placeholder-es="Ejemplos: mala primera impresiÃ³n, poca confianza, estructura confusa, lentitud, diseÃ±o anticuado, mala experiencia mÃ³vil." placeholder="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience."></textarea>
+                  <label for="website_issue_details"><span data-en="What feels outdated or ineffective about it?" data-es="Que se siente desactualizado o poco efectivo?">What feels outdated or ineffective about it?</span></label>
+                  <textarea id="website_issue_details" name="website_issue_details" data-placeholder-en="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience." data-placeholder-es="Ejemplos: mala primera impresion, poca confianza, estructura confusa, lentitud, diseno anticuado, mala experiencia movil." placeholder="Examples: weak first impression, low trust, confusing structure, slow speed, dated design, poor mobile experience."></textarea>
                 </div>
               </div>
             </fieldset>
 
             <fieldset class="field full" data-conditional-group="brand_issue">
-              <legend><span data-en="Do you feel your brand presentation could be improved?" data-es="Â¿Sientes que la presentaciÃ³n de tu marca podrÃ­a mejorar?">Do you feel your brand presentation could be improved?</span><span class="required">*</span></legend>
-              <p class="field-hint" data-en="This could include logo, visual identity, design consistency, trust, clarity, or how premium the business feels." data-es="Esto puede incluir logo, identidad visual, consistencia de diseÃ±o, confianza, claridad o quÃ© tan premium se percibe el negocio.">
+              <legend><span data-en="Do you feel your brand presentation could be improved?" data-es="Sientes que la presentacion de tu marca podria mejorar?">Do you feel your brand presentation could be improved?</span><span class="required">*</span></legend>
+              <p class="field-hint" data-en="This could include logo, visual identity, design consistency, trust, clarity, or how premium the business feels." data-es="Esto puede incluir logo, identidad visual, consistencia de diseno, confianza, claridad o que tan premium se percibe el negocio.">
                 This could include logo, visual identity, design consistency, trust, clarity, or how premium the business feels.
               </p>
               <div class="choice-grid cols-2">
                 <label class="choice-card">
                   <input type="radio" name="brand_issue" value="Yes" required>
-                  <span data-en="Yes" data-es="SÃ­">Yes</span>
+                  <span data-en="Yes" data-es="Si">Yes</span>
                 </label>
                 <label class="choice-card">
                   <input type="radio" name="brand_issue" value="No">
@@ -1178,8 +1183,8 @@ footer{
               </div>
               <div class="conditional" data-show-for="brand_issue" data-show-value="Yes">
                 <div class="field field-shell">
-                  <label for="brand_issue_details"><span data-en="What would you most like to improve?" data-es="Â¿QuÃ© te gustarÃ­a mejorar principalmente?">What would you most like to improve?</span></label>
-                  <textarea id="brand_issue_details" name="brand_issue_details" data-placeholder-en="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction." data-placeholder-es="Ejemplos: calidad del logo, confianza, consistencia de marca, presentaciÃ³n, posicionamiento, sensaciÃ³n premium, direcciÃ³n visual mÃ¡s clara." placeholder="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction."></textarea>
+                  <label for="brand_issue_details"><span data-en="What would you most like to improve?" data-es="Que te gustaria mejorar principalmente?">What would you most like to improve?</span></label>
+                  <textarea id="brand_issue_details" name="brand_issue_details" data-placeholder-en="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction." data-placeholder-es="Ejemplos: calidad del logo, confianza, consistencia de marca, presentacion, posicionamiento, sensacion premium, direccion visual mas clara." placeholder="Examples: logo quality, trust, brand consistency, presentation, positioning, premium feel, clearer design direction."></textarea>
                 </div>
               </div>
             </fieldset>
@@ -1191,96 +1196,96 @@ footer{
             <div class="section-number">4</div>
             <div class="section-header-copy">
               <div class="eyebrow" data-en="AI / Service Fit" data-es="Encaje Con IA">AI / Service Fit</div>
-              <h2 class="headline-sm" data-en="Tell Us What You Want AI To Improve" data-es="Dinos QuÃ© Quieres Mejorar Con IA">Tell Us What You Want AI To Improve</h2>
-              <p class="body-md" data-en="Tell us where you see the biggest upside. We use this to separate real implementation priorities from broad interest, so the proposal feels focused instead of generic." data-es="CuÃ©ntanos dÃ³nde ves el mayor potencial. Usamos esto para separar prioridades reales de implementaciÃ³n del interÃ©s general, para que la propuesta se sienta enfocada y no genÃ©rica.">
+              <h2 class="headline-sm" data-en="Tell Us What You Want AI To Improve" data-es="Dinos Que Quieres Mejorar Con IA">Tell Us What You Want AI To Improve</h2>
+              <p class="body-md" data-en="Tell us where you see the biggest upside. We use this to separate real implementation priorities from broad interest, so the proposal feels focused instead of generic." data-es="Cuentanos donde ves el mayor potencial. Usamos esto para separar prioridades reales de implementacion del interes general, para que la propuesta se sienta enfocada y no generica.">
                 Tell us where you see the biggest upside. We use this to separate real implementation priorities from broad interest, so the proposal feels focused instead of generic.
               </p>
             </div>
           </div>
           <div class="field-grid">
             <fieldset class="field full" id="interest-group">
-              <legend><span data-en="Which areas are you most interested in improving with AI or automation?" data-es="Â¿QuÃ© Ã¡reas te interesa mejorar mÃ¡s con IA o automatizaciÃ³n?">Which areas are you most interested in improving with AI or automation?</span><span class="required">*</span></legend>
+              <legend><span data-en="Which areas are you most interested in improving with AI or automation?" data-es="Que areas te interesa mejorar mas con IA o automatizacion?">Which areas are you most interested in improving with AI or automation?</span><span class="required">*</span></legend>
               <div class="choice-grid cols-3">
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Lead capture"><span data-en="Lead capture" data-es="CaptaciÃ³n de leads">Lead capture</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Follow-up automation"><span data-en="Follow-up automation" data-es="AutomatizaciÃ³n de seguimiento">Follow-up automation</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="WhatsApp automation"><span data-en="WhatsApp automation" data-es="AutomatizaciÃ³n de WhatsApp">WhatsApp automation</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="AI phone assistant"><span data-en="AI phone assistant" data-es="Asistente telefÃ³nico con IA">AI phone assistant</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Lead capture"><span data-en="Lead capture" data-es="Captacion de leads">Lead capture</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Follow-up automation"><span data-en="Follow-up automation" data-es="Automatizacion de seguimiento">Follow-up automation</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="WhatsApp automation"><span data-en="WhatsApp automation" data-es="Automatizacion de WhatsApp">WhatsApp automation</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="AI phone assistant"><span data-en="AI phone assistant" data-es="Asistente telefonico con IA">AI phone assistant</span></label>
                 <label class="choice-card"><input type="checkbox" name="ai_interest" value="Appointment booking"><span data-en="Appointment booking" data-es="Reserva de citas">Appointment booking</span></label>
                 <label class="choice-card"><input type="checkbox" name="ai_interest" value="Website improvement"><span data-en="Website improvement" data-es="Mejora web">Website improvement</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Customer support"><span data-en="Customer support" data-es="AtenciÃ³n al cliente">Customer support</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Internal admin / operations"><span data-en="Internal admin / operations" data-es="AdministraciÃ³n interna / operaciones">Internal admin / operations</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Reporting / analytics"><span data-en="Reporting / analytics" data-es="Reportes / analÃ­tica">Reporting / analytics</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Brand / design refresh"><span data-en="Brand / design refresh" data-es="ActualizaciÃ³n de marca / diseÃ±o">Brand / design refresh</span></label>
-                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Not sure yet"><span data-en="Not sure yet" data-es="AÃºn no estoy seguro">Not sure yet</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Customer support"><span data-en="Customer support" data-es="Atencion al cliente">Customer support</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Internal admin / operations"><span data-en="Internal admin / operations" data-es="Administracion interna / operaciones">Internal admin / operations</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Reporting / analytics"><span data-en="Reporting / analytics" data-es="Reportes / analitica">Reporting / analytics</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Brand / design refresh"><span data-en="Brand / design refresh" data-es="Actualizacion de marca / diseno">Brand / design refresh</span></label>
+                <label class="choice-card"><input type="checkbox" name="ai_interest" value="Not sure yet"><span data-en="Not sure yet" data-es="Aun no estoy seguro">Not sure yet</span></label>
               </div>
-              <div class="error-text" id="interest-error" data-en="Please choose at least one area." data-es="Por favor elige al menos un Ã¡rea.">Please choose at least one area.</div>
+              <div class="error-text" id="interest-error" data-en="Please choose at least one area." data-es="Por favor elige al menos un ?rea.">Please choose at least one area.</div>
             </fieldset>
             <div class="field full">
-              <label for="desired_result"><span data-en="What result are you hoping to achieve by implementing AI or automation?" data-es="Â¿QuÃ© resultado esperas conseguir implementando IA o automatizaciÃ³n?">What result are you hoping to achieve by implementing AI or automation?</span><span class="required">*</span></label>
+              <label for="desired_result"><span data-en="What result are you hoping to achieve by implementing AI or automation?" data-es="Que resultado esperas conseguir implementando IA o automatizacion?">What result are you hoping to achieve by implementing AI or automation?</span><span class="required">*</span></label>
               <textarea id="desired_result" name="desired_result" required data-placeholder-en="Examples: increase bookings, reduce missed enquiries, save staff time, improve response speed, modernise the business, increase sales." data-placeholder-es="Ejemplos: aumentar reservas, reducir consultas perdidas, ahorrar tiempo al equipo, mejorar la velocidad de respuesta, modernizar el negocio, aumentar ventas." placeholder="Examples: increase bookings, reduce missed enquiries, save staff time, improve response speed, modernise the business, increase sales."></textarea>
             </div>
           </div>
         </article>
 
-        <article class="section-card form-section" id="section-5" data-section-title-en="Budget and readiness" data-section-title-es="Presupuesto y decisiÃ³n">
+        <article class="section-card form-section" id="section-5" data-section-title-en="Budget and readiness" data-section-title-es="Presupuesto y decision">
           <div class="section-header">
             <div class="section-number">5</div>
             <div class="section-header-copy">
-              <div class="eyebrow" data-en="Budget And Readiness" data-es="Presupuesto Y DecisiÃ³n">Budget And Readiness</div>
-              <h2 class="headline-sm" data-en="Help Us Gauge The Right Scope" data-es="AyÃºdanos A Medir El Alcance Correcto">Help Us Gauge The Right Scope</h2>
-              <p class="body-md" data-en="This gives us decision context. It helps us shape the right scope, understand urgency, and avoid recommending something that does not match the commercial reality of the business." data-es="Esto nos da contexto de decisiÃ³n. Nos ayuda a definir el alcance correcto, entender la urgencia y evitar recomendar algo que no encaje con la realidad comercial del negocio.">
+              <div class="eyebrow" data-en="Budget And Readiness" data-es="Presupuesto Y Decision">Budget And Readiness</div>
+              <h2 class="headline-sm" data-en="Help Us Gauge The Right Scope" data-es="Ayudanos A Medir El Alcance Correcto">Help Us Gauge The Right Scope</h2>
+              <p class="body-md" data-en="This gives us decision context. It helps us shape the right scope, understand urgency, and avoid recommending something that does not match the commercial reality of the business." data-es="Esto nos da contexto de decision. Nos ayuda a definir el alcance correcto, entender la urgencia y evitar recomendar algo que no encaje con la realidad comercial del negocio.">
                 This gives us decision context. It helps us shape the right scope, understand urgency, and avoid recommending something that does not match the commercial reality of the business.
               </p>
             </div>
           </div>
           <div class="field-grid cols-2">
             <div class="field">
-              <label for="budget_range"><span data-en="What budget range are you comfortable investing?" data-es="Â¿QuÃ© rango de inversiÃ³n te resulta cÃ³modo?">What budget range are you comfortable investing?</span><span class="required">*</span></label>
+              <label for="budget_range"><span data-en="What budget range are you comfortable investing?" data-es="Que rango de inversion te resulta comodo?">What budget range are you comfortable investing?</span><span class="required">*</span></label>
               <select id="budget_range" name="budget_range" required>
-                <option value="" data-en="Select one" data-es="Selecciona una opciÃ³n">Select one</option>
+                <option value="" data-en="Select one" data-es="Selecciona una opcion">Select one</option>
                 <option value="Under $500" data-en="Under $500" data-es="Menos de $500">Under $500</option>
                 <option value="$500-$1,500" data-en="$500-$1,500" data-es="$500-$1,500">$500-$1,500</option>
                 <option value="$1,500-$3,000" data-en="$1,500-$3,000" data-es="$1,500-$3,000">$1,500-$3,000</option>
                 <option value="$3,000-$7,500" data-en="$3,000-$7,500" data-es="$3,000-$7,500">$3,000-$7,500</option>
                 <option value="$7,500+" data-en="$7,500+" data-es="$7,500+">$7,500+</option>
-                <option value="Not sure yet" data-en="Not sure yet" data-es="AÃºn no estoy seguro">Not sure yet</option>
+                <option value="Not sure yet" data-en="Not sure yet" data-es="Aun no estoy seguro">Not sure yet</option>
               </select>
             </div>
             <div class="field">
-              <label for="start_timeline"><span data-en="If the right solution is presented, when would you want to begin?" data-es="Si se presenta la soluciÃ³n correcta, Â¿cuÃ¡ndo te gustarÃ­a empezar?">If the right solution is presented, when would you want to begin?</span><span class="required">*</span></label>
+              <label for="start_timeline"><span data-en="If the right solution is presented, when would you want to begin?" data-es="Si se presenta la solucion correcta, cuando te gustaria empezar?">If the right solution is presented, when would you want to begin?</span><span class="required">*</span></label>
               <select id="start_timeline" name="start_timeline" required>
-                <option value="" data-en="Select one" data-es="Selecciona una opciÃ³n">Select one</option>
-                <option value="Within 7 days" data-en="Within 7 days" data-es="Dentro de 7 dÃ­as">Within 7 days</option>
-                <option value="Within 30 days" data-en="Within 30 days" data-es="Dentro de 30 dÃ­as">Within 30 days</option>
-                <option value="Within 60 days" data-en="Within 60 days" data-es="Dentro de 60 dÃ­as">Within 60 days</option>
-                <option value="Later / exploring options" data-en="Later / exploring options" data-es="MÃ¡s adelante / explorando opciones">Later / exploring options</option>
+                <option value="" data-en="Select one" data-es="Selecciona una opcion">Select one</option>
+                <option value="Within 7 days" data-en="Within 7 days" data-es="Dentro de 7 dias">Within 7 days</option>
+                <option value="Within 30 days" data-en="Within 30 days" data-es="Dentro de 30 dias">Within 30 days</option>
+                <option value="Within 60 days" data-en="Within 60 days" data-es="Dentro de 60 dias">Within 60 days</option>
+                <option value="Later / exploring options" data-en="Later / exploring options" data-es="Mas adelante / explorando opciones">Later / exploring options</option>
               </select>
             </div>
             <fieldset class="field full" data-conditional-group="budget_allocated">
-              <legend><span data-en="Do you already have budget allocated for this project?" data-es="Â¿Ya tienes presupuesto asignado para este proyecto?">Do you already have budget allocated for this project?</span><span class="required">*</span></legend>
+              <legend><span data-en="Do you already have budget allocated for this project?" data-es="Ya tienes presupuesto asignado para este proyecto?">Do you already have budget allocated for this project?</span><span class="required">*</span></legend>
               <div class="choice-grid cols-2">
-                <label class="choice-card"><input type="radio" name="budget_allocated" value="Yes" required><span data-en="Yes" data-es="SÃ­">Yes</span></label>
+                <label class="choice-card"><input type="radio" name="budget_allocated" value="Yes" required><span data-en="Yes" data-es="Si">Yes</span></label>
                 <label class="choice-card"><input type="radio" name="budget_allocated" value="Partially"><span data-en="Partially" data-es="Parcialmente">Partially</span></label>
                 <label class="choice-card"><input type="radio" name="budget_allocated" value="No"><span data-en="No" data-es="No">No</span></label>
               </div>
               <div class="conditional" data-show-for="budget_allocated" data-show-value="Yes,Partially">
                 <div class="field field-shell">
-                  <label for="budget_notes"><span data-en="Anything useful to know about budget, approval, or decision-making?" data-es="Â¿Hay algo Ãºtil que debamos saber sobre presupuesto, aprobaciÃ³n o decisiÃ³n?">Anything useful to know about budget, approval, or decision-making?</span></label>
-                  <textarea id="budget_notes" name="budget_notes" data-placeholder-en="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month." data-placeholder-es="Ejemplos: necesita aprobaciÃ³n del dueÃ±o, firma de un socio, esperando cierre del trimestre, comparando opciones este mes." placeholder="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month."></textarea>
+                  <label for="budget_notes"><span data-en="Anything useful to know about budget, approval, or decision-making?" data-es="Hay algo util que debamos saber sobre presupuesto, aprobacion o decision?">Anything useful to know about budget, approval, or decision-making?</span></label>
+                  <textarea id="budget_notes" name="budget_notes" data-placeholder-en="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month." data-placeholder-es="Ejemplos: necesita aprobacion del dueno, firma de un socio, esperando cierre del trimestre, comparando opciones este mes." placeholder="Examples: owner approval needed, partner sign-off, waiting on quarter close, comparing options this month."></textarea>
                 </div>
               </div>
             </fieldset>
             <div class="field full">
-              <label for="anything_else"><span data-en="Anything else we should know before the meeting?" data-es="Â¿Algo mÃ¡s que debamos saber antes de la reuniÃ³n?">Anything else we should know before the meeting?</span></label>
-              <textarea id="anything_else" name="anything_else" data-placeholder-en="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve." data-placeholder-es="Comparte cualquier detalle Ãºtil sobre tus objetivos, limitaciones internas, equipo, herramientas actuales o lo que te gustarÃ­a resolver en esta conversaciÃ³n." placeholder="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve."></textarea>
+              <label for="anything_else"><span data-en="Anything else we should know before the meeting?" data-es="Algo mas que debamos saber antes de la reunion?">Anything else we should know before the meeting?</span></label>
+              <textarea id="anything_else" name="anything_else" data-placeholder-en="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve." data-placeholder-es="Comparte cualquier detalle util sobre tus objetivos, limitaciones internas, equipo, herramientas actuales o lo que te gustaria resolver en esta conversacion." placeholder="Share anything useful about your goals, internal constraints, team setup, current tools, or what you want this conversation to solve."></textarea>
             </div>
           </div>
         </article>
 
         <section class="submit-card" aria-label="Submit the intake">
           <div class="eyebrow" data-en="Ready To Send" data-es="Listo Para Enviar">Ready To Send</div>
-          <h2 class="headline-sm" data-en="Send The Intake And We'll Prepare The Meeting Properly" data-es="EnvÃ­a El Formulario Y Prepararemos La ReuniÃ³n Correctamente">Send The Intake And We'll Prepare The Meeting Properly</h2>
-          <p class="body-md" style="color:rgba(255,255,255,0.7)" data-en="Once this is in, we can come into the meeting with better context, sharper questions, and a more relevant proposal direction from the start." data-es="Una vez recibido, podremos llegar a la reuniÃ³n con mejor contexto, preguntas mÃ¡s precisas y una direcciÃ³n de propuesta mucho mÃ¡s relevante desde el inicio.">
+          <h2 class="headline-sm" data-en="Send The Intake And We'll Prepare The Meeting Properly" data-es="Envia El Formulario Y Prepararemos La Reunion Correctamente">Send The Intake And We'll Prepare The Meeting Properly</h2>
+          <p class="body-md" style="color:rgba(255,255,255,0.7)" data-en="Once this is in, we can come into the meeting with better context, sharper questions, and a more relevant proposal direction from the start." data-es="Una vez recibido, podremos llegar a la reunion con mejor contexto, preguntas mas precisas y una direccion de propuesta mucho mas relevante desde el inicio.">
             Once this is in, we can come into the meeting with better context, sharper questions, and a more relevant proposal direction from the start.
           </p>
           <div class="submit-row">
@@ -1299,8 +1304,8 @@ footer{
       <div class="success-card">
         <div class="success-main">
           <div class="eyebrow" data-en="Thank You" data-es="Gracias">Thank You</div>
-          <h2 class="headline-md" data-en="We Have What We Need To Prepare Properly" data-es="Ya Tenemos Lo Necesario Para Preparar Bien La ReuniÃ³n">We Have What We Need To Prepare Properly</h2>
-          <p class="body-lg" data-en="Your intake has been received. We will review it before the meeting so we can come in with better context, better questions, and a proposal direction that actually fits the business." data-es="Hemos recibido tu formulario. Lo revisaremos antes de la reuniÃ³n para llegar con mejor contexto, mejores preguntas y una direcciÃ³n de propuesta que realmente encaje con tu negocio.">
+          <h2 class="headline-md" data-en="We Have What We Need To Prepare Properly" data-es="Ya Tenemos Lo Necesario Para Preparar Bien La Reunion">We Have What We Need To Prepare Properly</h2>
+          <p class="body-lg" data-en="Your intake has been received. We will review it before the meeting so we can come in with better context, better questions, and a proposal direction that actually fits the business." data-es="Hemos recibido tu formulario. Lo revisaremos antes de la reunion para llegar con mejor contexto, mejores preguntas y una direccion de propuesta que realmente encaje con tu negocio.">
             Your intake has been received. We will review it before the meeting so we can come in with better context, better questions, and a proposal direction that actually fits the business.
           </p>
           <div class="success-actions">
@@ -1309,11 +1314,11 @@ footer{
         </div>
         <div class="success-side">
           <div class="eyebrow" data-en="What Happens Next" data-es="Lo Que Sigue">What Happens Next</div>
-          <h3 class="headline-sm" data-en="A More Relevant Meeting" data-es="Una ReuniÃ³n MÃ¡s Relevante">A More Relevant Meeting</h3>
+          <h3 class="headline-sm" data-en="A More Relevant Meeting" data-es="Una Reunion Mas Relevante">A More Relevant Meeting</h3>
           <ul class="success-list">
-            <li data-en="We review your numbers, current friction, and service-fit signals before the call." data-es="Revisamos tus nÃºmeros, tus fricciones actuales y las seÃ±ales de encaje con nuestros servicios antes de la llamada.">We review your numbers, current friction, and service-fit signals before the call.</li>
-            <li data-en="We use this to make the meeting sharper and avoid generic discovery questions." data-es="Usamos esto para hacer la reuniÃ³n mÃ¡s precisa y evitar preguntas genÃ©ricas de discovery.">We use this to make the meeting sharper and avoid generic discovery questions.</li>
-            <li data-en="If there is a strong fit, we can move faster into a proposal that is actually useful." data-es="Si hay un encaje sÃ³lido, podremos avanzar mÃ¡s rÃ¡pido hacia una propuesta que realmente sea Ãºtil.">If there is a strong fit, we can move faster into a proposal that is actually useful.</li>
+            <li data-en="We review your numbers, current friction, and service-fit signals before the call." data-es="Revisamos tus numeros, tus fricciones actuales y las senales de encaje con nuestros servicios antes de la llamada.">We review your numbers, current friction, and service-fit signals before the call.</li>
+            <li data-en="We use this to make the meeting sharper and avoid generic discovery questions." data-es="Usamos esto para hacer la reunion mas precisa y evitar preguntas genericas de discovery.">We use this to make the meeting sharper and avoid generic discovery questions.</li>
+            <li data-en="If there is a strong fit, we can move faster into a proposal that is actually useful." data-es="Si hay un encaje solido, podremos avanzar mas rapido hacia una propuesta que realmente sea util.">If there is a strong fit, we can move faster into a proposal that is actually useful.</li>
           </ul>
         </div>
       </div>
@@ -1326,18 +1331,18 @@ footer{
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="./logo.png" alt="The Future Studio">
+          <img src="/logo.png" alt="The Future Studio">
         </div>
-        <p class="footer-tagline" data-en="Strategic AI, automation, websites, and brand systems for businesses that want to look sharper, respond faster, and grow with more structure." data-es="IA estratÃ©gica, automatizaciÃ³n, sitios web y sistemas de marca para negocios que quieren verse mejor, responder mÃ¡s rÃ¡pido y crecer con mÃ¡s estructura.">
+        <p class="footer-tagline" data-en="Strategic AI, automation, websites, and brand systems for businesses that want to look sharper, respond faster, and grow with more structure." data-es="IA estrategica, automatizacion, sitios web y sistemas de marca para negocios que quieren verse mejor, responder mas rapido y crecer con mas estructura.">
           Strategic AI, automation, websites, and brand systems for businesses that want to look sharper, respond faster, and grow with more structure.
         </p>
       </div>
       <div class="footer-col">
         <h5 data-en="Services" data-es="Servicios">Services</h5>
         <ul>
-          <li><a href="https://thefuturestudio.online/#services" data-en="AI & Automation" data-es="IA y automatizaciÃ³n">AI & Automation</a></li>
+          <li><a href="https://thefuturestudio.online/#services" data-en="AI & Automation" data-es="IA y automatizacion">AI & Automation</a></li>
           <li><a href="https://thefuturestudio.online/#services" data-en="Website Systems" data-es="Sistemas web">Website Systems</a></li>
-          <li><a href="https://thefuturestudio.online/#services" data-en="Brand Refresh" data-es="ActualizaciÃ³n de marca">Brand Refresh</a></li>
+          <li><a href="https://thefuturestudio.online/#services" data-en="Brand Refresh" data-es="Actualizacion de marca">Brand Refresh</a></li>
           <li><a href="https://thefuturestudio.online/tfs-pricing.html" data-en="Pricing" data-es="Precios">Pricing</a></li>
         </ul>
       </div>
@@ -1351,8 +1356,8 @@ footer{
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy" data-en="Â© 2026 The Future Studio. All rights reserved." data-es="Â© 2026 The Future Studio. Todos los derechos reservados.">Â© 2026 The Future Studio. All rights reserved.</div>
-      <div class="footer-copy" data-en="Client intake for discovery preparation." data-es="Formulario de preparaciÃ³n para discovery.">Client intake for discovery preparation.</div>
+      <div class="footer-copy" data-en="(c) 2026 The Future Studio. All rights reserved." data-es="(c) 2026 The Future Studio. Todos los derechos reservados.">(c) 2026 The Future Studio. All rights reserved.</div>
+      <div class="footer-copy" data-en="Client intake for discovery preparation." data-es="Formulario de preparacion para discovery.">Client intake for discovery preparation.</div>
     </div>
   </div>
 </footer>
@@ -1693,7 +1698,7 @@ document.addEventListener('DOMContentLoaded', function () {
         submitButton.disabled = false;
         setSubmitStatus(
           'There was a problem sending the form. Please try again or email info@thefuturestudio.online.',
-          'Hubo un problema al enviar el formulario. IntÃ©ntalo de nuevo o escribe a info@thefuturestudio.online.',
+          'Hubo un problema al enviar el formulario. Intentalo de nuevo o escribe a info@thefuturestudio.online.',
           true
         );
       });
@@ -1768,6 +1773,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initCanvas();
 });
 </script>
+<script src="/assets/lead-capture.js?v=rebuild-20260506"></script>
 <script src="/assets/funnel-conversion.js?v=rebuild-20260505"></script>
 <script src="/assets/funnel-visuals.js?v=rebuild-20260505"></script>
 </body>

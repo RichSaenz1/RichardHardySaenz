@@ -27,6 +27,7 @@ function ensureSharedFunnelAssets() {
 
   loadScript("/assets/funnel-conversion.js");
   loadScript("/assets/funnel-visuals.js");
+  loadScript("/assets/lead-capture.js");
 }
 
 function getTfsEmailAddress() {
@@ -60,6 +61,7 @@ function ensureSharedFunnelAssets() {
   addStyle("/assets/funnel-layout.css?v=rebuild-20260506");
   addScript("/assets/funnel-conversion.js?v=rebuild-20260506");
   addScript("/assets/funnel-visuals.js?v=rebuild-20260506");
+  addScript("/assets/lead-capture.js?v=rebuild-20260506");
 }
 
 function currentLang() {

@@ -386,7 +386,7 @@
           <span class="orb orb-cyan orb-1" style="width:220px;height:220px;top:-70px;left:-70px"></span>
           <span class="orb orb-violet orb-2" style="width:240px;height:240px;bottom:-100px;right:-90px"></span>
           <p class="eyebrow" data-en="Secure Checkout" data-es="Checkout Seguro">Secure Checkout</p>
-          <h1 class="headline-lg hero-title" data-en="COMPLETE YOUR ORDER FOR THE <span class='grad'>90-DAY AI ROLLOUT TIMELINE</span>" data-es="COMPLETA TU ORDEN DEL <span class='grad'>90-DAY AI ROLLOUT TIMELINE</span>">COMPLETE YOUR ORDER FOR THE <span class="grad">90-DAY AI ROLLOUT TIMELINE</span></h1>
+          <h1 class="headline-lg hero-title" data-en="COMPLETE YOUR ORDER" data-es="COMPLETA TU ORDEN">COMPLETE YOUR ORDER</h1>
           <p class="body-lg hero-copy" data-en="This page keeps the next step simple. You can complete the purchase now in a fast checkout flow, or review the full rollout page first if you want more detail before you pay." data-es="Esta pagina mantiene el siguiente paso simple. Puedes completar la compra ahora en un checkout rapido, o revisar primero la pagina completa del rollout si quieres mas detalle antes de pagar.">This page keeps the next step simple. You can complete the purchase now in a fast checkout flow, or review the full rollout page first if you want more detail before you pay.</p>
           <div class="summary-grid">
             <article class="summary-card dark aos d1">
@@ -434,25 +434,9 @@
               <label for="checkout-name" data-en="Full Name" data-es="Nombre completo">Full Name</label>
               <input id="checkout-name" name="name" type="text" autocomplete="name" required data-en-placeholder="Your full name" data-es-placeholder="Tu nombre completo" placeholder="Your full name">
             </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-card" data-en="Card Number" data-es="Numero de tarjeta">Card Number</label>
-                <input id="checkout-card" name="card" type="text" inputmode="numeric" maxlength="19" required data-en-placeholder="1234 1234 1234 1234" data-es-placeholder="1234 1234 1234 1234" placeholder="1234 1234 1234 1234">
-              </div>
-              <div class="field-group">
-                <label for="checkout-card-name" data-en="Name on Card" data-es="Nombre en la tarjeta">Name on Card</label>
-                <input id="checkout-card-name" name="card_name" type="text" autocomplete="cc-name" required data-en-placeholder="Cardholder name" data-es-placeholder="Nombre del titular" placeholder="Cardholder name">
-              </div>
-            </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-expiry" data-en="Expiry" data-es="Vencimiento">Expiry</label>
-                <input id="checkout-expiry" name="expiry" type="text" inputmode="numeric" maxlength="5" required data-en-placeholder="MM/YY" data-es-placeholder="MM/AA" placeholder="MM/YY">
-              </div>
-              <div class="field-group">
-                <label for="checkout-cvc" data-en="CVC" data-es="CVC">CVC</label>
-                <input id="checkout-cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" required data-en-placeholder="123" data-es-placeholder="123" placeholder="123">
-              </div>
+            <div class="stripe-panel">
+              <strong data-en="Continue to Secure Stripe Checkout" data-es="Continuar al checkout seguro de Stripe">Continue to Secure Stripe Checkout</strong>
+              <p data-en="Card details are entered on Stripe, not on this page." data-es="Los datos de la tarjeta se introducen en Stripe, no en esta pagina.">Card details are entered on Stripe, not on this page.</p>
             </div>
             <div class="payment-row">
               <div>
@@ -539,29 +523,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var form = document.getElementById("checkout-form");
   var emailField = document.getElementById("checkout-email");
   var nameField = document.getElementById("checkout-name");
-  var cardField = document.getElementById("checkout-card");
-  var expiryField = document.getElementById("checkout-expiry");
-  var cvcField = document.getElementById("checkout-cvc");
-
-  function sanitizeNumericInput(input, maxDigits) {
-    if (!input) return;
-
-    input.addEventListener("input", function() {
-      var digits = input.value.replace(/\D+/g, "").slice(0, maxDigits);
-
-      if (input === cardField) {
-        input.value = digits.replace(/(.{4})/g, "$1 ").trim();
-      } else if (input === expiryField) {
-        input.value = digits.length > 2 ? digits.slice(0, 2) + "/" + digits.slice(2, 4) : digits;
-      } else {
-        input.value = digits;
-      }
-    });
-  }
-
-  sanitizeNumericInput(cardField, 16);
-  sanitizeNumericInput(expiryField, 4);
-  sanitizeNumericInput(cvcField, 4);
 
   form.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -590,12 +551,3 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body>
 </html>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>
-<a class="btn btn-primary" href="/checkout/rollout-timeline.html" data-en="Get Your 90-Day AI Rollout Timeline" data-es="Obten tu 90-Day AI Rollout Timeline">Get Your 90-Day AI Rollout Timeline</a>

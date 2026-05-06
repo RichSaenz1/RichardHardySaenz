@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You for Reserving Your Course Series | The Future Studio</title>
+<meta id="meta-description" name="description" content="Thank you for reserving your course series with The Future Studio. Review your next steps and see two optional implementation series.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://thefuturestudio.online/thank-you/course-series.html">
+<meta id="og-title" property="og:title" content="Thank You for Reserving Your Course Series">
+<meta id="og-description" property="og:description" content="A simple post-purchase thank-you page with next steps and optional series upsells.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/thank-you/course-series.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+.page-course-thankyou .hero { padding: 134px 0 56px; min-height: calc(100vh - 120px); display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-course-thankyou .hero-panel { position: relative; padding: 42px; border: 2px solid var(--black); background: var(--black); color: var(--white); overflow: hidden; }
+.page-course-thankyou .hero-panel:hover { transform: none; box-shadow: none; }
+.page-course-thankyou .hero-panel .eyebrow,
+.page-course-thankyou .hero-panel p,
+.page-course-thankyou .hero-panel li { color: var(--white); }
+.page-course-thankyou .hero-copy,
+.page-course-thankyou .section-copy,
+.page-course-thankyou .feature-card p,
+.page-course-thankyou .feature-card li,
+.page-course-thankyou .next-list li { font-size: 15px; line-height: 1.7; }
+.page-course-thankyou .hero-copy { margin-top: 24px; max-width: 760px; color: rgba(255,255,255,0.84); }
+.page-course-thankyou .reserved-series { margin-top: 16px; display: inline-flex; align-items: center; gap: 12px; padding: 12px 18px; border: 2px solid rgba(255,255,255,0.2); font-family: var(--font-d); font-size: 18px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--white); }
+.page-course-thankyou .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+.page-course-thankyou .hero-actions .btn { min-width: 240px; justify-content: center; }
+.page-course-thankyou .section { padding: 18px 0 52px; }
+.page-course-thankyou .section-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--white); }
+.page-course-thankyou .section-title { margin-top: 18px; font-family: var(--font-d); font-size: clamp(44px, 6vw, 78px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; letter-spacing: -0.02em; }
+.page-course-thankyou .next-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 18px; align-items: stretch; }
+.page-course-thankyou .next-panel,
+.page-course-thankyou .support-panel { min-height: 100%; padding: 30px 26px; border: 2px solid var(--black); background: var(--white); }
+.page-course-thankyou .support-panel { background: var(--black); color: var(--white); }
+.page-course-thankyou .support-panel .eyebrow,
+.page-course-thankyou .support-panel p,
+.page-course-thankyou .support-panel li { color: var(--white); }
+.page-course-thankyou .next-list,
+.page-course-thankyou .support-list { list-style: none; display: grid; gap: 16px; margin-top: 20px; }
+.page-course-thankyou .next-list li,
+.page-course-thankyou .support-list li { position: relative; padding-left: 18px; }
+.page-course-thankyou .next-list li::before,
+.page-course-thankyou .support-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-course-thankyou .support-panel .btn { margin-top: 22px; width: 100%; justify-content: center; }
+.page-course-thankyou .upsell-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
+.page-course-thankyou .feature-card { min-height: 100%; padding: 28px 24px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; gap: 14px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-course-thankyou .feature-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); background: var(--black); color: var(--white); }
+.page-course-thankyou .feature-card:hover h3,
+.page-course-thankyou .feature-card:hover p,
+.page-course-thankyou .feature-card:hover .tier,
+.page-course-thankyou .feature-card:hover li { color: var(--white); }
+.page-course-thankyou .feature-card h3 { font-family: var(--font-d); font-size: clamp(34px, 4vw, 52px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; }
+.page-course-thankyou .feature-card .tier { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+.page-course-thankyou .feature-card ul { list-style: none; display: grid; gap: 12px; margin-top: 10px; }
+.page-course-thankyou .feature-card li { position: relative; padding-left: 18px; }
+.page-course-thankyou .feature-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-course-thankyou .feature-card .btn { margin-top: auto; width: 100%; justify-content: center; }
+.page-course-thankyou .hero-orb-1 { width: 500px; height: 500px; top: -120px; left: -170px; }
+.page-course-thankyou .hero-orb-2 { width: 520px; height: 520px; bottom: -150px; right: -190px; }
+.page-course-thankyou footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-course-thankyou .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-course-thankyou .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-course-thankyou .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-course-thankyou .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-course-thankyou .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-course-thankyou .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-course-thankyou .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-course-thankyou .footer-col a:hover { color: var(--cyan); }
+.page-course-thankyou .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-course-thankyou .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-course-thankyou .next-grid,
+  .page-course-thankyou .upsell-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page-course-thankyou .hero-panel,
+  .page-course-thankyou .section-card,
+  .page-course-thankyou .next-panel,
+  .page-course-thankyou .support-panel,
+  .page-course-thankyou .feature-card { padding: 26px 22px; }
+  .page-course-thankyou .footer-inner { grid-template-columns: 1fr; }
+  .page-course-thankyou .footer-bottom { flex-direction: column; text-align: center; }
+  .page-course-thankyou .footer-logo { justify-content: center; }
+  .page-course-thankyou .footer-tagline { margin: 0 auto; }
+}
+</style>
+</head>
+<body class="page-course-thankyou">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener" data-en="Book a Free Call" data-es="Reservar llamada">Book a Free Call</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+    <div class="orb orb-violet orb-2 hero-orb-2"></div>
+    <div class="wrap">
+      <div class="hero-panel aos">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 class="headline-lg" id="hero-title"></h1>
+        <div class="reserved-series" id="reserved-series"></div>
+        <p class="body-lg hero-copy" id="hero-copy"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="hero-primary-cta" href="#upsells"></a>
+          <a class="btn btn-outline-white" id="hero-secondary-cta" href="#next-steps"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="next-steps">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="next-eyebrow"></p>
+        <h2 class="section-title" id="next-title"></h2>
+        <div class="next-grid">
+          <div class="next-panel">
+            <p class="section-copy" id="next-copy"></p>
+            <ul class="next-list" id="next-list"></ul>
+          </div>
+          <div class="support-panel">
+            <p class="eyebrow" id="support-eyebrow"></p>
+            <p class="section-copy" id="support-copy"></p>
+            <ul class="support-list" id="support-list"></ul>
+            <a class="btn btn-primary" href="https://wa.me/50765623675" target="_blank" rel="noopener" id="support-cta"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="upsells">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="upsell-eyebrow"></p>
+        <h2 class="section-title" id="upsell-title"></h2>
+        <p class="section-copy" id="upsell-copy"></p>
+        <div class="upsell-grid" id="upsell-grid"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="/logo.png" alt="The Future Studio"></div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener" data-en="Book a Call" data-es="Reservar llamada">Book a Call</a></li>
+          <li><a href="https://wa.me/50765623675" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var COURSE_THANKYOU_DATA = {
+  "stop-losing-leads": {
+    titleTag: {
+      en: "Thank You for Reserving Stop Losing Leads | The Future Studio",
+      es: "Gracias por reservar Stop Losing Leads | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for reserving Stop Losing Leads. Review your next steps and two optional implementation series.",
+      es: "Gracias por reservar Stop Losing Leads. Revisa los proximos pasos y dos series opcionales de implementacion."
+    },
+    ogTitle: {
+      en: "Thank You for Reserving Stop Losing Leads",
+      es: "Gracias por reservar Stop Losing Leads"
+    },
+    ogDescription: {
+      en: "A simple thank-you page with next steps and two optional course upsells.",
+      es: "Una pagina simple de agradecimiento con proximos pasos y dos cursos opcionales."
+    },
+    seriesLabel: { en: "Stop Losing Leads", es: "Stop Losing Leads" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOU'RE IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU LUGAR ESTA RESERVADO.</span>"
+    },
+    heroCopy: {
+      en: "Your place in Stop Losing Leads is reserved. Watch for your confirmation email and access details, then use the options below if you want to keep building from revenue recovery into the next system.",
+      es: "Tu lugar en Stop Losing Leads ya esta reservado. Revisa tu correo para ver la confirmacion y los detalles de acceso, y luego usa las opciones de abajo si quieres seguir construyendo desde la recuperacion de ingresos hacia el siguiente sistema."
+    },
+    primaryCta: { en: "See Optional Next Steps", es: "Ver siguientes opciones" },
+    secondaryCta: { en: "What Happens Next", es: "Que pasa ahora" }
+  },
+  "first-ai-system": {
+    titleTag: {
+      en: "Thank You for Reserving Your First AI System | The Future Studio",
+      es: "Gracias por reservar Tu Primer Sistema de IA | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for reserving From Zero to Your First AI System. Review your next steps and two optional series upsells.",
+      es: "Gracias por reservar From Zero to Your First AI System. Revisa tus proximos pasos y dos series opcionales."
+    },
+    ogTitle: {
+      en: "Thank You for Reserving Your First AI System",
+      es: "Gracias por reservar Tu Primer Sistema de IA"
+    },
+    ogDescription: {
+      en: "A simple thank-you page with next steps and two optional course upsells.",
+      es: "Una pagina simple de agradecimiento con proximos pasos y dos cursos opcionales."
+    },
+    seriesLabel: { en: "From Zero to Your First AI System", es: "From Zero to Your First AI System" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOU'RE IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU LUGAR ESTA RESERVADO.</span>"
+    },
+    heroCopy: {
+      en: "Your place in From Zero to Your First AI System is reserved. Watch for your confirmation email and access details, then use the options below if you want to keep moving from a first build into the next commercial system.",
+      es: "Tu lugar en From Zero to Your First AI System ya esta reservado. Revisa tu correo para ver la confirmacion y los detalles de acceso, y luego usa las opciones de abajo si quieres pasar de un primer build al siguiente sistema comercial."
+    },
+    primaryCta: { en: "See Optional Next Steps", es: "Ver siguientes opciones" },
+    secondaryCta: { en: "What Happens Next", es: "Que pasa ahora" }
+  },
+  "build-what-pays": {
+    titleTag: {
+      en: "Thank You for Reserving Build What Pays | The Future Studio",
+      es: "Gracias por reservar Build What Pays | The Future Studio"
+    },
+    metaDescription: {
+      en: "Thank you for reserving Build What Pays. Review your next steps and two optional course upsells.",
+      es: "Gracias por reservar Build What Pays. Revisa tus proximos pasos y dos series opcionales."
+    },
+    ogTitle: {
+      en: "Thank You for Reserving Build What Pays",
+      es: "Gracias por reservar Build What Pays"
+    },
+    ogDescription: {
+      en: "A simple thank-you page with next steps and two optional course upsells.",
+      es: "Una pagina simple de agradecimiento con proximos pasos y dos cursos opcionales."
+    },
+    seriesLabel: { en: "Build What Pays", es: "Build What Pays" },
+    heroTitle: {
+      en: "THANK YOU.<br><span class='grad'>YOU'RE IN.</span>",
+      es: "GRACIAS.<br><span class='grad'>TU LUGAR ESTA RESERVADO.</span>"
+    },
+    heroCopy: {
+      en: "Your place in Build What Pays is reserved. Watch for your confirmation email and access details, then use the options below if you want to widen the system beyond ROI-first automation.",
+      es: "Tu lugar en Build What Pays ya esta reservado. Revisa tu correo para ver la confirmacion y los detalles de acceso, y luego usa las opciones de abajo si quieres ampliar el sistema mas alla de la automatizacion enfocada en ROI."
+    },
+    primaryCta: { en: "See Optional Next Steps", es: "Ver siguientes opciones" },
+    secondaryCta: { en: "What Happens Next", es: "Que pasa ahora" }
+  }
+};
+
+var COURSE_SERIES_LIBRARY = {
+  "stop-losing-leads": {
+    title: { en: "Stop Losing Leads", es: "Stop Losing Leads" },
+    summary: {
+      en: "Build the five-part AI response system that catches missed leads, replies in under 60 seconds, moves prospects into booking, and keeps recovery visible every week.",
+      es: "Construye el sistema de respuesta con IA en cinco partes que captura leads perdidos, responde en menos de 60 segundos, mueve prospectos hacia la reserva y mantiene visible la recuperacion cada semana."
+    },
+    bullets: {
+      en: ["Missed-call and WhatsApp response flow", "Booking movement without manual delays"],
+      es: ["Flujo de respuesta para llamadas perdidas y WhatsApp", "Movimiento hacia la reserva sin demoras manuales"]
+    }
+  },
+  "first-ai-system": {
+    title: { en: "From Zero to Your First AI System", es: "From Zero to Your First AI System" },
+    summary: {
+      en: "Choose the right stack, build your first chatbot, write your AI brain, automate follow-up, and leave with a 90-day implementation order your team can actually use.",
+      es: "Elige el stack correcto, construye tu primer chatbot, escribe el cerebro de tu IA, automatiza el seguimiento y sal con un orden de implementacion de 90 dias que tu equipo realmente pueda usar."
+    },
+    bullets: {
+      en: ["A calmer first AI build", "A working rollout order for the next 90 days"],
+      es: ["Un primer build de IA mas calmado", "Un orden de rollout funcional para los proximos 90 dias"]
+    }
+  },
+  "build-what-pays": {
+    title: { en: "Build What Pays", es: "Build What Pays" },
+    summary: {
+      en: "Build the highest-return automation first, reduce no-shows, score the right leads, and track recovered revenue in one view your business can actually run on.",
+      es: "Construye primero la automatizacion de mayor retorno, reduce ausencias, puntua los leads correctos y sigue los ingresos recuperados en una sola vista sobre la que tu negocio realmente pueda operar."
+    },
+    bullets: {
+      en: ["Highest-return automation order", "Recovered revenue tracked in one dashboard"],
+      es: ["Orden de automatizacion de mayor retorno", "Ingresos recuperados visibles en un dashboard"]
+    }
+  }
+};
+
+var COMMON_COPY = {
+  nextEyebrow: { en: "What happens next", es: "Que pasa ahora" },
+  nextTitle: { en: "YOUR NEXT <span class='grad'>STEP IS SIMPLE</span>", es: "TU SIGUIENTE <span class='grad'>PASO ES SIMPLE</span>" },
+  nextCopy: {
+    en: "You do not need to make another big decision right now. First, look for your confirmation and access details. Then use the two series below only if you want to keep building on the momentum you already created.",
+    es: "No necesitas tomar otra gran decision ahora mismo. Primero, revisa tu confirmacion y los detalles de acceso. Luego usa las dos series de abajo solo si quieres seguir construyendo sobre el impulso que ya creaste."
+  },
+  nextList: {
+    en: [
+      "Your confirmation and access details should arrive by email.",
+      "If you do not see them within a few minutes, check spam or promotions.",
+      "Start with the purchased series before adding anything else."
+    ],
+    es: [
+      "Tu confirmacion y los detalles de acceso deberian llegar por correo.",
+      "Si no los ves en unos minutos, revisa spam o promociones.",
+      "Empieza por la serie que compraste antes de agregar cualquier otra cosa."
+    ]
+  },
+  supportEyebrow: { en: "Need help?", es: "Necesitas ayuda?" },
+  supportCopy: {
+    en: "If you need the payment receipt resent, the access link checked, or the right next option confirmed, message The Future Studio directly and we will point you in the right direction.",
+    es: "Si necesitas que reenviemos el recibo, revisar el enlace de acceso o confirmar cual es la siguiente opcion correcta, escribenos directamente y te guiamos."
+  },
+  supportList: {
+    en: ["Fastest support path: WhatsApp", "Useful if the confirmation email does not arrive"],
+    es: ["La via mas rapida de soporte: WhatsApp", "Util si el correo de confirmacion no llega"]
+  },
+  supportCta: { en: "Message on WhatsApp", es: "Escribir por WhatsApp" },
+  upsellEyebrow: { en: "Optional next moves", es: "Siguientes pasos opcionales" },
+  upsellTitle: { en: "KEEP BUILDING IF <span class='grad'>THE TIMING IS RIGHT</span>", es: "SIGUE CONSTRUYENDO SI <span class='grad'>EL MOMENTO ES EL CORRECTO</span>" },
+  upsellCopy: {
+    en: "These are the two cleanest series to look at after your current purchase. They are not required. They are here only if you want to widen the system while the decision is still fresh.",
+    es: "Estas son las dos series mas claras para mirar despues de tu compra actual. No son obligatorias. Estan aqui solo si quieres ampliar el sistema mientras la decision todavia esta fresca."
+  },
+  upsellTier: { en: "Optional Upsell", es: "Upsell Opcional" },
+  upsellCta: { en: "Reserve This Series", es: "Reservar esta serie" }
+};
+
+function buildUpsellSlugs(currentSlug) {
+  return Object.keys(COURSE_SERIES_LIBRARY).filter(function(slug) {
+    return slug !== currentSlug;
+  });
+}
+
+function renderCourseSeriesThankYou() {
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get("series") || "first-ai-system";
+  var data = COURSE_THANKYOU_DATA[slug] || COURSE_THANKYOU_DATA["first-ai-system"];
+  var lang = (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+
+  document.title = data.titleTag[lang];
+  if (metaDescription) metaDescription.setAttribute("content", data.metaDescription[lang]);
+  if (ogTitle) ogTitle.setAttribute("content", data.ogTitle[lang]);
+  if (ogDescription) ogDescription.setAttribute("content", data.ogDescription[lang]);
+
+  document.getElementById("hero-eyebrow").textContent = lang === "es" ? "Gracias" : "Thank you";
+  document.getElementById("hero-title").innerHTML = data.heroTitle[lang];
+  document.getElementById("reserved-series").textContent = data.seriesLabel[lang];
+  document.getElementById("hero-copy").textContent = data.heroCopy[lang];
+  document.getElementById("hero-primary-cta").textContent = data.primaryCta[lang];
+  document.getElementById("hero-secondary-cta").textContent = data.secondaryCta[lang];
+
+  document.getElementById("next-eyebrow").textContent = COMMON_COPY.nextEyebrow[lang];
+  document.getElementById("next-title").innerHTML = COMMON_COPY.nextTitle[lang];
+  document.getElementById("next-copy").textContent = COMMON_COPY.nextCopy[lang];
+  document.getElementById("next-list").innerHTML = COMMON_COPY.nextList[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("support-eyebrow").textContent = COMMON_COPY.supportEyebrow[lang];
+  document.getElementById("support-copy").textContent = COMMON_COPY.supportCopy[lang];
+  document.getElementById("support-list").innerHTML = COMMON_COPY.supportList[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("support-cta").textContent = COMMON_COPY.supportCta[lang];
+
+  document.getElementById("upsell-eyebrow").textContent = COMMON_COPY.upsellEyebrow[lang];
+  document.getElementById("upsell-title").innerHTML = COMMON_COPY.upsellTitle[lang];
+  document.getElementById("upsell-copy").textContent = COMMON_COPY.upsellCopy[lang];
+
+  var upsellGrid = document.getElementById("upsell-grid");
+  var upsellSlugs = buildUpsellSlugs(slug);
+  upsellGrid.innerHTML = upsellSlugs.map(function(upsellSlug) {
+    var upsell = COURSE_SERIES_LIBRARY[upsellSlug];
+    return "<article class='feature-card'>" +
+      "<p class='tier'>" + COMMON_COPY.upsellTier[lang] + "</p>" +
+      "<h3>" + upsell.title[lang] + "</h3>" +
+      "<p>" + upsell.summary[lang] + "</p>" +
+      "<ul>" + upsell.bullets[lang].map(function(item) { return "<li>" + item + "</li>"; }).join("") + "</ul>" +
+      "<a class='btn btn-primary' href='/checkout/course-series.html?series=" + upsellSlug + "'>" + COMMON_COPY.upsellCta[lang] + "</a>" +
+    "</article>";
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderCourseSeriesThankYou);
+document.addEventListener("tfs:langchange", renderCourseSeriesThankYou);
+</script>
+</body>
+</html>

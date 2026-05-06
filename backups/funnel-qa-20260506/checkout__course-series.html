@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Checkout for The Future Studio Course Series</title>
+<meta id="meta-description" name="description" content="Complete your order for your selected The Future Studio course series in a fast, low-friction checkout flow.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://thefuturestudio.online/checkout/course-series.html">
+<meta id="og-title" property="og:title" content="Secure Checkout for The Future Studio Course Series">
+<meta id="og-description" property="og:description" content="A fast payment step for your selected The Future Studio implementation series.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thefuturestudio.online/checkout/course-series.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+.page-checkout-series .hero { padding: 134px 0 72px; }
+.page-checkout-series .hero-panel,
+.page-checkout-series .payment-panel { border: 2px solid var(--black); border-radius: 0; }
+.page-checkout-series .hero-panel { position: relative; padding: 42px; overflow: hidden; }
+.page-checkout-series .hero-copy { margin-top: 22px; max-width: 690px; }
+.page-checkout-series .checkout-shell { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr); gap: 28px; align-items: start; }
+.page-checkout-series .summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+.page-checkout-series .summary-card { min-height: 380px; padding: 34px 30px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; justify-content: space-between; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-checkout-series .summary-card.dark { background: var(--black); color: var(--white); }
+.page-checkout-series .summary-card.dark p,
+.page-checkout-series .summary-card.dark li,
+.page-checkout-series .summary-card.dark strong { color: var(--white); }
+.page-checkout-series .summary-card:hover { transform: translate(-12px, -12px); box-shadow: 12px 12px 0 var(--cyan); }
+.page-checkout-series .summary-card:not(.dark):hover { background: var(--black); color: var(--white); }
+.page-checkout-series .summary-card:not(.dark):hover p,
+.page-checkout-series .summary-card:not(.dark):hover li,
+.page-checkout-series .summary-card:not(.dark):hover strong { color: var(--white); }
+.page-checkout-series .summary-card h3,
+.page-checkout-series .payment-panel h2 { margin-top: 14px; font-family: var(--font-d); font-size: clamp(30px, 4vw, 48px); font-weight: 800; font-style: italic; line-height: .96; text-transform: uppercase; }
+.page-checkout-series .summary-card strong { display: block; margin-top: 14px; font-family: var(--font-d); font-size: clamp(30px, 3.8vw, 50px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .92; letter-spacing: -0.02em; min-height: 146px; overflow-wrap: anywhere; word-break: break-word; }
+.page-checkout-series .summary-card > div { display: grid; gap: 18px; }
+.page-checkout-series .summary-card p,
+.page-checkout-series .payment-panel p,
+.page-checkout-series .form-note,
+.page-checkout-series .secure-points li { font-size: 15px; line-height: 1.68; }
+.page-checkout-series .summary-card ul,
+.page-checkout-series .secure-points { list-style: none; margin-top: 26px; display: grid; gap: 14px; }
+.page-checkout-series .summary-card li,
+.page-checkout-series .secure-points li { position: relative; padding-left: 18px; }
+.page-checkout-series .summary-card li::before,
+.page-checkout-series .secure-points li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-checkout-series .payment-panel { padding: 34px 32px 30px; background: var(--black); color: var(--white); position: sticky; top: 124px; }
+.page-checkout-series .payment-panel .eyebrow,
+.page-checkout-series .payment-panel h2,
+.page-checkout-series .payment-panel label,
+.page-checkout-series .payment-panel .payment-row strong,
+.page-checkout-series .payment-panel .micro-meta { color: var(--white); }
+.page-checkout-series .payment-panel .eyebrow::before { background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+.page-checkout-series .payment-panel p { margin-top: 18px; color: rgba(255,255,255,0.78); }
+.page-checkout-series .payment-form { margin-top: 26px; display: grid; gap: 16px; }
+.page-checkout-series .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.page-checkout-series .field-group { display: grid; gap: 8px; }
+.page-checkout-series .field-group label { font-family: var(--font-d); font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.page-checkout-series .field-group input { width: 100%; padding: 15px 14px; border: 2px solid rgba(255,255,255,0.18); border-radius: 0; background: rgba(255,255,255,0.04); color: var(--white); }
+.page-checkout-series .field-group input::placeholder { color: rgba(255,255,255,0.54); }
+.page-checkout-series .field-group input:focus { outline: none; border-color: var(--cyan); }
+.page-checkout-series .payment-row { margin-top: 10px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.page-checkout-series .payment-row strong { font-family: var(--font-d); font-size: 28px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: 1; }
+.page-checkout-series .payment-row strong .order-title-main,
+.page-checkout-series .payment-row strong .order-title-sub { display: block; }
+.page-checkout-series .payment-row strong .order-title-sub { margin-top: 4px; }
+.page-checkout-series .micro-meta { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,0.68); }
+.page-checkout-series .payment-actions { margin-top: 18px; display: grid; gap: 12px; }
+.page-checkout-series .payment-actions .btn { width: 100%; justify-content: center; }
+.page-checkout-series .payment-actions .btn-primary:hover,
+.page-checkout-series .payment-actions .btn-primary:focus-visible { background: var(--white); color: var(--black); box-shadow: 0 10px 28px rgba(255,255,255,0.16); }
+.page-checkout-series .form-note { margin-top: 12px; color: rgba(255,255,255,0.64); }
+.page-checkout-series .cta-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 22px; margin-top: 18px; }
+.page-checkout-series .cta-links a { font-size: 14px; line-height: 1.6; color: transparent; background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; border-bottom: 1px solid rgba(155,89,255,0.35); }
+.page-checkout-series .cta-links a:hover { border-bottom-color: rgba(255,255,255,0.75); filter: brightness(1.12); }
+.page-checkout-series footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-checkout-series .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-checkout-series .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-checkout-series .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-checkout-series .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-checkout-series .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-checkout-series .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-checkout-series .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-checkout-series .footer-col a:hover { color: var(--cyan); }
+.page-checkout-series .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-checkout-series .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-checkout-series .checkout-shell { grid-template-columns: 1fr; }
+  .page-checkout-series .payment-panel { position: relative; top: 0; }
+}
+@media (max-width: 760px) {
+  .page-checkout-series .summary-grid,
+  .page-checkout-series .field-grid { grid-template-columns: 1fr; }
+  .page-checkout-series .hero-panel,
+  .page-checkout-series .payment-panel { padding: 26px 22px; }
+  .page-checkout-series .footer-inner,
+  .page-checkout-series .footer-bottom { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+  .page-checkout-series .footer-logo { justify-content: center; }
+  .page-checkout-series .footer-tagline { margin: 0 auto; }
+}
+</style>
+</head>
+<body class="page-checkout-series">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener" data-en="Book a Free Call" data-es="Reservar llamada">Book a Free Call</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="wrap">
+      <div class="checkout-shell">
+        <section class="hero-panel aos">
+          <span class="orb orb-cyan orb-1" style="width:220px;height:220px;top:-70px;left:-70px"></span>
+          <span class="orb orb-violet orb-2" style="width:240px;height:240px;bottom:-100px;right:-90px"></span>
+          <p class="eyebrow" data-en="Secure Checkout" data-es="Checkout Seguro">Secure Checkout</p>
+          <h1 class="headline-lg" id="series-checkout-title"></h1>
+          <p class="body-lg hero-copy" id="series-checkout-hero"></p>
+          <div class="summary-grid">
+            <article class="summary-card aos d1">
+              <p class="eyebrow" data-en="What you receive" data-es="Lo que recibes">What you receive</p>
+              <div>
+                <strong id="series-receive-title"></strong>
+                <p id="series-receive-copy"></p>
+              </div>
+              <ul>
+                <li id="series-receive-1"></li>
+                <li id="series-receive-2"></li>
+                <li id="series-receive-3"></li>
+                <li id="series-receive-4"></li>
+              </ul>
+            </article>
+            <article class="summary-card dark aos d2">
+              <p class="eyebrow" data-en="What this gives your business" data-es="Lo que esto le da a tu negocio">What this gives your business</p>
+              <div>
+                <strong id="series-allows-title"></strong>
+                <p id="series-allows-copy"></p>
+              </div>
+              <ul>
+                <li id="series-allows-1"></li>
+                <li id="series-allows-2"></li>
+                <li id="series-allows-3"></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <aside class="payment-panel aos d1">
+          <p class="eyebrow" data-en="Payment" data-es="Pago">Payment</p>
+          <h2 data-en="PAY TO <span class='grad'>RESERVE</span> NOW" data-es="PAGA PARA <span class='grad'>RESERVAR</span> AHORA">PAY TO <span class="grad">RESERVE</span> NOW</h2>
+          <p id="payment-copy"></p>
+          <form class="payment-form" id="checkout-form">
+            <div class="field-group">
+              <label for="checkout-email" data-en="Work Email" data-es="Correo de trabajo">Work Email</label>
+              <input id="checkout-email" name="email" type="email" autocomplete="email" required data-en-placeholder="you@business.com" data-es-placeholder="tu@negocio.com" placeholder="you@business.com">
+            </div>
+            <div class="field-group">
+              <label for="checkout-name" data-en="Full Name" data-es="Nombre completo">Full Name</label>
+              <input id="checkout-name" name="name" type="text" autocomplete="name" required data-en-placeholder="Your full name" data-es-placeholder="Tu nombre completo" placeholder="Your full name">
+            </div>
+            <div class="field-grid">
+              <div class="field-group">
+                <label for="checkout-card" data-en="Card Number" data-es="Numero de tarjeta">Card Number</label>
+                <input id="checkout-card" name="card" type="text" inputmode="numeric" maxlength="19" required data-en-placeholder="1234 1234 1234 1234" data-es-placeholder="1234 1234 1234 1234" placeholder="1234 1234 1234 1234">
+              </div>
+              <div class="field-group">
+                <label for="checkout-card-name" data-en="Name on Card" data-es="Nombre en la tarjeta">Name on Card</label>
+                <input id="checkout-card-name" name="card_name" type="text" autocomplete="cc-name" required data-en-placeholder="Cardholder name" data-es-placeholder="Nombre del titular" placeholder="Cardholder name">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="field-group">
+                <label for="checkout-expiry" data-en="Expiry" data-es="Vencimiento">Expiry</label>
+                <input id="checkout-expiry" name="expiry" type="text" inputmode="numeric" maxlength="5" required data-en-placeholder="MM/YY" data-es-placeholder="MM/AA" placeholder="MM/YY">
+              </div>
+              <div class="field-group">
+                <label for="checkout-cvc" data-en="CVC" data-es="CVC">CVC</label>
+                <input id="checkout-cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" required data-en-placeholder="123" data-es-placeholder="123" placeholder="123">
+              </div>
+            </div>
+            <div class="payment-row">
+              <div>
+                <div class="micro-meta" data-en="Order Summary" data-es="Resumen del pedido">Order Summary</div>
+                <strong><span class="order-title-main" id="order-title-main"></span><span class="order-title-sub" data-en="COURSE SERIES" data-es="SERIE DEL CURSO">COURSE SERIES</span></strong>
+              </div>
+              <span class="micro-meta" data-en="Secure checkout" data-es="Checkout seguro">Secure checkout</span>
+            </div>
+            <ul class="secure-points">
+              <li id="secure-1"></li>
+              <li id="secure-2"></li>
+            </ul>
+            <div class="payment-actions">
+              <button class="btn btn-primary" id="checkout-submit" type="submit" data-en="Pay to Reserve Now" data-es="Pagar para reservar ahora">Pay to Reserve Now</button>
+              <p class="form-note" data-en="You will complete payment on the secure checkout screen immediately after this step." data-es="Completaras el pago en la pantalla de checkout seguro inmediatamente despues de este paso.">You will complete payment on the secure checkout screen immediately after this step.</p>
+            </div>
+          </form>
+          <div class="cta-links">
+            <a id="series-back-link" href="#" data-en="Back to the course page" data-es="Volver a la pagina del curso">Back to the course page</a>
+            <a href="https://wa.me/50765623675" target="_blank" rel="noopener" data-en="Reserve by WhatsApp" data-es="Reservar por WhatsApp">Reserve by WhatsApp</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="/logo.png" alt="The Future Studio">
+        </div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener" data-en="Book a Call" data-es="Reservar llamada">Book a Call</a></li>
+          <li><a href="https://wa.me/50765623675" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var PAYMENT_LINKS = window.PAYMENT_LINKS || {};
+
+window.TFS_COURSE_CHECKOUT_DATA = {
+  "stop-losing-leads": {
+    paymentKey: "stopLosingLeads",
+    pageUrl: "/shop/series/stop-losing-leads.html",
+    title: {
+      en: "RESERVE YOUR PLACE IN <span class='grad'>STOP LOSING LEADS</span>",
+      es: "RESERVA TU LUGAR EN <span class='grad'>STOP LOSING LEADS</span>"
+    },
+    hero: {
+      en: "Complete your order for Stop Losing Leads and move into the five-video system that closes the missed-lead gaps most businesses keep paying for every week.",
+      es: "Completa tu orden de Stop Losing Leads y entra en el sistema de cinco videos que cierra las fugas de leads perdidos por las que muchos negocios siguen pagando cada semana."
+    },
+    receiveTitle: { en: "Full System", es: "Sistema Completo" },
+    receive: {
+      en: "You receive the five-video implementation series that shows you how to map the leaks, automate the first reply, write the AI logic, connect booking, and build weekly reporting.",
+      es: "Recibes la serie de implementacion de cinco videos que te muestra como mapear las fugas, automatizar la primera respuesta, escribir la logica de la IA, conectar reservas y construir el reporte semanal."
+    },
+    receiveBullets: {
+      en: ["A full lead-response build sequence", "Practical setup for missed calls, WhatsApp, and booking", "Prompt and handoff guidance for the AI layer", "Weekly reporting so the business sees what changed"],
+      es: ["Una secuencia completa para construir la respuesta a leads", "Configuracion practica para llamadas perdidas, WhatsApp y reservas", "Guia de prompt y handoff para la capa de IA", "Reporte semanal para que el negocio vea que cambio"]
+    },
+    allowsTitle: { en: "Revenue Recovery", es: "Recuperacion" },
+    allows: {
+      en: "Once the series is applied, the business stops relying on manual reply speed alone and starts recovering more demand through faster response, cleaner booking movement, and clearer reporting.",
+      es: "Una vez que la serie se aplica, el negocio deja de depender solo de la velocidad manual de respuesta y empieza a recuperar mas demanda con una respuesta mas rapida, un movimiento de reservas mas limpio y reportes mas claros."
+    },
+    allowsBullets: {
+      en: ["Fewer missed opportunities after the first contact", "A stronger path from enquiry into appointment", "A weekly view of what the system is recovering"],
+      es: ["Menos oportunidades perdidas despues del primer contacto", "Un camino mas fuerte desde la consulta hasta la cita", "Una vista semanal de lo que el sistema esta recuperando"]
+    },
+    paymentCopy: {
+      en: "Complete payment now and reserve the course that helps your business stop losing good leads after the first enquiry.",
+      es: "Completa el pago ahora y reserva el curso que ayuda a tu negocio a dejar de perder buenos leads despues de la primera consulta."
+    },
+    secure: {
+      en: ["Built for businesses losing demand after the first contact", "A practical system you can build and measure week by week"],
+      es: ["Creado para negocios que pierden demanda despues del primer contacto", "Un sistema practico que puedes construir y medir semana a semana"]
+    },
+    orderMain: { en: "STOP LOSING LEADS", es: "STOP LOSING LEADS" },
+    titleTag: {
+      en: "Secure Checkout for Stop Losing Leads | The Future Studio",
+      es: "Checkout Seguro para Stop Losing Leads | The Future Studio"
+    },
+    metaDescription: {
+      en: "Complete your order for Stop Losing Leads in a fast, low-friction checkout flow and reserve your place in the five-video AI response system.",
+      es: "Completa tu orden de Stop Losing Leads en un checkout rapido y de baja friccion y reserva tu lugar en el sistema de respuesta con IA de cinco videos."
+    },
+    ogTitle: {
+      en: "Secure Checkout for Stop Losing Leads",
+      es: "Checkout Seguro para Stop Losing Leads"
+    },
+    ogDescription: {
+      en: "Reserve your place in the Stop Losing Leads course series.",
+      es: "Reserva tu lugar en la serie Stop Losing Leads."
+    }
+  },
+  "first-ai-system": {
+    paymentKey: "firstAiSystem",
+    pageUrl: "/shop/series/first-ai-system.html",
+    title: {
+      en: "RESERVE YOUR PLACE IN <span class='grad'>YOUR FIRST AI SYSTEM</span>",
+      es: "RESERVA TU LUGAR EN <span class='grad'>TU PRIMER SISTEMA DE IA</span>"
+    },
+    hero: {
+      en: "Complete your order for From Zero to Your First AI System and move into the five-video series that takes your business from AI curiosity into a real first build.",
+      es: "Completa tu orden de From Zero to Your First AI System y entra en la serie de cinco videos que lleva a tu negocio desde la curiosidad por la IA hasta una primera construccion real."
+    },
+    receiveTitle: { en: "First Build", es: "Primer Build" },
+    receive: {
+      en: "You receive the five-video practical build series that shows you how to choose the stack, build the chatbot, write the system prompt, automate follow-up, and plan the next 90 days.",
+      es: "Recibes la serie practica de cinco videos que te muestra como elegir el stack, construir el chatbot, escribir el system prompt, automatizar el seguimiento y planear los proximos 90 dias."
+    },
+    receiveBullets: {
+      en: ["A calmer first AI build sequence", "Tool selection without more research loops", "A working chatbot and system prompt foundation", "A rollout plan the team can actually follow"],
+      es: ["Una secuencia mas calmada para el primer build de IA", "Seleccion de herramientas sin mas vueltas de investigacion", "Un chatbot funcional y una base de system prompt", "Un plan de rollout que el equipo realmente puede seguir"]
+    },
+    allowsTitle: { en: "Clear Rollout", es: "Rollout Claro" },
+    allows: {
+      en: "Once the series is applied, the business stops guessing how to start with AI and starts moving with a clearer tool stack, a working first system, and a more believable rollout order.",
+      es: "Una vez que la serie se aplica, el negocio deja de adivinar como empezar con IA y empieza a avanzar con un stack mas claro, un primer sistema funcional y un orden de rollout mas creible."
+    },
+    allowsBullets: {
+      en: ["A first AI system that actually goes live", "Lower confusion across tools, prompts, and follow-up", "A 90-day path that makes the next build easier to justify"],
+      es: ["Un primer sistema de IA que realmente sale en vivo", "Menos confusion entre herramientas, prompts y seguimiento", "Un camino de 90 dias que hace mas facil justificar el siguiente build"]
+    },
+    paymentCopy: {
+      en: "Complete payment now and reserve the course that helps your business build its first AI system in the right order.",
+      es: "Completa el pago ahora y reserva el curso que ayuda a tu negocio a construir su primer sistema de IA en el orden correcto."
+    },
+    secure: {
+      en: ["Built for businesses moving from AI interest into implementation", "A first-build sequence designed to reduce tool noise and overwhelm"],
+      es: ["Creado para negocios que pasan del interes por la IA a la implementacion", "Una secuencia de primer build pensada para reducir ruido y abrumo"]
+    },
+    orderMain: { en: "YOUR FIRST AI SYSTEM", es: "TU PRIMER SISTEMA DE IA" },
+    titleTag: {
+      en: "Secure Checkout for From Zero to Your First AI System | The Future Studio",
+      es: "Checkout Seguro para From Zero to Your First AI System | The Future Studio"
+    },
+    metaDescription: {
+      en: "Complete your order for From Zero to Your First AI System and reserve your place in the five-video practical build series.",
+      es: "Completa tu orden de From Zero to Your First AI System y reserva tu lugar en la serie practica de cinco videos."
+    },
+    ogTitle: {
+      en: "Secure Checkout for From Zero to Your First AI System",
+      es: "Checkout Seguro para From Zero to Your First AI System"
+    },
+    ogDescription: {
+      en: "Reserve your place in the course that takes your business from AI curiosity to a first working system.",
+      es: "Reserva tu lugar en el curso que lleva a tu negocio desde la curiosidad por la IA hasta un primer sistema funcional."
+    }
+  },
+  "build-what-pays": {
+    paymentKey: "buildWhatPays",
+    pageUrl: "/shop/series/build-what-pays.html",
+    title: {
+      en: "RESERVE YOUR PLACE IN <span class='grad'>BUILD WHAT PAYS</span>",
+      es: "RESERVA TU LUGAR EN <span class='grad'>BUILD WHAT PAYS</span>"
+    },
+    hero: {
+      en: "Complete your order for Build What Pays and move into the five-video series that helps your business build the highest-return automation first.",
+      es: "Completa tu orden de Build What Pays y entra en la serie de cinco videos que ayuda a tu negocio a construir primero la automatizacion de mayor retorno."
+    },
+    receiveTitle: { en: "ROI Build", es: "Build ROI" },
+    receive: {
+      en: "You receive the five-video implementation series that shows you how to prioritize the highest-ROI build, capture leads 24/7, reduce no-shows, score warmer leads, and track every recovered dollar.",
+      es: "Recibes la serie de implementacion de cinco videos que te muestra como priorizar el build de mayor ROI, capturar leads 24/7, reducir ausencias, puntuar leads mas calientes y seguir cada dolar recuperado."
+    },
+    receiveBullets: {
+      en: ["A commercially ordered automation build path", "Missed-call, no-show, and lead-scoring systems", "A dashboard layer that keeps the numbers visible", "A clearer decision about what deserves budget next"],
+      es: ["Un camino de build de automatizacion ordenado comercialmente", "Sistemas de llamadas perdidas, ausencias y lead scoring", "Una capa de dashboard que mantiene visibles los numeros", "Una decision mas clara sobre lo que merece presupuesto despues"]
+    },
+    allowsTitle: { en: "Measured Return", es: "Retorno Medido" },
+    allows: {
+      en: "Once the series is applied, the business stops building based on assumptions and starts seeing what the automations recover, where the return is strongest, and what should happen next.",
+      es: "Una vez que la serie se aplica, el negocio deja de construir basado en supuestos y empieza a ver lo que recuperan las automatizaciones, donde el retorno es mas fuerte y que deberia pasar despues."
+    },
+    allowsBullets: {
+      en: ["A stronger automation order tied to actual return", "Less wasted effort on cold leads and no-shows", "A dashboard that makes the business easier to run at a glance"],
+      es: ["Un orden de automatizacion mas fuerte ligado al retorno real", "Menos esfuerzo perdido en leads frios y ausencias", "Un dashboard que hace el negocio mas facil de dirigir de un vistazo"]
+    },
+    paymentCopy: {
+      en: "Complete payment now and reserve the course that helps your business build the automation layer with the clearest commercial return.",
+      es: "Completa el pago ahora y reserva el curso que ayuda a tu negocio a construir la capa de automatizacion con el retorno comercial mas claro."
+    },
+    secure: {
+      en: ["Built for owners who already see the cost of the leak", "A practical sequence for automations that pay back in measurable revenue"],
+      es: ["Creado para duenos que ya ven el costo de la fuga", "Una secuencia practica para automatizaciones que se pagan con ingresos medibles"]
+    },
+    orderMain: { en: "BUILD WHAT PAYS", es: "BUILD WHAT PAYS" },
+    titleTag: {
+      en: "Secure Checkout for Build What Pays | The Future Studio",
+      es: "Checkout Seguro para Build What Pays | The Future Studio"
+    },
+    metaDescription: {
+      en: "Complete your order for Build What Pays and reserve your place in the five-video ROI automation series.",
+      es: "Completa tu orden de Build What Pays y reserva tu lugar en la serie de cinco videos de automatizacion con foco en ROI."
+    },
+    ogTitle: {
+      en: "Secure Checkout for Build What Pays",
+      es: "Checkout Seguro para Build What Pays"
+    },
+    ogDescription: {
+      en: "Reserve your place in the course series for businesses that want measurable ROI from automation.",
+      es: "Reserva tu lugar en la serie para negocios que quieren un ROI medible desde la automatizacion."
+    }
+  }
+};
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get("series") || "stop-losing-leads";
+  var dataMap = window.TFS_COURSE_CHECKOUT_DATA || {};
+  var data = dataMap[slug] || dataMap["stop-losing-leads"];
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+  var form = document.getElementById("checkout-form");
+  var emailField = document.getElementById("checkout-email");
+  var nameField = document.getElementById("checkout-name");
+  var cardField = document.getElementById("checkout-card");
+  var expiryField = document.getElementById("checkout-expiry");
+  var cvcField = document.getElementById("checkout-cvc");
+
+  function activeLang() {
+    return (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  }
+
+  function applyCopy() {
+    var lang = activeLang();
+    document.title = data.titleTag[lang];
+    if (metaDescription) metaDescription.setAttribute("content", data.metaDescription[lang]);
+    if (ogTitle) ogTitle.setAttribute("content", data.ogTitle[lang]);
+    if (ogDescription) ogDescription.setAttribute("content", data.ogDescription[lang]);
+    document.getElementById("series-checkout-title").innerHTML = data.title[lang];
+    document.getElementById("series-checkout-hero").textContent = data.hero[lang];
+    document.getElementById("series-receive-title").textContent = data.receiveTitle[lang];
+    document.getElementById("series-receive-copy").textContent = data.receive[lang];
+    document.getElementById("series-allows-title").textContent = data.allowsTitle[lang];
+    document.getElementById("series-allows-copy").textContent = data.allows[lang];
+    document.getElementById("series-receive-1").textContent = data.receiveBullets[lang][0];
+    document.getElementById("series-receive-2").textContent = data.receiveBullets[lang][1];
+    document.getElementById("series-receive-3").textContent = data.receiveBullets[lang][2];
+    document.getElementById("series-receive-4").textContent = data.receiveBullets[lang][3];
+    document.getElementById("series-allows-1").textContent = data.allowsBullets[lang][0];
+    document.getElementById("series-allows-2").textContent = data.allowsBullets[lang][1];
+    document.getElementById("series-allows-3").textContent = data.allowsBullets[lang][2];
+    document.getElementById("payment-copy").textContent = data.paymentCopy[lang];
+    document.getElementById("secure-1").textContent = data.secure[lang][0];
+    document.getElementById("secure-2").textContent = data.secure[lang][1];
+    document.getElementById("order-title-main").textContent = data.orderMain[lang];
+    document.getElementById("series-back-link").setAttribute("href", data.pageUrl);
+  }
+
+  function sanitizeNumericInput(input, maxDigits) {
+    if (!input) return;
+    input.addEventListener("input", function() {
+      var digits = input.value.replace(/\D+/g, "").slice(0, maxDigits);
+      if (input === cardField) {
+        input.value = digits.replace(/(.{4})/g, "$1 ").trim();
+      } else if (input === expiryField) {
+        input.value = digits.length > 2 ? digits.slice(0, 2) + "/" + digits.slice(2, 4) : digits;
+      } else {
+        input.value = digits;
+      }
+    });
+  }
+
+  sanitizeNumericInput(cardField, 16);
+  sanitizeNumericInput(expiryField, 4);
+  sanitizeNumericInput(cvcField, 4);
+
+  applyCopy();
+  document.addEventListener("tfs:langchange", applyCopy);
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var email = emailField.value.trim();
+    var fullName = nameField.value.trim();
+    var lang = activeLang();
+    var paymentLink = PAYMENT_LINKS[data.paymentKey] || "";
+    var emailAddress = "info" + String.fromCharCode(64) + "thefuturestudio.online";
+
+    if (paymentLink) {
+      window.location.href = paymentLink;
+      return;
+    }
+
+    var subject = encodeURIComponent((lang === "es" ? "Reservar: " : "Reserve: ") + data.orderMain[lang]);
+    var body = encodeURIComponent(
+      (lang === "es" ? "Hola The Future Studio,\n\nQuiero completar el pago para " : "Hi The Future Studio,\n\nI want to complete payment for ") +
+      data.orderMain[lang] + ".\n\n" +
+      (lang === "es" ? "Nombre: " : "Name: ") + fullName + "\n" +
+      (lang === "es" ? "Correo: " : "Email: ") + email + "\n\n" +
+      (lang === "es" ? "Por favor envienme el enlace de pago.\n" : "Please send me the payment link.\n")
+    );
+
+    window.location.href = "mailto:" + emailAddress + "?subject=" + subject + "&body=" + body;
+  });
+});
+</script>
+</body>
+</html>

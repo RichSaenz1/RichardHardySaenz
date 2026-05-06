@@ -1,0 +1,845 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script><title>Stop Losing Leads: AI Response System | The Future Studio</title>
+<meta id="meta-description" name="description" content="Build a bilingual AI response system that catches missed leads, replies in under 60 seconds, books automatically, and reports weekly. 5-video series. EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html">
+<meta id="og-title" property="og:title" content="Stop Losing Leads: AI Response System | The Future Studio">
+<meta id="og-description" property="og:description" content="A bilingual five-video series on finding revenue leaks, responding instantly, booking automatically, and tracking recovered revenue.">
+<meta property="og:type" content="product">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Stop Losing Leads: A 5-Step AI Response System","description":"A bilingual 5-video series on building an AI response system that catches missed leads and books appointments automatically.","offers":{"@type":"Offer","price":"79.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/series/stop-losing-leads.html"}}</script>
+<meta property="og:url" content="https://thefuturestudio.online/shop/series/stop-losing-leads.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+@keyframes seriesHeroSlideUp {
+  from { transform: translateY(105%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes seriesHeroShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.page-series .hero { padding: 134px 0 72px; min-height: calc(100vh - 40px); display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-series .hero-panel { position: relative; padding: 0; border: 0; background: transparent; box-shadow: none; z-index: 2; }
+.page-series .hero-panel:hover { transform: none; box-shadow: none; }
+.page-series .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+.page-series .hero-eyebrow-line { width: 48px; height: 2px; background: var(--cyan); flex-shrink: 0; }
+.page-series .hero-title { margin: 0; font-family: var(--font-d); font-size: clamp(68px, 10.2vw, 148px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .88; letter-spacing: -0.02em; }
+.page-series .hero-title .line { display: block; overflow: hidden; }
+.page-series .hero-title .line span { display: block; animation: seriesHeroSlideUp .9s var(--ease) both; }
+.page-series .hero-title .line:nth-child(1) span { animation-delay: .08s; }
+.page-series .hero-title .line:nth-child(2) span { animation-delay: .2s; }
+.page-series .hero-title .line:nth-child(3) span { animation-delay: .32s; }
+.page-series .hero-title .shimmer { background: linear-gradient(90deg, var(--cyan), #38b7f3, var(--violet), var(--cyan)); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: seriesHeroShimmer 3s ease infinite; }
+.page-series .hero-copy,
+.page-series .hero-bridge-copy,
+.page-series .section-copy,
+.page-series .feature-card p,
+.page-series .faq-answer,
+.page-series .checkout-card p,
+.page-series .diagnostic-card p,
+.page-series .diagnostic-card li { font-size: 15px; line-height: 1.68; }
+.page-series .hero-copy { margin-top: 28px; max-width: 820px; font-size: 17px; color: var(--text-mid); }
+.page-series .hero-bridge-copy { margin-top: 16px; max-width: 760px; color: var(--text-mid); }
+.page-series .hero-actions { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+.page-series .series-primary-cta { padding: 18px 42px; font-size: 18px; }
+.page-series .series-price-strip { margin-top: 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.page-series .series-price-kicker,
+.page-series .series-price-was { font-family: var(--font-d); font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mid); }
+.page-series .series-price-strip strong { font-family: var(--font-d); font-size: clamp(34px, 5vw, 64px); font-weight: 800; font-style: italic; line-height: .9; color: var(--black); }
+.page-series .series-price-was s { color: rgba(10,10,10,.48); text-decoration-thickness: 2px; }
+.page-series .section { padding: 18px 0 52px; }
+.page-series .section-title,
+.page-series .checkout-card h2 { margin-top: 18px; font-family: var(--font-d); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; letter-spacing: -0.02em; }
+.page-series .video-preview-card { display:grid; grid-template-columns:minmax(300px,0.9fr) minmax(420px,1.1fr); gap:26px; padding:34px 30px; border:2px solid var(--black); background:var(--white); align-items:center; }
+.page-series .video-preview-copy { display:grid; gap:14px; }
+.page-series .video-preview-player { border:2px solid var(--black); background:var(--black); padding:10px; }
+.page-series .video-preview-player video { display:block; width:100%; height:auto; background:#000; }
+.page-series .diagnostic-grid,
+.page-series .feature-grid { display: grid; gap: 18px; align-items: stretch; }
+.page-series .diagnostic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 14px; }
+.page-series .diagnostic-card { min-height: 280px; padding: 24px 22px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-series .diagnostic-card.dark { background: var(--black); color: var(--white); }
+.page-series .diagnostic-card.dark p,
+.page-series .diagnostic-card.dark strong,
+.page-series .diagnostic-card.dark li { color: var(--white); }
+.page-series .diagnostic-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); }
+.page-series .diagnostic-card:not(.dark):hover { background: var(--black); color: var(--white); box-shadow: 12px 12px 0 var(--violet); }
+.page-series .diagnostic-card:not(.dark):hover p,
+.page-series .diagnostic-card:not(.dark):hover strong,
+.page-series .diagnostic-card:not(.dark):hover li { color: var(--white); }
+.page-series .diagnostic-card strong { display: block; font-family: var(--font-d); font-size: 30px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .94; margin-top: 16px; }
+.page-series .diagnostic-card ul { list-style: none; display: grid; gap: 12px; margin-top: auto; }
+.page-series .diagnostic-card li { position: relative; padding-left: 18px; }
+.page-series .diagnostic-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-series .section-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--white); }
+.page-series .feature-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 24px; }
+.page-series .feature-card { min-height: 100%; padding: 24px 20px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; gap: 12px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-series .feature-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); background: var(--black); color: var(--white); }
+.page-series .feature-card:hover p,
+.page-series .feature-card:hover h3,
+.page-series .feature-card:hover .tier,
+.page-series .feature-card:hover .micro-note { color: var(--white); }
+.page-series .feature-card h3 { font-family: var(--font-d); font-size: clamp(28px, 3vw, 36px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; }
+.page-series .feature-card .tier { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+.page-series .feature-card .micro-note { color: var(--text-mid); }
+.page-series .faq-wrap { border: 2px solid var(--black); background: var(--white); padding: 34px 30px; }
+.page-series .faq-list { margin-top: 24px; display: grid; gap: 14px; }
+.page-series .faq-item { border: 2px solid var(--black); background: var(--white); }
+.page-series .faq-question { width: 100%; text-align: left; padding: 18px 22px; background: transparent; border: 0; font-family: var(--font-d); font-size: clamp(28px, 3vw, 36px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; cursor: pointer; }
+.page-series .faq-answer { display: none; padding: 0 22px 22px; color: var(--text-mid); }
+.page-series .faq-item.is-open .faq-answer { display: block; }
+.page-series .checkout-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--black); color: var(--white); text-align: center; max-width: 1120px; margin: 0 auto; }
+.page-series .checkout-card .eyebrow,
+.page-series .checkout-card h2,
+.page-series .checkout-card li,
+.page-series .checkout-card p { color: var(--white); }
+.page-series .cta-points { list-style: none; display: grid; gap: 14px; margin: 22px auto 0; max-width: 760px; }
+.page-series .cta-points li { position: relative; padding-left: 18px; }
+.page-series .cta-points li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-series .cta-row { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.page-series .hero-orb-1 { width: 500px; height: 500px; top: -100px; left: -150px; }
+.page-series .hero-orb-2 { width: 560px; height: 560px; bottom: -120px; right: -190px; }
+.page-series footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-series .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-series .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-series .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-series .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-series .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-series .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-series .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-series .footer-col a:hover { color: var(--cyan); }
+.page-series .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-series .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-series .video-preview-card,
+  .page-series .diagnostic-grid,
+  .page-series .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .page-series .video-preview-card,
+  .page-series .diagnostic-grid,
+  .page-series .feature-grid,
+  .page-series .footer-inner { grid-template-columns: 1fr; }
+  .page-series .footer-bottom { flex-direction: column; text-align: center; }
+  .page-series .footer-logo { justify-content: center; }
+  .page-series .footer-tagline { margin: 0 auto; }
+}
+</style>
+  <link rel="stylesheet" href="/assets/mobile-center.css">
+  <link rel="stylesheet" href="/assets/funnel-layout.css?v=20260426-layout-9">
+</head>
+<body class="page-series has-urgency-bar">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<div class="top-urgency-bar">
+  <div class="wrap-wide top-urgency-inner">
+    <p class="top-urgency-copy" data-en="Early Bird $79.99. <strong>Build the lead response system before more inquiries go cold.</strong>" data-es="Early Bird $79.99. <strong>Construye el sistema de respuesta antes de que mas consultas se enfrien.</strong>">Early Bird $79.99. <strong>Build the lead response system before more inquiries go cold.</strong></p>
+    <a class="top-urgency-cta" href="/checkout/course-series.html?series=stop-losing-leads" data-en="Get the system" data-es="Obtener el sistema">Get the system</a>
+  </div>
+</div>
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+    <div class="orb orb-violet orb-2 hero-orb-2"></div>
+    <div class="wrap">
+      <div class="hero-panel aos">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <p class="eyebrow" id="hero-eyebrow"></p>
+        </div>
+        <h1 class="hero-title" aria-label="Stop Losing Leads">
+          <span class="line"><span id="hero-line-1"></span></span>
+          <span class="line"><span id="hero-line-2"></span></span>
+          <span class="line"><span id="hero-line-3"></span></span>
+        </h1>
+        <p class="hero-copy" id="hero-copy"></p>
+        <p class="hero-bridge-copy" id="hero-bridge"></p>
+        <div class="series-price-strip" aria-label="Early bird booking price">
+          <span class="series-price-kicker" data-en="Early bird booking" data-es="Reserva early bird">Early bird booking</span>
+          <strong>$79.99</strong>
+          <span class="series-price-was" data-en="<s>$114.99</s> 30% early bird discount" data-es="<s>$114.99</s> 30% de descuento early bird"><s>$114.99</s> 30% early bird discount</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary series-primary-cta" id="hero-primary-cta" href="/checkout/course-series.html?series=stop-losing-leads"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="value-eyebrow"></p>
+        <h2 class="section-title" id="value-title"></h2>
+        <p class="section-copy" id="value-copy"></p>
+        <div class="feature-grid" id="value-grid"></div>
+        <p class="section-micro-note" id="value-note"></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="video-preview-card aos">
+        <div class="video-preview-copy">
+          <p class="eyebrow" id="video-eyebrow"></p>
+          <h2 class="section-title" id="video-title"></h2>
+          <p class="section-copy" id="video-copy"></p>
+        </div>
+        <div class="video-preview-player">
+          <video id="series-video" controls playsinline preload="metadata"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="diagnostic-grid">
+        <article class="diagnostic-card dark aos">
+          <p class="eyebrow" id="diag-one-eyebrow"></p>
+          <strong id="diag-one-title"></strong>
+          <p id="diag-one-copy"></p>
+          <ul id="diag-one-list"></ul>
+        </article>
+        <article class="diagnostic-card aos d2">
+          <p class="eyebrow" id="diag-two-eyebrow"></p>
+          <strong id="diag-two-title"></strong>
+          <p id="diag-two-copy"></p>
+          <ul id="diag-two-list"></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="features-eyebrow"></p>
+        <h2 class="section-title" id="features-title"></h2>
+        <p class="section-copy" id="features-copy"></p>
+        <div class="feature-grid" id="feature-grid"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="before-eyebrow"></p>
+        <h2 class="section-title" id="before-title"></h2>
+        <p class="section-copy" id="before-copy"></p>
+        <div class="compare-grid">
+          <article class="compare-card">
+            <div class="compare-kicker" id="before-card-one-kicker"></div>
+            <h3 id="before-card-one-title"></h3>
+            <ul id="before-card-one-list"></ul>
+          </article>
+          <article class="compare-card">
+            <div class="compare-kicker" id="before-card-two-kicker"></div>
+            <h3 id="before-card-two-title"></h3>
+            <ul id="before-card-two-list"></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="proof-eyebrow"></p>
+        <h2 class="section-title" id="proof-title"></h2>
+        <p class="section-copy" id="proof-copy"></p>
+        <div class="feature-grid" id="proof-grid"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="faq-wrap aos">
+        <p class="eyebrow" id="faq-eyebrow"></p>
+        <h2 class="section-title" id="faq-title"></h2>
+        <p class="section-copy" id="faq-copy"></p>
+        <div class="faq-list" id="faq-list"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="checkout-card aos">
+        <p class="eyebrow" id="close-eyebrow"></p>
+        <h2 id="close-title"></h2>
+        <p id="close-copy"></p>
+        <ul class="cta-points" id="close-points"></ul>
+        <div class="cta-row">
+          <a class="btn btn-primary series-primary-cta" id="close-primary-cta" href="/checkout/course-series.html?series=stop-losing-leads"></a>
+        </div>
+        <p class="checkout-reassurance" id="close-reassurance"></p>
+        <div class="cta-links">
+          <a href="https://wa.me/50766753870?text=Hola%2C%20quiero%20la%20serie%20Stop%20Losing%20Leads%20para%20mejorar%20mi%20respuesta%20a%20leads." target="_blank" rel="noopener" data-en="Ask about this system on WhatsApp" data-es="Preguntar por este sistema en WhatsApp">Ask about this system on WhatsApp</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book a free demo after this series" data-es="Agendar demo gratuita despues de esta serie">Book a free demo after this series</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="/logo.png" alt="The Future Studio"></div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var SERIES_PAGE_DATA = {
+  title: {
+    en: "Stop Losing Leads - A 5-Step AI Response System | The Future Studio",
+    es: "Stop Losing Leads - Un sistema de respuesta con IA en 5 pasos | The Future Studio"
+  },
+  metaDescription: {
+    en: "Build a working AI response system that catches missed leads, replies in under 60 seconds, books appointments automatically, and reports back every week.",
+    es: "Construye un sistema funcional de respuesta con IA que capture leads perdidos, responda en menos de 60 segundos, reserve citas automaticamente y reporte resultados cada semana."
+  },
+  ogTitle: {
+    en: "Stop Losing Leads - A 5-Step AI Response System",
+    es: "Stop Losing Leads - Un sistema de respuesta con IA en 5 pasos"
+  },
+  ogDescription: {
+    en: "Five videos that show you how to find revenue leaks, respond instantly, book automatically, and track what your system recovers.",
+    es: "Cinco videos que te muestran como encontrar fugas de ingresos, responder al instante, reservar automaticamente y seguir lo que tu sistema recupera."
+  },
+  heroEyebrow: {
+    en: "5-Video AI Response Series",
+    es: "Serie de 5 videos de respuesta con IA"
+  },
+  heroLines: {
+    en: ["BUILD A LEAD", "<span class='shimmer'>RESPONSE SYSTEM</span>", "THAT MOVES LEADS TO BOOKING"],
+    es: ["CONSTRUYE UN", "<span class='shimmer'>SISTEMA DE RESPUESTA</span>", "QUE LLEVE LEADS A RESERVAR"]
+  },
+  heroCopy: {
+    en: "In five focused videos, you will map where leads disappear, set up a faster WhatsApp response flow, write an AI response agent, connect booking, and create a weekly report so your business can see what was recovered.",
+    es: "En cinco videos enfocados, vas a mapear donde desaparecen los leads, configurar un flujo mas rapido de respuesta por WhatsApp, escribir un agente de respuesta con IA, conectar las reservas y crear un reporte semanal para que tu negocio vea lo que se recupero."
+  },
+  heroBridge: {
+    en: "Early-bird launch price: $79.99. Built for service businesses that want a practical response system before investing in a larger automation build.",
+    es: "Precio de lanzamiento early-bird: $79.99. Hecho para negocios de servicios que quieren un sistema practico de respuesta antes de invertir en una automatizacion mas grande."
+  },
+  primaryCta: {
+    en: "Get the Lead Response System",
+    es: "Obtener el Sistema de Respuesta"
+  },
+  valueEyebrow: {
+    en: "What you get",
+    es: "Lo que obtienes"
+  },
+  valueTitle: {
+    en: "WHAT YOU <span class='grad'>BUILD IMMEDIATELY</span>",
+    es: "LO QUE <span class='grad'>CONSTRUYES DE INMEDIATO</span>"
+  },
+  valueCopy: {
+    en: "This is not just a course overview. It is a practical build path for a real first-response system your business can start using layer by layer.",
+    es: "Esto no es solo un resumen de curso. Es una ruta practica de construccion para un sistema real de primera respuesta que tu negocio puede empezar a usar capa por capa."
+  },
+  valueItems: [
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "LEAK MAP", es: "MAPA DE FUGAS" },
+      copy: { en: "A way to see where calls, WhatsApp, and follow-up break down first.", es: "Una forma de ver donde se rompen primero las llamadas, WhatsApp y el seguimiento." },
+      note: { en: "So you stop guessing where revenue disappears.", es: "Para que dejes de adivinar donde desaparecen los ingresos." }
+    },
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "FAST RESPONSE FLOW", es: "FLUJO DE RESPUESTA RAPIDA" },
+      copy: { en: "A practical WhatsApp and booking path that helps leads get a next step faster.", es: "Una ruta practica de WhatsApp y reservas que ayuda a los leads a recibir un siguiente paso mas rapido." },
+      note: { en: "Built with your own business details, not theory.", es: "Construido con los datos de tu negocio, no con teoria." }
+    },
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "WEEKLY REPORTING", es: "REPORTES SEMANALES" },
+      copy: { en: "A simple reporting rhythm that shows what the system recovered every week.", es: "Un ritmo simple de reportes que muestra cada semana lo que el sistema recupero." },
+      note: { en: "So the response system stays measurable.", es: "Para que el sistema de respuesta siga siendo medible." }
+    }
+  ],
+  valueNote: {
+    en: "Tools needed: WhatsApp, a calendar tool, email, and simple automation software. No code required.",
+    es: "Herramientas necesarias: WhatsApp, una herramienta de agenda, email y software simple de automatizacion. No se requiere codigo."
+  },
+  videoEyebrow: {
+    en: "Watch this before you buy",
+    es: "Mira esto antes de comprar"
+  },
+  videoTitle: {
+    en: "SEE WHAT THE <span class='grad'>SYSTEM BUILDS</span>",
+    es: "MIRA LO QUE <span class='grad'>CONSTRUYE EL SISTEMA</span>"
+  },
+  videoCopy: {
+    en: "Watch the preview first so you can understand how the system captures missed enquiries, replies faster, moves leads toward booking, and keeps the recovery visible after launch.",
+    es: "Mira primero esta vista previa para entender como el sistema captura consultas perdidas, responde mas rapido, mueve los leads hacia la reserva y mantiene visible la recuperacion despues del lanzamiento."
+  },
+  videoSrc: "/shop/assets/videos/stop-losing-leads-ai-response-system.mp4",
+  diagnostic: [
+    {
+      eyebrow: { en: "For you if", es: "Para ti si" },
+      title: { en: "You are losing leads after the first contact", es: "Pierdes leads despues del primer contacto" },
+      copy: { en: "This system fits service businesses that already receive calls, WhatsApp messages, or booking requests every week and know the real problem is what happens after the enquiry arrives.", es: "Este sistema encaja con negocios de servicios que ya reciben llamadas, mensajes de WhatsApp o solicitudes de reserva cada semana y saben que el verdadero problema es lo que pasa despues de que llega la consulta." },
+      bullets: {
+        en: ["You want faster first response without adding more manual work", "You want a system built from your own lead flow and messages", "You want measurable recovery instead of vague automation promises"],
+        es: ["Quieres una primera respuesta mas rapida sin agregar mas trabajo manual", "Quieres un sistema construido desde tu propio flujo de leads y mensajes", "Quieres recuperacion medible en lugar de promesas vagas de automatizacion"]
+      }
+    },
+    {
+      eyebrow: { en: "Not for you if", es: "No es para ti si" },
+      title: { en: "You want theory without implementation", es: "Quieres teoria sin implementacion" },
+      copy: { en: "This is not a broad AI theory course. It is designed for owners and operators willing to improve response speed, qualification, booking, and reporting with a real build sequence.", es: "Este no es un curso amplio de teoria de IA. Esta disenada para duenos y operadores dispuestos a mejorar velocidad de respuesta, calificacion, reservas y reportes con una secuencia real de construccion." },
+      bullets: {
+        en: ["You do not yet have inbound leads to protect", "You only want a template list without changing your process", "You want a done-for-you implementation without reviewing the current system"],
+        es: ["Todavia no tienes leads entrantes que proteger", "Solo quieres una lista de plantillas sin cambiar tu proceso", "Quieres una implementacion done-for-you sin revisar el sistema actual"]
+      }
+    }
+  ],
+  featuresEyebrow: {
+    en: "What you build across the series",
+    es: "Lo que construyes a lo largo de la serie"
+  },
+  featuresTitle: {
+    en: "THE FIVE <span class='grad'>VIDEOS</span> THAT CLOSE THE GAPS",
+    es: "LOS CINCO <span class='grad'>VIDEOS</span> QUE CIERRAN LAS FUGAS"
+  },
+  featuresCopy: {
+    en: "Each video fixes one part of the system, so your business finishes with a cleaner lead path instead of a pile of disconnected tools.",
+    es: "Cada video corrige una parte del sistema, para que tu negocio termine con un camino de leads mas limpio en lugar de una pila de herramientas desconectadas."
+  },
+  features: [
+    {
+      tier: { en: "Video 1", es: "Video 1" },
+      title: { en: "Find Your Leaks", es: "Encuentra tus fugas" },
+      copy: { en: "Run the revenue audit on your own business in 30 minutes. You will map exactly where your leads are disappearing: missed calls, unanswered WhatsApp, slow email replies, and after-hours gaps. Using a simple visual template, you will build a leak map of your own business and calculate what each leak costs you every month. No tools to install.", es: "Haz la auditoria de ingresos en tu propio negocio en 30 minutos. Vas a mapear exactamente donde se estan perdiendo tus leads: llamadas perdidas, WhatsApp sin responder, respuestas lentas por email y huecos fuera de horario. Con una plantilla visual simple, vas a construir un mapa de fugas de tu propio negocio y calcular cuanto cuesta cada fuga cada mes. No hay herramientas que instalar." },
+      note: { en: "You will build: a leak map that shows the first gap worth closing.", es: "Construiras: un mapa de fugas que muestra el primer hueco que vale la pena cerrar." }
+    },
+    {
+      tier: { en: "Video 2", es: "Video 2" },
+      title: { en: "Never Miss a Lead Again", es: "No pierdas otro lead" },
+      copy: { en: "Build an automatic WhatsApp response in under an hour. Step-by-step setup of a Make.com automation that detects every missed call or form submission and sends an instant, personalized WhatsApp reply day or night. You will build it alongside me using your own numbers and business details. No coding.", es: "Construye una respuesta automatica por WhatsApp en menos de una hora. Es una configuracion paso a paso de una automatizacion en Make.com que detecta cada llamada perdida o formulario enviado y manda una respuesta instantanea y personalizada por WhatsApp, de dia o de noche. Lo vas a construir conmigo usando tus propios numeros y datos del negocio. Sin codigo." },
+      note: { en: "You will build: an instant WhatsApp response path tied to real enquiries.", es: "Construiras: una ruta de respuesta instantanea por WhatsApp ligada a consultas reales." }
+    },
+    {
+      tier: { en: "Video 3", es: "Video 3" },
+      title: { en: "Write an AI That Sounds Like You", es: "Escribe una IA que suene como tu negocio" },
+      copy: { en: "Create a response agent prompt that handles your real conversations. The difference between an AI that converts and one that annoys is the prompt. I will walk you through the exact framework used for client voice agents: tone, boundaries, FAQ handling, and when to hand off to a human. You will write your own system prompt live using a fill-in template.", es: "Crea un prompt de agente de respuesta que maneje tus conversaciones reales. La diferencia entre una IA que convierte y una que molesta esta en el prompt. Te voy a guiar por el marco exacto que usamos para agentes de voz de clientes: tono, limites, manejo de preguntas frecuentes y cuando pasar a una persona. Vas a escribir tu propio system prompt en vivo usando una plantilla para completar." },
+      note: { en: "You will build: the response prompt and handoff logic for the AI layer.", es: "Construiras: el prompt de respuesta y la logica de traspaso para la capa de IA." }
+    },
+    {
+      tier: { en: "Video 4", es: "Video 4" },
+      title: { en: "Turn Messages Into Appointments", es: "Convierte mensajes en citas" },
+      copy: { en: "Connect your calendar so leads book themselves. The fastest revenue lift comes from removing manual booking. This video shows you how to connect Calendly or Google Calendar to your WhatsApp flow so a lead goes from first message to confirmed appointment without anyone lifting a finger.", es: "Conecta tu calendario para que los leads reserven solos. El aumento mas rapido de ingresos suele venir de quitar la reserva manual. Este video te muestra como conectar Calendly o Google Calendar a tu flujo de WhatsApp para que un lead pase del primer mensaje a una cita confirmada sin que nadie tenga que perseguirlo." },
+      note: { en: "You will build: the booking path that moves messages into confirmed next steps.", es: "Construiras: la ruta de reservas que convierte mensajes en siguientes pasos confirmados." }
+    },
+    {
+      tier: { en: "Video 5", es: "Video 5" },
+      title: { en: "Know What's Working Every Monday", es: "Ve que esta funcionando cada lunes" },
+      copy: { en: "Set up an automated weekly revenue report. You cannot fix what you do not measure. This video builds a simple automation that pulls your weekly appointment data and sends a clean summary to your phone every Monday morning, showing what you recovered, what is still leaking, and what to fix next.", es: "Configura un reporte semanal automatizado de ingresos. No puedes corregir lo que no mides. Este video construye una automatizacion simple que toma tus datos semanales de citas y te envia un resumen claro al telefono cada lunes por la manana, mostrando lo que recuperaste, lo que aun se fuga y que corregir despues." },
+      note: { en: "You will build: the weekly report that shows what the system recovered.", es: "Construiras: el reporte semanal que muestra lo que el sistema recupero." }
+    }
+  ],
+  beforeEyebrow: {
+    en: "Before / after",
+    es: "Antes / despues"
+  },
+  beforeTitle: {
+    en: "FROM <span class='grad'>MISSED INQUIRIES</span> TO A WORKING RESPONSE SYSTEM",
+    es: "DE <span class='grad'>CONSULTAS PERDIDAS</span> A UN SISTEMA DE RESPUESTA"
+  },
+  beforeCopy: {
+    en: "The point of the series is to move the business from scattered first contact to a response path that actually works when the team is busy or offline.",
+    es: "La idea de la serie es mover al negocio de un primer contacto disperso a una ruta de respuesta que realmente funcione cuando el equipo esta ocupado o fuera de linea."
+  },
+  beforeAfter: [
+    {
+      kicker: { en: "Before", es: "Antes" },
+      title: { en: "Lead leaks everywhere", es: "Fugas de leads por todos lados" },
+      bullets: {
+        en: ["Calls and WhatsApp messages get missed", "Leads go cold before the team replies", "No clear reporting on what was lost or recovered"],
+        es: ["Se pierden llamadas y mensajes de WhatsApp", "Los leads se enfrían antes de que el equipo responda", "No hay reportes claros sobre lo perdido o recuperado"]
+      }
+    },
+    {
+      kicker: { en: "After", es: "Despues" },
+      title: { en: "A practical first-response layer", es: "Una capa practica de primera respuesta" },
+      bullets: {
+        en: ["Inquiries trigger a faster response path", "Booking and follow-up become more structured", "A weekly report shows what the system recovered"],
+        es: ["Las consultas disparan una ruta de respuesta mas rapida", "Reservas y seguimiento se vuelven mas estructurados", "Un reporte semanal muestra lo que el sistema recupero"]
+      }
+    }
+  ],
+  proofEyebrow: {
+    en: "Use cases",
+    es: "Casos de uso"
+  },
+  proofTitle: {
+    en: "WHO THIS <span class='grad'>SYSTEM</span> HELPS FIRST",
+    es: "A QUIEN AYUDA PRIMERO ESTE <span class='grad'>SISTEMA</span>"
+  },
+  proofCopy: {
+    en: "The strongest fit is any service business where first-response speed changes trust, bookings, or close rate in the real world.",
+    es: "El mejor encaje es cualquier negocio de servicios donde la velocidad de primera respuesta cambia la confianza, las reservas o la tasa de cierre en el mundo real."
+  },
+  proofItems: [
+    {
+      tier: { en: "Clinic", es: "Clinica" },
+      title: { en: "Recover missed appointment requests", es: "Recuperar solicitudes de citas perdidas" },
+      copy: { en: "Build a response path for after-hours calls and messages so appointment demand gets a next step instead of cooling off overnight.", es: "Construye una ruta de respuesta para llamadas y mensajes fuera de horario para que la demanda de citas reciba un siguiente paso en lugar de enfriarse durante la noche." },
+      note: { en: "Useful when the front desk cannot answer everything live.", es: "Util cuando recepcion no puede responder todo en vivo." }
+    },
+    {
+      tier: { en: "Beauty", es: "Belleza" },
+      title: { en: "Move interest toward booking", es: "Mover interes hacia la reserva" },
+      copy: { en: "Turn faster replies into consultations and treatments instead of relying on manual message speed during busy hours.", es: "Convierte respuestas mas rapidas en consultas y tratamientos en lugar de depender de la velocidad manual de mensajes durante horas ocupadas." },
+      note: { en: "Best when DMs and WhatsApp already drive demand.", es: "Ideal cuando los DMs y WhatsApp ya generan demanda." }
+    },
+    {
+      tier: { en: "Professional Services", es: "Servicios profesionales" },
+      title: { en: "Triage better leads first", es: "Dar prioridad a mejores leads" },
+      copy: { en: "Create a cleaner first-response path so serious prospects get handled sooner and colder enquiries do not consume the same energy.", es: "Crea una ruta de primera respuesta mas limpia para que los prospectos serios se atiendan antes y las consultas frias no consuman la misma energia." },
+      note: { en: "Built for businesses where follow-up quality changes close rate.", es: "Hecho para negocios donde la calidad del seguimiento cambia la tasa de cierre." }
+    }
+  ],
+  faqEyebrow: {
+    en: "Common questions",
+    es: "Preguntas comunes"
+  },
+  faqTitle: {
+    en: "BEFORE YOU <span class='grad'>BUILD THE RESPONSE SYSTEM</span>",
+    es: "ANTES DE <span class='grad'>CONSTRUIR EL SISTEMA DE RESPUESTA</span>"
+  },
+  faqCopy: {
+    en: "The goal is not to bury you in theory. The goal is to help you build one working revenue-recovery system your business can actually use.",
+    es: "La idea no es llenarte de teoria. La idea es ayudarte a construir un sistema real de recuperacion de ingresos que tu negocio pueda usar de verdad."
+  },
+  faqs: [
+    {
+      question: { en: "Do I need technical experience?", es: "Necesito experiencia tecnica?" },
+      answer: { en: "No. The series is built for owners and operators who understand the business problem and want a practical build sequence they can follow without coding.", es: "No. La serie esta hecha para duenos y operadores que entienden el problema del negocio y quieren una secuencia practica que puedan seguir sin programar." }
+    },
+    {
+      question: { en: "Will I build this with my own business details?", es: "Voy a construirlo con los datos de mi propio negocio?" },
+      answer: { en: "Yes. The walkthroughs are designed to be completed with your own numbers, tone, FAQs, booking process, and lead flow so the result fits your business instead of staying theoretical.", es: "Si. Las guias estan pensadas para completarse con tus propios numeros, tono, preguntas frecuentes, proceso de reserva y flujo de leads para que el resultado encaje con tu negocio." }
+    },
+    {
+      question: { en: "What tools will I need?", es: "Que herramientas voy a necesitar?" },
+      answer: { en: "Mostly Make, WhatsApp, a scheduling tool such as Calendly or Google Calendar, and a simple reporting destination. The stack stays practical and focused.", es: "Principalmente Make, WhatsApp, una herramienta de agenda como Calendly o Google Calendar y un destino simple para reportes. El stack se mantiene practico y enfocado." }
+    },
+    {
+      question: { en: "What changes by the final video?", es: "Que cambia al final del ultimo video?" },
+      answer: { en: "Your business no longer depends on manual reply speed alone. You finish with a faster first response, a cleaner booking path, and a weekly reporting rhythm that shows what the system is recovering.", es: "Tu negocio deja de depender solo de la velocidad manual de respuesta. Terminas con una primera respuesta mas rapida, una ruta de reserva mas limpia y un ritmo semanal de reportes que muestra lo que el sistema esta recuperando." }
+    },
+    {
+      question: { en: "Can this be used before hiring The Future Studio for implementation?", es: "Esto puede usarse antes de contratar a The Future Studio para implementacion?" },
+      answer: { en: "Yes. It helps you build the first response layer with more clarity first, and it also makes a later demo or done-for-you build easier because the business already understands its lead flow better.", es: "Si. Te ayuda a construir primero la capa de primera respuesta con mas claridad, y tambien hace mas facil una demo o build done-for-you posterior porque el negocio ya entiende mejor su flujo de leads." }
+    }
+  ],
+  closeEyebrow: {
+    en: "Ready when you are",
+    es: "Listo cuando tu lo estes"
+  },
+  closeTitle: {
+    en: "TURN YOUR <span class='grad'>LEAD LEAKS INTO A SYSTEM</span>",
+    es: "CONVIERTE TUS <span class='grad'>FUGAS DE LEADS EN UN SISTEMA</span>"
+  },
+  closeCopy: {
+    en: "If your business already knows leads are being lost after first contact, this series gives you the first practical response system to close the gap and keep recovery measurable.",
+    es: "Si tu negocio ya sabe que se estan perdiendo leads despues del primer contacto, esta serie te da el primer sistema practico de respuesta para cerrar la brecha y mantener la recuperacion medible."
+  },
+  closePoints: {
+    en: ["Best for owners who want a real response system, not more theory", "Built to move from leak diagnosis into practical automation fast"],
+    es: ["Ideal para duenos que quieren un sistema real de respuesta, no mas teoria", "Construido para pasar rapido del diagnostico de la fuga a una automatizacion practica"]
+  },
+  closeReassurance: {
+    en: "Secure checkout, instant access, email delivery, self-paced access, and no technical background required to start.",
+    es: "Checkout seguro, acceso inmediato, entrega por email, acceso a tu ritmo y sin requerir experiencia tecnica para empezar."
+  }
+};
+
+function renderSeriesPage() {
+  var lang = (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  var data = SERIES_PAGE_DATA;
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+
+  document.title = data.title[lang];
+  if (metaDescription) metaDescription.setAttribute("content", data.metaDescription[lang]);
+  if (ogTitle) ogTitle.setAttribute("content", data.ogTitle[lang]);
+  if (ogDescription) ogDescription.setAttribute("content", data.ogDescription[lang]);
+
+  document.getElementById("hero-eyebrow").textContent = data.heroEyebrow[lang];
+  document.getElementById("hero-line-1").innerHTML = data.heroLines[lang][0];
+  document.getElementById("hero-line-2").innerHTML = data.heroLines[lang][1];
+  document.getElementById("hero-line-3").innerHTML = data.heroLines[lang][2];
+  document.getElementById("hero-copy").textContent = data.heroCopy[lang];
+  document.getElementById("hero-bridge").textContent = data.heroBridge[lang];
+  document.getElementById("hero-primary-cta").textContent = data.primaryCta[lang];
+  document.getElementById("close-primary-cta").textContent = data.primaryCta[lang];
+  document.getElementById("value-eyebrow").textContent = data.valueEyebrow[lang];
+  document.getElementById("value-title").innerHTML = data.valueTitle[lang];
+  document.getElementById("value-copy").textContent = data.valueCopy[lang];
+  document.getElementById("value-note").textContent = data.valueNote[lang];
+  document.getElementById("value-grid").innerHTML = data.valueItems.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+  document.getElementById("video-eyebrow").textContent = data.videoEyebrow[lang];
+  document.getElementById("video-title").innerHTML = data.videoTitle[lang];
+  document.getElementById("video-copy").textContent = data.videoCopy[lang];
+  var seriesVideo = document.getElementById("series-video");
+  if (seriesVideo && seriesVideo.getAttribute("src") !== data.videoSrc) {
+    seriesVideo.setAttribute("src", data.videoSrc);
+    seriesVideo.load();
+  }
+
+  document.getElementById("diag-one-eyebrow").textContent = data.diagnostic[0].eyebrow[lang];
+  document.getElementById("diag-one-title").textContent = data.diagnostic[0].title[lang];
+  document.getElementById("diag-one-copy").textContent = data.diagnostic[0].copy[lang];
+  document.getElementById("diag-one-list").innerHTML = data.diagnostic[0].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("diag-two-eyebrow").textContent = data.diagnostic[1].eyebrow[lang];
+  document.getElementById("diag-two-title").textContent = data.diagnostic[1].title[lang];
+  document.getElementById("diag-two-copy").textContent = data.diagnostic[1].copy[lang];
+  document.getElementById("diag-two-list").innerHTML = data.diagnostic[1].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("features-eyebrow").textContent = data.featuresEyebrow[lang];
+  document.getElementById("features-title").innerHTML = data.featuresTitle[lang];
+  document.getElementById("features-copy").textContent = data.featuresCopy[lang];
+  document.getElementById("feature-grid").innerHTML = data.features.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+
+  document.getElementById("before-eyebrow").textContent = data.beforeEyebrow[lang];
+  document.getElementById("before-title").innerHTML = data.beforeTitle[lang];
+  document.getElementById("before-copy").textContent = data.beforeCopy[lang];
+  document.getElementById("before-card-one-kicker").textContent = data.beforeAfter[0].kicker[lang];
+  document.getElementById("before-card-one-title").textContent = data.beforeAfter[0].title[lang];
+  document.getElementById("before-card-one-list").innerHTML = data.beforeAfter[0].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("before-card-two-kicker").textContent = data.beforeAfter[1].kicker[lang];
+  document.getElementById("before-card-two-title").textContent = data.beforeAfter[1].title[lang];
+  document.getElementById("before-card-two-list").innerHTML = data.beforeAfter[1].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("proof-eyebrow").textContent = data.proofEyebrow[lang];
+  document.getElementById("proof-title").innerHTML = data.proofTitle[lang];
+  document.getElementById("proof-copy").textContent = data.proofCopy[lang];
+  document.getElementById("proof-grid").innerHTML = data.proofItems.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+
+  document.getElementById("faq-eyebrow").textContent = data.faqEyebrow[lang];
+  document.getElementById("faq-title").innerHTML = data.faqTitle[lang];
+  document.getElementById("faq-copy").textContent = data.faqCopy[lang];
+  document.getElementById("faq-list").innerHTML = data.faqs.map(function(item, index) {
+    return "<div class='faq-item'><button class='faq-question' type='button' aria-expanded='false' aria-controls='faq-" + index + "'>" + item.question[lang] + "</button><div class='faq-answer' id='faq-" + index + "' hidden>" + item.answer[lang] + "</div></div>";
+  }).join("");
+
+  document.getElementById("close-eyebrow").textContent = data.closeEyebrow[lang];
+  document.getElementById("close-title").innerHTML = data.closeTitle[lang];
+  document.getElementById("close-copy").textContent = data.closeCopy[lang];
+  document.getElementById("close-points").innerHTML = data.closePoints[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("close-reassurance").textContent = data.closeReassurance[lang];
+
+  document.querySelectorAll(".faq-question").forEach(function(button) {
+    button.addEventListener("click", function() {
+      var item = button.closest(".faq-item");
+      if (!item) return;
+      var isOpen = item.classList.contains("is-open");
+      document.querySelectorAll(".faq-item").forEach(function(el) {
+        el.classList.remove("is-open");
+        var question = el.querySelector(".faq-question");
+        var answer = el.querySelector(".faq-answer");
+        if (question) question.setAttribute("aria-expanded", "false");
+        if (answer) answer.hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add("is-open");
+        button.setAttribute("aria-expanded", "true");
+        var answerEl = item.querySelector(".faq-answer");
+        if (answerEl) answerEl.hidden = false;
+      }
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", renderSeriesPage);
+document.addEventListener("tfs:langchange", renderSeriesPage);
+</script>
+  <script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
+</body>
+</html>
+
+
+
+
+
+
+

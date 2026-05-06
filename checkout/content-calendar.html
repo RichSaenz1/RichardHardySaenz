@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shop/assets/shop.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"90-Day Content Calendar","description":"An industry-specific 90-day content calendar for service businesses that need a more credible, market-facing content rhythm.","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/checkout/content-calendar.html"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"90-Day Content Calendar","description":"An industry-specific 90-day content calendar for service businesses that need a more credible, market-facing content rhythm.","offers":{"@type":"Offer","price":"24.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/checkout/content-calendar.html"}}</script>
 <style>
 .page-checkout-calendar .hero { padding: 134px 0 72px; }
 .page-checkout-calendar .hero-panel,
@@ -65,6 +65,9 @@
 .page-checkout-calendar .field-group input { width: 100%; padding: 15px 14px; border: 2px solid rgba(255,255,255,0.18); border-radius: 0; background: rgba(255,255,255,0.04); color: var(--white); }
 .page-checkout-calendar .field-group input::placeholder { color: rgba(255,255,255,0.54); }
 .page-checkout-calendar .field-group input:focus { outline: none; border-color: var(--cyan); }
+.page-checkout-calendar .stripe-panel { border: 2px solid rgba(255,255,255,.24); padding: 18px; background: rgba(255,255,255,.06); display: grid; gap: 10px; }
+.page-checkout-calendar .stripe-panel strong { color: var(--white); font-family: var(--font-d); font-size: 18px; letter-spacing: .1em; text-transform: uppercase; }
+.page-checkout-calendar .stripe-panel p { margin-top: 0; color: rgba(255,255,255,.72); }
 .page-checkout-calendar .payment-row { margin-top: 10px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .page-checkout-calendar .payment-row strong { font-family: var(--font-d); font-size: 28px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: 1; }
 .page-checkout-calendar .payment-row strong .order-title-main,
@@ -286,7 +289,7 @@ window.TFS_CALENDAR_CHECKOUT_DATA = {
           <span class="orb orb-cyan orb-1" style="width:220px;height:220px;top:-70px;left:-70px"></span>
           <span class="orb orb-violet orb-2" style="width:240px;height:240px;bottom:-100px;right:-90px"></span>
           <p class="eyebrow" data-en="Secure Checkout" data-es="Checkout Seguro">Secure Checkout</p>
-          <h1 class="headline-lg" data-en="COMPLETE YOUR ORDER FOR THE <span class='grad'>CONTENT CALENDAR</span>" data-es="COMPLETA TU ORDEN DEL <span class='grad'>CONTENT CALENDAR</span>">COMPLETE YOUR ORDER FOR THE <span class="grad">CONTENT CALENDAR</span></h1>
+          <h1 class="headline-lg" data-en="COMPLETE YOUR ORDER" data-es="COMPLETA TU ORDEN">COMPLETE YOUR ORDER</h1>
           <p class="body-sm" id="calendar-product-line" style="margin-top:18px;font-family:var(--font-d);font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">Clinic 90-Day Content Calendar</p>
           <p class="body-lg hero-copy" id="calendar-hero-copy">Complete your order for the clinic content calendar and turn your visible content layer into something more credible, more consistent, and easier for patients to trust before they book.</p>
           <div class="summary-grid">
@@ -330,25 +333,9 @@ window.TFS_CALENDAR_CHECKOUT_DATA = {
               <label for="checkout-name" data-en="Full Name" data-es="Nombre completo">Full Name</label>
               <input id="checkout-name" name="name" type="text" autocomplete="name" required data-en-placeholder="Your full name" data-es-placeholder="Tu nombre completo" placeholder="Your full name">
             </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-card" data-en="Card Number" data-es="Numero de tarjeta">Card Number</label>
-                <input id="checkout-card" name="card" type="text" inputmode="numeric" maxlength="19" required data-en-placeholder="1234 1234 1234 1234" data-es-placeholder="1234 1234 1234 1234" placeholder="1234 1234 1234 1234">
-              </div>
-              <div class="field-group">
-                <label for="checkout-card-name" data-en="Name on Card" data-es="Nombre en la tarjeta">Name on Card</label>
-                <input id="checkout-card-name" name="card_name" type="text" autocomplete="cc-name" required data-en-placeholder="Cardholder name" data-es-placeholder="Nombre del titular" placeholder="Cardholder name">
-              </div>
-            </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-expiry" data-en="Expiry" data-es="Vencimiento">Expiry</label>
-                <input id="checkout-expiry" name="expiry" type="text" inputmode="numeric" maxlength="5" required data-en-placeholder="MM/YY" data-es-placeholder="MM/AA" placeholder="MM/YY">
-              </div>
-              <div class="field-group">
-                <label for="checkout-cvc" data-en="CVC" data-es="CVC">CVC</label>
-                <input id="checkout-cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" required data-en-placeholder="123" data-es-placeholder="123" placeholder="123">
-              </div>
+            <div class="stripe-panel">
+              <strong data-en="Continue to Secure Stripe Checkout" data-es="Continuar al checkout seguro de Stripe">Continue to Secure Stripe Checkout</strong>
+              <p data-en="Card details are entered on Stripe, not on this page." data-es="Los datos de la tarjeta se introducen en Stripe, no en esta pagina.">Card details are entered on Stripe, not on this page.</p>
             </div>
             <div class="payment-row">
               <div>
@@ -437,9 +424,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var form = document.getElementById("checkout-form");
   var emailField = document.getElementById("checkout-email");
   var nameField = document.getElementById("checkout-name");
-  var cardField = document.getElementById("checkout-card");
-  var expiryField = document.getElementById("checkout-expiry");
-  var cvcField = document.getElementById("checkout-cvc");
 
   function currentLang() {
     var active = document.querySelector(".lang-btn.active");
@@ -464,24 +448,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("secure-2").textContent = lang === "es" ? "Una forma mas rapida de convertir claridad interna en confianza visible" : "A faster way to turn internal clarity into visible trust";
     document.title = (lang === "es" ? "Checkout Seguro para " : "Secure Checkout for ") + data.product[lang] + " | The Future Studio";
   }
-
-  function sanitizeNumericInput(input, maxDigits) {
-    if (!input) return;
-    input.addEventListener("input", function() {
-      var digits = input.value.replace(/\D+/g, "").slice(0, maxDigits);
-      if (input === cardField) {
-        input.value = digits.replace(/(.{4})/g, "$1 ").trim();
-      } else if (input === expiryField) {
-        input.value = digits.length > 2 ? digits.slice(0, 2) + "/" + digits.slice(2, 4) : digits;
-      } else {
-        input.value = digits;
-      }
-    });
-  }
-
-  sanitizeNumericInput(cardField, 16);
-  sanitizeNumericInput(expiryField, 4);
-  sanitizeNumericInput(cvcField, 4);
 
   langButtons.forEach(function(button) {
     button.addEventListener("click", function() {
@@ -520,13 +486,3 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body>
 </html>
-  var checkoutButtonEl = document.getElementById("manual-order-email");
-    var checkoutUrl = "/checkout/content-calendar.html?industry=" + encodeURIComponent(key);
-      trigger.setAttribute("data-checkout-url", checkoutUrl);
-      trigger.setAttribute("href", checkoutUrl);
-      btn.setAttribute("data-checkout-url", checkoutUrl);
-      btn.setAttribute("href", checkoutUrl);
-    if (checkoutButtonEl) {
-      checkoutButtonEl.setAttribute("data-checkout-url", checkoutUrl);
-      checkoutButtonEl.setAttribute("href", checkoutUrl);
-    }

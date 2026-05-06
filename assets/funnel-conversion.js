@@ -51,9 +51,9 @@
       trustTwo: "Recibo por email",
       trustThree: "Precio en USD",
       auditCta: "Revelar mis mejoras de ingresos ->",
-      buildCta: "Revelar dÃ³nde puedo mejorar ingresos ->",
-      rolloutCta: "Obtener el Timeline de 90 dÃ­as",
-      investmentCta: "Obtener la GuÃ­a de InversiÃ³n en IA",
+      buildCta: "Revelar donde puedo mejorar ingresos ->",
+      rolloutCta: "Obtener el Timeline de 90 dias",
+      investmentCta: "Obtener la Guia de Inversion en IA",
       buildSeriesCta: "Obtener la Serie del Sistema ROI",
       stopLeadsCta: "Obtener el Sistema de Respuesta a Leads",
       proofEyebrow: "Prueba de operadores",
@@ -61,13 +61,13 @@
       proofCopy: "Estas son senales comerciales simples, no casos de estudio. Muestran por que las respuestas lentas, el seguimiento poco claro y los huecos administrativos afectan al negocio antes de construir un sistema mas grande.",
       testimonialsTitle: "Lo que los operadores suelen notar primero",
       quoteEyebrow: "Nota de operador",
-      productProofTitle: "Por quÃ© esta oferta es el siguiente paso mÃ¡s seguro",
-      productProofCopy: "Le da al comprador una acciÃ³n clara antes de pedirle que se comprometa con una construcciÃ³n mÃ¡s grande.",
-      whatYouGet: "QuÃ© recibes",
-      whoFor: "Para quiÃ©n es",
-      whoNotFor: "Para quiÃ©n no es",
+      productProofTitle: "Por que esta oferta es el siguiente paso mas seguro",
+      productProofCopy: "Le da al comprador una accion clara antes de pedirle que se comprometa con una construccion mas grande.",
+      whatYouGet: "Que recibes",
+      whoFor: "Para quien es",
+      whoNotFor: "Para quien no es",
       valueAnchor: "Ancla de valor",
-      quickFaq: "FAQ rÃ¡pido",
+      quickFaq: "FAQ rapido",
       stickyNow: "Hoy",
       stickyAccess: "Acceso inmediato"
     }
@@ -79,10 +79,10 @@
       was: "$9.99",
       save: "50% OFF",
       saveEs: "50% OFF",
-      product: { en: "WhatsApp Automation Guide", es: "GuÃ­a de AutomatizaciÃ³n de WhatsApp" },
+      product: { en: "WhatsApp Automation Guide", es: "Guia de Automatizacion de WhatsApp" },
       bestFor: {
         en: "Best for businesses that need to fix the first response before buying a bigger system.",
-        es: "Ideal para negocios que necesitan corregir la primera respuesta antes de comprar un sistema mÃ¡s grande."
+        es: "Ideal para negocios que necesitan corregir la primera respuesta antes de comprar un sistema mas grande."
       }
     },
     rolloutTimeline: {
@@ -90,10 +90,10 @@
       was: "$9.99",
       save: "50% OFF",
       saveEs: "50% OFF",
-      product: { en: "90-Day AI Rollout Timeline", es: "Timeline de IA de 90 dÃ­as" },
+      product: { en: "90-Day AI Rollout Timeline", es: "Timeline de IA de 90 dias" },
       bestFor: {
         en: "Best for businesses that want a safer 90-day order before committing to implementation.",
-        es: "Ideal para negocios que quieren un orden de 90 dÃ­as mÃ¡s seguro antes de implementar."
+        es: "Ideal para negocios que quieren un orden de 90 dias mas seguro antes de implementar."
       }
     },
     serviceBusinessPrompts: {
@@ -104,7 +104,7 @@
       product: { en: "20 Prompts for Service Businesses", es: "20 Prompts para Negocios de Servicios" },
       bestFor: {
         en: "Best for operators who want immediate AI prompts without buying a full system yet.",
-        es: "Ideal para operadores que quieren prompts Ãºtiles sin comprar un sistema completo todavÃ­a."
+        es: "Ideal para operadores que quieren prompts utiles sin comprar un sistema completo todavia."
       }
     },
     leadConversionSequence: {
@@ -112,10 +112,10 @@
       was: "$24.99",
       save: "48% OFF",
       saveEs: "48% OFF",
-      product: { en: "30-Day Lead Conversion Sequence", es: "Secuencia de ConversiÃ³n de Leads de 30 dÃ­as" },
+      product: { en: "30-Day Lead Conversion Sequence", es: "Secuencia de Conversion de Leads de 30 dias" },
       bestFor: {
         en: "Best for businesses that need stronger follow-up after leads arrive.",
-        es: "Ideal para negocios que necesitan mejor seguimiento despuÃ©s de recibir leads."
+        es: "Ideal para negocios que necesitan mejor seguimiento despues de recibir leads."
       }
     },
     aiSystemInvestmentGuide: {
@@ -123,10 +123,10 @@
       was: "$24.99",
       save: "48% OFF",
       saveEs: "48% OFF",
-      product: { en: "AI System Investment Guide", es: "GuÃ­a de InversiÃ³n en Sistemas de IA" },
+      product: { en: "AI System Investment Guide", es: "Guia de Inversion en Sistemas de IA" },
       bestFor: {
         en: "Best for businesses that want to know what to buy before building an AI system.",
-        es: "Ideal para negocios que quieren saber quÃ© comprar antes de construir un sistema de IA."
+        es: "Ideal para negocios que quieren saber que comprar antes de construir un sistema de IA."
       }
     },
     aiImplementationPlaybook: {
@@ -137,7 +137,7 @@
       product: { en: "AI Implementation Playbook", es: "AI Implementation Playbook" },
       bestFor: {
         en: "Best for teams that already see the AI opportunity and need stronger implementation logic.",
-        es: "Ideal para equipos que ya ven la oportunidad de IA y necesitan mejor lÃ³gica de implementaciÃ³n."
+        es: "Ideal para equipos que ya ven la oportunidad de IA y necesitan mejor logica de implementacion."
       }
     },
     contentCalendar: {
@@ -145,7 +145,7 @@
       was: "$49.99",
       save: "50% OFF",
       saveEs: "50% OFF",
-      product: { en: "90-Day Content Calendar", es: "Calendario de Contenido de 90 DÃ­as" },
+      product: { en: "90-Day Content Calendar", es: "Calendario de Contenido de 90 Dias" },
       bestFor: {
         en: "Best for businesses that need a visible content rhythm without planning from scratch.",
         es: "Ideal para negocios que necesitan un ritmo de contenido visible sin planificar desde cero."
@@ -159,7 +159,7 @@
       product: { en: "5-Video Course Series", es: "Serie de 5 Videos" },
       bestFor: {
         en: "Best for businesses that want the course plus the supporting digital products in one early-bird package.",
-        es: "Ideal para negocios que quieren el curso mÃ¡s los productos digitales de apoyo en un paquete early bird."
+        es: "Ideal para negocios que quieren el curso mas los productos digitales de apoyo en un paquete early bird."
       }
     }
   };
@@ -168,35 +168,35 @@
     rolloutTimeline: {
       what: {
         en: ["A clearer first 90-day sequence", "What to test first and what should wait", "A calmer rollout order for the team"],
-        es: ["Una secuencia mÃ¡s clara para los primeros 90 dÃ­as", "QuÃ© probar primero y quÃ© debe esperar", "Un orden de rollout mÃ¡s calmado para el equipo"]
+        es: ["Una secuencia mas clara para los primeros 90 dias", "Que probar primero y que debe esperar", "Un orden de rollout mas calmado para el equipo"]
       },
       who: {
         en: ["Businesses interested in AI but unsure where to begin", "Teams that need order before a larger implementation"],
-        es: ["Negocios interesados en IA pero sin claridad de inicio", "Equipos que necesitan orden antes de una implementaciÃ³n mayor"]
+        es: ["Negocios interesados en IA pero sin claridad de inicio", "Equipos que necesitan orden antes de una implementacion mayor"]
       }
     },
     aiSystemInvestmentGuide: {
       what: {
         en: ["A buying framework for AI systems", "Clearer stack and budget decisions", "Questions to ask before signing a bigger build"],
-        es: ["Un marco de compra para sistemas de IA", "Decisiones mÃ¡s claras de stack y presupuesto", "Preguntas antes de firmar una construcciÃ³n mÃ¡s grande"]
+        es: ["Un marco de compra para sistemas de IA", "Decisiones mas claras de stack y presupuesto", "Preguntas antes de firmar una construccion mas grande"]
       },
       who: {
         en: ["Businesses comparing tools, hosting, and automation options", "Operators who want to avoid buying the wrong stack"],
-        es: ["Negocios comparando herramientas, hosting y automatizaciÃ³n", "Operadores que quieren evitar comprar el stack equivocado"]
+        es: ["Negocios comparando herramientas, hosting y automatizacion", "Operadores que quieren evitar comprar el stack equivocado"]
       },
       notFor: {
         en: ["Teams that already have a fully scoped AI architecture", "Buyers who only want generic AI inspiration"],
-        es: ["Equipos que ya tienen una arquitectura de IA completa", "Compradores que solo quieren inspiraciÃ³n genÃ©rica de IA"]
+        es: ["Equipos que ya tienen una arquitectura de IA completa", "Compradores que solo quieren inspiracion generica de IA"]
       }
     },
     contentCalendar: {
       what: {
         en: ["90 days of industry-specific content direction", "Themes that support trust and enquiries", "A planning asset that makes posting easier"],
-        es: ["90 dÃ­as de direcciÃ³n de contenido por industria", "Temas que apoyan confianza y consultas", "Un activo de planificaciÃ³n que hace mÃ¡s fÃ¡cil publicar"]
+        es: ["90 dias de direccion de contenido por industria", "Temas que apoyan confianza y consultas", "Un activo de planificacion que hace mas facil publicar"]
       },
       who: {
         en: ["Businesses that need visibility without inventing posts every week", "Teams that want their offer explained more consistently"],
-        es: ["Negocios que necesitan visibilidad sin inventar posts cada semana", "Equipos que quieren explicar su oferta con mÃ¡s consistencia"]
+        es: ["Negocios que necesitan visibilidad sin inventar posts cada semana", "Equipos que quieren explicar su oferta con mas consistencia"]
       }
     }
   };
@@ -545,9 +545,9 @@
     faq.innerHTML =
       "<p class='eyebrow' data-funnel-en='" + COPY.en.quickFaq + "' data-funnel-es='" + COPY.es.quickFaq + "'></p>" +
       "<div class='funnel-mini-faq-grid'>" +
-        "<article><h3 data-funnel-en='Why buy this before building' data-funnel-es='Â¿Por quÃ© comprar esto antes de construir'></h3><p data-funnel-en='It helps you understand the stack, costs, and buying questions before a larger system becomes expensive.' data-funnel-es='Te ayuda a entender el stack, los costos y las preguntas de compra antes de que un sistema mayor sea caro.'></p></article>" +
-        "<article><h3 data-funnel-en='Does it replace a proposal' data-funnel-es='Â¿Reemplaza una propuesta'></h3><p data-funnel-en='No. It makes the proposal conversation sharper because you know what the system should include.' data-funnel-es='No. Hace que la conversaciÃ³n de propuesta sea mÃ¡s precisa porque sabes quÃ© debe incluir el sistema.'></p></article>" +
-        "<article><h3 data-funnel-en='Is this for beginners' data-funnel-es='Â¿Es para principiantes'></h3><p data-funnel-en='Yes, if you are making a commercial buying decision and need clarity before committing budget.' data-funnel-es='SÃ­, si estÃ¡s tomando una decisiÃ³n comercial y necesitas claridad antes de comprometer presupuesto.'></p></article>" +
+        "<article><h3 data-funnel-en='Why buy this before building' data-funnel-es='Por que comprar esto antes de construir'></h3><p data-funnel-en='It helps you understand the stack, costs, and buying questions before a larger system becomes expensive.' data-funnel-es='Te ayuda a entender el stack, los costos y las preguntas de compra antes de que un sistema mayor sea caro.'></p></article>" +
+        "<article><h3 data-funnel-en='Does it replace a proposal' data-funnel-es='Reemplaza una propuesta'></h3><p data-funnel-en='No. It makes the proposal conversation sharper because you know what the system should include.' data-funnel-es='No. Hace que la conversacion de propuesta sea mas precisa porque sabes que debe incluir el sistema.'></p></article>" +
+        "<article><h3 data-funnel-en='Is this for beginners' data-funnel-es='Es para principiantes'></h3><p data-funnel-en='Yes, if you are making a commercial buying decision and need clarity before committing budget.' data-funnel-es='Si, si estas tomando una decision comercial y necesitas claridad antes de comprometer presupuesto.'></p></article>" +
       "</div>";
     var after = document.querySelector(".funnel-product-fit-section") || document.querySelector(".funnel-proof-quotes");
     if (after && after.parentNode) after.insertAdjacentElement("afterend", faq);
@@ -614,7 +614,7 @@
         "<div class='funnel-metric-grid'>" +
           "<article><strong>24/7</strong><span data-funnel-en='Inquiry coverage window' data-funnel-es='Ventana de cobertura de consultas'></span></article>" +
           "<article><strong>60s</strong><span data-funnel-en='Target first-response speed' data-funnel-es='Velocidad objetivo de primera respuesta'></span></article>" +
-          "<article><strong>50%</strong><span data-funnel-en='Typical no-show reduction after reminders improve' data-funnel-es='ReducciÃ³n tÃ­pica de ausencias tras mejorar recordatorios'></span></article>" +
+          "<article><strong>50%</strong><span data-funnel-en='Typical no-show reduction after reminders improve' data-funnel-es='Reduccion tipica de ausencias tras mejorar recordatorios'></span></article>" +
         "</div>" +
         "<div class='funnel-testimonial-grid'>" +
           "<article><div class='funnel-stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div><p data-funnel-en='The audit made the missed-response problem visible enough to fix first.' data-funnel-es='El audit hizo visible el problema de respuesta perdida para corregirlo primero.'></p><strong data-funnel-en='Laura M. - Clinic Operator' data-funnel-es='Laura M. - Operadora de Clinica'></strong></article>" +
@@ -666,14 +666,14 @@
       setBilingual(
         h1,
         "KNOW WHAT TO BUY<br>BEFORE YOU BUILD<br><span class='grad'>YOUR AI SYSTEM</span>",
-        "SABE QUÃ‰ COMPRAR<br>ANTES DE CONSTRUIR<br><span class='grad'>TU SISTEMA DE IA</span>"
+        "SABE QUE COMPRAR<br>ANTES DE CONSTRUIR<br><span class='grad'>TU SISTEMA DE IA</span>"
       );
     }
     if (path.indexOf("shop/step-2/learn") !== -1 || path.indexOf("tfs_productc_90day_rollout") !== -1) {
       setBilingual(
         h1,
         "GET THE <span class='grad'>90-DAY AI</span><br>ROLLOUT TIMELINE",
-        "OBTÃ‰N EL <span class='grad'>TIMELINE DE IA</span><br>DE 90 DÃAS"
+        "OBTEN EL <span class='grad'>TIMELINE DE IA</span><br>DE 90 DIAS"
       );
     }
   }
@@ -779,6 +779,7 @@
     if (path.indexOf("/checkout/") === -1 && !document.querySelector(".payment-panel")) return;
 
     document.querySelectorAll(".payment-panel").forEach(function (panel) {
+      panel.classList.add("visible");
       panel.style.background = "#050505";
       panel.style.color = "#fffdfa";
       panel.style.opacity = "1";
@@ -787,6 +788,7 @@
 
       var parent = panel.parentElement;
       while (parent && parent !== document.body) {
+        if (parent.classList && parent.classList.contains("aos")) parent.classList.add("visible");
         parent.style.opacity = "1";
         parent.style.filter = "none";
         if (parent.tagName && parent.tagName.toLowerCase() === "main") break;

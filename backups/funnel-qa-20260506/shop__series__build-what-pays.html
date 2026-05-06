@@ -1,0 +1,850 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Codex Local Preview Loader */
+(function () {
+  if (location.protocol !== "file:") return;
+
+  var marker = "/Funnel/TFS_Deploy/";
+  var path = location.pathname.replace(/\\/g, "/");
+  var idx = path.indexOf(marker);
+  if (idx === -1) return;
+
+  var pagePath = path.slice(idx + marker.length);
+  var depth = Math.max(0, pagePath.split("/").length - 1);
+  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
+
+  function isAbsolute(value) {
+    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
+  }
+
+  function toLocal(value) {
+    if (!value || isAbsolute(value)) return value;
+    if (value.charAt(0) === "/") return localRoot + value.slice(1);
+    return value;
+  }
+
+  function rewriteSrcset(value) {
+    if (!value) return value;
+    return value.split(",").map(function (part) {
+      var trimmed = part.trim();
+      if (!trimmed) return trimmed;
+      var bits = trimmed.split(/\s+/);
+      bits[0] = toLocal(bits[0]);
+      return bits.join(" ");
+    }).join(", ");
+  }
+
+  function rewriteMetaRefresh(value) {
+    if (!value) return value;
+    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
+      return prefix + toLocal(url);
+    });
+  }
+
+  function rewriteElement(el) {
+    if (!el || el.nodeType !== 1) return;
+
+    ["href", "src", "poster", "action"].forEach(function (attr) {
+      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
+      var value = el.getAttribute(attr);
+      var next = toLocal(value);
+      if (next !== value) el.setAttribute(attr, next);
+    });
+
+    if (el.hasAttribute && el.hasAttribute("srcset")) {
+      var srcset = el.getAttribute("srcset");
+      var nextSrcset = rewriteSrcset(srcset);
+      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
+    }
+
+    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
+      var content = el.getAttribute("content");
+      var nextContent = rewriteMetaRefresh(content);
+      if (nextContent !== content) el.setAttribute("content", nextContent);
+    }
+
+    if (!el.querySelectorAll) return;
+
+    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
+      if (node === el) return;
+      rewriteElement(node);
+    });
+  }
+
+  rewriteElement(document.documentElement);
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        rewriteElement(node);
+      });
+    });
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    rewriteElement(document.documentElement);
+    document.querySelectorAll("video, audio").forEach(function (media) {
+      try { media.load(); } catch (error) {}
+    });
+  });
+})();
+</script><title>Build the AI System That Pays | The Future Studio</title>
+<meta id="meta-description" name="description" content="Build the highest-return automation first. Capture leads 24/7, cut no-shows, score warm leads, and track recovered revenue. Bilingual 5-video series. EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://thefuturestudio.online/shop/series/build-what-pays.html">
+<link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/series/build-what-pays.html">
+<link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/series/build-what-pays.html">
+<link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/series/build-what-pays.html">
+<meta id="og-title" property="og:title" content="Build the AI System That Pays | The Future Studio">
+<meta id="og-description" property="og:description" content="A bilingual five-video series on building automations with measurable ROI instead of guessing what to build first.">
+<meta property="og:type" content="product">
+<link rel="icon" type="image/png" sizes="32x32" href="/future-studio-favicon.png">
+<link rel="apple-touch-icon" href="/future-studio-favicon.png">
+<meta name="theme-color" content="#0a0a0a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Build the System That Pays for Itself","description":"A bilingual 5-video series on building AI automations with measurable ROI for service businesses.","offers":{"@type":"Offer","price":"79.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://thefuturestudio.online/shop/series/build-what-pays.html"}}</script>
+<meta property="og:url" content="https://thefuturestudio.online/shop/series/build-what-pays.html">
+<meta property="og:image" content="https://thefuturestudio.online/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shop/assets/shop.css">
+<style>
+@keyframes seriesHeroSlideUp {
+  from { transform: translateY(105%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes seriesHeroShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.page-series .hero { padding: 134px 0 72px; min-height: calc(100vh - 40px); display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-series .hero-panel { position: relative; padding: 0; border: 0; background: transparent; box-shadow: none; z-index: 2; }
+.page-series .hero-panel:hover { transform: none; box-shadow: none; }
+.page-series .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+@media (min-width: 761px) {
+  .page-series .hero-eyebrow { margin-top: clamp(18px, 2vw, 34px); }
+}
+.page-series .hero-eyebrow-line { width: 48px; height: 2px; background: var(--cyan); flex-shrink: 0; }
+.page-series .hero-title { margin: 0; font-family: var(--font-d); font-size: clamp(90px, 13.5vw, 198px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .88; letter-spacing: -0.02em; }
+.page-series .hero-title .line { display: block; overflow: hidden; }
+.page-series .hero-title .line span { display: block; animation: seriesHeroSlideUp .9s var(--ease) both; }
+.page-series .hero-title .line:nth-child(1) span { animation-delay: .08s; }
+.page-series .hero-title .line:nth-child(2) span { animation-delay: .2s; }
+.page-series .hero-title .line:nth-child(3) span { animation-delay: .32s; }
+.page-series .hero-title .shimmer { background: linear-gradient(90deg, var(--cyan), #38b7f3, var(--violet), var(--cyan)); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: seriesHeroShimmer 3s ease infinite; }
+.page-series .hero-copy,
+.page-series .hero-bridge-copy,
+.page-series .section-copy,
+.page-series .feature-card p,
+.page-series .faq-answer,
+.page-series .checkout-card p,
+.page-series .diagnostic-card p,
+.page-series .diagnostic-card li { font-size: 15px; line-height: 1.68; }
+.page-series .hero-copy { margin-top: 28px; max-width: 820px; font-size: 17px; color: var(--text-mid); }
+.page-series .hero-bridge-copy { margin-top: 16px; max-width: 760px; color: var(--text-mid); }
+.page-series .hero-actions { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+.page-series .series-primary-cta { padding: 18px 42px; font-size: 18px; }
+.page-series .series-primary-cta:hover,
+.page-series .series-primary-cta:focus-visible { background: var(--white); color: var(--black); }
+.page-series .series-price-strip { margin-top: 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.page-series .series-price-kicker,
+.page-series .series-price-was { font-family: var(--font-d); font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mid); }
+.page-series .series-price-strip strong { font-family: var(--font-d); font-size: clamp(34px, 5vw, 64px); font-weight: 800; font-style: italic; line-height: .9; color: var(--black); }
+.page-series .series-price-was s { color: rgba(10,10,10,.48); text-decoration-thickness: 2px; }
+.page-series .section { padding: 18px 0 52px; }
+.page-series .section-title,
+.page-series .checkout-card h2 { margin-top: 18px; font-family: var(--font-d); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; letter-spacing: -0.02em; }
+.page-series .video-preview-card { display:grid; grid-template-columns:minmax(300px,0.9fr) minmax(420px,1.1fr); gap:26px; padding:34px 30px; border:2px solid var(--black); background:var(--white); align-items:center; }
+.page-series .video-preview-copy { display:grid; gap:14px; }
+.page-series .video-preview-player { border:2px solid var(--black); background:var(--black); padding:10px; }
+.page-series .video-preview-player video { display:block; width:100%; height:auto; background:#000; }
+.page-series .diagnostic-grid,
+.page-series .feature-grid { display: grid; gap: 18px; align-items: stretch; }
+.page-series .diagnostic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 14px; }
+.page-series .diagnostic-card { min-height: 280px; padding: 24px 22px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-series .diagnostic-card.dark { background: var(--black); color: var(--white); }
+.page-series .diagnostic-card.dark p,
+.page-series .diagnostic-card.dark strong,
+.page-series .diagnostic-card.dark li { color: var(--white); }
+.page-series .diagnostic-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); }
+.page-series .diagnostic-card:not(.dark):hover { background: var(--black); color: var(--white); box-shadow: 12px 12px 0 var(--violet); }
+.page-series .diagnostic-card:not(.dark):hover p,
+.page-series .diagnostic-card:not(.dark):hover strong,
+.page-series .diagnostic-card:not(.dark):hover li { color: var(--white); }
+.page-series .diagnostic-card strong { display: block; font-family: var(--font-d); font-size: 30px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .94; margin-top: 16px; }
+.page-series .diagnostic-card ul { list-style: none; display: grid; gap: 12px; margin-top: auto; }
+.page-series .diagnostic-card li { position: relative; padding-left: 18px; }
+.page-series .diagnostic-card li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-series .section-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--white); }
+.page-series .feature-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 24px; }
+.page-series .feature-card { min-height: 100%; padding: 24px 20px; border: 2px solid var(--black); background: var(--white); display: flex; flex-direction: column; gap: 12px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.page-series .feature-card:hover { transform: translate(-12px,-12px); box-shadow: 12px 12px 0 var(--cyan); background: var(--black); color: var(--white); }
+.page-series .feature-card:hover p,
+.page-series .feature-card:hover h3,
+.page-series .feature-card:hover .tier,
+.page-series .feature-card:hover .micro-note { color: var(--white); }
+.page-series .feature-card h3 { font-family: var(--font-d); font-size: clamp(28px, 3vw, 36px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; }
+.page-series .feature-card .tier { font-family: var(--font-d); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
+.page-series .feature-card .micro-note { color: var(--text-mid); }
+.page-series .faq-wrap { border: 2px solid var(--black); background: var(--white); padding: 34px 30px; }
+.page-series .faq-list { margin-top: 24px; display: grid; gap: 14px; }
+.page-series .faq-item { border: 2px solid var(--black); background: var(--white); }
+.page-series .faq-question { width: 100%; text-align: left; padding: 18px 22px; background: transparent; border: 0; font-family: var(--font-d); font-size: clamp(28px, 3vw, 36px); font-weight: 800; font-style: italic; text-transform: uppercase; line-height: .95; cursor: pointer; }
+.page-series .faq-answer { display: none; padding: 0 22px 22px; color: var(--text-mid); }
+.page-series .faq-item.is-open .faq-answer { display: block; }
+.page-series .checkout-card { padding: 34px 30px; border: 2px solid var(--black); background: var(--black); color: var(--white); text-align: center; max-width: 1120px; margin: 0 auto; }
+.page-series .checkout-card .eyebrow,
+.page-series .checkout-card h2,
+.page-series .checkout-card li,
+.page-series .checkout-card p { color: var(--white); }
+.page-series .cta-points { list-style: none; display: grid; gap: 14px; margin: 22px auto 0; max-width: 760px; }
+.page-series .cta-points li { position: relative; padding-left: 18px; }
+.page-series .cta-points li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--cyan); }
+.page-series .cta-row { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.page-series .hero-orb-1 { width: 500px; height: 500px; top: -100px; left: -150px; }
+.page-series .hero-orb-2 { width: 560px; height: 560px; bottom: -120px; right: -190px; }
+.page-series footer { background: var(--black); color: var(--white); padding: 96px 0 32px; }
+.page-series .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; }
+.page-series .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.page-series .footer-logo img { height: 80px; width: auto; object-fit: contain; filter: invert(1); }
+.page-series .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 260px; line-height: 1.65; }
+.page-series .footer-col h5 { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,0.7); }
+.page-series .footer-col ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+.page-series .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); transition: color .2s; }
+.page-series .footer-col a:hover { color: var(--cyan); }
+.page-series .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.page-series .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+@media (max-width: 1080px) {
+  .page-series .video-preview-card,
+  .page-series .diagnostic-grid,
+  .page-series .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .page-series .video-preview-card,
+  .page-series .diagnostic-grid,
+  .page-series .feature-grid,
+  .page-series .footer-inner { grid-template-columns: 1fr; }
+  .page-series .footer-bottom { flex-direction: column; text-align: center; }
+  .page-series .footer-logo { justify-content: center; }
+  .page-series .footer-tagline { margin: 0 auto; }
+}
+</style>
+  <link rel="stylesheet" href="/assets/mobile-center.css">
+  <link rel="stylesheet" href="/assets/funnel-layout.css?v=20260426-layout-9">
+</head>
+<body class="page-series has-urgency-bar">
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="shop-page">
+<div class="top-urgency-bar">
+  <div class="wrap-wide top-urgency-inner">
+    <p class="top-urgency-copy" data-en="Early Bird $79.99. <strong>Build the first automation layer that should pay back fastest.</strong>" data-es="Early Bird $79.99. <strong>Construye primero la capa de automatizacion que deberia pagarse mas rapido.</strong>">Early Bird $79.99. <strong>Build the first automation layer that should pay back fastest.</strong></p>
+    <a class="top-urgency-cta" href="/checkout/course-series.html?series=build-what-pays" data-en="Get the series" data-es="Obtener la serie">Get the series</a>
+  </div>
+</div>
+<nav class="site-nav">
+  <div class="wrap-wide site-nav-inner">
+    <div class="site-nav-links">
+      <div class="nav-primary">
+        <a href="/#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="/#courses-section" data-en="Courses" data-es="Cursos">Courses</a>
+        <a href="/#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
+        <a href="/#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
+        </div>
+        <a class="nav-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a>
+      </div>
+    </div>
+    <a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a>
+    <button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main class="page-shell">
+  <section class="hero">
+    <div class="orb orb-cyan orb-1 hero-orb-1"></div>
+    <div class="orb orb-violet orb-2 hero-orb-2"></div>
+    <div class="wrap">
+      <div class="hero-panel aos">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <p class="eyebrow" id="hero-eyebrow"></p>
+        </div>
+        <h1 class="hero-title" aria-label="Build What Pays">
+          <span class="line"><span id="hero-line-1"></span></span>
+          <span class="line"><span id="hero-line-2"></span></span>
+          <span class="line"><span id="hero-line-3"></span></span>
+        </h1>
+        <p class="hero-copy" id="hero-copy"></p>
+        <p class="hero-bridge-copy" id="hero-bridge"></p>
+        <div class="series-price-strip" aria-label="Early bird booking price">
+          <span class="series-price-kicker" data-en="Early bird booking" data-es="Reserva early bird">Early bird booking</span>
+          <strong>$79.99</strong>
+          <span class="series-price-was" data-en="<s>$114.99</s> 30% early bird discount" data-es="<s>$114.99</s> 30% de descuento early bird"><s>$114.99</s> 30% early bird discount</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary series-primary-cta" id="hero-primary-cta" href="/checkout/course-series.html?series=build-what-pays"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="value-eyebrow"></p>
+        <h2 class="section-title" id="value-title"></h2>
+        <p class="section-copy" id="value-copy"></p>
+        <div class="feature-grid" id="value-grid"></div>
+        <p class="section-micro-note" id="value-note"></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="video-preview-card aos">
+        <div class="video-preview-copy">
+          <p class="eyebrow" id="video-eyebrow"></p>
+          <h2 class="section-title" id="video-title"></h2>
+          <p class="section-copy" id="video-copy"></p>
+        </div>
+        <div class="video-preview-player">
+          <video id="series-video" controls playsinline preload="metadata"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="diagnostic-grid">
+        <article class="diagnostic-card dark aos">
+          <p class="eyebrow" id="diag-one-eyebrow"></p>
+          <strong id="diag-one-title"></strong>
+          <p id="diag-one-copy"></p>
+          <ul id="diag-one-list"></ul>
+        </article>
+        <article class="diagnostic-card aos d2">
+          <p class="eyebrow" id="diag-two-eyebrow"></p>
+          <strong id="diag-two-title"></strong>
+          <p id="diag-two-copy"></p>
+          <ul id="diag-two-list"></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="features-eyebrow"></p>
+        <h2 class="section-title" id="features-title"></h2>
+        <p class="section-copy" id="features-copy"></p>
+        <div class="feature-grid" id="feature-grid"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="before-eyebrow"></p>
+        <h2 class="section-title" id="before-title"></h2>
+        <p class="section-copy" id="before-copy"></p>
+        <div class="compare-grid">
+          <article class="compare-card">
+            <div class="compare-kicker" id="before-card-one-kicker"></div>
+            <h3 id="before-card-one-title"></h3>
+            <ul id="before-card-one-list"></ul>
+          </article>
+          <article class="compare-card">
+            <div class="compare-kicker" id="before-card-two-kicker"></div>
+            <h3 id="before-card-two-title"></h3>
+            <ul id="before-card-two-list"></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-card aos">
+        <p class="eyebrow" id="proof-eyebrow"></p>
+        <h2 class="section-title" id="proof-title"></h2>
+        <p class="section-copy" id="proof-copy"></p>
+        <div class="feature-grid" id="proof-grid"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="faq-wrap aos">
+        <p class="eyebrow" id="faq-eyebrow"></p>
+        <h2 class="section-title" id="faq-title"></h2>
+        <p class="section-copy" id="faq-copy"></p>
+        <div class="faq-list" id="faq-list"></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="checkout-card aos">
+        <p class="eyebrow" id="close-eyebrow"></p>
+        <h2 id="close-title"></h2>
+        <p id="close-copy"></p>
+        <ul class="cta-points" id="close-points"></ul>
+        <div class="cta-row">
+          <a class="btn btn-primary series-primary-cta" id="close-primary-cta" href="/checkout/course-series.html?series=build-what-pays"></a>
+        </div>
+        <p class="checkout-reassurance" id="close-reassurance"></p>
+        <div class="cta-links">
+          <a href="https://wa.me/50766753870?text=Hola%2C%20quiero%20la%20serie%20Build%20What%20Pays%20para%20decidir%20que%20automatizacion%20construir%20primero." target="_blank" rel="noopener" data-en="Ask about this series on WhatsApp" data-es="Preguntar por esta serie en WhatsApp">Ask about this series on WhatsApp</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book a free demo after this series" data-es="Agendar demo gratuita despues de esta serie">Book a free demo after this series</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="/logo.png" alt="The Future Studio"></div>
+        <p class="footer-tagline" data-en="AI systems for service businesses across Latin America. Trust-first. No hype." data-es="Sistemas de IA para negocios de servicios en America Latina. Confianza primero. Sin humo.">AI systems for service businesses across Latin America. Trust-first. No hype.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="Voice Agents" data-es="Agentes de voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion de WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows" data-es="Flujos de reserva">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms" data-es="Plataformas personalizadas">Custom Platforms</a></li>
+          <li><a href="/#courses-section" data-en="AI Courses" data-es="Cursos de IA">AI Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
+          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:richardhardysaenz&#64;thefuturestudio.online">Email</a></li>
+          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-en="&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved." data-es="&copy; 2026 The Future Studio - Richard Hardy Saenz. Todos los derechos reservados.">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</span>
+      <span class="footer-copy" style="display:flex;align-items:center;gap:6px">
+        <span style="width:6px;height:6px;background:var(--cyan);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+        <span data-en="Latin America - Remote &amp; In-person" data-es="America Latina - Remoto y presencial">Latin America - Remote &amp; In-person</span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
+<script>
+var SERIES_PAGE_DATA = {
+  title: {
+    en: "Build the System That Pays for Itself - AI Automation with Measurable ROI | The Future Studio",
+    es: "Build the System That Pays for Itself - Automatizacion con IA y ROI medible | The Future Studio"
+  },
+  metaDescription: {
+    en: "Build the highest-return automation first, capture leads 24/7, cut no-shows, score warm leads, and track recovered revenue in one dashboard.",
+    es: "Construye primero la automatizacion de mayor retorno, captura leads 24/7, reduce ausencias, puntua leads con mas calor y sigue los ingresos recuperados en un solo dashboard."
+  },
+  ogTitle: {
+    en: "Build the System That Pays for Itself - AI Automation with Measurable ROI",
+    es: "Build the System That Pays for Itself - Automatizacion con IA y ROI medible"
+  },
+  ogDescription: {
+    en: "A five-video series that shows you how to build automations with measurable ROI instead of guessing what to build first.",
+    es: "Una serie de cinco videos que te muestra como construir automatizaciones con ROI medible en lugar de adivinar que construir primero."
+  },
+  heroEyebrow: {
+    en: "5-Video ROI Series",
+    es: "Serie de 5 videos con foco en ROI"
+  },
+  heroLines: {
+    en: ["BUILD THE", "<span class='shimmer'>SYSTEM</span> THAT", "PAYS ITSELF"],
+    es: ["CONSTRUYE EL", "<span class='shimmer'>SISTEMA</span> QUE", "SE PAGA SOLO"]
+  },
+  heroCopy: {
+    en: "By the end of these five videos, your business will know which automation should be built first, capture leads 24/7, cut no-shows, score warmer opportunities, and track every recovered dollar in one live dashboard.",
+    es: "Al final de estos cinco videos, tu negocio sabra que automatizacion debe construirse primero, capturara leads 24/7, reducira ausencias, puntuara oportunidades mas calientes y seguira cada dolar recuperado en un dashboard vivo."
+  },
+  heroBridge: {
+    en: "A 5-video implementation series for service businesses that want to identify the highest-ROI automation first, capture missed leads, reduce no-shows, score colder opportunities, and track recovery in one dashboard.",
+    es: "Una serie de implementacion de 5 videos para negocios de servicios que quieren identificar primero la automatizacion de mayor ROI, capturar leads perdidos, reducir ausencias, puntuar oportunidades frias y seguir la recuperacion en un solo dashboard."
+  },
+  primaryCta: {
+    en: "Get the ROI System Series",
+    es: "Obtener la Serie ROI"
+  },
+  valueEyebrow: {
+    en: "What you get",
+    es: "Lo que obtienes"
+  },
+  valueTitle: {
+    en: "WHAT YOU <span class='grad'>BUILD FIRST</span>",
+    es: "LO QUE <span class='grad'>CONSTRUYES PRIMERO</span>"
+  },
+  valueCopy: {
+    en: "Before you watch the full overview, here is what the series actually gives you: a practical decision system for choosing, building, and measuring the first automation that should recover revenue fastest.",
+    es: "Antes de ver el resumen completo, esto es lo que realmente te da la serie: un sistema practico de decision para elegir, construir y medir la primera automatizacion que deberia recuperar ingresos mas rapido."
+  },
+  valueItems: [
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "ROI PRIORITY", es: "PRIORIDAD ROI" },
+      copy: { en: "A framework for deciding which automation deserves budget first.", es: "Un marco para decidir que automatizacion merece presupuesto primero." },
+      note: { en: "Use your real numbers instead of gut feel.", es: "Usa tus numeros reales en lugar de intuicion." }
+    },
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "RECOVERY FLOWS", es: "FLUJOS DE RECUPERACION" },
+      copy: { en: "Missed-call capture, no-show reduction, and lead scoring logic.", es: "Captura de llamadas perdidas, reduccion de ausencias y logica de lead scoring." },
+      note: { en: "Built around revenue recovery, not theory.", es: "Construido alrededor de recuperacion de ingresos, no teoria." }
+    },
+    {
+      tier: { en: "Included", es: "Incluido" },
+      title: { en: "DASHBOARD VIEW", es: "VISTA DE DASHBOARD" },
+      copy: { en: "A simple reporting layer that shows what the system is bringing back.", es: "Una capa simple de reportes que muestra lo que el sistema esta recuperando." },
+      note: { en: "So the next AI investment is easier to justify.", es: "Para que la siguiente inversion en IA sea mas facil de justificar." }
+    }
+  ],
+  valueNote: {
+    en: "Secure checkout, instant access, email receipt, price in USD. This is not a generic AI course.",
+    es: "Checkout seguro, acceso inmediato, recibo por email, precio en USD. Este no es un curso generico de IA."
+  },
+  videoEyebrow: {
+    en: "Watch this before you buy",
+    es: "Mira esto antes de comprar"
+  },
+  videoTitle: {
+    en: "SEE WHAT THE <span class='grad'>ROI SYSTEM BUILDS</span>",
+    es: "MIRA LO QUE <span class='grad'>CONSTRUYE EL SISTEMA ROI</span>"
+  },
+  videoCopy: {
+    en: "Watch this overview first so you can see how the series helps a service business choose the right automation, recover missed demand, and measure what comes back before spending more money on the wrong stack.",
+    es: "Mira primero este resumen para ver como la serie ayuda a un negocio de servicios a elegir la automatizacion correcta, recuperar demanda perdida y medir lo que regresa antes de gastar mas dinero en el stack equivocado."
+  },
+  videoSrc: "/shop/assets/videos/build-the-ai-system-that-pays.mp4",
+  diagnostic: [
+    {
+      eyebrow: { en: "For you if", es: "Para ti si" },
+      title: { en: "You already have leads to protect", es: "Ya tienes leads que proteger" },
+      copy: { en: "This series is for service businesses that already receive calls, bookings, WhatsApp messages, or inbound leads and want a more commercial way to decide what automation should be built first.", es: "Esta serie es para negocios de servicios que ya reciben llamadas, reservas, mensajes de WhatsApp o leads entrantes y quieren una forma mas comercial de decidir que automatizacion deberia construirse primero." },
+      bullets: {
+        en: ["You want automation tied to measurable recovery", "You need a clearer build order before buying more tools", "You want to use your own business numbers to decide the first move"],
+        es: ["Quieres automatizacion ligada a recuperacion medible", "Necesitas un orden de build mas claro antes de comprar mas herramientas", "Quieres usar los numeros de tu negocio para decidir el primer movimiento"]
+      }
+    },
+    {
+      eyebrow: { en: "Not for you if", es: "No es para ti si" },
+      title: { en: "You want theory without decision work", es: "Quieres teoria sin trabajo de decision" },
+      copy: { en: "This is not a broad AI theory course. It is meant for businesses willing to review lead flow, booking friction, and follow-up loss so the first build can be justified commercially.", es: "Este no es un curso amplio de teoria de IA. Esta pensada para negocios dispuestos a revisar flujo de leads, friccion en reservas y perdidas de seguimiento para que el primer build pueda justificarse comercialmente." },
+      bullets: {
+        en: ["You want a generic list of AI tools", "You do not yet have recurring leads or appointments", "You expect a done-for-you implementation without doing the priority work first"],
+        es: ["Quieres una lista generica de herramientas de IA", "Todavia no tienes leads o citas recurrentes", "Esperas una implementacion done-for-you sin hacer primero el trabajo de priorizacion"]
+      }
+    }
+  ],
+  featuresEyebrow: {
+    en: "What you build across the series",
+    es: "Lo que construyes a lo largo de la serie"
+  },
+  featuresTitle: {
+    en: "THE FIVE <span class='grad'>VIDEOS</span> THAT DRIVE RETURN",
+    es: "LOS CINCO <span class='grad'>VIDEOS</span> QUE GENERAN RETORNO"
+  },
+  featuresCopy: {
+    en: "Each video adds one measurable layer so your business finishes with automations that recover revenue instead of more disconnected experiments.",
+    es: "Cada video agrega una capa medible para que tu negocio termine con automatizaciones que recuperan ingresos en lugar de mas experimentos desconectados."
+  },
+  features: [
+    {
+      tier: { en: "Video 1", es: "Video 1" },
+      title: { en: "Know What to Build First", es: "Sabe que construir primero" },
+      copy: { en: "The ROI formula that tells you where to start. You already know how much revenue you are losing. Now you need to know which automation closes the biggest gap for the least effort. This video walks you through a prioritization framework using your calculator numbers so you can stop guessing.", es: "La formula de ROI que te dice por donde empezar. Ya sabes cuanto ingreso estas perdiendo. Ahora necesitas saber que automatizacion cierra la mayor fuga con el menor esfuerzo. Este video te lleva por un marco de priorizacion usando los numeros de tu calculadora para que dejes de adivinar." },
+      note: { en: "Outcome: you leave with one clear first automation priority.", es: "Resultado: sales con una prioridad clara para la primera automatizacion." }
+    },
+    {
+      tier: { en: "Video 2", es: "Video 2" },
+      title: { en: "Capture Every Lead, 24/7", es: "Captura cada lead, 24/7" },
+      copy: { en: "Build a missed-call-to-booking system that pays for the course on its own. This is the single highest-ROI automation for phone-dependent businesses. We build the full flow together: missed call, instant WhatsApp text, qualification, calendar link, and booking, using the exact setup deployed for clients.", es: "Construye un sistema de llamada perdida a reserva que se paga solo. Esta es la automatizacion de mayor ROI para negocios que dependen del telefono. Construimos juntos el flujo completo: llamada perdida, WhatsApp instantaneo, calificacion, enlace al calendario y reserva, usando la misma estructura que desplegamos para clientes." },
+      note: { en: "Outcome: you map a 24/7 recovery path from missed call to booking.", es: "Resultado: mapeas una ruta de recuperacion 24/7 desde llamada perdida hasta reserva." }
+    },
+    {
+      tier: { en: "Video 3", es: "Video 3" },
+      title: { en: "Cut No-Shows by 30% or More", es: "Reduce ausencias en 30% o mas" },
+      copy: { en: "Automated reminders that actually work. A no-show is lost revenue you already earned. This video builds a three-touchpoint reminder system - 24 hours before, 1 hour before, and post-appointment follow-up - with copy templates tested with real clients.", es: "Recordatorios automatizados que de verdad funcionan. Una ausencia es ingreso perdido que ya habias ganado. Este video construye un sistema de recordatorios de tres puntos de contacto: 24 horas antes, 1 hora antes y seguimiento posterior a la cita, con plantillas de copy probadas con clientes reales." },
+      note: { en: "Outcome: you build reminder logic that protects appointments and reduces preventable loss.", es: "Resultado: construyes una logica de recordatorios que protege las citas y reduce la perdida evitable." }
+    },
+    {
+      tier: { en: "Video 4", es: "Video 4" },
+      title: { en: "Stop Wasting Time on Cold Leads", es: "Deja de perder tiempo con leads frios" },
+      copy: { en: "Build a lead scoring system that tells you who to call. Not every lead is worth the same time. This video sets up an automatic scoring and tagging system in your CRM that flags hot leads based on their behavior, so you or your staff spend time on the people who are actually ready to buy.", es: "Construye un sistema de lead scoring que te diga a quien llamar. No todos los leads merecen el mismo tiempo. Este video configura un sistema automatico de puntuacion y etiquetas en tu CRM que marca los leads mas calientes segun su comportamiento, para que tu o tu equipo dediquen tiempo a quienes de verdad estan listos para comprar." },
+      note: { en: "Outcome: you score and sort colder leads before they waste team time.", es: "Resultado: puntuas y ordenas los leads frios antes de que desperdicien tiempo del equipo." }
+    },
+    {
+      tier: { en: "Video 5", es: "Video 5" },
+      title: { en: "Your Business, One Dashboard", es: "Tu negocio, un dashboard" },
+      copy: { en: "Track every lead, every appointment, and every recovered dollar automatically. This final video builds a live command center in Google Sheets or Notion, updated automatically by Make, so you can see exactly what is working, what is not, and how much money your system is bringing back every week.", es: "Haz seguimiento automatico de cada lead, cada cita y cada dolar recuperado. Este ultimo video construye un centro de control vivo en Google Sheets o Notion, actualizado automaticamente por Make, para que puedas ver exactamente que funciona, que no funciona y cuanto dinero esta devolviendo tu sistema cada semana." },
+      note: { en: "Outcome: you finish with a dashboard that shows what the system recovered.", es: "Resultado: terminas con un dashboard que muestra lo que el sistema recupero." }
+    }
+  ],
+  beforeEyebrow: {
+    en: "Before / after",
+    es: "Antes / despues"
+  },
+  beforeTitle: {
+    en: "FROM <span class='grad'>GUESSING</span> TO A CLEARER ROI LAYER",
+    es: "DE <span class='grad'>ADIVINAR</span> A UNA CAPA ROI MAS CLARA"
+  },
+  beforeCopy: {
+    en: "This series should feel like the difference between buying random AI tools and building the first automation layer that actually earns its place.",
+    es: "Esta serie deberia sentirse como la diferencia entre comprar herramientas de IA al azar y construir la primera capa de automatizacion que realmente se gana su lugar."
+  },
+  beforeAfter: [
+    {
+      kicker: { en: "Before", es: "Antes" },
+      title: { en: "Scattered decisions", es: "Decisiones dispersas" },
+      bullets: {
+        en: ["Unclear what to automate first", "Missed calls and follow-up leaks", "No shared visibility on what recovery would be worth"],
+        es: ["No esta claro que automatizar primero", "Llamadas perdidas y fugas de seguimiento", "No hay visibilidad compartida sobre lo que valdria recuperar"]
+      }
+    },
+    {
+      kicker: { en: "After", es: "Despues" },
+      title: { en: "Measured recovery path", es: "Ruta de recuperacion medida" },
+      bullets: {
+        en: ["The first ROI build is identified", "Lead capture, reminders, and scoring have a sequence", "A dashboard shows what came back and why it mattered"],
+        es: ["El primer build ROI esta identificado", "Captura de leads, recordatorios y scoring tienen una secuencia", "Un dashboard muestra lo que regreso y por que importo"]
+      }
+    }
+  ],
+  proofEyebrow: {
+    en: "Use cases",
+    es: "Casos de uso"
+  },
+  proofTitle: {
+    en: "WHO USES THIS <span class='grad'>ROI THINKING</span>",
+    es: "QUIEN USA ESTA <span class='grad'>LOGICA ROI</span>"
+  },
+  proofCopy: {
+    en: "The logic works best in service businesses where calls, bookings, and follow-up timing already affect revenue in a visible way.",
+    es: "La logica funciona mejor en negocios de servicios donde llamadas, reservas y tiempos de seguimiento ya afectan los ingresos de forma visible."
+  },
+  proofItems: [
+    {
+      tier: { en: "Clinic", es: "Clinica" },
+      title: { en: "Protect missed appointment demand", es: "Proteger demanda de citas perdidas" },
+      copy: { en: "Use the series to decide whether the first recovery layer should focus on missed calls, reminders, or faster triage before more ad spend is wasted.", es: "Usa la serie para decidir si la primera capa de recuperacion debe enfocarse en llamadas perdidas, recordatorios o triage mas rapido antes de desperdiciar mas pauta." },
+      note: { en: "Best when bookings and no-shows already affect capacity.", es: "Ideal cuando reservas y ausencias ya afectan la capacidad." }
+    },
+    {
+      tier: { en: "Real Estate", es: "Bienes raices" },
+      title: { en: "Score hotter buyer intent", es: "Puntuar mejor la intencion compradora" },
+      copy: { en: "Separate serious prospects from colder leads and decide which automation should protect the fastest-moving opportunities first.", es: "Separa prospectos serios de leads frios y decide que automatizacion debe proteger primero las oportunidades que se mueven mas rapido." },
+      note: { en: "Useful when follow-up speed changes the close rate.", es: "Util cuando la velocidad de seguimiento cambia la tasa de cierre." }
+    },
+    {
+      tier: { en: "Professional Services", es: "Servicios profesionales" },
+      title: { en: "Choose the right first build", es: "Elegir el primer build correcto" },
+      copy: { en: "For firms with inbound enquiries but limited team time, the series helps justify which automation should be built before adding more software complexity.", es: "Para firmas con consultas entrantes pero tiempo limitado de equipo, la serie ayuda a justificar que automatizacion deberia construirse antes de agregar mas complejidad de software." },
+      note: { en: "Built around ROI discipline, not AI hype.", es: "Construida alrededor de disciplina ROI, no humo de IA." }
+    }
+  ],
+  faqEyebrow: {
+    en: "Common questions",
+    es: "Preguntas comunes"
+  },
+  faqTitle: {
+    en: "BEFORE YOU <span class='grad'>BUILD THE ROI LAYER</span>",
+    es: "ANTES DE <span class='grad'>CONSTRUIR LA CAPA DE ROI</span>"
+  },
+  faqCopy: {
+    en: "This series is designed for businesses that want automation to justify itself commercially, not just look impressive on paper.",
+    es: "Esta serie esta pensada para negocios que quieren que la automatizacion se justifique comercialmente, no solo que se vea bien sobre el papel."
+  },
+  faqs: [
+    {
+      question: { en: "Is this only for larger businesses?", es: "Esto es solo para negocios mas grandes?" },
+      answer: { en: "No. It is for any service business where missed calls, no-shows, slow follow-up, or poor prioritization are already costing money and should be measured more clearly.", es: "No. Es para cualquier negocio de servicios donde las llamadas perdidas, las ausencias, el seguimiento lento o una mala priorizacion ya estan costando dinero y deberian medirse con mas claridad." }
+    },
+    {
+      question: { en: "Will I be able to use my own numbers?", es: "Voy a poder usar mis propios numeros?" },
+      answer: { en: "Yes. The series is built to work from your own calculator result, your own appointment flow, and your own recovery targets so the automations stay tied to your business reality.", es: "Si. La serie esta construida para trabajar desde el resultado de tu propia calculadora, tu propio flujo de citas y tus propios objetivos de recuperacion para que las automatizaciones sigan ligadas a la realidad de tu negocio." }
+    },
+    {
+      question: { en: "Do I need a big software stack first?", es: "Necesito antes un stack grande de software?" },
+      answer: { en: "No. The point is to build the right system first, not the heaviest one. The series helps you decide what deserves investment now and what should wait.", es: "No. La idea es construir primero el sistema correcto, no el mas pesado. La serie te ayuda a decidir que merece inversion ahora y que deberia esperar." }
+    },
+    {
+      question: { en: "What changes by the end?", es: "Que cambia al final?" },
+      answer: { en: "By the final video, your business has a clearer automation priority, a stronger lead-capture and reminder layer, a lead scoring system, and a live dashboard showing what the system is recovering.", es: "Al final del ultimo video, tu negocio tendra una prioridad de automatizacion mas clara, una capa mas fuerte de captura de leads y recordatorios, un sistema de lead scoring y un dashboard vivo mostrando lo que el sistema esta recuperando." }
+    },
+    {
+      question: { en: "Can this help before booking a Future Studio demo?", es: "Esto ayuda antes de agendar una demo con Future Studio?" },
+      answer: { en: "Yes. It helps you arrive at a demo with clearer numbers, a better idea of what should be built first, and stronger budget discipline around the next implementation step.", es: "Si. Te ayuda a llegar a una demo con numeros mas claros, una mejor idea de lo que deberia construirse primero y mas disciplina de presupuesto alrededor del siguiente paso de implementacion." }
+    }
+  ],
+  closeEyebrow: {
+    en: "Ready when you are",
+    es: "Listo cuando tu lo estes"
+  },
+  closeTitle: {
+    en: "BUILD THE <span class='grad'>ROI LAYER BEFORE MORE COMPLEXITY</span>",
+    es: "CONSTRUYE LA <span class='grad'>CAPA ROI ANTES DE MAS COMPLEJIDAD</span>"
+  },
+  closeCopy: {
+    en: "If your business already knows leads, bookings, and follow-up timing affect revenue, this series gives you a cleaner way to choose the automation layer most likely to pay back first.",
+    es: "Si tu negocio ya sabe que leads, reservas y tiempos de seguimiento afectan los ingresos, esta serie te da una forma mas clara de elegir la capa de automatizacion con mas probabilidad de pagarse primero."
+  },
+  closePoints: {
+    en: ["Best for owners who want automation tied to real commercial return", "Built to help you avoid paying for the wrong first build"],
+    es: ["Ideal para duenos que quieren automatizacion ligada a retorno comercial real", "Construida para ayudarte a evitar pagar por el build equivocado primero"]
+  },
+  closeReassurance: {
+    en: "Secure checkout, instant access, email receipt, self-paced viewing, and a practical bridge into a later demo or implementation build.",
+    es: "Checkout seguro, acceso inmediato, recibo por email, acceso a tu ritmo y un puente practico hacia una demo o implementacion posterior."
+  }
+};
+
+function renderSeriesPage() {
+  var lang = (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  var data = SERIES_PAGE_DATA;
+  var metaDescription = document.getElementById("meta-description");
+  var ogTitle = document.getElementById("og-title");
+  var ogDescription = document.getElementById("og-description");
+
+  document.title = data.title[lang];
+  if (metaDescription) metaDescription.setAttribute("content", data.metaDescription[lang]);
+  if (ogTitle) ogTitle.setAttribute("content", data.ogTitle[lang]);
+  if (ogDescription) ogDescription.setAttribute("content", data.ogDescription[lang]);
+
+  document.getElementById("hero-eyebrow").textContent = data.heroEyebrow[lang];
+  document.getElementById("hero-line-1").innerHTML = data.heroLines[lang][0];
+  document.getElementById("hero-line-2").innerHTML = data.heroLines[lang][1];
+  document.getElementById("hero-line-3").innerHTML = data.heroLines[lang][2];
+  document.getElementById("hero-copy").textContent = data.heroCopy[lang];
+  document.getElementById("hero-bridge").textContent = data.heroBridge[lang];
+  document.getElementById("hero-primary-cta").textContent = data.primaryCta[lang];
+  document.getElementById("close-primary-cta").textContent = data.primaryCta[lang];
+  document.getElementById("value-eyebrow").textContent = data.valueEyebrow[lang];
+  document.getElementById("value-title").innerHTML = data.valueTitle[lang];
+  document.getElementById("value-copy").textContent = data.valueCopy[lang];
+  document.getElementById("value-note").textContent = data.valueNote[lang];
+  document.getElementById("value-grid").innerHTML = data.valueItems.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+  document.getElementById("video-eyebrow").textContent = data.videoEyebrow[lang];
+  document.getElementById("video-title").innerHTML = data.videoTitle[lang];
+  document.getElementById("video-copy").textContent = data.videoCopy[lang];
+  var seriesVideo = document.getElementById("series-video");
+  if (seriesVideo && seriesVideo.getAttribute("src") !== data.videoSrc) {
+    seriesVideo.setAttribute("src", data.videoSrc);
+    seriesVideo.load();
+  }
+
+  document.getElementById("diag-one-eyebrow").textContent = data.diagnostic[0].eyebrow[lang];
+  document.getElementById("diag-one-title").textContent = data.diagnostic[0].title[lang];
+  document.getElementById("diag-one-copy").textContent = data.diagnostic[0].copy[lang];
+  document.getElementById("diag-one-list").innerHTML = data.diagnostic[0].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("diag-two-eyebrow").textContent = data.diagnostic[1].eyebrow[lang];
+  document.getElementById("diag-two-title").textContent = data.diagnostic[1].title[lang];
+  document.getElementById("diag-two-copy").textContent = data.diagnostic[1].copy[lang];
+  document.getElementById("diag-two-list").innerHTML = data.diagnostic[1].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("features-eyebrow").textContent = data.featuresEyebrow[lang];
+  document.getElementById("features-title").innerHTML = data.featuresTitle[lang];
+  document.getElementById("features-copy").textContent = data.featuresCopy[lang];
+  document.getElementById("feature-grid").innerHTML = data.features.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+
+  document.getElementById("before-eyebrow").textContent = data.beforeEyebrow[lang];
+  document.getElementById("before-title").innerHTML = data.beforeTitle[lang];
+  document.getElementById("before-copy").textContent = data.beforeCopy[lang];
+  document.getElementById("before-card-one-kicker").textContent = data.beforeAfter[0].kicker[lang];
+  document.getElementById("before-card-one-title").textContent = data.beforeAfter[0].title[lang];
+  document.getElementById("before-card-one-list").innerHTML = data.beforeAfter[0].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("before-card-two-kicker").textContent = data.beforeAfter[1].kicker[lang];
+  document.getElementById("before-card-two-title").textContent = data.beforeAfter[1].title[lang];
+  document.getElementById("before-card-two-list").innerHTML = data.beforeAfter[1].bullets[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+
+  document.getElementById("proof-eyebrow").textContent = data.proofEyebrow[lang];
+  document.getElementById("proof-title").innerHTML = data.proofTitle[lang];
+  document.getElementById("proof-copy").textContent = data.proofCopy[lang];
+  document.getElementById("proof-grid").innerHTML = data.proofItems.map(function(item) {
+    return "<article class='feature-card'><p class='tier'>" + item.tier[lang] + "</p><h3>" + item.title[lang] + "</h3><p>" + item.copy[lang] + "</p><p class='micro-note'>" + item.note[lang] + "</p></article>";
+  }).join("");
+
+  document.getElementById("faq-eyebrow").textContent = data.faqEyebrow[lang];
+  document.getElementById("faq-title").innerHTML = data.faqTitle[lang];
+  document.getElementById("faq-copy").textContent = data.faqCopy[lang];
+  document.getElementById("faq-list").innerHTML = data.faqs.map(function(item, index) {
+    return "<div class='faq-item'><button class='faq-question' type='button' aria-expanded='false' aria-controls='faq-" + index + "'>" + item.question[lang] + "</button><div class='faq-answer' id='faq-" + index + "' hidden>" + item.answer[lang] + "</div></div>";
+  }).join("");
+
+  document.getElementById("close-eyebrow").textContent = data.closeEyebrow[lang];
+  document.getElementById("close-title").innerHTML = data.closeTitle[lang];
+  document.getElementById("close-copy").textContent = data.closeCopy[lang];
+  document.getElementById("close-points").innerHTML = data.closePoints[lang].map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  document.getElementById("close-reassurance").textContent = data.closeReassurance[lang];
+
+  document.querySelectorAll(".faq-question").forEach(function(button) {
+    button.addEventListener("click", function() {
+      var item = button.closest(".faq-item");
+      if (!item) return;
+      var isOpen = item.classList.contains("is-open");
+      document.querySelectorAll(".faq-item").forEach(function(el) {
+        el.classList.remove("is-open");
+        var question = el.querySelector(".faq-question");
+        var answer = el.querySelector(".faq-answer");
+        if (question) question.setAttribute("aria-expanded", "false");
+        if (answer) answer.hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add("is-open");
+        button.setAttribute("aria-expanded", "true");
+        var answerEl = item.querySelector(".faq-answer");
+        if (answerEl) answerEl.hidden = false;
+      }
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", renderSeriesPage);
+document.addEventListener("tfs:langchange", renderSeriesPage);
+</script>
+  <script src="/assets/mobile-typography.js"></script>
+<script src="/assets/funnel-visuals.js?v=20260426-visuals-3"></script>
+</body>
+</html>
+
+
+
+
+
+
+

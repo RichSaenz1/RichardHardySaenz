@@ -64,6 +64,9 @@
 .page-checkout-series .field-group input { width: 100%; padding: 15px 14px; border: 2px solid rgba(255,255,255,0.18); border-radius: 0; background: rgba(255,255,255,0.04); color: var(--white); }
 .page-checkout-series .field-group input::placeholder { color: rgba(255,255,255,0.54); }
 .page-checkout-series .field-group input:focus { outline: none; border-color: var(--cyan); }
+.page-checkout-series .stripe-panel { border: 2px solid rgba(255,255,255,.24); padding: 18px; background: rgba(255,255,255,.06); display: grid; gap: 10px; }
+.page-checkout-series .stripe-panel strong { color: var(--white); font-family: var(--font-d); font-size: 18px; letter-spacing: .1em; text-transform: uppercase; }
+.page-checkout-series .stripe-panel p { margin-top: 0; color: rgba(255,255,255,.72); }
 .page-checkout-series .payment-row { margin-top: 10px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .page-checkout-series .payment-row strong { font-family: var(--font-d); font-size: 28px; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: 1; }
 .page-checkout-series .payment-row strong .order-title-main,
@@ -180,25 +183,9 @@
               <label for="checkout-name" data-en="Full Name" data-es="Nombre completo">Full Name</label>
               <input id="checkout-name" name="name" type="text" autocomplete="name" required data-en-placeholder="Your full name" data-es-placeholder="Tu nombre completo" placeholder="Your full name">
             </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-card" data-en="Card Number" data-es="Numero de tarjeta">Card Number</label>
-                <input id="checkout-card" name="card" type="text" inputmode="numeric" maxlength="19" required data-en-placeholder="1234 1234 1234 1234" data-es-placeholder="1234 1234 1234 1234" placeholder="1234 1234 1234 1234">
-              </div>
-              <div class="field-group">
-                <label for="checkout-card-name" data-en="Name on Card" data-es="Nombre en la tarjeta">Name on Card</label>
-                <input id="checkout-card-name" name="card_name" type="text" autocomplete="cc-name" required data-en-placeholder="Cardholder name" data-es-placeholder="Nombre del titular" placeholder="Cardholder name">
-              </div>
-            </div>
-            <div class="field-grid">
-              <div class="field-group">
-                <label for="checkout-expiry" data-en="Expiry" data-es="Vencimiento">Expiry</label>
-                <input id="checkout-expiry" name="expiry" type="text" inputmode="numeric" maxlength="5" required data-en-placeholder="MM/YY" data-es-placeholder="MM/AA" placeholder="MM/YY">
-              </div>
-              <div class="field-group">
-                <label for="checkout-cvc" data-en="CVC" data-es="CVC">CVC</label>
-                <input id="checkout-cvc" name="cvc" type="text" inputmode="numeric" maxlength="4" required data-en-placeholder="123" data-es-placeholder="123" placeholder="123">
-              </div>
+            <div class="stripe-panel">
+              <strong data-en="Continue to Secure Stripe Checkout" data-es="Continuar al checkout seguro de Stripe">Continue to Secure Stripe Checkout</strong>
+              <p data-en="Card details are entered on Stripe, not on this page." data-es="Los datos de la tarjeta se introducen en Stripe, no en esta pagina.">Card details are entered on Stripe, not on this page.</p>
             </div>
             <div class="payment-row">
               <div>
@@ -273,8 +260,8 @@ window.TFS_COURSE_CHECKOUT_DATA = {
     paymentKey: "stopLosingLeads",
     pageUrl: "/shop/series/stop-losing-leads.html",
     title: {
-      en: "RESERVE YOUR PLACE IN <span class='grad'>STOP LOSING LEADS</span>",
-      es: "RESERVA TU LUGAR EN <span class='grad'>STOP LOSING LEADS</span>"
+      en: "COMPLETE YOUR ORDER",
+      es: "COMPLETA TU ORDEN"
     },
     hero: {
       en: "Complete your order for Stop Losing Leads and move into the five-video system that closes the missed-lead gaps most businesses keep paying for every week.",
@@ -328,8 +315,8 @@ window.TFS_COURSE_CHECKOUT_DATA = {
     paymentKey: "firstAiSystem",
     pageUrl: "/shop/series/first-ai-system.html",
     title: {
-      en: "RESERVE YOUR PLACE IN <span class='grad'>YOUR FIRST AI SYSTEM</span>",
-      es: "RESERVA TU LUGAR EN <span class='grad'>TU PRIMER SISTEMA DE IA</span>"
+      en: "COMPLETE YOUR ORDER",
+      es: "COMPLETA TU ORDEN"
     },
     hero: {
       en: "Complete your order for From Zero to Your First AI System and move into the five-video series that takes your business from AI curiosity into a real first build.",
@@ -383,8 +370,8 @@ window.TFS_COURSE_CHECKOUT_DATA = {
     paymentKey: "buildWhatPays",
     pageUrl: "/shop/series/build-what-pays.html",
     title: {
-      en: "RESERVE YOUR PLACE IN <span class='grad'>BUILD WHAT PAYS</span>",
-      es: "RESERVA TU LUGAR EN <span class='grad'>BUILD WHAT PAYS</span>"
+      en: "COMPLETE YOUR ORDER",
+      es: "COMPLETA TU ORDEN"
     },
     hero: {
       en: "Complete your order for Build What Pays and move into the five-video series that helps your business build the highest-return automation first.",
@@ -448,9 +435,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var form = document.getElementById("checkout-form");
   var emailField = document.getElementById("checkout-email");
   var nameField = document.getElementById("checkout-name");
-  var cardField = document.getElementById("checkout-card");
-  var expiryField = document.getElementById("checkout-expiry");
-  var cvcField = document.getElementById("checkout-cvc");
 
   function activeLang() {
     return (document.documentElement.lang || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
@@ -481,24 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("order-title-main").textContent = data.orderMain[lang];
     document.getElementById("series-back-link").setAttribute("href", data.pageUrl);
   }
-
-  function sanitizeNumericInput(input, maxDigits) {
-    if (!input) return;
-    input.addEventListener("input", function() {
-      var digits = input.value.replace(/\D+/g, "").slice(0, maxDigits);
-      if (input === cardField) {
-        input.value = digits.replace(/(.{4})/g, "$1 ").trim();
-      } else if (input === expiryField) {
-        input.value = digits.length > 2 ? digits.slice(0, 2) + "/" + digits.slice(2, 4) : digits;
-      } else {
-        input.value = digits;
-      }
-    });
-  }
-
-  sanitizeNumericInput(cardField, 16);
-  sanitizeNumericInput(expiryField, 4);
-  sanitizeNumericInput(cvcField, 4);
 
   applyCopy();
   document.addEventListener("tfs:langchange", applyCopy);
