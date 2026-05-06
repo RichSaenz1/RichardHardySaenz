@@ -1,1327 +1,328 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-/* Codex Local Preview Loader */
-(function () {
-  if (location.protocol !== "file:") return;
-
-  var marker = "/Funnel/TFS_Deploy/";
-  var path = location.pathname.replace(/\\/g, "/");
-  var idx = path.indexOf(marker);
-  if (idx === -1) return;
-
-  var pagePath = path.slice(idx + marker.length);
-  var depth = Math.max(0, pagePath.split("/").length - 1);
-  var localRoot = depth ? new Array(depth + 1).join("../") : "./";
-
-  function isAbsolute(value) {
-    return /^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|\/\/|#|data:|mailto:|tel:|javascript:)/.test(value);
-  }
-
-  function toLocal(value) {
-    if (!value || isAbsolute(value)) return value;
-    if (value.charAt(0) === "/") return localRoot + value.slice(1);
-    return value;
-  }
-
-  function rewriteSrcset(value) {
-    if (!value) return value;
-    return value.split(",").map(function (part) {
-      var trimmed = part.trim();
-      if (!trimmed) return trimmed;
-      var bits = trimmed.split(/\s+/);
-      bits[0] = toLocal(bits[0]);
-      return bits.join(" ");
-    }).join(", ");
-  }
-
-  function rewriteMetaRefresh(value) {
-    if (!value) return value;
-    return value.replace(/(url=)(\/[^;]+)/i, function (_, prefix, url) {
-      return prefix + toLocal(url);
-    });
-  }
-
-  function rewriteElement(el) {
-    if (!el || el.nodeType !== 1) return;
-
-    ["href", "src", "poster", "action"].forEach(function (attr) {
-      if (!el.hasAttribute || !el.hasAttribute(attr)) return;
-      var value = el.getAttribute(attr);
-      var next = toLocal(value);
-      if (next !== value) el.setAttribute(attr, next);
-    });
-
-    if (el.hasAttribute && el.hasAttribute("srcset")) {
-      var srcset = el.getAttribute("srcset");
-      var nextSrcset = rewriteSrcset(srcset);
-      if (nextSrcset !== srcset) el.setAttribute("srcset", nextSrcset);
-    }
-
-    if (el.tagName === "META" && ((el.getAttribute("http-equiv") || "").toLowerCase() === "refresh")) {
-      var content = el.getAttribute("content");
-      var nextContent = rewriteMetaRefresh(content);
-      if (nextContent !== content) el.setAttribute("content", nextContent);
-    }
-
-    if (!el.querySelectorAll) return;
-
-    el.querySelectorAll("[href], [src], [poster], [action], [srcset], meta[http-equiv='refresh']").forEach(function (node) {
-      if (node === el) return;
-      rewriteElement(node);
-    });
-  }
-
-  rewriteElement(document.documentElement);
-
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      mutation.addedNodes.forEach(function (node) {
-        rewriteElement(node);
-      });
-    });
-  });
-
-  observer.observe(document.documentElement, { childList: true, subtree: true });
-
-  document.addEventListener("DOMContentLoaded", function () {
-    rewriteElement(document.documentElement);
-    document.querySelectorAll("video, audio").forEach(function (media) {
-      try { media.load(); } catch (error) {}
-    });
-  });
-})();
-</script><title>Starter Package | The Future Studio</title>
-<meta name="description" content="The Starter Package pairs a premium one-page website with a web and WhatsApp AI assistant for businesses building their first AI-enabled front door.">
-<link rel="icon" type="image/png" href="../../future-studio-favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --cream:#fff8f5;
-  --white:#fff;
-  --black:#080808;
-  --cyan:#00e5cc;
-  --blue:#38bdf8;
-  --violet:#9b59ff;
-  --muted:#6f6f76;
-  --line:rgba(8,8,8,.14);
-  --border-dark:rgba(10,10,10,.18);
-  --text-dark:#0a0a0a;
-  --text-mid:#444;
-  --text-muted:#777;
-  --font-d:'Barlow Condensed',sans-serif;
-  --font-b:'DM Sans',sans-serif;
-  --ease:cubic-bezier(.25,.46,.45,.94);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-b);background:var(--cream);color:var(--black);overflow-x:hidden}
-img,video{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-section,nav,footer,.marquee{position:relative;z-index:1}
-.wrap{width:min(100% - 56px,1320px);margin:0 auto}
-.wrap-narrow{width:min(100% - 56px,1040px);margin:0 auto}
-.headline-xl{font-family:var(--font-d);font-size:clamp(74px,9.2vw,178px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.82;letter-spacing:-.025em}
-.headline-lg{font-family:var(--font-d);font-size:clamp(56px,6.6vw,126px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.84;letter-spacing:-.018em}
-.headline-md{font-family:var(--font-d);font-size:clamp(40px,4vw,72px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.9}
-.headline-sm{font-family:var(--font-d);font-size:clamp(28px,2.8vw,44px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.94}
-.eyebrow{font-family:var(--font-d);font-size:18px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.eyebrow-line{display:flex;align-items:center;gap:16px}
-.eyebrow-line::before{content:"";width:54px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:block;flex:0 0 auto}
-.grad{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.body-lg{font-size:20px;line-height:1.72;color:#444;max-width:720px}
-.body-md{font-size:17px;line-height:1.7;color:#54545b}
-.body-sm{font-size:14px;line-height:1.65;color:#777}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:58px;padding:17px 34px;border:2px solid transparent;font-family:var(--font-d);font-weight:800;font-size:18px;letter-spacing:.085em;text-transform:uppercase;transition:all .22s var(--ease);white-space:nowrap}
-.btn-grad{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
-.btn-grad:hover{background:var(--black);color:var(--white);transform:translateY(-2px)}
-.btn-dark{background:var(--black);border-color:var(--black);color:var(--white)}
-.btn-dark:hover{background:var(--white);color:var(--black)}
-.btn-outline{border-color:var(--black);color:var(--black);background:transparent}
-.btn-outline:hover{background:var(--black);color:var(--white)}
-.btn-outline-dark{border-color:var(--black);color:var(--black);background:transparent}
-.btn-outline-dark:hover{background:var(--black);color:var(--white)}
-.btn-whatsapp:hover{background:#25D366!important;border-color:#25D366!important;color:var(--white)!important;box-shadow:0 10px 28px rgba(37,211,102,.32)}
-.btn-outline-light{border-color:rgba(255,255,255,.42);color:var(--white);background:transparent}
-.btn-outline-light:hover{background:var(--white);color:var(--black)}
-
-.top-urgency-bar{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--black);color:var(--white);border-bottom:1px solid rgba(255,255,255,.12)}
-.top-urgency-inner{width:min(100% - 56px,1320px);margin:0 auto;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
-.top-urgency-copy{font-size:14px;line-height:1.45;color:rgba(255,255,255,.82)}
-.top-urgency-copy strong{color:var(--white)}
-.top-urgency-copy span{color:var(--cyan)}
-.top-urgency-cta{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:9px 16px;border:1px solid rgba(255,255,255,.18);font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black);white-space:nowrap}
-.top-urgency-cta:hover{background:var(--white)}
-body.has-urgency-bar #nav{top:56px}
-
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);transition:transform .4s var(--ease),background .3s,border-color .3s;border-bottom:1px solid transparent}
-#nav.scrolled{background:rgba(255,248,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border-dark)}
-#nav.nav-hidden{transform:translateY(-100%)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:112px;padding:0 32px;max-width:100%;margin:0;gap:20px;position:relative}
-.nav-logo{display:flex;align-items:center;gap:12px}
-.nav-logo img{width:auto;height:130px;object-fit:contain;padding:18px 0}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-family:var(--font-d);font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--black);transition:all .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .25s var(--ease)}
-.nav-links a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-links a:hover::after{width:100%}
-.nav-actions{display:flex;align-items:center;gap:14px}
-.nav-linkedin{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:6px;background:var(--black);color:var(--white);transition:all .25s var(--ease);flex-shrink:0;line-height:1;font-size:0}
-.nav-linkedin svg{display:block}
-.nav-linkedin:hover{background:linear-gradient(135deg,var(--cyan),var(--violet));transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,229,204,.3)}
-.lang-toggle{display:flex;background:rgba(10,10,10,0.06);border:1px solid var(--border-dark);padding:3px;gap:2px}
-.lang-btn{padding:5px 13px;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:all .2s;background:none;border:none;cursor:pointer}
-.lang-btn.active{background:var(--black);color:var(--white)}
-.btn-sm{min-height:46px;padding:13px 25px;font-size:15px}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;width:40px}
-.nav-hamburger span{display:block;height:1.5px;background:var(--black);transition:all .3s}
-.nav-hamburger.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0}
-.nav-hamburger.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
-.nav-mobile{display:none;background:var(--cream);border-top:2px solid var(--black);padding:24px 32px 32px}
-.nav-mobile.open{display:block}
-.nav-mobile a{display:block;padding:14px 0;font-family:var(--font-d);font-size:22px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-mid);border-bottom:1px solid var(--border-dark);text-align:center}
-.nav-mobile a:hover{color:var(--black)}
-.nav-mobile .btn{margin-top:20px;width:100%;justify-content:center}
-.nav-mobile-meta{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 0 20px;margin-bottom:4px}
-.nav-mobile .lang-toggle{display:inline-flex}
-
-.hero{min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--cream);position:relative}
-.hero-body{flex:1;display:flex;align-items:center;padding:120px 0 60px;position:relative;z-index:2;width:100%}
-.orb{position:absolute;border-radius:50%;filter:blur(10px);opacity:.88;pointer-events:none;mix-blend-mode:multiply}
-.hero-orb-1{width:500px;height:500px;top:-100px;left:-150px;background:radial-gradient(circle,var(--cyan),rgba(155,89,255,.36),transparent 67%);animation:floatA 11s ease-in-out infinite}
-.hero-orb-2{width:600px;height:600px;bottom:-100px;right:-200px;background:radial-gradient(circle,rgba(155,89,255,.4),transparent 68%);animation:floatB 13s ease-in-out infinite}
-.hero-orb-3{width:150px;height:150px;top:40%;left:50%;background:radial-gradient(circle,rgba(0,229,204,.45),transparent 70%);animation:floatC 9s ease-in-out infinite;opacity:.25}
-@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(32px,24px) scale(1.08)}}
-@keyframes floatB{0%,100%{transform:translate(0,0)}50%{transform:translate(-34px,-18px)}}
-@keyframes floatC{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,-28px)}}
-.hero-content{position:relative;z-index:2;width:100%;text-align:left}
-.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:32px}
-.hero-eyebrow-line{width:48px;height:2px;background:var(--cyan);flex-shrink:0}
-.hero-h1{margin-bottom:36px}
-.hero-h1 .line{overflow:visible;display:block}
-.hero-h1 .line span{display:block;animation:slideUp .9s var(--ease) both}
-.mobile-only-break{display:none}
-.hero-h1 .line:nth-child(1) span{animation-delay:.1s}
-.hero-h1 .line:nth-child(2) span{animation-delay:.22s}
-.hero-h1 .line:nth-child(3) span{animation-delay:.34s}
-.hero-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:48px;flex-wrap:wrap;text-align:left}
-.hero-desc{max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.75;color:#323238;opacity:1;animation:fadeIn .8s .5s both}
-.hero-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start;animation:fadeIn .8s .65s both}
-.hero-full-strip{width:100%;animation:fadeIn .8s .8s both}
-.hero-stats{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--black);border-top:none}
-.stat-cell{padding:22px 16px;text-align:center;border-right:1px solid var(--border-dark);background:transparent}
-.stat-cell:last-child{border-right:none}
-.stat-num{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;line-height:1}
-.stat-num.count-cyan{color:var(--cyan)}
-.stat-num.count-violet{color:var(--violet)}
-.stat-num.count-dark{color:var(--text-dark)}
-.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;font-family:var(--font-d)}
-.hero-benefits{display:flex;flex-wrap:wrap;gap:0;border:2px solid var(--black);border-top:none}
-.hero-benefit{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 24px;border-right:1px solid var(--border-dark);flex:1;background:rgba(255,248,245,.72)}
-.hero-benefit:last-child{border-right:none}
-.hero-benefit-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex-shrink:0;animation:pulseDot 1.35s ease-in-out infinite}
-@keyframes pulseDot{0%,100%{opacity:.62;transform:scale(1);box-shadow:0 0 0 rgba(0,229,204,0)}50%{opacity:1;transform:scale(1.7);box-shadow:0 0 18px rgba(0,229,204,.72)}}
-.hero-benefit:nth-child(even) .hero-benefit-dot{animation-name:pulseDotViolet}
-@keyframes pulseDotViolet{0%,100%{opacity:.62;transform:scale(1);box-shadow:0 0 0 rgba(143,91,255,0)}50%{opacity:1;transform:scale(1.7);box-shadow:0 0 18px rgba(143,91,255,.72)}}
-@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.marquee{overflow:hidden;border-bottom:2px solid var(--black);background:var(--cream)}
-.marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 28s linear infinite;padding:18px 0}
-.marquee span{font-family:var(--font-d);font-size:27px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--black);padding:0 28px}
-.marquee .accent{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-.section{padding:110px 0}
-main{display:flex;flex-direction:column}
-#hero{order:1}
-#live-demo{order:2}
-#call-flow{order:3}
-#walkthrough{order:4}
-.marquee{order:5}
-#features{order:6}
-#proof{order:7}
-#fit{order:8}
-#process{order:9}
-#buy{order:10}
-#bonus{order:11}
-#faq{order:12}
-.final-cta{order:13}
-.section-dark{background:var(--black);color:var(--white)}
-.section-dark .body-lg,.section-dark .body-md,.section-dark .body-sm{color:rgba(255,255,255,.66)}
-.section-head{display:grid;grid-template-columns:1fr .82fr;gap:64px;align-items:end;margin-bottom:56px}
-.video-section{padding:116px 0;background:#09090b;color:var(--white)}
-.video-section .section-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;margin-bottom:58px}
-.video-section .section-head .body-lg{max-width:780px;color:rgba(255,255,255,.82)}
-.video-stage{max-width:1040px;margin:0 auto;border:1px solid rgba(255,255,255,.1);overflow:hidden}
-.video-card{position:relative;background:#111;overflow:hidden}
-.video-card video{width:100%;height:100%;min-height:560px;object-fit:cover;opacity:.72;filter:saturate(.9)}
-.video-card.large video{min-height:560px}
-.video-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.72));pointer-events:none}
-.play-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;z-index:3;pointer-events:none}
-.play-dot::before{content:"";width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:16px solid #fff;margin-left:4px}
-.video-copy{position:absolute;left:26px;right:24px;bottom:24px;z-index:3}
-.video-copy .kicker{font-family:var(--font-d);font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
-.video-copy h3{font-family:var(--font-d);font-size:36px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.92;margin-top:8px}
-
-.live-demo-section{padding:112px 0;background:var(--cream);border-bottom:2px solid var(--black)}
-.live-demo-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:58px;align-items:center}
-.live-demo-copy .body-lg{margin-top:24px}
-.live-demo-note{margin-top:26px;display:grid;gap:12px;max-width:560px}
-.live-demo-note span{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.live-demo-note span::before{content:"";width:8px;height:8px;background:var(--cyan);flex:0 0 auto;-webkit-text-fill-color:initial}
-.voice-demo-shell{position:relative;border:2px solid var(--black);background:linear-gradient(135deg,rgba(0,229,204,.16),rgba(255,248,245,.98) 42%,rgba(155,89,255,.18));box-shadow:14px 14px 0 var(--cyan);overflow:hidden}
-.voice-demo-topbar{background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px}
-.voice-live-meta{display:flex;align-items:center;gap:14px;min-width:0}
-.voice-live-dot{position:relative;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px rgba(0,229,204,.65);flex:0 0 auto}
-.voice-live-dot::after{content:"";position:absolute;inset:-7px;border:1px solid rgba(0,229,204,.6);border-radius:50%;animation:pulseDot 1.35s ease-in-out infinite}
-.voice-wave{display:flex;align-items:end;gap:3px;height:18px;margin-left:8px}
-.voice-wave i{display:block;width:4px;background:rgba(255,255,255,.72);animation:voiceWave .8s ease-in-out infinite alternate}
-.voice-wave i:nth-child(1){height:7px;animation-delay:.05s}.voice-wave i:nth-child(2){height:14px;animation-delay:.18s}.voice-wave i:nth-child(3){height:18px;animation-delay:.08s}.voice-wave i:nth-child(4){height:11px;animation-delay:.25s}.voice-wave i:nth-child(5){height:6px;animation-delay:.34s}
-@keyframes voiceWave{from{transform:scaleY(.55);opacity:.45}to{transform:scaleY(1.15);opacity:1}}
-.voice-live-title{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
-.voice-timer-pill{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.12em;border:1px solid rgba(255,255,255,.28);padding:7px 10px;background:rgba(255,255,255,.08)}
-.voice-transcript{min-height:390px;max-height:460px;overflow-y:auto;padding:30px;display:grid;gap:18px;align-content:start;background:rgba(255,255,255,.66)}
-.voice-message{display:flex;gap:14px;align-items:flex-start;animation:fadeIn .28s ease-out both}
-.voice-message.user{flex-direction:row-reverse}
-.voice-avatar{width:42px;height:42px;border:2px solid var(--black);background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:18px;font-weight:800;letter-spacing:.06em;flex:0 0 auto}
-.voice-message.assistant .voice-avatar{background:linear-gradient(135deg,var(--cyan),var(--violet));color:var(--black)}
-.voice-bubble{max-width:78%;border:2px solid var(--black);background:var(--white);padding:18px 20px;color:var(--text-dark);font-size:16px;line-height:1.58;box-shadow:6px 6px 0 rgba(0,229,204,.2)}
-.voice-message.user .voice-bubble{background:var(--black);color:var(--white);box-shadow:6px 6px 0 rgba(155,89,255,.25)}
-.voice-message.partial{opacity:.72}
-.voice-demo-footer{padding:22px 30px 28px;background:var(--white);border-top:2px solid var(--black)}
-.voice-demo-status{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.voice-demo-status span{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
-.voice-progress{height:9px;background:rgba(8,8,8,.12);flex:1;overflow:hidden}
-.voice-progress div{width:72%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet));animation:voiceProgress 1.5s ease-in-out infinite alternate}
-@keyframes voiceProgress{from{width:34%}to{width:86%}}
-.voice-call-btn{width:100%;min-height:66px}
-.voice-call-btn.is-loading,.voice-call-btn.is-active{background:var(--black);color:var(--white)}
-.voice-call-btn.is-active{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
-.cta-row-inline{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-.compare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:34px}
-.compare-card{border:2px solid var(--black);background:var(--white);padding:28px 26px;display:flex;flex-direction:column;gap:16px;transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),color .22s var(--ease)}
-.compare-card:hover{transform:translate(-7px,-8px);box-shadow:10px 10px 0 var(--cyan)}
-.compare-card ul{list-style:none;display:grid;gap:12px}
-.compare-card li{position:relative;padding-left:18px;font-size:15px;line-height:1.65;color:var(--text-mid)}
-.compare-card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--cyan)}
-.compare-kicker{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
-.compare-card h3{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
-.bonus-strip{border:2px solid var(--black);background:linear-gradient(135deg,var(--cyan),#dffdf8 45%,var(--blue));padding:36px 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
-.bonus-strip .body-md{color:#173936}
-.price-fit{margin:0 0 22px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.55}
-
-#features{background:var(--black);color:var(--white)}
-#features .body-lg,#features .body-md,#features .body-sm{color:rgba(255,255,255,.72)}
-#features .section-head{align-items:end}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--cyan);background:var(--cyan);box-shadow:0 0 0 1px rgba(0,229,204,.3)}
-.feature-card{min-height:260px;padding:36px;border:0;transition:all .22s ease;background:var(--white);color:var(--black)}
-.feature-card:nth-child(3n){border-right:0}
-.feature-card:nth-child(n+4){border-bottom:0}
-.feature-card:hover{background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));color:var(--black);transform:translate(-7px,-8px);box-shadow:10px 10px 0 var(--white)}
-.feature-card p,.feature-card .body-md{color:var(--text-dark)!important}
-.feature-card:hover p,.feature-card:hover .body-md{color:var(--black)!important}
-.feature-card:hover .feature-num{color:var(--white);background:none;-webkit-text-fill-color:var(--white)}
-.feature-num{font-family:var(--font-d);font-size:44px;font-weight:800;font-style:italic;color:var(--cyan);background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:22px}
-.feature-title{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.96;margin-bottom:16px}
-.image-row{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:stretch;margin-top:76px}
-.image-frame{border:2px solid var(--black);box-shadow:14px 14px 0 transparent;background:var(--black);overflow:visible;position:relative;isolation:isolate}
-.image-frame::after{content:"";position:absolute;left:14px;right:-14px;bottom:-14px;height:14px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
-.image-frame::before{content:"";position:absolute;top:14px;right:-14px;bottom:-14px;width:14px;background:linear-gradient(180deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
-.image-frame img{position:relative;z-index:1;display:block;width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center 42%}
-.black-box{background:var(--black);color:var(--white);border:2px solid var(--black);box-shadow:14px 14px 0 transparent;padding:46px;position:relative;isolation:isolate}
-.black-box::after{content:"";position:absolute;left:14px;right:-14px;bottom:-14px;height:14px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
-.black-box::before{content:"";position:absolute;top:14px;right:-14px;bottom:-14px;width:14px;background:linear-gradient(180deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
-.black-box>*{position:relative;z-index:1}
-.black-box .body-md{color:rgba(255,255,255,.7)}
-
-.process-section{background:var(--white);background-image:linear-gradient(rgba(8,8,8,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,8,.045) 1px,transparent 1px);background-size:130px 130px}
-.process-head{display:grid;grid-template-columns:1fr;gap:80px;align-items:center;margin-bottom:58px}
-.process-list{border-top:2px solid var(--black)}
-.process-row{display:grid;grid-template-columns:110px minmax(270px,.8fr) 1fr 40px;gap:34px;align-items:center;border-bottom:2px solid var(--black);padding:34px 0}
-.process-num{font-family:var(--font-d);font-size:58px;font-weight:800;font-style:italic;line-height:1;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.process-title{font-family:var(--font-d);font-size:48px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.92}
-.process-time{font-family:var(--font-d);font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--violet),#d93cff 48%,var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:8px}
-.process-arrow{font-family:var(--font-d);font-size:36px;font-weight:800;font-style:italic;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-.pricing-dark{background:#09090b;color:var(--white);padding:118px 0}
-.price-intro{text-align:center;margin:0 auto 54px;max-width:790px}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.16)}
-.pricing-card{padding:34px 34px 38px;border-right:1px solid rgba(255,255,255,.16);min-height:440px;display:flex;flex-direction:column}
-.pricing-card:last-child{border-right:0}
-.pricing-card.featured{outline:1px solid var(--cyan);background:rgba(0,229,204,.055)}
-.badge{display:inline-flex;align-self:flex-start;padding:6px 10px;background:rgba(0,229,204,.13);color:var(--cyan);font-family:var(--font-d);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
-.pricing-card h3{font-family:var(--font-d);font-size:38px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
-.from{font-family:var(--font-d);font-size:56px;font-weight:800;font-style:italic;line-height:1;margin:22px 0 18px;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.pricing-card ul{list-style:none;display:grid;gap:11px;margin:12px 0 28px}
-.pricing-card li{display:flex;gap:10px;color:rgba(255,255,255,.7);font-size:15px;line-height:1.45}
-.pricing-card li::before{content:"";width:9px;height:9px;background:var(--cyan);margin-top:7px;flex:0 0 auto}
-.pricing-card .btn{margin-top:auto;width:100%}
-.pricing-dark .btn-grad:hover,.pricing-dark .btn-outline-light:hover{background:var(--white);border-color:var(--white);color:var(--black);transform:translateY(-2px)}
-
-.faq-section{padding:118px 0;background:var(--cream)}
-.faq-head{text-align:center;max-width:760px;margin:0 auto 54px}
-.faq-list{width:100%;max-width:1320px;margin:0 auto;border-top:1px solid rgba(8,8,8,.18)}
-.faq-item{border-bottom:1px solid rgba(8,8,8,.18)}
-.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:24px 0;font-family:var(--font-d);font-size:26px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1.05;cursor:pointer}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-plus{width:34px;height:34px;border:2px solid rgba(8,8,8,.18);display:flex;align-items:center;justify-content:center;font-family:var(--font-b);font-size:24px;font-style:normal;font-weight:400;flex:0 0 auto;transition:all .2s ease}
-.faq-item[open] .faq-plus{background:var(--black);color:var(--white);transform:rotate(45deg)}
-.faq-item p{max-width:none;width:100%;padding:0 0 24px;color:#555;font-size:17px;line-height:1.72}
-
-.final-cta{padding:118px 0;background:linear-gradient(135deg,var(--cyan),#17d8c6 42%,var(--blue));text-align:center}
-.final-cta p{margin:22px auto 32px;color:#153336}
-footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
-.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start}
-.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.footer-logo img{width:auto;height:80px;object-fit:contain;filter:invert(1)}
-.footer-logo-text{font-family:var(--font-d);font-size:24px;font-weight:800;font-style:italic;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);max-width:360px;line-height:1.65}
-.footer-col h5{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s}
-.footer-col a:hover{color:var(--cyan)}
-.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
-
-#whatsapp-btn{position:fixed;right:26px;bottom:26px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(37,211,102,.36);transition:all .22s ease}
-#whatsapp-btn:hover{background:#25D366;color:#fff;box-shadow:0 10px 36px rgba(37,211,102,.48);transform:scale(1.06)}
-#whatsapp-btn svg{width:28px;height:28px}
-#scroll-top{position:fixed;right:28px;bottom:96px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);opacity:0;pointer-events:none;transition:all .22s ease;display:flex;align-items:center;justify-content:center;font-size:24px}
-#scroll-top.visible{opacity:1;pointer-events:auto}
-#scroll-top:hover{background:var(--cyan);color:var(--black)}
-.vapi-float{position:fixed;left:18px;bottom:18px;z-index:99999;pointer-events:none}
-.vapi-float vapi-widget{pointer-events:auto;display:block;max-width:calc(100vw - 36px)}
-
-@media(max-width:1100px){
-  .top-urgency-inner{width:min(100% - 32px,1320px)}
-  .top-urgency-copy{font-size:13px}
-  .nav-links,.nav-actions{display:none}
-  .nav-inner{height:126px;justify-content:center;align-items:flex-start;padding-top:2px}
-  .nav-logo img{height:98px;padding:5px 0}
-  .nav-hamburger{display:flex;position:absolute;left:50%;top:76px;transform:translateX(-50%)}
-  .nav-mobile{text-align:center}
-  .hero-body{padding:150px 0 60px}
-  .hero-bottom,.section-head,.image-row,.process-head{grid-template-columns:1fr;text-align:center}
-  .hero-bottom{gap:28px}
-  .hero-actions{align-items:center}
-  .hero-stats{grid-template-columns:repeat(3,1fr)}
-  .hero-benefit{flex:1 1 45%;justify-content:center;border-bottom:1px solid var(--border-dark)}
-  .video-card video,.video-card.large video{min-height:480px}
-  .live-demo-grid{grid-template-columns:1fr;text-align:center}
-  .live-demo-copy .body-lg,.live-demo-note{margin-left:auto;margin-right:auto}
-  .live-demo-note span{justify-content:center}
-  .compare-grid,.bonus-strip{grid-template-columns:1fr}
-  .feature-grid,.pricing-grid{grid-template-columns:1fr}
-  .feature-card,.pricing-card{border-right:0!important;border-bottom:1px solid var(--black)}
-  .pricing-card{border-bottom-color:rgba(255,255,255,.16)}
-  .process-row{grid-template-columns:74px 1fr;align-items:start}
-  .process-row .body-md{grid-column:2}
-  .process-arrow{display:none}
-  .footer-inner{grid-template-columns:1fr;text-align:center;justify-items:center}
-  .footer-logo{justify-content:center}
-  .footer-col ul{justify-items:center}
-}
-@media(max-width:680px){
-  .top-urgency-inner{width:min(100% - 26px,480px);min-height:unset;align-items:flex-start;flex-direction:column;padding:12px 0}
-  .top-urgency-cta{width:100%}
-  .wrap,.wrap-narrow{width:min(100% - 38px,480px)}
-  .headline-xl{font-size:clamp(34px,10vw,48px);line-height:.9;text-align:center;max-width:100%;overflow:visible}
-  .headline-lg{font-size:clamp(46px,13vw,68px);text-align:center}
-  .headline-md{text-align:center}
-  .body-lg,.body-md{text-align:center}
-  .hero{min-height:auto}
-  .hero-body{display:block;padding:118px 0 42px}
-  .hero-content{text-align:center}
-  .hero-h1{max-width:100%;overflow:visible;margin-bottom:24px}
-  .hero-h1 .line span{white-space:normal}
-  .hero-eyebrow .eyebrow{font-size:10px;line-height:1.25;letter-spacing:.22em;max-width:230px}
-  .mobile-only-break{display:block}
-  .hero-eyebrow{justify-content:center;margin:0 auto 22px;gap:10px;max-width:320px}
-  .hero-eyebrow-line{width:34px}
-  .hero-bottom{justify-content:center}
-  .hero-desc{max-width:330px;margin:0 auto;font-size:16px;line-height:1.65}
-  .hero-actions{width:100%;max-width:330px;margin:0 auto}
-  .btn{width:100%;white-space:normal;text-align:center}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .stat-cell:nth-child(5){grid-column:1/3;border-top:1px solid var(--border-dark)}
-  .stat-cell:nth-child(2n){border-right:0}
-  .hero-benefits{display:block}
-  .hero-benefit{border-right:0;border-bottom:1px solid var(--border-dark);justify-content:center}
-  .marquee span{font-size:21px}
-  .section,.video-section,.live-demo-section,.pricing-dark,.faq-section,.final-cta{padding:76px 0}
-  .section-head{gap:24px;margin-bottom:34px}
-  .video-stage{display:block;min-height:0}
-  .video-card video,.video-card.large video{min-height:340px;aspect-ratio:4/5}
-  .voice-demo-shell{box-shadow:9px 9px 0 var(--cyan)}
-  .voice-demo-topbar{align-items:flex-start;flex-direction:column}
-  .voice-live-title{white-space:normal}
-  .voice-transcript{min-height:330px;max-height:420px;padding:22px 18px}
-  .voice-bubble{max-width:84%;font-size:15px;text-align:left}
-  .voice-demo-footer{padding:20px 18px 22px}
-  .voice-demo-status{display:block}
-  .voice-demo-status span{display:block;margin-bottom:12px;text-align:center}
-  .feature-card{text-align:center;padding:30px}
-  .compare-card,.bonus-strip{text-align:center}
-  .image-frame img{aspect-ratio:4/3;min-height:0}
-  .black-box{padding:32px;text-align:center}
-  .process-row{grid-template-columns:1fr;text-align:center;gap:12px;padding:30px 0}
-  .process-row .body-md{grid-column:auto}
-  .process-num{font-size:50px}
-  .process-title{font-size:42px}
-  .pricing-card{text-align:center}
-  .pricing-card li{text-align:left}
-  .badge{align-self:center}
-  .faq-item summary{font-size:22px;text-align:left}
-  #whatsapp-btn{right:18px;bottom:20px}
-  #scroll-top{right:20px;bottom:88px}
-  .vapi-float{left:14px;bottom:82px}
-}
-
-
-/* Generated subpage polish: keeps the system/package/academy pages aligned with the main landing page. */
-.generated-subpage .hero{min-height:auto;overflow:hidden}
-.generated-subpage .hero-body{padding:clamp(94px,10vw,148px) 0 72px}
-.generated-subpage .hero-content{max-width:1220px;margin:0 auto}
-.generated-subpage .hero-actions .btn-grad{background:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple));color:var(--black);border:2px solid transparent}
-.generated-subpage .hero-actions .btn-grad:hover,
-.generated-subpage .final-cta .btn-dark:hover,
-.generated-subpage .pricing-card .btn-grad:hover,
-.generated-subpage .bonus-strip .btn-dark:hover{background:var(--white);color:var(--black);border-color:var(--black)}
-.generated-subpage .section{padding:clamp(82px,8vw,132px) 0}
-.generated-subpage .feature-grid{border-color:var(--cyan)}
-.generated-subpage .feature-card{background:var(--white);color:var(--black);border-color:var(--cyan)}
-.generated-subpage .feature-card:hover{background:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple));box-shadow:10px 10px 0 var(--black)}
-.generated-subpage .feature-card:hover .feature-num,
-.generated-subpage .feature-card:hover .feature-title,
-.generated-subpage .feature-card:hover .body-md{color:var(--black)}
-.generated-subpage .btn-email-white{background:var(--white);color:var(--black);border:2px solid var(--black)}
-.generated-subpage .btn-email-white:hover{background:var(--black);color:var(--white)}
-.generated-subpage .site-footer{background:var(--black);color:var(--white)}
-.generated-subpage .footer-logo img{height:92px;width:auto;object-fit:contain;filter:invert(1)}
-@media (max-width: 760px){
-  .generated-subpage .hero-body{padding:70px 0 44px}
-  .generated-subpage .hero-content{text-align:center}
-  .generated-subpage .hero-eyebrow{justify-content:center}
-  .generated-subpage .hero-actions{justify-content:center}
-  .generated-subpage .footer-logo img{height:76px}
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starter Package | The Future Studio</title>
+  <meta name="description" content="Starter Package from The Future Studio. A focused starter package for businesses that need a professional one-page website, a simple AI assistant, and a clearer way to capture enquiries.">
+  <link rel="canonical" href="https://thefuturestudio.online/packages/starter/">
+  <meta property="og:title" content="Starter Package | The Future Studio">
+  <meta property="og:description" content="Starter Package from The Future Studio. A focused starter package for businesses that need a professional one-page website, a simple AI assistant, and a clearer way to capture enquiries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thefuturestudio.online/packages/starter/">
+  <meta property="og:image" content="https://thefuturestudio.online/assets/funnel-images/digital-product-dashboard-mockup-wide.png">
+  <link rel="icon" href="/future-studio-favicon.png">
+  <style>
+    :root{--black:#050505;--white:#fffaf5;--paper:#fff7f1;--muted:#5e5e64;--line:#111;--cyan:#11d4c1;--blue:#42b8f5;--purple:#9b55ff;--grad:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple));--font-condensed:"Arial Narrow","Impact",sans-serif;--font-body:"Trebuchet MS","Segoe UI",sans-serif}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--black);font-family:var(--font-body);overflow-x:hidden} a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .page-bg{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 8% 12%,rgba(17,212,193,.42),transparent 18%),radial-gradient(circle at 84% 22%,rgba(155,85,255,.16),transparent 18%),radial-gradient(circle at 72% 75%,rgba(66,184,245,.16),transparent 22%),var(--paper)}
+    .container{width:min(1440px,calc(100% - 64px));margin:0 auto}.section{padding:clamp(82px,8vw,132px) 0}.light-section{background:rgba(255,250,245,.68)}.dark-section{background:var(--black);color:var(--white)}
+    .site-header{height:96px;background:rgba(255,250,245,.92);border-bottom:1px solid rgba(0,0,0,.12);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 34px;position:relative;z-index:20}.nav-left,.nav-right{display:flex;align-items:center;gap:30px}.nav-right{justify-content:flex-end}.nav-left a,.lang-toggle,.btn{font-family:var(--font-condensed);font-weight:900;text-transform:uppercase;letter-spacing:.1em}.brand-logo img{height:64px;width:auto}.lang-toggle{display:flex;border:2px solid var(--black)}.lang-toggle span{padding:9px 12px}.lang-toggle span:first-child{background:var(--black);color:var(--white)}
+    .mobile-menu{display:none;width:56px;height:56px;border:2px solid var(--black);background:transparent;place-items:center}.mobile-menu span,.mobile-menu:before,.mobile-menu:after{content:"";display:block;width:24px;height:2px;background:var(--black);margin:4px 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:18px 30px;border:2px solid var(--black);font-size:15px;line-height:1;background:transparent;cursor:pointer}.btn-grad{background:var(--grad);color:var(--black);border-color:transparent}.btn-grad:hover,.btn-dark:hover{background:var(--white);color:var(--black);border-color:var(--black)}.btn-dark{background:var(--black);color:var(--white)}.btn-white{background:var(--white);color:var(--black)}
+    .hero{min-height:calc(100vh - 96px);display:flex;align-items:center;padding:72px 0 0}.hero-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:60px;align-items:center}.eyebrow{font-family:var(--font-condensed);font-weight:900;text-transform:uppercase;letter-spacing:.32em;color:var(--cyan);font-size:16px}.eyebrow:before{content:"";display:inline-block;width:64px;height:3px;background:var(--grad);margin-right:18px;vertical-align:middle}.headline-xl,.headline-lg,.headline-md{font-family:var(--font-condensed);font-style:italic;font-weight:900;text-transform:uppercase;line-height:.88;margin:0}.headline-xl{font-size:clamp(68px,8.8vw,168px);letter-spacing:-.04em}.headline-lg{font-size:clamp(56px,6vw,116px);letter-spacing:-.035em}.headline-md{font-size:clamp(44px,4.5vw,84px);letter-spacing:-.03em}.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.body-lg{font-size:clamp(20px,1.7vw,28px);line-height:1.55;color:#3f3f46;max-width:820px}.body-md,.feature-card p,.price-card li,.faq p{font-size:18px;line-height:1.65;color:#34343b}.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
+    .hero-visual{border:2px solid var(--black);background:var(--black);box-shadow:14px 14px 0 var(--cyan);overflow:hidden}.hero-visual img{width:100%;height:460px;object-fit:cover;object-position:center}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--black);border-bottom:2px solid var(--black);background:rgba(255,250,245,.72)}.stat{padding:30px 20px;text-align:center;border-right:1px solid rgba(0,0,0,.16)}.stat:last-child{border-right:0}.stat strong{display:block;font-family:var(--font-condensed);font-style:italic;font-size:34px;text-transform:uppercase}.stat:nth-child(odd) strong{color:var(--cyan)}.stat:nth-child(even) strong{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.stat span{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.16em;color:#8b8b91;font-size:12px}
+    .video-section{background:#07070a;color:var(--white);padding:110px 0}.video-heading{text-align:center;max-width:940px;margin:0 auto 56px}.video-heading p{color:#b9bac1}.video-card{width:min(920px,100%);margin:0 auto;border:2px solid #222;background:#111;position:relative;overflow:hidden}.video-card img{width:100%;height:520px;object-fit:cover;opacity:.55}.play{position:absolute;inset:0;display:grid;place-items:center}.play span{width:88px;height:88px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:34px}
+    .marquee{border-top:2px solid var(--black);border-bottom:2px solid var(--black);overflow:hidden;background:var(--paper);white-space:nowrap}.marquee-track{display:inline-flex;gap:34px;align-items:center;padding:22px 0;animation:marquee 28s linear infinite}.marquee span{font-family:var(--font-condensed);font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:26px}.marquee .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:58px}.section-head p{max-width:640px}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--cyan);background:var(--white)}.feature-card{min-height:300px;padding:56px 46px;border-right:1px solid var(--cyan);border-bottom:1px solid var(--cyan);transition:.22s ease}.feature-card:nth-child(3n){border-right:0}.feature-card:nth-last-child(-n+3){border-bottom:0}.feature-card:hover{background:var(--grad);box-shadow:10px 10px 0 var(--black);transform:translate(-4px,-4px)}.feature-num,.process-num{font-family:var(--font-condensed);font-style:italic;font-weight:900;font-size:48px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.feature-card:hover .feature-num{color:var(--white);background:none}.feature-card h3,.process-title,.price-card h3{font-family:var(--font-condensed);font-style:italic;font-size:34px;line-height:.95;text-transform:uppercase}.feature-card p{margin:0}
+    .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch}.trust-image,.trust-copy{background:var(--black);border:2px solid var(--black);box-shadow:14px 14px 0 var(--cyan)}.trust-image{overflow:hidden}.trust-image img{width:100%;height:100%;min-height:520px;object-fit:cover;object-position:center}.trust-copy{padding:70px;color:var(--white);box-shadow:14px 14px 0 transparent;border-image:linear-gradient(120deg,var(--cyan),var(--blue),var(--purple)) 1}.trust-copy p{color:#d7d7dd}
+    .process{background:var(--white);background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:120px 120px}.process-row{display:grid;grid-template-columns:120px 1fr 1.4fr 48px;gap:32px;align-items:center;border-top:2px solid var(--black);padding:40px 0}.process-row:last-child{border-bottom:2px solid var(--black)}.process-name span{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.2em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}.process-row p{font-size:20px;color:#555965;line-height:1.5}.process-slash{font-size:44px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .pricing-wrap{text-align:center;max-width:940px;margin:0 auto 58px}.pricing-wrap p{margin-left:auto;margin-right:auto;color:#bfc0c7}.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #242428}.price-card{text-align:left;padding:46px;border-right:1px solid #242428;min-height:560px;display:flex;flex-direction:column}.price-card:last-child{border-right:0}.price-card.featured{background:linear-gradient(145deg,rgba(17,212,193,.12),rgba(155,85,255,.14));border:1px solid var(--cyan)}.price-badge{align-self:flex-start;background:rgba(17,212,193,.14);color:var(--cyan);font-family:var(--font-condensed);font-weight:900;text-transform:uppercase;letter-spacing:.12em;padding:10px 13px}.price{font-family:var(--font-condensed);font-style:italic;font-weight:900;font-size:56px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.price-card ul{list-style:none;padding:0;margin:20px 0 34px}.price-card li{color:#d8d8de;margin:10px 0}.price-card li:before{content:"";display:inline-block;width:10px;height:10px;background:var(--cyan);margin-right:12px}.price-card .btn{margin-top:auto;width:100%}
+    .faq-list{max-width:1040px;margin:50px auto 0}.faq-list details{border-top:1px solid rgba(0,0,0,.18);padding:22px 0}.faq-list details:last-child{border-bottom:1px solid rgba(0,0,0,.18)}.faq-list summary{cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-family:var(--font-condensed);font-style:italic;font-weight:900;text-transform:uppercase;font-size:24px}.faq-list p{max-width:980px}
+    .final-cta{background:var(--grad);text-align:center;padding:115px 24px}.final-cta p{margin-left:auto;margin-right:auto;color:#202026}.final-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}.email-row{margin-top:24px}.email-row a{text-decoration:underline;font-weight:700}
+    .site-footer{background:var(--black);color:var(--white);padding:74px 0 34px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:70px}.footer-logo img{height:86px;width:auto;object-fit:contain}.footer-grid h4{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.18em;color:var(--cyan)}.footer-grid ul{list-style:none;padding:0;margin:0}.footer-grid li{margin:12px 0}.footer-bottom{border-top:1px solid #252529;margin-top:52px;padding-top:28px;text-align:center;color:#8d8f99}.float-ai{position:fixed;left:22px;bottom:22px;background:#050505;color:var(--cyan);border-radius:999px;padding:15px 20px;font-weight:900;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.22)}.float-wa{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-weight:900;z-index:50}.to-top{position:fixed;right:34px;bottom:96px;color:#fff;font-size:30px;z-index:50}
+    .demo-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:58px;align-items:center}.demo-shell{border:2px solid var(--black);background:var(--white);box-shadow:14px 14px 0 var(--cyan)}.demo-top{height:74px;background:var(--black);color:var(--white);display:flex;align-items:center;gap:14px;padding:0 28px;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.12em}.pulse-dot{width:22px;height:22px;border-radius:50%;background:var(--cyan);box-shadow:0 0 22px var(--cyan)}.audio-bars span{display:inline-block;width:5px;background:#888;margin-right:3px;vertical-align:bottom}.audio-bars span:nth-child(1){height:14px}.audio-bars span:nth-child(2){height:24px}.audio-bars span:nth-child(3){height:18px}.audio-bars span:nth-child(4){height:30px}.transcript{min-height:300px;max-height:390px;overflow:auto;padding:28px;display:grid;gap:14px}.voice-message{padding:16px 18px;border:2px solid var(--black);background:var(--white)}.voice-message.ai{box-shadow:8px 8px 0 rgba(17,212,193,.24)}.voice-message.user{background:var(--black);color:var(--white);justify-self:end}.voice-call-btn{width:calc(100% - 56px);margin:0 28px 22px}.demo-meta{display:flex;gap:10px;padding:0 28px 28px;flex-wrap:wrap}.demo-meta span{background:#eef8f6;padding:9px 12px;font-size:13px;font-weight:800}
+    @media (max-width: 980px){.site-header{grid-template-columns:1fr auto 1fr;height:104px;padding:0 18px}.nav-left,.nav-right{display:none}.mobile-menu{display:grid;justify-self:end}.brand-logo img{height:64px}.hero{min-height:auto;padding:56px 0 0}.hero-inner,.section-head,.trust-grid,.demo-grid{grid-template-columns:1fr}.container{width:min(100% - 34px,720px)}.hero-copy{text-align:center}.eyebrow:before{display:none}.headline-xl{font-size:clamp(50px,14vw,86px)}.hero-actions{justify-content:center}.hero-visual img,.trust-image img,.video-card img{height:auto;min-height:0}.stats{grid-template-columns:repeat(2,1fr)}.feature-grid,.pricing-grid{grid-template-columns:1fr}.feature-card,.feature-card:nth-child(3n),.feature-card:nth-last-child(-n+3),.price-card{border-right:0;border-bottom:1px solid var(--cyan)}.process-row{grid-template-columns:1fr;text-align:center}.footer-grid{grid-template-columns:1fr;text-align:center}.footer-logo img{margin:0 auto}.section{padding:72px 0}.float-ai{display:none}.final-actions{flex-direction:column}.btn{width:100%}}
+  </style>
 </head>
-<body class="has-urgency-bar generated-subpage">
-<canvas id="bg-canvas"></canvas>
-
-<div class="top-urgency-bar">
-  <div class="top-urgency-inner">
-    <p class="top-urgency-copy" data-en="May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span>" data-es="Cupos de implementacion de mayo ya abiertos. <strong>3 builds de voice agent disponibles este mes.</strong> <span>Agenda tu demo gratuita antes de que se llenen.</span>">May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span></p>
-    <a class="top-urgency-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book demo" data-es="Agendar demo">Book demo</a>
-  </div>
-</div>
-
-<nav id="nav">
-  <div class="nav-inner">
-    <div class="nav-links">
-      <a href="../../#services" data-en="Services" data-es="Servicios">Services</a>
-      <a href="../../academy/" data-en="Academy" data-es="Academia">Academy</a>
-      <a href="../../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-      <a href="../../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
-      <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+<body>
+  <div class="page-bg"></div>
+  <header class="site-header">
+    <nav class="nav-left" aria-label="Main navigation">
+      <a href="/#services">Services</a>
+      <a href="/academy/">Academy</a>
+      <a href="/#packages">Packages</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <a class="brand-logo" href="/" aria-label="The Future Studio home"><img src="/assets/future-studio-logo.png" alt="The Future Studio"></a>
+    <div class="nav-right">
+      <div class="lang-toggle" aria-label="Language"><span>EN</span><span>ES</span></div>
+      <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Book a Free Demo</a>
     </div>
-    <a href="../../#hero" class="nav-logo" style="position:absolute;left:50%;transform:translateX(-50%)" aria-label="The Future Studio home">
-      <img src="../../logo.png" alt="The Future Studio">
-    </a>
-    <div class="nav-actions">
-      <a href="https://www.linkedin.com/in/richard-hardy" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <div class="lang-toggle" id="lang-toggle-d">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-      </div>
-      <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad btn-sm" data-en="Book a Free Demo" data-es="Agendar demo gratuita">Book a Free Demo</a>
-    </div>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-  <div class="nav-mobile" id="nav-mobile">
-    <div class="nav-mobile-meta">
-      <div class="lang-toggle" id="lang-toggle-m">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-      </div>
-    </div>
-    <a href="../../#services" data-en="Services" data-es="Servicios">Services</a>
-    <a href="../../academy/" data-en="Academy" data-es="Academia">Academy</a>
-    <a href="../../#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="../../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
-    <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
-  </div>
-</nav>
+    <button class="mobile-menu" aria-label="Open menu"><span></span></button>
+  </header>
 
-<main>
-  <section class="hero" id="hero">
-    <div class="orb hero-orb-1"></div>
-    <div class="orb hero-orb-2"></div>
-    <div class="orb hero-orb-3"></div>
-    <div class="hero-body">
-      <div class="wrap">
-        <div class="hero-content">
-          <div class="hero-eyebrow">
-            <span class="hero-eyebrow-line"></span>
-            <span class="eyebrow" data-en="Product package" data-es="Product package">Product package</span>
-          </div>
-          <h1 class="hero-h1 headline-xl"><span class="line"><span>STARTER</span></span><span class="line"><span class="grad">PACKAGE</span></span></h1>
-          <div class="hero-bottom">
-            <p class="hero-desc" data-en="Best for businesses that need a premium one-page website, a web assistant, and WhatsApp support so customers understand the offer and know exactly how to take the next step." data-es="Best for businesses that need a premium one-page website, a web assistant, and WhatsApp support so customers understand the offer and know exactly how to take the next step.">Best for businesses that need a premium one-page website, a web assistant, and WhatsApp support so customers understand the offer and know exactly how to take the next step.</p>
-            <div class="hero-actions">
-              <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad btn-lg" data-en="Book a Free Demo" data-es="Book a Free Demo">Book a Free Demo</a>
-              <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-outline-dark btn-whatsapp" data-en="WhatsApp About Starter" data-es="WhatsApp About Starter">WhatsApp About Starter</a>
-            </div>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">AI SYSTEM PACKAGE</p>
+          <h1 class="headline-xl">START <span class="grad-text">WITH</span> A CLEAN DIGITAL FRONT DOOR</h1>
+          <p class="body-lg">A focused starter package for businesses that need a professional one-page website, a simple AI assistant, and a clearer way to capture enquiries.</p>
+          <div class="hero-actions">
+            <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Book a Free Starter Demo</a>
+            <a class="btn btn-white" href="https://wa.me/50766753870?text=Hi%20The%20Future%20Studio%2C%20I%20would%20like%20to%20book%20a%20demo.">WhatsApp About Starter</a>
           </div>
         </div>
+        <div class="hero-visual"><img src="/assets/funnel-images/digital-product-dashboard-mockup-wide.png" alt="Digital front door with website and AI assistant shown across devices."></div>
       </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat"><strong>ONE PAGE</strong><span>Website</span></div><div class="stat"><strong>AI</strong><span>Assistant</span></div><div class="stat"><strong>WHATSAPP</strong><span>Handoff</span></div><div class="stat"><strong>BASIC SEO</strong><span>Included</span></div>
     </div>
+
+    <section class="video-section" id="video">
+      <div class="container">
+        <div class="video-heading">
+          <p class="eyebrow">Starter Package walkthrough</p>
+          <h2 class="headline-lg">SEE THE STARTER PACKAGE</h2>
+          <p class="body-lg">See how the starter package gives your business a cleaner first impression and a better enquiry path.</p>
+          <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch the Product Video</a>
+        </div>
+        <div class="video-card">
+          <img src="/assets/funnel-images/digital-product-dashboard-mockup-wide.png" alt="Digital front door with website and AI assistant shown across devices.">
+          <div class="play"><span>Play</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">
+      <span class="accent">ONE PAGE Website</span><span class="">AI Assistant</span><span class="accent">WHATSAPP Handoff</span><span class="">BASIC SEO Included</span><span class="accent">ONE PAGE Website</span><span class="">AI Assistant</span><span class="accent">WHATSAPP Handoff</span><span class="">BASIC SEO Included</span><span class="accent">ONE PAGE Website</span><span class="">AI Assistant</span><span class="accent">WHATSAPP Handoff</span><span class="">BASIC SEO Included</span>
+    </div></div>
+
     
-      <div class="hero-full-strip">
-        <div class="hero-stats">
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">What gets installed</p>
+            <h2 class="headline-lg">WHAT YOU RECEIVE IN THE STARTER PACKAGE</h2>
+          </div>
+          <p class="body-lg">This package gives you the essential digital layer before you invest in deeper automation.</p>
+        </div>
+        <div class="feature-grid">
           
-          <div class="stat-cell">
-            <div class="stat-num count-cyan">1 PAGE</div>
-            <div class="stat-label">website core</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num count-violet">AI</div>
-            <div class="stat-label">assistant layer</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num count-dark">4-7</div>
-            <div class="stat-label">week window</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num count-cyan">CLEAR</div>
-            <div class="stat-label">offer path</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num count-violet">START</div>
-            <div class="stat-label">best fit</div>
-          </div>
-        </div>
-        <div class="hero-benefits">
-          
-          <div class="hero-benefit">
-            <span class="hero-benefit-dot" aria-hidden="true"></span>
-            <span>Clear digital front door</span>
-          </div>
-          <div class="hero-benefit">
-            <span class="hero-benefit-dot" aria-hidden="true"></span>
-            <span>Web + WhatsApp support</span>
-          </div>
-          <div class="hero-benefit">
-            <span class="hero-benefit-dot" aria-hidden="true"></span>
-            <span>Fast first build</span>
-          </div>
-          <div class="hero-benefit">
-            <span class="hero-benefit-dot" aria-hidden="true"></span>
-            <span>Built for enquiries</span>
-          </div>
-          <div class="hero-benefit">
-            <span class="hero-benefit-dot" aria-hidden="true"></span>
-            <span>First AI step for service businesses</span>
-          </div>
+          <article class="feature-card">
+            <div class="feature-num">01</div>
+            <h3>One-page website</h3>
+            <p>A clean page that explains the business, offer, trust points, and next step.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-num">02</div>
+            <h3>AI assistant</h3>
+            <p>A simple assistant that answers common questions and supports visitor enquiries.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-num">03</div>
+            <h3>Lead capture</h3>
+            <p>Clear contact, form, WhatsApp, or booking paths so people know what to do next.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-num">04</div>
+            <h3>WhatsApp handoff</h3>
+            <p>Visitors can move from the site into WhatsApp with less friction.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-num">05</div>
+            <h3>Mobile layout</h3>
+            <p>The experience is designed to work cleanly on phones and desktop.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-num">06</div>
+            <h3>Basic SEO setup</h3>
+            <p>The page includes a stronger technical foundation for search visibility.</p>
+          </article>
         </div>
       </div>
-  </section>
+    </section>
 
-  
+    <section class="section dark-section">
+      <div class="container trust-grid">
+        <div class="trust-image"><img src="/assets/funnel-images/digital-product-dashboard-mockup-wide.png" alt="Digital front door with website and AI assistant shown across devices."></div>
+        <div class="trust-copy">
+          <p class="eyebrow">Why it matters</p>
+          <h2 class="headline-md">THE STARTER PACKAGE IS FOR CLARITY FIRST</h2>
+          <p class="body-lg">If your business needs a better first impression and a cleaner enquiry path, this gives you the first useful layer without overbuilding.</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="section" id="call-flow">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="What happens when a client calls?" data-es="Que pasa cuando llama un cliente?">What happens when a client calls?</p>
-          <h2 class="headline-lg" data-en="FROM CALL<br>TO NEXT STEP" data-es="DE LA LLAMADA<br>AL SIGUIENTE PASO">FROM CALL<br>TO NEXT STEP</h2>
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">The process</p>
+            <h2 class="headline-lg">HOW THE<br>SYSTEM<br>GETS BUILT</h2>
+          </div>
+          <p class="body-lg">A practical path from first conversation to a working system your team can understand and use.</p>
         </div>
-        <p class="body-lg" data-en="The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful." data-es="El voice agent no solo debe contestar. Debe capturar el contexto correcto, decidir que importa, enrutar la conversacion y dejarle a tu equipo algo util.">The voice agent should not just answer. It should collect the right context, decide what matters, route the conversation, and leave your team with something useful.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Answer" data-es="Responder">Answer</h3><p class="body-md" data-en="The agent picks up when your team is busy, after hours, or away from the phone." data-es="El agente responde cuando tu equipo esta ocupado, fuera de horario o lejos del telefono.">The agent picks up when your team is busy, after hours, or away from the phone.</p></article>
-        <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Qualify" data-es="Calificar">Qualify</h3><p class="body-md" data-en="It asks the right questions to understand intent, urgency, fit, and what should happen next." data-es="Hace las preguntas correctas para entender intencion, urgencia, encaje y que deberia pasar despues.">It asks the right questions to understand intent, urgency, fit, and what should happen next.</p></article>
-        <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Route" data-es="Enrutar">Route</h3><p class="body-md" data-en="The system sends the caller toward booking, callback, escalation, or the right instruction path." data-es="El sistema envia al caller hacia reserva, callback, escalada o la ruta correcta de instrucciones.">The system sends the caller toward booking, callback, escalation, or the right instruction path.</p></article>
-        <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Summarize" data-es="Resumir">Summarize</h3><p class="body-md" data-en="Your team receives a clean summary instead of piecing together scattered notes." data-es="Tu equipo recibe un resumen limpio en lugar de unir notas dispersas.">Your team receives a clean summary instead of piecing together scattered notes.</p></article>
-        <article class="feature-card"><div class="feature-num">05</div><h3 class="feature-title" data-en="Push the next step" data-es="Empujar el siguiente paso">Push the next step</h3><p class="body-md" data-en="The agent helps move the caller into a clearer next action so fewer opportunities stall." data-es="El agente ayuda a mover al caller hacia una siguiente accion mas clara para que menos oportunidades se frenen.">The agent helps move the caller into a clearer next action so fewer opportunities stall.</p></article>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="accent">Professional first impression</span><span class="">AI support without overbuilding</span><span class="accent">One-page website clarity</span><span class="">WhatsApp + web assistant</span><span class="accent">Best for first-stage growth</span><span class="accent">Professional first impression</span><span class="">AI support without overbuilding</span><span class="accent">One-page website clarity</span><span class="">WhatsApp + web assistant</span><span class="accent">Best for first-stage growth</span>
-    </div>
-  </div>
-  </div>
-
-  <section class="section" id="features">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Included" data-es="Included">Included</p>
-          <h2 class="headline-lg" data-en="WHAT STARTER
-PUTS IN PLACE" data-es="WHAT STARTER
-PUTS IN PLACE">WHAT STARTER<br>PUTS IN PLACE</h2>
-        </div>
-      </div>
-      <div class="feature-grid">
-        
-        <article class="feature-card">
-          <div class="feature-num">01</div>
-          <h3 class="feature-title" data-en="One-page website" data-es="One-page website">One-page website</h3>
-          <p class="body-md" data-en="A premium one-page website designed to explain the offer clearly and capture stronger enquiries." data-es="A premium one-page website designed to explain the offer clearly and capture stronger enquiries.">A premium one-page website designed to explain the offer clearly and capture stronger enquiries.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-num">02</div>
-          <h3 class="feature-title" data-en="Conversion structure" data-es="Conversion structure">Conversion structure</h3>
-          <p class="body-md" data-en="Clear copy structure so the website acts like a guided sales layer rather than a static brochure." data-es="Clear copy structure so the website acts like a guided sales layer rather than a static brochure.">Clear copy structure so the website acts like a guided sales layer rather than a static brochure.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-num">03</div>
-          <h3 class="feature-title" data-en="Web AI assistant" data-es="Web AI assistant">Web AI assistant</h3>
-          <p class="body-md" data-en="An assistant on the site to answer questions, reduce confusion, and move visitors toward the next step." data-es="An assistant on the site to answer questions, reduce confusion, and move visitors toward the next step.">An assistant on the site to answer questions, reduce confusion, and move visitors toward the next step.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-num">04</div>
-          <h3 class="feature-title" data-en="WhatsApp AI assistant" data-es="WhatsApp AI assistant">WhatsApp AI assistant</h3>
-          <p class="body-md" data-en="A basic assistant layer for message handling and cleaner first response after the visitor leaves the site." data-es="A basic assistant layer for message handling and cleaner first response after the visitor leaves the site.">A basic assistant layer for message handling and cleaner first response after the visitor leaves the site.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-num">05</div>
-          <h3 class="feature-title" data-en="Brand-aware setup" data-es="Brand-aware setup">Brand-aware setup</h3>
-          <p class="body-md" data-en="The package is shaped around your actual offer, not dropped in as a generic template." data-es="The package is shaped around your actual offer, not dropped in as a generic template.">The package is shaped around your actual offer, not dropped in as a generic template.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-num">06</div>
-          <h3 class="feature-title" data-en="Expansion-ready base" data-es="Expansion-ready base">Expansion-ready base</h3>
-          <p class="body-md" data-en="Starter gives you a cleaner platform for adding call, booking, or deeper automation later." data-es="Starter gives you a cleaner platform for adding call, booking, or deeper automation later.">Starter gives you a cleaner platform for adding call, booking, or deeper automation later.</p>
-        </article>
-      </div>
-      <div class="image-row">
-        <div class="image-frame">
-          <img src="../../assets/funnel-images/team-client-automation-strategy-wide.png" alt="Business team reviewing foundational website and AI assistant strategy.">
-        </div>
-        <div class="black-box">
-          <p class="eyebrow" data-en="Why it matters" data-es="Why it matters">Why it matters</p>
-          <h2 class="headline-md" style="margin-top:18px" data-en="STARTER IS
-ABOUT GETTING
-THE FRONT DOOR RIGHT" data-es="STARTER IS
-ABOUT GETTING
-THE FRONT DOOR RIGHT">STARTER IS<br>ABOUT GETTING<br>THE FRONT DOOR RIGHT</h2>
-          <p class="body-md" style="margin-top:22px" data-en="If the business still lacks a clear website, strong messaging, or a simple AI response layer, the smartest move is often to install the first practical system before buying more complexity." data-es="If the business still lacks a clear website, strong messaging, or a simple AI response layer, the smartest move is often to install the first practical system before buying more complexity.">If the business still lacks a clear website, strong messaging, or a simple AI response layer, the smartest move is often to install the first practical system before buying more complexity.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="proof">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Before / after" data-es="Antes / despues">Before / after</p>
-          <h2 class="headline-lg" data-en="FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM" data-es="DE UN INTAKE<br>DESORDENADO A UN<br>SISTEMA MAS CLARO">FROM MESSY<br>INTAKE TO A<br>CLEARER SYSTEM</h2>
-        </div>
-        <p class="body-lg" data-en="Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get." data-es="La mayoria de negocios no necesitan mas demanda primero. Necesitan una forma mas limpia de capturar, entender y enrutar la demanda que ya reciben.">Most businesses do not need more demand first. They need a cleaner way to catch, understand, and route the demand they already get.</p>
-      </div>
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Before" data-es="Antes">Before</div>
-          <h3 data-en="Missed context" data-es="Contexto perdido">Missed context</h3>
-          <ul>
-            <li data-en="Missed calls and after-hours silence" data-es="Llamadas perdidas y silencio fuera de horario">Missed calls and after-hours silence</li>
-            <li data-en="Scattered notes and unclear follow-up" data-es="Notas dispersas y seguimiento poco claro">Scattered notes and unclear follow-up</li>
-            <li data-en="No qualification before a human jumps in" data-es="Sin calificacion antes de que entre una persona">No qualification before a human jumps in</li>
-          </ul>
-        </article>
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="After" data-es="Despues">After</div>
-          <h3 data-en="More captured opportunities" data-es="Mas oportunidades capturadas">More captured opportunities</h3>
-          <ul>
-            <li data-en="Calls answered 24/7 with the right first questions" data-es="Llamadas respondidas 24/7 con las preguntas correctas">Calls answered 24/7 with the right first questions</li>
-            <li data-en="Clean summaries and clearer handoff" data-es="Resumenes limpios y traspaso mas claro">Clean summaries and clearer handoff</li>
-            <li data-en="Faster next steps toward booking or escalation" data-es="Siguientes pasos mas rapidos hacia reserva o escalada">Faster next steps toward booking or escalation</li>
-          </ul>
-        </article>
-      </div>
-      <div class="cta-row-inline">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="fit">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow" data-en="Built for you if / not for you if" data-es="Para ti si / no para ti si">Built for you if / not for you if</p>
-          <h2 class="headline-lg" data-en="WHO THIS<br>SYSTEM FITS" data-es="PARA QUIEN<br>ENCAJA ESTE SISTEMA">WHO THIS<br>SYSTEM FITS</h2>
-        </div>
-      </div>
-      <div class="compare-grid">
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Built for you if" data-es="Para ti si">Built for you if</div>
-          <h3 data-en="You already have inbound demand" data-es="Ya tienes demanda entrante">You already have inbound demand</h3>
-          <ul>
-            <li data-en="You receive calls, WhatsApp messages, or booking requests every week" data-es="Recibes llamadas, mensajes de WhatsApp o solicitudes de reserva cada semana">You receive calls, WhatsApp messages, or booking requests every week</li>
-            <li data-en="Your team misses calls outside business hours or during busy periods" data-es="Tu equipo pierde llamadas fuera de horario o en momentos ocupados">Your team misses calls outside business hours or during busy periods</li>
-            <li data-en="You want bilingual English / Spanish support with real call logic" data-es="Quieres soporte bilingue ingles / espanol con logica real de llamadas">You want bilingual English / Spanish support with real call logic</li>
-          </ul>
-        </article>
-        <article class="compare-card">
-          <div class="compare-kicker" data-en="Not for you if" data-es="No es para ti si">Not for you if</div>
-          <h3 data-en="You want the cheapest generic AI tool" data-es="Quieres la herramienta IA generica mas barata">You want the cheapest generic AI tool</h3>
-          <ul>
-            <li data-en="You do not receive regular enquiries yet" data-es="Todavia no recibes consultas con regularidad">You do not receive regular enquiries yet</li>
-            <li data-en="You want a simple chatbot with no real call logic" data-es="Quieres un chatbot simple sin logica real de llamadas">You want a simple chatbot with no real call logic</li>
-            <li data-en="You are not ready to map your customer journey and intake process" data-es="No estas listo para mapear tu customer journey y proceso de intake">You are not ready to map your customer journey and intake process</li>
-          </ul>
-        </article>
-      </div>
-      <div style="margin-top:44px">
-        <p class="eyebrow" data-en="Use cases" data-es="Casos de uso">Use cases</p>
-        <div class="feature-grid" style="margin-top:22px">
-          <article class="feature-card"><div class="feature-num">01</div><h3 class="feature-title" data-en="Clinics" data-es="Clinicas">Clinics</h3><p class="body-md" data-en="Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context." data-es="Protege solicitudes de citas, enruta consultas urgentes y dale a recepcion un contexto de llamada mas limpio.">Protect appointment requests, route urgent enquiries, and give the front desk cleaner call context.</p></article>
-          <article class="feature-card"><div class="feature-num">02</div><h3 class="feature-title" data-en="Real Estate" data-es="Bienes raices">Real Estate</h3><p class="body-md" data-en="Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff." data-es="Captura mas rapido el interes por visitas y califica si el caller necesita callback, reserva o un traspaso mas urgente.">Capture viewing interest faster and qualify whether the caller needs a callback, booking, or a more urgent handoff.</p></article>
-          <article class="feature-card"><div class="feature-num">03</div><h3 class="feature-title" data-en="Service Teams" data-es="Equipos de servicio">Service Teams</h3><p class="body-md" data-en="Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in." data-es="Maneja llamadas fuera de horario, preguntas repetitivas y la primera calificacion antes de que entre alguien del equipo.">Handle after-hours calls, repetitive questions, and first qualification before someone on the team steps in.</p></article>
-          <article class="feature-card"><div class="feature-num">04</div><h3 class="feature-title" data-en="Consultants" data-es="Consultores">Consultants</h3><p class="body-md" data-en="Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff." data-es="Filtra prospectos serios, captura el motivo de la llamada y prepara un mejor traspaso hacia discovery.">Filter serious prospects, capture the reason for the call, and prepare a better discovery handoff.</p></article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section process-section" id="process">
-    <div class="wrap">
-      <div class="process-head">
-        <div>
-          <p class="eyebrow" data-en="The process" data-es="The process">The process</p>
-          <h2 class="headline-lg" data-en="FROM OUTDATED
-PRESENCE TO
-A STRONGER START" data-es="FROM OUTDATED
-PRESENCE TO
-A STRONGER START">FROM OUTDATED<br>PRESENCE TO<br>A STRONGER START</h2>
-        </div>
-      </div>
-      <div class="process-list">
         
         <div class="process-row">
           <div class="process-num">01</div>
-          <div>
-            <h3 class="process-title" data-en="Offer review" data-es="Offer review">Offer review</h3>
-            <div class="process-time"><span class="grad">Discovery</span></div>
+          <div class="process-name">
+            <h3>Map the offer</h3>
+            <span>Discovery</span>
           </div>
-          <p class="body-md" data-en="We review what the business sells, where people get confused, and what the website should do first." data-es="We review what the business sells, where people get confused, and what the website should do first.">We review what the business sells, where people get confused, and what the website should do first.</p>
-          <div class="process-arrow"><span class="grad">/</span></div>
+          <p>We clarify the services, audience, proof points, and strongest first CTA.</p>
+          <div class="process-slash">/</div>
         </div>
         <div class="process-row">
           <div class="process-num">02</div>
-          <div>
-            <h3 class="process-title" data-en="Page design" data-es="Page design">Page design</h3>
-            <div class="process-time"><span class="grad">Design</span></div>
+          <div class="process-name">
+            <h3>Build the page</h3>
+            <span>Design</span>
           </div>
-          <p class="body-md" data-en="We structure the page, message order, and enquiry flow around a clearer conversion path." data-es="We structure the page, message order, and enquiry flow around a clearer conversion path.">We structure the page, message order, and enquiry flow around a clearer conversion path.</p>
-          <div class="process-arrow"><span class="grad">/</span></div>
+          <p>We create the page structure, visual direction, and conversion path.</p>
+          <div class="process-slash">/</div>
         </div>
         <div class="process-row">
           <div class="process-num">03</div>
-          <div>
-            <h3 class="process-title" data-en="Assistant setup" data-es="Assistant setup">Assistant setup</h3>
-            <div class="process-time"><span class="grad">Implementation</span></div>
+          <div class="process-name">
+            <h3>Set up the assistant</h3>
+            <span>Implementation</span>
           </div>
-          <p class="body-md" data-en="We add the first AI response layers for the website and WhatsApp so first questions are handled better." data-es="We add the first AI response layers for the website and WhatsApp so first questions are handled better.">We add the first AI response layers for the website and WhatsApp so first questions are handled better.</p>
-          <div class="process-arrow"><span class="grad">/</span></div>
+          <p>We configure the AI assistant around FAQs and basic lead capture.</p>
+          <div class="process-slash">/</div>
         </div>
         <div class="process-row">
           <div class="process-num">04</div>
-          <div>
-            <h3 class="process-title" data-en="QA + fit check" data-es="QA + fit check">QA + fit check</h3>
-            <div class="process-time"><span class="grad">Quality control</span></div>
+          <div class="process-name">
+            <h3>Connect handoff</h3>
+            <span>Quality control</span>
           </div>
-          <p class="body-md" data-en="We test the message flow, CTA path, and assistant behaviour so the package feels useful from day one." data-es="We test the message flow, CTA path, and assistant behaviour so the package feels useful from day one.">We test the message flow, CTA path, and assistant behaviour so the package feels useful from day one.</p>
-          <div class="process-arrow"><span class="grad">/</span></div>
+          <p>We test contact, WhatsApp, email, and booking links.</p>
+          <div class="process-slash">/</div>
         </div>
         <div class="process-row">
           <div class="process-num">05</div>
-          <div>
-            <h3 class="process-title" data-en="Launch" data-es="Launch">Launch</h3>
-            <div class="process-time"><span class="grad">Go live</span></div>
+          <div class="process-name">
+            <h3>Launch</h3>
+            <span>Go live</span>
           </div>
-          <p class="body-md" data-en="Once live, Starter becomes the base you can grow from without rebuilding your entire front door again." data-es="Once live, Starter becomes the base you can grow from without rebuilding your entire front door again.">Once live, Starter becomes the base you can grow from without rebuilding your entire front door again.</p>
-          <div class="process-arrow"><span class="grad">/</span></div>
+          <p>We publish the page and make the first refinements after review.</p>
+          <div class="process-slash">/</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="pricing-dark" id="buy">
-    <div class="wrap">
-      <div class="price-intro">
-        <p class="eyebrow" data-en="Package pricing" data-es="Package pricing">Package pricing</p>
-        <h2 class="headline-lg" data-en="CLEAR AI.
-BUILT TO
-START WELL." data-es="CLEAR AI.
-BUILT TO
-START WELL.">CLEAR AI.<br>BUILT TO<br>START WELL.</h2>
-        <p class="body-lg" style="margin:24px auto 0" data-en="Starter is the right first move when the business needs a better website and first AI support before investing in deeper call, booking, content, or dashboard layers." data-es="Starter is the right first move when the business needs a better website and first AI support before investing in deeper call, booking, content, or dashboard layers.">Starter is the right first move when the business needs a better website and first AI support before investing in deeper call, booking, content, or dashboard layers.</p>
+    <section class="section dark-section" id="buy">
+      <div class="container">
+        <div class="pricing-wrap">
+          <p class="eyebrow">Build options</p>
+          <h2 class="headline-lg">STARTER PACKAGE OPTIONS</h2>
+          <p class="body-lg">The starter package is designed to create the first reliable digital layer for the business.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card featured">
+            <span class="price-badge">Recommended</span>
+            <h3>Starter Core</h3>
+            <div class="price">from $3,250</div>
+            <ul><li>Premium one-page website</li><li>Web AI assistant</li><li>WhatsApp handoff</li><li>Basic SEO setup</li></ul>
+            <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Start This Package</a>
+          </article>
+          <article class="price-card">
+            <span class="price-badge">Build option</span>
+            <h3>Starter Plus</h3>
+            <div class="price">custom</div>
+            <ul><li>Extra content sections</li><li>Additional FAQ logic</li><li>Booking integration</li><li>Launch support</li></ul>
+            <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Discuss Scope</a>
+          </article>
+          <article class="price-card">
+            <span class="price-badge">Build option</span>
+            <h3>Starter to Growth</h3>
+            <div class="price">custom</div>
+            <ul><li>Upgrade path to multi-page site</li><li>Service page expansion</li><li>SEO structure</li><li>Automation planning</li></ul>
+            <a class="btn btn-grad" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Book a Demo</a>
+          </article></div>
       </div>
-      <div class="pricing-grid">
-        
-        <article class="pricing-card featured">
-          <span class="badge" data-en="Starter" data-es="Starter">Starter</span>
-          <h3 data-en="Starter Package" data-es="Starter Package">Starter Package</h3>
-          <div class="from" data-en="from $1,500" data-es="from $1,500">from $1,500</div>
-          <ul>
-            <li data-en="Premium one-page website that explains the offer clearly" data-es="Premium one-page website that explains the offer clearly">Premium one-page website that explains the offer clearly</li><li data-en="Conversion-focused page structure and CTA flow" data-es="Conversion-focused page structure and CTA flow">Conversion-focused page structure and CTA flow</li><li data-en="Web AI assistant for first questions" data-es="Web AI assistant for first questions">Web AI assistant for first questions</li><li data-en="WhatsApp AI assistant for first-response support" data-es="WhatsApp AI assistant for first-response support">WhatsApp AI assistant for first-response support</li>
-          </ul>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Start This Package" data-es="Start This Package">Start This Package</a>
-        </article>
-        <article class="pricing-card">
-          <span class="badge" data-en="Next step" data-es="Next step">Next step</span>
-          <h3 data-en="Growth Package" data-es="Growth Package">Growth Package</h3>
-          <div class="from" data-en="from $2,500" data-es="from $2,500">from $2,500</div>
-          <ul>
-            <li data-en="Multi-page website for more service depth" data-es="Multi-page website for more service depth">Multi-page website for more service depth</li><li data-en="SEO-ready structure for stronger discovery" data-es="SEO-ready structure for stronger discovery">SEO-ready structure for stronger discovery</li><li data-en="Expanded assistant layer across more pages" data-es="Expanded assistant layer across more pages">Expanded assistant layer across more pages</li><li data-en="More authority and trust support" data-es="More authority and trust support">More authority and trust support</li>
-          </ul>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="See Growth" data-es="See Growth">See Growth</a>
-        </article>
-        <article class="pricing-card">
-          <span class="badge" data-en="Advanced" data-es="Advanced">Advanced</span>
-          <h3 data-en="Premium Package" data-es="Premium Package">Premium Package</h3>
-          <div class="from" data-en="from $4,500" data-es="from $4,500">from $4,500</div>
-          <ul>
-            <li data-en="Fuller AI front office" data-es="Fuller AI front office">Fuller AI front office</li><li data-en="Call agent layer for missed calls and qualification" data-es="Call agent layer for missed calls and qualification">Call agent layer for missed calls and qualification</li><li data-en="Authority video or content support" data-es="Authority video or content support">Authority video or content support</li><li data-en="Broader AI stack working together" data-es="Broader AI stack working together">Broader AI stack working together</li>
-          </ul>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="See Premium" data-es="See Premium">See Premium</a>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="bonus">
-    <div class="wrap">
-      <div class="bonus-strip">
+    <section class="section light-section" id="faq">
+      <div class="container">
+        <div class="pricing-wrap">
+          <p class="eyebrow">Common questions</p>
+          <h2 class="headline-lg">FREQUENTLY<br>ASKED</h2>
+        </div>
+        <div class="faq-list">
+        <details>
+          <summary><span>What do I receive?</span><span>+</span></summary>
+          <p>You receive the planned Starter Package system, the workflow logic, launch support, and a clear handoff so your team understands how to use it.</p>
+        </details>
+        <details>
+          <summary><span>Is this custom or a template?</span><span>+</span></summary>
+          <p>The structure is proven, but the content, logic, handoff, and tool connections are adapted to your business.</p>
+        </details>
+        <details>
+          <summary><span>Can it work in English and Spanish?</span><span>+</span></summary>
+          <p>Yes. The system can be built for English, Spanish, or a bilingual workflow.</p>
+        </details>
+        <details>
+          <summary><span>How long does it take?</span><span>+</span></summary>
+          <p>Most focused systems take 1 to 4 weeks. Larger builds can take longer depending on integrations and approval speed.</p>
+        </details>
+        <details>
+          <summary><span>Can this connect to my existing tools?</span><span>+</span></summary>
+          <p>Usually yes. We map your current stack first and only connect the tools that make sense for the workflow.</p>
+        </details>
+        <details>
+          <summary><span>Do I own the system?</span><span>+</span></summary>
+          <p>Yes. The goal is to create a usable business asset, not a temporary demo you cannot control.</p>
+        </details>
+        <details>
+          <summary><span>What happens after launch?</span><span>+</span></summary>
+          <p>We review the first real use, refine weak points, and help your team understand the next improvement layer.</p>
+        </details></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <p class="eyebrow">Ready to start?</p>
+      <h2 class="headline-lg">LET'S BUILD YOUR STARTER SYSTEM.</h2>
+      <p class="body-lg">Book a free demo and we will show you whether Starter is the right first step.</p>
+      <div class="final-actions">
+        <a class="btn btn-dark" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Book a Free Demo</a>
+        <a class="btn" href="https://wa.me/50766753870?text=Hi%20The%20Future%20Studio%2C%20I%20would%20like%20to%20book%20a%20demo.">WhatsApp Us</a>
+        <a class="btn btn-white" href="mailto:info@thefuturestudio.online">Email Us</a>
+      </div>
+      <div class="email-row">Or email <a href="mailto:info@thefuturestudio.online">info@thefuturestudio.online</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <p class="eyebrow" data-en="Limited bonus" data-es="Limited bonus" style="-webkit-text-fill-color:var(--black);color:var(--black)">Limited bonus</p>
-          <h2 class="headline-md" data-en="FREE STARTER
-MESSAGE MAP
-THIS WEEK" data-es="FREE STARTER
-MESSAGE MAP
-THIS WEEK">FREE STARTER<br>MESSAGE MAP<br>THIS WEEK</h2>
+          <a class="footer-logo" href="/"><img src="/assets/future-studio-logo-white.png" alt="The Future Studio"></a>
+          <p>AI systems for service businesses, internationally.</p>
+          <p>Precision-built. Results-driven.</p>
         </div>
         <div>
-          <p class="body-md" data-en="Book your demo and we will outline the first homepage and assistant message flow your business should use before we scope the package." data-es="Book your demo and we will outline the first homepage and assistant message flow your business should use before we scope the package.">Book your demo and we will outline the first homepage and assistant message flow your business should use before we scope the package.</p>
-          <div class="cta-row-inline" style="justify-content:flex-start;margin-top:24px">
-            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book the Free Demo" data-es="Book the Free Demo">Book the Free Demo</a>
-          </div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/systems/voice-agent/">Voice Agents</a></li>
+            <li><a href="/systems/whatsapp-automation-agent/">WhatsApp Automation</a></li>
+            <li><a href="/systems/booking-agent/">Booking Flows</a></li>
+            <li><a href="/academy/">Academy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener">Watch a Free Demo</a></li>
+            <li><a href="https://wa.me/50766753870?text=Hi%20The%20Future%20Studio%2C%20I%20would%20like%20to%20book%20a%20demo.">WhatsApp</a></li>
+            <li><a href="mailto:info@thefuturestudio.online">Email</a></li>
+            <li><a href="/">thefuturestudio.online</a></li>
+          </ul>
         </div>
       </div>
+      <div class="footer-bottom">&copy; 2026 The Future Studio - Richard Hardy Saenz. All rights reserved.</div>
     </div>
-  </section>
-
-  <section class="faq-section" id="faq">
-    <div class="wrap">
-      <div class="faq-head">
-        <p class="eyebrow" data-en="Common questions" data-es="Common questions">Common questions</p>
-        <h2 class="headline-lg" data-en="QUESTIONS
-BEFORE YOU
-START WITH AI" data-es="QUESTIONS
-BEFORE YOU
-START WITH AI">QUESTIONS<br>BEFORE YOU<br>START WITH AI</h2>
-      </div>
-      <div class="faq-list">
-        
-        <details class="faq-item">
-          <summary><span data-en="What is the difference between the packages?" data-es="What is the difference between the packages?">What is the difference between the packages?</span><span class="faq-plus">+</span></summary>
-          <p data-en="Starter gives you a professional front door and first AI response layer. Growth adds more website depth, search structure, and a stronger assistant. Premium combines the public website, AI assistant, call support, and authority content into a more complete AI front office." data-es="Starter gives you a professional front door and first AI response layer. Growth adds more website depth, search structure, and a stronger assistant. Premium combines the public website, AI assistant, call support, and authority content into a more complete AI front office.">Starter gives you a professional front door and first AI response layer. Growth adds more website depth, search structure, and a stronger assistant. Premium combines the public website, AI assistant, call support, and authority content into a more complete AI front office.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="What do we actually receive?" data-es="What do we actually receive?">What do we actually receive?</span><span class="faq-plus">+</span></summary>
-          <p data-en="You receive the mapped pages, assistant logic, handoff structure, launch setup, and walkthrough needed for your team to use the package. Each package page shows the core deliverables, and the discovery call confirms what should be included for your specific business." data-es="You receive the mapped pages, assistant logic, handoff structure, launch setup, and walkthrough needed for your team to use the package. Each package page shows the core deliverables, and the discovery call confirms what should be included for your specific business.">You receive the mapped pages, assistant logic, handoff structure, launch setup, and walkthrough needed for your team to use the package. Each package page shows the core deliverables, and the discovery call confirms what should be included for your specific business.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="Can we upgrade later?" data-es="Can we upgrade later?">Can we upgrade later?</span><span class="faq-plus">+</span></summary>
-          <p data-en="Yes. The packages are staged intentionally. You can start with the smallest useful version, prove the first layer, and then move into Growth or Premium when the next bottleneck is obvious." data-es="Yes. The packages are staged intentionally. You can start with the smallest useful version, prove the first layer, and then move into Growth or Premium when the next bottleneck is obvious.">Yes. The packages are staged intentionally. You can start with the smallest useful version, prove the first layer, and then move into Growth or Premium when the next bottleneck is obvious.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="Do packages include strategy?" data-es="Do packages include strategy?">Do packages include strategy?</span><span class="faq-plus">+</span></summary>
-          <p data-en="Yes. Every package starts with discovery so the page structure, assistant flows, and system logic fit your business instead of acting like a generic template." data-es="Yes. Every package starts with discovery so the page structure, assistant flows, and system logic fit your business instead of acting like a generic template.">Yes. Every package starts with discovery so the page structure, assistant flows, and system logic fit your business instead of acting like a generic template.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="What if we already have part of this?" data-es="What if we already have part of this?">What if we already have part of this?</span><span class="faq-plus">+</span></summary>
-          <p data-en="That is useful. We can keep the parts that already work, repair the weak points, and only build the missing layers instead of replacing everything for no reason." data-es="That is useful. We can keep the parts that already work, repair the weak points, and only build the missing layers instead of replacing everything for no reason.">That is useful. We can keep the parts that already work, repair the weak points, and only build the missing layers instead of replacing everything for no reason.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="How long does launch take?" data-es="How long does launch take?">How long does launch take?</span><span class="faq-plus">+</span></summary>
-          <p data-en="Most package builds begin with a 7-21 day first phase, then expand depending on content, integrations, approvals, and the scope selected." data-es="Most package builds begin with a 7-21 day first phase, then expand depending on content, integrations, approvals, and the scope selected.">Most package builds begin with a 7-21 day first phase, then expand depending on content, integrations, approvals, and the scope selected.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span data-en="Will this be bilingual?" data-es="Will this be bilingual?">Will this be bilingual?</span><span class="faq-plus">+</span></summary>
-          <p data-en="It can be. The Future Studio supports English, Spanish, or bilingual structures depending on the audience you serve and how your team works." data-es="It can be. The Future Studio supports English, Spanish, or bilingual structures depending on the audience you serve and how your team works.">It can be. The Future Studio supports English, Spanish, or bilingual structures depending on the audience you serve and how your team works.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <div class="wrap-narrow">
-      <p class="eyebrow" style="-webkit-text-fill-color:var(--black);color:var(--black)" data-en="Ready to start?" data-es="Ready to start?">Ready to start?</p>
-      <h2 class="headline-lg" data-en="LET'S BUILD
-YOUR STARTER
-PACKAGE." data-es="LET'S BUILD
-YOUR STARTER
-PACKAGE.">LET'S BUILD<br>YOUR STARTER<br>PACKAGE.</h2>
-      <p class="body-lg" data-en="Book a free demo and we will show you whether Starter is the right first move, what would be included, and what the business should avoid overbuilding too early." data-es="Book a free demo and we will show you whether Starter is the right first move, what would be included, and what the business should avoid overbuilding too early.">Book a free demo and we will show you whether Starter is the right first move, what would be included, and what the business should avoid overbuilding too early.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book a Free Demo" data-es="Book a Free Demo">Book a Free Demo</a>
-        <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-outline btn-whatsapp" data-en="WhatsApp Us" data-es="WhatsApp Us">WhatsApp Us</a>
-        <a href="mailto:info@thefuturestudio.online" class="btn btn-email-white" data-en="Email Us" data-es="Escribenos">Email Us</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">
-          <img src="../../logo.png" alt="The Future Studio">
-        </div>
-        <p class="footer-tagline" data-en="AI systems for service businesses, internationally. Precision-built. Results-driven." data-es="Sistemas de IA para negocios de servicios. Precision-built. Results-driven.">AI systems for service businesses, internationally. Precision-built. Results-driven.</p>
-      </div>
-      <div class="footer-col">
-        <h5 data-en="Services" data-es="Servicios">Services</h5>
-        <ul>
-          <li><a href="../../#services" data-en="AI Agents" data-es="Agentes IA">AI Agents</a></li>
-          <li><a href="../../#services" data-en="Voice Agents" data-es="Agentes de Voz">Voice Agents</a></li>
-          <li><a href="../../#services" data-en="WhatsApp Automation" data-es="Automatizacion WhatsApp">WhatsApp Automation</a></li>
-          <li><a href="../../#services" data-en="Booking Flows" data-es="Flujos de Reservas">Booking Flows</a></li>
-          <li><a href="../../academy/" data-en="Academy" data-es="Academia">Academy</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
-        <ul>
-          <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Watch a Free Demo" data-es="Ver demo gratuita">Watch a Free Demo</a></li>
-          <li><a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:info@thefuturestudio.online">Email</a></li>
-          <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 The Future Studio - Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
-    </div>
-  </div>
-</footer>
-
-<button id="scroll-top" aria-label="Back to top">&uarr;</button>
-<a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." id="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.22c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.51.07-.77.36-.26.29-1.01.99-1.01 2.42s1.03 2.8 1.18 2.99c.15.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z"/><path d="M16.03 3C8.86 3 3.03 8.83 3.03 16c0 2.29.6 4.53 1.74 6.5L3 29l6.66-1.75A12.94 12.94 0 0 0 16.03 29c7.17 0 13-5.83 13-13s-5.83-13-13-13zm0 23.75c-2.14 0-4.22-.63-6-1.83l-.43-.29-3.95 1.04 1.05-3.85-.28-.44A10.7 10.7 0 0 1 5.28 16c0-5.93 4.82-10.75 10.75-10.75S26.78 10.07 26.78 16 21.96 26.75 16.03 26.75z"/></svg>
-</a>
-
-<script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async></script>
-<div class="vapi-float">
-  <vapi-widget
-    public-key="64a2be75-0aeb-461e-a456-eed7b1010fa6"
-    assistant-id="b1163b98-9ff2-46ba-b828-31cc1acb578f"
-    mode="chat"
-    theme="light"
-    size="compact"
-    radius="large"
-    position="bottom-left"
-    base-color="#fff8f5"
-    accent-color="#00e5cc"
-    button-base-color="#0a0a0a"
-    button-accent-color="#00e5cc"
-  ></vapi-widget>
-</div>
-
-<script>
-(function(){
-  var lang=localStorage.getItem('tfsLang')||'en';
-  function applyLang(next){
-    lang=next;
-    localStorage.setItem('tfsLang',lang);
-    document.documentElement.lang=lang;
-    document.querySelectorAll('[data-en]').forEach(function(el){
-      var value=el.getAttribute('data-'+lang);
-      if(value){el.innerHTML=value;}
-    });
-    document.querySelectorAll('.lang-btn').forEach(function(btn){
-      btn.classList.toggle('active',btn.getAttribute('data-lang')===lang);
-    });
-  }
-  document.querySelectorAll('.lang-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){applyLang(btn.getAttribute('data-lang'));});
-  });
-  applyLang(lang);
-
-  var hamburger=document.getElementById('nav-hamburger');
-  var mobile=document.getElementById('nav-mobile');
-  if(hamburger&&mobile){
-    hamburger.addEventListener('click',function(){
-      mobile.classList.toggle('open');
-      hamburger.classList.toggle('open');
-    });
-    mobile.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mobile.classList.remove('open');hamburger.classList.remove('open');});});
-  }
-
-  var nav=document.getElementById('nav');
-  var lastY=0;
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY||0;
-    if(nav){
-      nav.classList.toggle('scrolled',y>30);
-      nav.classList.toggle('nav-hidden',y>lastY&&y>140);
-    }
-    lastY=y;
-    var top=document.getElementById('scroll-top');
-    if(top){top.classList.toggle('visible',y>440);}
-  },{passive:true});
-  var scrollTop=document.getElementById('scroll-top');
-  if(scrollTop){scrollTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
-
-  var videos=document.querySelectorAll('.video-card video');
-  videos.forEach(function(video){
-    video.addEventListener('play',function(){
-      videos.forEach(function(other){if(other!==video){other.pause();}});
-    });
-  });
-
-  var canvas=document.getElementById('bg-canvas');
-  if(canvas&&canvas.getContext){
-    var ctx=canvas.getContext('2d');
-    var points=[];
-    function resize(){
-      canvas.width=window.innerWidth;
-      canvas.height=window.innerHeight;
-      points=Array.from({length:32},function(){return{
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        vx:(Math.random()-.5)*.16,
-        vy:(Math.random()-.5)*.16
-      };});
-    }
-    function draw(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      points.forEach(function(p,i){
-        p.x+=p.vx;p.y+=p.vy;
-        if(p.x<0||p.x>canvas.width){p.vx*=-1;}
-        if(p.y<0||p.y>canvas.height){p.vy*=-1;}
-        ctx.fillStyle='rgba(0,229,204,.38)';
-        ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
-        for(var j=i+1;j<points.length;j++){
-          var q=points[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-          if(d<145){
-            ctx.strokeStyle='rgba(0,229,204,'+(0.13*(1-d/145))+')';
-            ctx.lineWidth=1;
-            ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
-          }
-        }
-      });
-      requestAnimationFrame(draw);
-    }
-    resize();
-    window.addEventListener('resize',resize);
-    draw();
-  }
-})();
-</script>
-
-<script type="module">
-  import Vapi from 'https://esm.sh/@vapi-ai/web';
-
-  const vapi = new Vapi('64a2be75-0aeb-461e-a456-eed7b1010fa6');
-  const assistantId = 'fd0492be-8bfe-44f4-bba8-8f8a5d55bc11';
-
-  const container = document.getElementById('transcript-container');
-  const callBtn = document.getElementById('btn-llamar-silice');
-  const timerDisplay = document.getElementById('voice-timer');
-  const statusLabel = document.getElementById('voice-status-label');
-  let isCallActive = false;
-  let isStartingCall = false;
-  let timerInterval = null;
-  let secondsElapsed = 0;
-
-  function currentLang(){
-    return localStorage.getItem('tfsLang') || document.documentElement.lang || 'en';
-  }
-
-  function t(en, es){
-    return currentLang() === 'es' ? es : en;
-  }
-
-  function escapeHtml(value){
-    const div = document.createElement('div');
-    div.textContent = value || '';
-    return div.innerHTML;
-  }
-
-  function formatTime(totalSeconds){
-    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-    const seconds = String(totalSeconds % 60).padStart(2, '0');
-    return `${hours}:${minutes}:${seconds}`;
-  }
-
-  function stopTimer(){
-    if(timerInterval){
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
-  }
-
-  function startTimer(){
-    stopTimer();
-    secondsElapsed = 0;
-    if(timerDisplay){ timerDisplay.textContent = '00:00:00'; }
-    timerInterval = setInterval(function(){
-      secondsElapsed += 1;
-      if(timerDisplay){ timerDisplay.textContent = formatTime(secondsElapsed); }
-    }, 1000);
-  }
-
-  function setStatus(en, es){
-    if(statusLabel){ statusLabel.textContent = t(en, es); }
-  }
-
-  function messageMarkup(role, text, isPartial){
-    const safeText = escapeHtml(text);
-    const isUser = role === 'user';
-    const label = isUser ? 'YOU' : 'AI';
-    const roleClass = isUser ? 'user' : 'assistant';
-    const partialClass = isPartial ? ' partial' : '';
-    return `
-      <div${isPartial ? ' id="partial-transcript"' : ''} class="voice-message ${roleClass}${partialClass}">
-        <div class="voice-avatar">${label}</div>
-        <div class="voice-bubble">${safeText}${isPartial ? '...' : ''}</div>
-      </div>
-    `;
-  }
-
-  function addMessage(role, text){
-    if(!container || !text){ return; }
-    container.insertAdjacentHTML('beforeend', messageMarkup(role, text, false));
-    container.scrollTop = container.scrollHeight;
-  }
-
-  function updateButtonState(){
-    if(!callBtn){ return; }
-    callBtn.classList.toggle('is-active', isCallActive);
-    callBtn.classList.toggle('is-loading', isStartingCall);
-    if(isStartingCall){
-      callBtn.textContent = t('Connecting...', 'Conectando...');
-      setStatus('Requesting microphone access', 'Solicitando acceso al microfono');
-      return;
-    }
-    if(isCallActive){
-      callBtn.textContent = t('End Voice Demo', 'Finalizar Demo de Voz');
-      setStatus('Live call active', 'Llamada en vivo');
-      return;
-    }
-    callBtn.textContent = t('Call the Voice Agent', 'Llamar al Agente');
-    setStatus('Ready to connect', 'Listo para conectar');
-  }
-
-  if(callBtn && container && timerDisplay){
-    updateButtonState();
-
-    callBtn.addEventListener('click', function(){
-      if(isStartingCall){ return; }
-      if(isCallActive){
-        try {
-          vapi.stop();
-        } catch (error) {
-          console.error('Vapi cleanup error:', error);
-        }
-        return;
-      }
-
-      isStartingCall = true;
-      updateButtonState();
-      try {
-        vapi.start(assistantId);
-      } catch (error) {
-        console.error('Vapi start error:', error);
-        isStartingCall = false;
-        isCallActive = false;
-        updateButtonState();
-        stopTimer();
-      }
-    });
-
-    vapi.on('call-start', function(){
-      isStartingCall = false;
-      isCallActive = true;
-      container.innerHTML = '';
-      addMessage('assistant', t(
-        'Hi, I am the AI voice demo. Tell me what kind of call you want to test.',
-        'Hola, soy el demo de voz con IA. Dime que tipo de llamada quieres probar.'
-      ));
-      updateButtonState();
-      startTimer();
-    });
-
-    vapi.on('call-end', function(){
-      isStartingCall = false;
-      isCallActive = false;
-      updateButtonState();
-      stopTimer();
-    });
-
-    vapi.on('error', function(error){
-      console.error('Vapi error:', error);
-      isStartingCall = false;
-      isCallActive = false;
-      updateButtonState();
-      stopTimer();
-    });
-
-    vapi.on('message', function(message){
-      if(message.type !== 'transcript'){ return; }
-      const role = message.role;
-      const text = message.transcript;
-      const partialEl = document.getElementById('partial-transcript');
-
-      if(message.transcriptType === 'partial'){
-        if(!text){ return; }
-        if(partialEl){
-          const bubble = partialEl.querySelector('.voice-bubble');
-          if(bubble){ bubble.textContent = text + '...'; }
-        } else {
-          container.insertAdjacentHTML('beforeend', messageMarkup(role, text, true));
-          container.scrollTop = container.scrollHeight;
-        }
-      }
-
-      if(message.transcriptType === 'final'){
-        if(partialEl){ partialEl.remove(); }
-        if(text){ addMessage(role, text); }
-      }
-    });
-
-    document.querySelectorAll('.lang-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        window.setTimeout(updateButtonState, 0);
-      });
-    });
-  }
-</script>
+  </footer>
+  <a class="float-ai" href="/#talk-with-ai">Talk with AI</a>
+  <a class="float-wa" href="https://wa.me/50766753870?text=Hi%20The%20Future%20Studio%2C%20I%20would%20like%20to%20book%20a%20demo." aria-label="WhatsApp">WA</a>
+  <a class="to-top" href="#" aria-label="Back to top">Top</a>
 </body>
 </html>
-
