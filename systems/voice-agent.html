@@ -142,6 +142,8 @@ section,nav,footer,.marquee{position:relative;z-index:1}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:58px;padding:17px 34px;border:2px solid transparent;font-family:var(--font-d);font-weight:800;font-size:18px;letter-spacing:.085em;text-transform:uppercase;transition:all .22s var(--ease);white-space:nowrap}
 .btn-grad{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black)}
 .btn-grad:hover{background:var(--black);color:var(--white);transform:translateY(-2px)}
+.btn-white-grad{background:var(--white);border-color:var(--white);color:var(--black);box-shadow:0 0 0 1px rgba(255,255,255,.75)}
+.btn-white-grad:hover{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));border-color:transparent;color:var(--black);box-shadow:0 16px 38px rgba(0,229,204,.24),0 0 34px rgba(155,89,255,.18);transform:translateY(-2px)}
 .btn-dark{background:var(--black);border-color:var(--black);color:var(--white)}
 .btn-dark:hover{background:var(--white);color:var(--black)}
 .btn-outline{border-color:var(--black);color:var(--black);background:transparent}
@@ -152,14 +154,13 @@ section,nav,footer,.marquee{position:relative;z-index:1}
 .btn-outline-light{border-color:rgba(255,255,255,.42);color:var(--white);background:transparent}
 .btn-outline-light:hover{background:var(--white);color:var(--black)}
 
-.top-urgency-bar{position:fixed;top:0;left:0;right:0;z-index:130;background:var(--black);color:var(--white);border-bottom:1px solid rgba(255,255,255,.12)}
-.top-urgency-inner{width:min(100% - 56px,1320px);margin:0 auto;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
-.top-urgency-copy{font-size:14px;line-height:1.45;color:rgba(255,255,255,.82)}
-.top-urgency-copy strong{color:var(--white)}
-.top-urgency-copy span{color:var(--cyan)}
-.top-urgency-cta{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:9px 16px;border:1px solid rgba(255,255,255,.18);font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black);white-space:nowrap}
-.top-urgency-cta:hover{background:var(--white)}
-body.has-urgency-bar #nav{top:56px}
+.top-urgency-bar{position:fixed;top:0;left:0;right:0;z-index:140;background:var(--black);color:var(--white);border-bottom:2px solid rgba(255,255,255,.16)}
+.top-urgency-inner{height:44px;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;text-align:center}
+.top-urgency-copy{font-family:var(--font-d);font-size:15px;font-weight:800;font-style:italic;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;color:var(--white);margin:0}
+.top-urgency-copy strong,.top-urgency-copy span{color:inherit;font-weight:800}
+.top-urgency-cta{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--cyan);white-space:nowrap;transition:filter .22s var(--ease),transform .22s var(--ease)}
+.top-urgency-cta:hover{filter:drop-shadow(0 0 10px rgba(0,229,204,.42));transform:translateY(-1px)}
+body.has-urgency-bar #nav{top:44px}
 
 #nav{position:fixed;top:0;left:0;right:0;z-index:100;border-top:1px solid rgba(0,0,0,0.12);transition:transform .4s var(--ease),background .3s,border-color .3s;border-bottom:1px solid transparent}
 #nav.scrolled{background:rgba(255,248,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border-dark)}
@@ -181,7 +182,7 @@ body.has-urgency-bar #nav{top:56px}
 .lang-btn.active{background:var(--black);color:var(--white)}
 .btn-sm{min-height:46px;padding:13px 25px;font-size:15px}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;width:40px}
-.nav-hamburger span{display:block;height:1.5px;background:var(--black);transition:all .3s}
+.nav-hamburger span{display:block;width:24px;height:1.5px;background:var(--black);transition:all .3s}
 .nav-hamburger.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
 .nav-hamburger.open span:nth-child(2){opacity:0}
 .nav-hamburger.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
@@ -315,22 +316,22 @@ main{display:flex;flex-direction:column}
 .compare-kicker{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
 .compare-card h3{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
 .bonus-strip{border:2px solid var(--black);background:linear-gradient(135deg,var(--cyan),#dffdf8 45%,var(--blue));padding:36px 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.bonus-strip .eyebrow{background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:var(--black);color:var(--black)}
 .bonus-strip .body-md{color:#173936}
 .price-fit{margin:0 0 22px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.55}
 
 #features{background:var(--black);color:var(--white)}
 #features .body-lg,#features .body-md,#features .body-sm{color:rgba(255,255,255,.72)}
 #features .section-head{align-items:end}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--cyan);background:var(--cyan);box-shadow:0 0 0 1px rgba(0,229,204,.3)}
-.feature-card{min-height:260px;padding:36px;border:0;transition:all .22s ease;background:var(--white);color:var(--black)}
-.feature-card:nth-child(3n){border-right:0}
-.feature-card:nth-child(n+4){border-bottom:0}
-.feature-card:hover{background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));color:var(--black);transform:translate(-7px,-8px);box-shadow:10px 10px 0 var(--white)}
-.feature-card p,.feature-card .body-md{color:var(--text-dark)!important}
-.feature-card:hover p,.feature-card:hover .body-md{color:var(--black)!important}
-.feature-card:hover .feature-num{color:var(--white);background:none;-webkit-text-fill-color:var(--white)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border:0;background:transparent;box-shadow:none}
+.feature-card{position:relative;overflow:hidden;min-height:282px;padding:34px 32px;border:1px solid rgba(255,255,255,.14);background:#0a0a0f;color:var(--white);transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease),background .28s var(--ease)}
+.feature-card::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet),#e040fb)}
+.feature-card:hover{background:#0a0a0f;color:var(--white);transform:translateY(-8px);border-color:rgba(0,229,204,.72);box-shadow:0 18px 54px rgba(0,229,204,.16),0 0 42px rgba(155,89,255,.18)}
+.feature-card p,.feature-card .body-md{color:rgba(255,255,255,.72)!important}
+.feature-card:hover p,.feature-card:hover .body-md{color:rgba(255,255,255,.82)!important}
+.feature-card:hover .feature-num{filter:drop-shadow(0 0 14px rgba(0,229,204,.5))}
 .feature-num{font-family:var(--font-d);font-size:44px;font-weight:800;font-style:italic;color:var(--cyan);background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:22px}
-.feature-title{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.96;margin-bottom:16px}
+.feature-title{font-family:var(--font-d);font-size:34px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.96;margin-bottom:16px;color:var(--white)}
 .image-row{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:stretch;margin-top:76px}
 .image-frame{border:2px solid var(--black);box-shadow:14px 14px 0 transparent;background:var(--black);overflow:visible;position:relative;isolation:isolate}
 .image-frame::after{content:"";position:absolute;left:14px;right:-14px;bottom:-14px;height:14px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));z-index:0;pointer-events:none}
@@ -353,13 +354,17 @@ main{display:flex;flex-direction:column}
 
 .pricing-dark{background:#09090b;color:var(--white);padding:118px 0}
 .price-intro{text-align:center;margin:0 auto 54px;max-width:790px}
+.pricing-dark .body-lg{color:rgba(255,255,255,.74)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.16)}
-.pricing-card{padding:34px 34px 38px;border-right:1px solid rgba(255,255,255,.16);min-height:440px;display:flex;flex-direction:column}
+.pricing-card{padding:34px 34px 38px;border-right:1px solid rgba(255,255,255,.16);min-height:440px;display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease),background .28s var(--ease)}
 .pricing-card:last-child{border-right:0}
 .pricing-card.featured{outline:1px solid var(--cyan);background:rgba(0,229,204,.055)}
+.pricing-card:hover{transform:translateY(-8px);border-color:rgba(0,229,204,.74);box-shadow:0 0 32px rgba(0,229,204,.18),0 0 54px rgba(155,89,255,.16);background:rgba(10,10,15,.92)}
 .badge{display:inline-flex;align-self:flex-start;padding:6px 10px;background:rgba(0,229,204,.13);color:var(--cyan);font-family:var(--font-d);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
 .pricing-card h3{font-family:var(--font-d);font-size:38px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
-.from{font-family:var(--font-d);font-size:56px;font-weight:800;font-style:italic;line-height:1;margin:22px 0 18px;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.from{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--font-d);font-size:56px;font-weight:800;font-style:italic;line-height:1;margin:22px 0 18px;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:filter .25s var(--ease)}
+.pricing-card:hover .from{filter:drop-shadow(0 0 16px rgba(0,229,204,.5)) drop-shadow(0 0 22px rgba(155,89,255,.32))}
+.discount-pill{display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border:1px solid rgba(0,229,204,.48);background:rgba(0,229,204,.09);font-family:var(--font-d);font-size:12px;font-weight:800;font-style:normal;letter-spacing:.1em;text-transform:uppercase;line-height:1.1;color:var(--cyan);-webkit-text-fill-color:var(--cyan);white-space:normal}
 .pricing-card ul{list-style:none;display:grid;gap:11px;margin:12px 0 28px}
 .pricing-card li{display:flex;gap:10px;color:rgba(255,255,255,.7);font-size:15px;line-height:1.45}
 .pricing-card li::before{content:"";width:9px;height:9px;background:var(--cyan);margin-top:7px;flex:0 0 auto}
@@ -372,12 +377,17 @@ main{display:flex;flex-direction:column}
 .faq-item{border-bottom:1px solid rgba(8,8,8,.18)}
 .faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:24px 0;font-family:var(--font-d);font-size:26px;font-weight:800;font-style:italic;text-transform:uppercase;line-height:1.05;cursor:pointer}
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-plus{width:34px;height:34px;border:2px solid rgba(8,8,8,.18);display:flex;align-items:center;justify-content:center;font-family:var(--font-b);font-size:24px;font-style:normal;font-weight:400;flex:0 0 auto;transition:all .2s ease}
+.faq-item summary:hover span:first-child{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.faq-plus{width:34px;height:34px;border:2px solid transparent;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));color:var(--black);display:flex;align-items:center;justify-content:center;font-family:var(--font-b);font-size:24px;font-style:normal;font-weight:400;flex:0 0 auto;transition:all .2s ease}
 .faq-item[open] .faq-plus{background:var(--black);color:var(--white);transform:rotate(45deg)}
 .faq-item p{max-width:none;width:100%;padding:0 0 24px;color:#555;font-size:17px;line-height:1.72}
 
-.final-cta{padding:118px 0;background:linear-gradient(135deg,var(--cyan),#17d8c6 42%,var(--blue));text-align:center}
-.final-cta p{margin:22px auto 32px;color:#153336}
+.final-cta{padding:120px 0;background:var(--cyan);background-image:radial-gradient(circle at 85% 10%,rgba(155,89,255,.22),transparent 36%),radial-gradient(circle at 8% 92%,rgba(255,255,255,.24),transparent 34%);text-align:center;overflow:hidden}
+.final-cta h2{font-size:clamp(60px,10vw,140px);line-height:.85;letter-spacing:-.01em;color:var(--black)}
+.final-cta p{margin:22px auto 32px;color:rgba(0,0,0,.62)}
+.final-cta .eyebrow{background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:var(--black);color:var(--black)}
+.final-cta .btn-outline{border-color:var(--black);color:var(--black)}
+.final-cta .btn-outline:hover{background:#25D366;border-color:#25D366;color:var(--white);box-shadow:0 10px 34px rgba(37,211,102,.32)}
 footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start}
 .footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
@@ -388,12 +398,14 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 .footer-col a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s}
 .footer-col a:hover{color:var(--cyan)}
-.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;text-align:center;flex-wrap:wrap;gap:10px}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
 
-#whatsapp-btn{position:fixed;right:26px;bottom:26px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(37,211,102,.36);transition:all .22s ease}
-#whatsapp-btn:hover{background:#25D366;color:#fff;box-shadow:0 10px 36px rgba(37,211,102,.48);transform:scale(1.06)}
-#whatsapp-btn svg{width:28px;height:28px}
+#whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;min-width:146px;height:54px;padding:0 18px 0 16px;background:#25D366;color:var(--white);border:1px solid rgba(255,255,255,.22);border-radius:0;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 18px 50px rgba(37,211,102,.26);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .25s var(--ease),box-shadow .25s,transform .25s,border-color .25s}
+#whatsapp-btn::after{content:"";position:absolute;left:10px;right:10px;bottom:7px;height:2px;background:rgba(255,255,255,.72);opacity:.9}
+#whatsapp-btn:hover{background:#1ebe5d;color:var(--white);border-color:#25D366;box-shadow:0 18px 52px rgba(37,211,102,.48);transform:translateY(-2px)}
+#whatsapp-btn svg{width:22px;height:22px;fill:currentColor;flex-shrink:0}
+.wa-label{font-family:var(--font-d);font-size:14px;font-weight:800;font-style:italic;letter-spacing:.1em;text-transform:uppercase;line-height:1}
 #scroll-top{position:fixed;right:28px;bottom:96px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);opacity:0;pointer-events:none;transition:all .22s ease;display:flex;align-items:center;justify-content:center;font-size:24px}
 #scroll-top.visible{opacity:1;pointer-events:auto}
 #scroll-top:hover{background:var(--cyan);color:var(--black)}
@@ -401,13 +413,13 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .vapi-float vapi-widget{pointer-events:auto;display:block;max-width:calc(100vw - 36px)}
 
 @media(max-width:1100px){
-  .top-urgency-inner{width:min(100% - 32px,1320px)}
   .top-urgency-copy{font-size:13px}
   .nav-links,.nav-actions{display:none}
-  .nav-inner{height:126px;justify-content:center;align-items:flex-start;padding-top:2px}
-  .nav-logo img{height:98px;padding:5px 0}
-  .nav-hamburger{display:flex;position:absolute;left:50%;top:76px;transform:translateX(-50%)}
-  .nav-mobile{text-align:center}
+  .nav-inner{height:96px;padding:0 28px}
+  .nav-logo img{height:106px;padding:14px 0}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;position:absolute;right:28px;top:50%;z-index:3;min-width:44px;min-height:44px;margin-left:0;transform:translateY(-50%)}
+  .nav-mobile{max-height:calc(100vh - 96px);overflow-y:auto;padding:18px 28px 28px;text-align:center}
+  .nav-mobile a{font-size:20px}
   .hero-body{padding:150px 0 60px}
   .hero-bottom,.section-head,.image-row,.process-head{grid-template-columns:1fr;text-align:center}
   .hero-bottom{gap:28px}
@@ -430,8 +442,9 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .footer-col ul{justify-items:center}
 }
 @media(max-width:680px){
-  .top-urgency-inner{width:min(100% - 26px,480px);min-height:unset;align-items:flex-start;flex-direction:column;padding:12px 0}
-  .top-urgency-cta{width:100%}
+  .top-urgency-inner{height:auto;min-height:44px;align-items:center;flex-wrap:wrap;gap:4px 12px;padding:7px 14px}
+  .top-urgency-copy{text-align:center}
+  .top-urgency-copy,.top-urgency-cta{font-size:11px;letter-spacing:.06em}
   .wrap,.wrap-narrow{width:min(100% - 38px,480px)}
   .headline-xl{font-size:clamp(34px,10vw,48px);line-height:.9;text-align:center;max-width:100%;overflow:visible}
   .headline-lg{font-size:clamp(46px,13vw,68px);text-align:center}
@@ -480,7 +493,9 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .pricing-card li{text-align:left}
   .badge{align-self:center}
   .faq-item summary{font-size:22px;text-align:left}
-  #whatsapp-btn{right:18px;bottom:20px}
+  #whatsapp-btn{min-width:54px;width:54px;height:54px;padding:0;right:20px;bottom:22px}
+  #whatsapp-btn::after{left:12px;right:12px}
+  #whatsapp-btn .wa-label{display:none}
   #scroll-top{right:20px;bottom:88px}
   .vapi-float{left:14px;bottom:82px}
 }
@@ -491,8 +506,8 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 
 <div class="top-urgency-bar">
   <div class="top-urgency-inner">
-    <p class="top-urgency-copy" data-en="May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span>" data-es="Cupos de implementacion de mayo ya abiertos. <strong>3 builds de voice agent disponibles este mes.</strong> <span>Agenda tu demo gratuita antes de que se llenen.</span>">May implementation slots now open. <strong>3 voice agent builds available this month.</strong> <span>Book your free demo before they fill.</span></p>
-    <a class="top-urgency-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book demo" data-es="Agendar demo">Book demo</a>
+    <p class="top-urgency-copy" data-en="Free Voice Agent Deals Available This Month" data-es="Ofertas de Voice Agent disponibles este mes">Free Voice Agent Deals Available This Month</p>
+    <a class="top-urgency-cta" href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book Your Free Demo Before They Fill" data-es="Agenda tu demo gratis antes de que se llenen">Book Your Free Demo Before They Fill</a>
   </div>
 </div>
 
@@ -639,7 +654,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     </div>
     <div class="wrap">
       <div class="cta-row-inline">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-white-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
         <a href="#buy" class="btn btn-outline" data-en="See the Build Options" data-es="Ver opciones de build">See the Build Options</a>
       </div>
     </div>
@@ -828,7 +843,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
         <article class="pricing-card">
           <span class="badge" data-en="Starter" data-es="Inicial">Starter</span>
           <h3 data-en="Voice Agent Foundation" data-es="Base Agente de Voz">Voice Agent Foundation</h3>
-          <div class="from" data-en="from $1,999" data-es="desde $1,999">from $1,999</div>
+          <div class="from" data-en="from $1,999 <span class='discount-pill'>Current 20% discounted price</span>" data-es="desde $1,999 <span class='discount-pill'>Precio actual con 20% de descuento</span>">from $1,999 <span class="discount-pill">Current 20% discounted price</span></div>
           <p class="price-fit" data-en="Best for businesses that need one clean call flow first." data-es="Ideal para negocios que necesitan primero un flujo de llamadas limpio.">Best for businesses that need one clean call flow first.</p>
           <ul>
             <li data-en="One main call flow" data-es="Un flujo principal">One main call flow</li>
@@ -836,12 +851,12 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
             <li data-en="Call summaries and transcripts" data-es="Resumenes y transcripciones">Call summaries and transcripts</li>
             <li data-en="Email or WhatsApp handoff" data-es="Traspaso por email o WhatsApp">Email or WhatsApp handoff</li>
           </ul>
-          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Reserve Build" data-es="Reservar Build">Reserve Build</a>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Reserve Yours Now" data-es="Reservar el tuyo ahora">Reserve Yours Now</a>
         </article>
         <article class="pricing-card featured">
           <span class="badge" data-en="Recommended" data-es="Recomendado">Recommended</span>
           <h3 data-en="Voice + Follow-up System" data-es="Voz + Seguimiento">Voice + Follow-up System</h3>
-          <div class="from" data-en="from $2,999" data-es="desde $2,999">from $2,999</div>
+          <div class="from" data-en="from $2,999 <span class='discount-pill'>Current 20% discounted price</span>" data-es="desde $2,999 <span class='discount-pill'>Precio actual con 20% de descuento</span>">from $2,999 <span class="discount-pill">Current 20% discounted price</span></div>
           <p class="price-fit" data-en="Best for most service businesses that want calls captured and followed up through WhatsApp or email." data-es="Ideal para la mayoria de negocios de servicios que quieren llamadas capturadas y seguimiento por WhatsApp o email.">Best for most service businesses that want calls captured and followed up through WhatsApp or email.</p>
           <ul>
             <li data-en="Voice agent plus follow-up messages" data-es="Agente de voz mas mensajes de seguimiento">Voice agent plus follow-up messages</li>
@@ -849,12 +864,12 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
             <li data-en="Human escalation rules" data-es="Reglas de escalada humana">Human escalation rules</li>
             <li data-en="Booking, CRM, or form handoff" data-es="Traspaso a reservas, CRM o formulario">Booking, CRM, or form handoff</li>
           </ul>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Build Call" data-es="Agendar Build Call">Book a Build Call</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Reserve Yours Now" data-es="Reservar el tuyo ahora">Reserve Yours Now</a>
         </article>
         <article class="pricing-card">
           <span class="badge" data-en="Advanced" data-es="Avanzado">Advanced</span>
           <h3 data-en="Multi-Flow Voice System" data-es="Sistema Multi-Flujo">Multi-Flow Voice System</h3>
-          <div class="from" data-en="from $4,999" data-es="desde $4,999">from $4,999</div>
+          <div class="from" data-en="from $4,999 <span class='discount-pill'>Current 20% discounted price</span>" data-es="desde $4,999 <span class='discount-pill'>Precio actual con 20% de descuento</span>">from $4,999 <span class="discount-pill">Current 20% discounted price</span></div>
           <p class="price-fit" data-en="Best for businesses with multiple services, teams, locations, or lead types." data-es="Ideal para negocios con multiples servicios, equipos, sedes o tipos de leads.">Best for businesses with multiple services, teams, locations, or lead types.</p>
           <ul>
             <li data-en="Multiple departments or locations" data-es="Multiples departamentos o sedes">Multiple departments or locations</li>
@@ -862,11 +877,11 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
             <li data-en="Dashboard or custom app layer" data-es="Dashboard o capa de app personalizada">Dashboard or custom app layer</li>
             <li data-en="Ongoing optimisation plan" data-es="Plan de optimizacion continuo">Ongoing optimisation plan</li>
           </ul>
-          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Discuss Scope" data-es="Hablar Alcance">Discuss Scope</a>
+          <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-grad" data-en="Reserve Yours Now" data-es="Reservar el tuyo ahora">Reserve Yours Now</a>
         </article>
       </div>
       <div class="cta-row-inline">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-white-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
       </div>
     </div>
   </section>
@@ -876,12 +891,12 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <div class="bonus-strip">
         <div>
           <p class="eyebrow" data-en="Limited bonus" data-es="Bono limitado">Limited bonus</p>
-          <h2 class="headline-md" data-en="FREE CALL FLOW MAP<br>INCLUDED THIS WEEK" data-es="MAPA DE FLUJO DE LLAMADAS<br>INCLUIDO ESTA SEMANA">FREE CALL FLOW MAP<br>INCLUDED THIS WEEK</h2>
+          <h2 class="headline-md" data-en="<span class='grad'>FREE CALL</span> FLOW MAP<br>INCLUDED THIS WEEK" data-es="MAPA DE FLUJO DE <span class='grad'>LLAMADAS GRATIS</span><br>INCLUIDO ESTA SEMANA"><span class="grad">FREE CALL</span> FLOW MAP<br>INCLUDED THIS WEEK</h2>
         </div>
         <div>
           <p class="body-md" data-en="Book your demo this week and we will map the first call flow your business should automate. Normally $250. Included free with your demo." data-es="Agenda tu demo esta semana y mapearemos el primer flujo de llamadas que tu negocio deberia automatizar. Normalmente $250. Incluido gratis con tu demo.">Book your demo this week and we will map the first call flow your business should automate. Normally $250. Included free with your demo.</p>
           <div class="cta-row-inline" style="justify-content:flex-start;margin-top:24px">
-            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book the Free Demo" data-es="Agendar la demo gratuita">Book the Free Demo</a>
+            <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad" data-en="Book the Free Demo" data-es="Agendar la demo gratuita">Book the Free Demo</a>
           </div>
         </div>
       </div>
@@ -957,7 +972,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <h2 class="headline-lg" data-en="LET'S BUILD<br>YOUR VOICE AGENT." data-es="CONSTRUYAMOS<br>TU AGENTE DE VOZ.">LET'S BUILD<br>YOUR VOICE AGENT.</h2>
       <p class="body-lg" data-en="Book a free demo and we will show you the first call flow your business should automate." data-es="Agenda una demo gratuita y te mostraremos el primer flujo de llamadas que tu negocio deberia automatizar.">Book a free demo and we will show you the first call flow your business should automate.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-dark" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
+        <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-white-grad" data-en="Book a Free Voice Agent Demo" data-es="Agendar demo gratuita del voice agent">Book a Free Voice Agent Demo</a>
         <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." target="_blank" rel="noopener" class="btn btn-outline btn-whatsapp" data-en="WhatsApp Us" data-es="Escribenos por WhatsApp">WhatsApp Us</a>
       </div>
       <p class="body-sm" style="margin-top:22px;color:#0b3a38" data-en="Or email info@thefuturestudio.online" data-es="O escribe a info@thefuturestudio.online">Or email info@thefuturestudio.online</p>
@@ -995,7 +1010,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 The Future Studio - Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
+      <span class="footer-copy">&copy; 2026 The Future Studio. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
     </div>
   </div>
 </footer>
@@ -1003,6 +1018,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 <button id="scroll-top" aria-label="Back to top">&uarr;</button>
 <a href="https://wa.me/50766753870?text=Hola%2C%20vi%20su%20sitio%20y%20me%20interesa%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20IA%20para%20mi%20negocio." id="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M19.11 17.22c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.51.07-.77.36-.26.29-1.01.99-1.01 2.42s1.03 2.8 1.18 2.99c.15.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.12-.26-.19-.55-.34z"/><path d="M16.03 3C8.86 3 3.03 8.83 3.03 16c0 2.29.6 4.53 1.74 6.5L3 29l6.66-1.75A12.94 12.94 0 0 0 16.03 29c7.17 0 13-5.83 13-13s-5.83-13-13-13zm0 23.75c-2.14 0-4.22-.63-6-1.83l-.43-.29-3.95 1.04 1.05-3.85-.28-.44A10.7 10.7 0 0 1 5.28 16c0-5.93 4.82-10.75 10.75-10.75S26.78 10.07 26.78 16 21.96 26.75 16.03 26.75z"/></svg>
+  <span class="wa-label">WhatsApp</span>
 </a>
 
 <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async></script>
