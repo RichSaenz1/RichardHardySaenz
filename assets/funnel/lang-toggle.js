@@ -150,17 +150,29 @@
     /* Toggle buttons */
     syncToggleButtons(lang);
 
-    /* Persist + emit event */
+    /* Persist + emit events.
+       We dispatch BOTH "tfs:lang" (our own canonical name) AND
+       "tfs:langchange" (the existing convention used by
+       /shop/assets/shop.js and /assets/funnel-conversion.js, plus
+       page-local personalization scripts such as the one inside
+       /thank-you/audit.html). Other listeners on the page get a
+       chance to re-render their bilingual content without us having
+       to touch shop.js / funnel-conversion.js. */
     try { window.localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
 
-    try {
-      document.dispatchEvent(new CustomEvent('tfs:lang', { detail: { lang: lang } }));
-    } catch (e) {
-      /* IE11-safe fallback */
-      var ev = document.createEvent('CustomEvent');
-      ev.initCustomEvent('tfs:lang', false, false, { lang: lang });
-      document.dispatchEvent(ev);
+    var detail = { lang: lang };
+    function safeDispatch(name) {
+      try {
+        document.dispatchEvent(new CustomEvent(name, { detail: detail }));
+      } catch (e) {
+        /* IE11-safe fallback */
+        var ev = document.createEvent('CustomEvent');
+        ev.initCustomEvent(name, false, false, detail);
+        document.dispatchEvent(ev);
+      }
     }
+    safeDispatch('tfs:lang');
+    safeDispatch('tfs:langchange');
   }
 
   /* Wire up button clicks */
