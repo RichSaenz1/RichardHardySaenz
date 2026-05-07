@@ -15,8 +15,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shop/assets/shop.css">
+<link rel="stylesheet" href="/assets/funnel/funnel-shell.css?v=redesign-20260506">
 <style>
+/* funnel-conversion.js will auto-inject testimonial-style cards
+   (.funnel-proof-quotes) using PRODUCT_TESTIMONIALS from the shared
+   script. Per the prompt-pack rule against unverified testimonials,
+   suppress them on this page until real verified testimonials are
+   provided. CSS-only page-scoped suppression so the shared
+   funnel-conversion.js stays untouched. */
+body[data-funnel-product="whatsappAutomationGuide"].checkout-restored .funnel-proof-quotes,
+.checkout-restored .funnel-proof-quotes { display: none; }
+
+/* The auto-injected .funnel-product-fit-section (what you get / who
+   for / who not for) duplicates the existing 4-card summary-grid on
+   this page (What you unlock / Inside / Best for / After purchase).
+   Suppress to avoid redundant content. */
+.checkout-restored .funnel-product-fit-section { display: none; }
+
+/* The auto-injected .funnel-deal-strip and .funnel-trust-tags get
+   their full styles from /assets/funnel-layout.css, which this
+   checkout page does NOT load. Without those styles they render as
+   unstyled inline DOM and visually conflict with the page's own
+   .price-block + .trust-strip. Suppress them here so the page's
+   handcrafted pricing + trust components remain the single source
+   of pricing/discount visibility. */
+.checkout-restored .funnel-deal-strip,
+.checkout-restored .funnel-trust-tags { display: none; }
+
 .checkout-restored .hero { padding: 118px 0 70px; }
+
+/* When the shared shell is active, the body already has padding-top
+   from the urgency bar + sticky nav. The hero's own 118px padding-top
+   would compound to a large empty gap, so override it here. */
+body.tfs-shell.checkout-restored .hero { padding: 32px 0 56px; }
+@media (max-width: 760px) {
+  body.tfs-shell.checkout-restored .hero { padding: 24px 0 40px; }
+}
 .checkout-restored .checkout-shell { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr); gap:28px; align-items:start; }
 .checkout-restored .hero-panel,.checkout-restored .payment-panel,.checkout-restored .support-panel { border:2px solid var(--black); border-radius:0; }
 .checkout-restored .hero-panel { position:relative; overflow:hidden; padding:42px; background:linear-gradient(125deg, rgba(20,220,203,.18), rgba(255,248,242,.94) 44%, rgba(155,89,255,.16)); }
@@ -28,7 +62,12 @@
 .checkout-restored .summary-card { min-height:230px; padding:28px 24px; border:2px solid var(--black); background:var(--white); box-shadow:8px 8px 0 rgba(20,220,203,.24); }
 .checkout-restored .summary-card.dark { background:var(--black); color:var(--white); box-shadow:8px 8px 0 var(--cyan); }
 .checkout-restored .summary-card.dark p,.checkout-restored .summary-card.dark li,.checkout-restored .summary-card.dark strong { color:var(--white); }
-.checkout-restored .summary-card h3,.checkout-restored .summary-card strong,.checkout-restored .payment-panel h2,.checkout-restored .support-panel h2 { display:block; margin-top:12px; font-family:var(--font-d); font-size:clamp(32px,4vw,54px); font-weight:800; font-style:italic; line-height:.93; text-transform:uppercase; }
+.checkout-restored .summary-card h3,.checkout-restored .summary-card strong,.checkout-restored .payment-panel h2,.checkout-restored .support-panel h2 { display:block; margin-top:12px; font-family:var(--font-d); font-weight:800; font-style:italic; line-height:.95; text-transform:uppercase; letter-spacing:-.005em; }
+/* Tighter scale for the 4-card summary-grid so headings stop
+   overflowing the cards on narrow viewports. The big italic
+   display headline stays for .payment-panel h2 / .support-panel h2. */
+.checkout-restored .summary-card h3,.checkout-restored .summary-card strong { font-size:clamp(22px,2.6vw,30px); line-height:1.05; }
+.checkout-restored .payment-panel h2,.checkout-restored .support-panel h2 { font-size:clamp(30px,4vw,48px); }
 .checkout-restored .summary-card p,.checkout-restored .payment-panel p,.checkout-restored .support-panel p,.checkout-restored .secure-points li { font-size:16px; line-height:1.62; }
 .checkout-restored .summary-card ul,.checkout-restored .secure-points { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:11px; }
 .checkout-restored .summary-card li,.checkout-restored .secure-points li { position:relative; padding-left:18px; }
@@ -41,10 +80,92 @@
 .checkout-restored .field-group label { font-family:var(--font-d); font-weight:800; letter-spacing:.16em; text-transform:uppercase; font-size:13px; }
 .checkout-restored .field-group input { width:100%; border:1px solid rgba(255,255,255,.24); background:#151515; color:var(--white); padding:15px 16px; font:inherit; }
 .checkout-restored .stripe-panel { border:2px solid rgba(255,255,255,.24); padding:18px; background:rgba(255,255,255,.06); display:grid; gap:10px; }
-.checkout-restored .payment-row { padding:18px 0; border-top:1px solid rgba(255,255,255,.16); border-bottom:1px solid rgba(255,255,255,.16); display:flex; justify-content:space-between; align-items:center; gap:20px; }
-.checkout-restored .payment-row strong { font-size:28px; line-height:1; }
-.checkout-restored .price-lock { display:inline-flex; align-items:center; gap:10px; color:var(--gold); font-family:var(--font-d); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
-.checkout-restored .price-lock del { color:rgba(255,255,255,.5); }
+/* Dedicated dominant pricing block. The current price is visually
+   strong (large gradient italic), the old price is muted, and a
+   gold "Save 50%" badge sits beside the launch-offer label so
+   discount and urgency are obvious without clutter. The product
+   name sits above as a small secondary line. Centered on all sizes
+   so the price block reads as the anchor of the payment panel. */
+.checkout-restored .price-block {
+  margin: 22px 0 18px;
+  padding: 22px 22px 18px;
+  border: 2px solid rgba(20,220,203,.4);
+  background: rgba(20,220,203,.06);
+  display: grid; gap: 8px;
+  text-align: center;
+}
+.checkout-restored .price-block-head {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap;
+  font-family: var(--font-d, "Barlow Condensed");
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255,255,255,.7);
+}
+.checkout-restored .price-block-save {
+  background: var(--gold, #ffd84d);
+  color: var(--black, #050505);
+  padding: 4px 10px;
+  letter-spacing: .1em;
+}
+.checkout-restored .price-block-product {
+  font-family: var(--font-d, "Barlow Condensed");
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 13px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.15;
+  margin-top: 2px;
+}
+.checkout-restored .price-block-figures {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 14px; flex-wrap: wrap;
+  margin-top: 4px;
+}
+.checkout-restored .price-block-current {
+  font-family: var(--font-d, "Barlow Condensed");
+  font-style: italic; font-weight: 800;
+  font-size: clamp(54px, 9vw, 72px);
+  line-height: .9;
+  letter-spacing: -.02em;
+  background: linear-gradient(90deg, var(--cyan, #11d8c5), var(--violet, #9258ff));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.checkout-restored .price-block-was {
+  font-family: var(--font-d, "Barlow Condensed");
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.45);
+}
+.checkout-restored .price-block-was del {
+  color: inherit;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+.checkout-restored .price-block-meta {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px;
+  font-family: var(--font-b, "DM Sans");
+  font-size: 12px;
+  letter-spacing: .03em;
+  color: rgba(255,255,255,.6);
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.checkout-restored .price-block-sep { opacity: .4; }
+@media (max-width: 760px) {
+  .checkout-restored .price-block { padding: 20px 18px 16px; }
+  .checkout-restored .price-block-current { font-size: clamp(48px, 13vw, 64px); }
+}
 .checkout-restored .payment-actions { display:grid; gap:12px; margin-top:18px; }
 .checkout-restored .payment-actions .btn { width:100%; justify-content:center; }
 .checkout-restored .form-note { font-size:14px; line-height:1.55; color:rgba(255,255,255,.66); text-align:center; }
@@ -54,14 +175,204 @@
 @media (max-width: 760px) { .checkout-restored .hero { padding:88px 0 44px; } .checkout-restored .hero-panel,.checkout-restored .payment-panel,.checkout-restored .support-panel { padding:25px 20px; text-align:center; } .checkout-restored .summary-card li,.checkout-restored .secure-points li { text-align:left; } .checkout-restored .payment-row { flex-direction:column; align-items:center; text-align:center; } .checkout-restored .cta-row { justify-content:center; } }
 </style>
 </head>
-<body class="checkout-restored">
+<body class="checkout-restored tfs-shell tfs-has-shell has-funnel-urgency">
 <canvas id="bg-canvas" aria-hidden="true"></canvas>
 <div class="shop-page">
-<nav class="site-nav"><div class="nav-inner"><div class="nav-menu"><div class="nav-links"><a href="/#services">Services</a><a href="/#courses-section">Courses</a><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a></div><div class="nav-actions"><div class="lang-toggle"><button class="lang-btn active" type="button" data-lang="en">EN</button><button class="lang-btn" type="button" data-lang="es">ES</button></div><a class="nav-cta" href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener">Book a Free Call</a></div></div><a class="site-brand" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a><button class="nav-hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button></div></nav>
+
+<!-- ============ SHARED FUNNEL HEADER ============
+     Yellow urgency bar injected by /assets/funnel-conversion.js;
+     pre-set "has-funnel-urgency" body class avoids initial render
+     flash. /assets/funnel-conversion.js's insertStickyValueBar
+     early-exits for whatsappAutomationGuide so no sticky bottom bar
+     appears here; the form is the primary CTA.
+============================================================== -->
+<nav id="tfs-nav" aria-label="Primary">
+  <div class="tfs-nav-inner">
+    <div class="tfs-nav-links" role="navigation">
+      <a href="/#services"   data-en="Services"    data-es="Servicios">Services</a>
+      <a href="/#academy"    data-en="Academy"     data-es="Academia">Academy</a>
+      <a href="/#packages"   data-en="Packages"    data-es="Paquetes">Packages</a>
+      <a href="/#instructor" data-en="Instructor"  data-es="Instructor">Instructor</a>
+      <a href="/#faq"        data-en="FAQ"         data-es="FAQ">FAQ</a>
+    </div>
+
+    <a class="tfs-nav-logo" href="/" aria-label="The Future Studio home">
+      <img src="/logo.png" alt="The Future Studio">
+    </a>
+
+    <div class="tfs-nav-actions">
+      <a href="https://www.linkedin.com/in/richard-hardy"
+         class="tfs-nav-linkedin"
+         target="_blank" rel="noopener"
+         aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <div class="tfs-lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="tfs-lang-btn tfs-active" data-lang="en">EN</button>
+        <button type="button" class="tfs-lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="https://calendly.com/thefuturestudio-info/30min"
+         class="tfs-btn tfs-btn-grad tfs-btn-sm"
+         target="_blank" rel="noopener"
+         data-en="Book AI Systems Demo"
+         data-es="Reservar demo IA">Book AI Systems Demo</a>
+    </div>
+
+    <button type="button" class="tfs-nav-hamburger" id="tfs-nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="tfs-nav-mobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="tfs-nav-mobile" id="tfs-nav-mobile">
+    <div class="tfs-nav-mobile-meta">
+      <div class="tfs-lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="tfs-lang-btn tfs-active" data-lang="en">EN</button>
+        <button type="button" class="tfs-lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
+    <a href="/#services"   data-en="Services"    data-es="Servicios">Services</a>
+    <a href="/#packages"   data-en="Packages"    data-es="Paquetes">Packages</a>
+    <a href="/#academy"    data-en="Academy"     data-es="Academia">Academy</a>
+    <a href="/#instructor" data-en="Instructor"  data-es="Instructor">Instructor</a>
+    <a href="/#faq"        data-en="FAQ"         data-es="FAQ">FAQ</a>
+    <a href="https://calendly.com/thefuturestudio-info/30min"
+       class="tfs-btn tfs-btn-grad"
+       target="_blank" rel="noopener"
+       data-en="Book AI Systems Demo"
+       data-es="Reservar demo IA">Book AI Systems Demo</a>
+    <a href="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+       class="tfs-btn tfs-btn-outline-dark"
+       target="_blank" rel="noopener"
+       data-tfs-wa
+       data-wa-en="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+       data-wa-es="https://wa.me/50766753870?text=Hola%2C%20me%20gustaria%20saber%20que%20sistema%20de%20IA%20tiene%20mas%20sentido%20para%20mi%20negocio.%20Me%20pueden%20ayudar%20a%20elegir%3F"
+       data-en="Ask about your first AI system"
+       data-es="Preguntar por mi primer sistema IA">Ask about your first AI system</a>
+  </div>
+</nav>
+<!-- ============ END HEADER ============ -->
 <main><section class="hero"><div class="wrap"><div class="checkout-shell"><section class="hero-panel aos"><span class="orb orb-cyan orb-1" style="width:220px;height:220px;top:-70px;left:-70px"></span><span class="orb orb-violet orb-2" style="width:240px;height:240px;bottom:-100px;right:-90px"></span><p class="eyebrow">Secure Checkout</p><h1 class="headline-lg hero-title" data-en="COMPLETE YOUR ORDER" data-es="COMPLETA TU ORDEN">COMPLETE YOUR ORDER</h1><div class="trust-strip"><span>Instant digital access</span><span>Secure Stripe checkout</span><span>Email receipt</span></div><p class="body-lg hero-copy">Complete your order for the practical WhatsApp automation guide that helps clean up the first-response layer before leads go cold.</p><div class="summary-grid"><article class="summary-card dark"><p class="eyebrow">What you unlock</p><h3>A cleaner first response</h3><p>This product gives you a focused next step without adding a larger build decision before you are ready.</p></article><article class="summary-card"><p class="eyebrow">Inside</p><ul>
               <li>WhatsApp profile and intake cleanup</li>
               <li>Reply structure for new enquiries</li>
               <li>A clearer handoff from message to booking</li>
-            </ul></article><article class="summary-card"><p class="eyebrow">Best for</p><strong>Service businesses losing trust at the first WhatsApp or inquiry touchpoint.</strong></article><article class="summary-card dark"><p class="eyebrow">After purchase</p><strong>Pay on Stripe, return, receive access</strong><p>Your access link will be sent to the email used at checkout. If anything fails, email us and we will send it manually.</p></article></div></section><aside class="payment-panel aos d1"><p class="eyebrow">Payment</p><h2>PAY FOR THE <span class="grad">WHATSAPP GUIDE</span> NOW</h2><p>Use this page when you are ready to move. You will continue to the secure Stripe checkout after entering your details.</p><form class="payment-form" id="checkout-form"><div class="field-group"><label for="checkout-email">Work Email</label><input id="checkout-email" name="email" type="email" autocomplete="email" required placeholder="you@business.com"></div><div class="field-group"><label for="checkout-name">Full Name</label><input id="checkout-name" name="name" type="text" autocomplete="name" required placeholder="Your full name"></div><div class="stripe-panel"><strong>Continue to Secure Stripe Checkout</strong><p>Card details are entered on Stripe, not on this page.</p></div><div class="payment-row"><div><div class="micro-meta">Order Summary</div><strong>WHATSAPP AUTOMATION GUIDE</strong></div><div class="price-lock"><del>$9.99</del><span>$4.99</span></div></div><ul class="secure-points"><li>Secure Stripe checkout</li><li>Instant digital access after payment</li><li>Email receipt and USD pricing</li></ul><div class="payment-actions"><button class="btn btn-primary" id="checkout-submit" type="submit">Continue to Secure Stripe Checkout</button><p class="form-note">After payment, your access link will be sent to the email used at checkout.</p></div></form></aside></div><section class="support-panel aos"><p class="eyebrow">Need more detail first?</p><h2>REVIEW THE FULL <span class="grad">PRODUCT PAGE</span> BEFORE YOU PAY</h2><p>If you want one more look before checkout, review the product page first. Otherwise, continue securely through Stripe.</p><div class="cta-row"><a class="btn btn-outline-dark" href="/shop/step-2/audit/">Review the WhatsApp guide page</a></div></section></div></section></main>
-<footer class="site-footer"><div class="wrap"><a class="footer-logo-link" href="/" aria-label="The Future Studio home"><img src="/logo.png" alt="The Future Studio"></a><div class="footer-grid"><div class="footer-brand"><p>AI systems and digital products for service businesses. Design-led, bilingual, and built to create real operational momentum before bigger offers are introduced.</p></div><div class="footer-col"><h5>Services</h5><a href="/#services">Voice Agents</a><a href="/#services">WhatsApp Automation</a><a href="/#services">Booking Flows</a><a href="/#courses-section">AI Courses</a></div><div class="footer-col"><h5>Contact</h5><a href="https://calendly.com/richardhardysaenz-thefuturestudio/discovery-call" target="_blank" rel="noopener">Book a Call</a><a href="https://wa.me/50765623675" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:info%40thefuturestudio.online">info&#64;thefuturestudio.online</a></div></div><div class="footer-bottom"><span>&copy; 2026 The Future Studio. All rights reserved.</span><span class="footer-status">Internationally delivered. Built in weeks.</span></div></div></footer>
-</div><script src="/shop/assets/payment-links.js"></script><script src="/shop/assets/shop.js"></script><script>document.addEventListener('DOMContentLoaded',function(){var paymentLink=(window.PAYMENT_LINKS&&window.PAYMENT_LINKS.whatsappAutomationGuide)||'';var form=document.getElementById('checkout-form');var emailField=document.getElementById('checkout-email');var nameField=document.getElementById('checkout-name');form.addEventListener('submit',function(event){event.preventDefault();if(!emailField.value.trim()||!nameField.value.trim())return;if(paymentLink){window.location.href=paymentLink;return;}window.location.href='/thank-you/product.html?product=whatsapp-automation-guide';});});</script></body></html>
+            </ul></article><article class="summary-card"><p class="eyebrow">Best for</p><strong>Service businesses losing trust at the first WhatsApp or inquiry touchpoint.</strong></article><article class="summary-card dark"><p class="eyebrow">After purchase</p><strong>Pay on Stripe, return, receive access</strong><p>Your access link will be sent to the email used at checkout. If anything fails, email us and we will send it manually.</p></article></div></section><aside class="payment-panel aos d1"><p class="eyebrow">Payment</p><h2>PAY FOR THE <span class="grad">WHATSAPP GUIDE</span> NOW</h2><p>Use this page when you are ready to move. You will continue to the secure Stripe checkout after entering your details.</p><form class="payment-form" id="checkout-form"><div class="field-group"><label for="checkout-email">Work Email</label><input id="checkout-email" name="email" type="email" autocomplete="email" required placeholder="you@business.com"></div><div class="field-group"><label for="checkout-name">Full Name</label><input id="checkout-name" name="name" type="text" autocomplete="name" required placeholder="Your full name"></div><div class="stripe-panel"><strong>Continue to Secure Stripe Checkout</strong><p>Card details are entered on Stripe, not on this page.</p></div><div class="price-block" role="group" aria-label="Order price">
+  <div class="price-block-head">
+    <span data-en="Launch offer" data-es="Oferta de lanzamiento">Launch offer</span>
+    <span class="price-block-save" data-en="Save 50%" data-es="Ahorras 50%">Save 50%</span>
+  </div>
+  <div class="price-block-product"
+       data-en="WhatsApp Automation Guide"
+       data-es="Guia de Automatizacion de WhatsApp">WhatsApp Automation Guide</div>
+  <div class="price-block-figures">
+    <span class="price-block-current">$4.99</span>
+    <span class="price-block-was"><del>$9.99</del></span>
+  </div>
+  <div class="price-block-meta">
+    <span data-en="USD pricing"      data-es="Precio en USD">USD pricing</span>
+    <span class="price-block-sep" aria-hidden="true">·</span>
+    <span data-en="One-time payment" data-es="Pago unico">One-time payment</span>
+    <span class="price-block-sep" aria-hidden="true">·</span>
+    <span data-en="Instant access"   data-es="Acceso inmediato">Instant access</span>
+  </div>
+</div><ul class="secure-points"><li>Secure Stripe checkout</li><li>Instant digital access after payment</li><li>Email receipt and USD pricing</li></ul><div class="payment-actions"><button class="btn btn-primary" id="checkout-submit" type="submit">Continue to Secure Stripe Checkout</button><p class="form-note">After payment, your access link will be sent to the email used at checkout.</p></div></form></aside></div><section class="support-panel aos"><p class="eyebrow">Need more detail first?</p><h2>REVIEW THE FULL <span class="grad">PRODUCT PAGE</span> BEFORE YOU PAY</h2><p>If you want one more look before checkout, review the product page first. Otherwise, continue securely through Stripe.</p><div class="cta-row"><a class="btn btn-outline-dark" href="/shop/step-2/audit/">Review the WhatsApp guide page</a></div></section></div></section></main>
+<!-- ============ SHARED FUNNEL FOOTER ============ -->
+<footer class="tfs-footer" role="contentinfo">
+  <div class="tfs-footer-wrap">
+    <div class="tfs-footer-inner">
+
+      <div>
+        <div class="tfs-footer-logo">
+          <img src="/logo.png" alt="The Future Studio">
+        </div>
+        <p class="tfs-footer-tagline"
+           data-en="AI systems for service businesses, internationally. Precision-built. Results-driven."
+           data-es="Sistemas de IA para Latinoamerica. La confianza primero. Sin hype.">AI systems for service businesses, internationally. Precision-built. Results-driven.</p>
+      </div>
+
+      <div class="tfs-footer-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <ul>
+          <li><a href="/#services" data-en="AI Agents"           data-es="Agentes IA">AI Agents</a></li>
+          <li><a href="/#services" data-en="Voice Agents"        data-es="Agentes de Voz">Voice Agents</a></li>
+          <li><a href="/#services" data-en="WhatsApp Automation" data-es="Automatizacion WhatsApp">WhatsApp Automation</a></li>
+          <li><a href="/#services" data-en="Booking Flows"       data-es="Flujos de Reservas">Booking Flows</a></li>
+          <li><a href="/#services" data-en="Custom Platforms"    data-es="Plataformas a Medida">Custom Platforms</a></li>
+          <li><a href="/#academy"  data-en="AI Courses"          data-es="Cursos IA">AI Courses</a></li>
+        </ul>
+      </div>
+
+      <div class="tfs-footer-col">
+        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+        <ul>
+          <li>
+            <a href="https://calendly.com/thefuturestudio-info/30min"
+               target="_blank" rel="noopener"
+               data-en="Book a Free AI Systems Demo"
+               data-es="Reservar demo gratuita de IA">Book a Free AI Systems Demo</a>
+          </li>
+          <li>
+            <a href="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+               target="_blank" rel="noopener"
+               data-tfs-wa
+               data-wa-en="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+               data-wa-es="https://wa.me/50766753870?text=Hola%2C%20me%20gustaria%20saber%20que%20sistema%20de%20IA%20tiene%20mas%20sentido%20para%20mi%20negocio.%20Me%20pueden%20ayudar%20a%20elegir%3F"
+               >WhatsApp</a>
+          </li>
+          <li>
+            <a href="mailto:info@thefuturestudio.online">Email</a>
+          </li>
+          <li>
+            <a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tfs-footer-bottom">
+      <span class="tfs-footer-copy">
+        &copy; 2026 The Future Studio - Richard Hardy Saenz.
+        <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a id="tfs-whatsapp-btn"
+   href="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+   target="_blank" rel="noopener"
+   data-tfs-wa
+   data-wa-en="https://wa.me/50766753870?text=Hi%2C%20I%20would%20like%20to%20know%20which%20AI%20system%20would%20make%20the%20most%20sense%20for%20my%20business.%20Can%20you%20help%20me%20choose%3F"
+   data-wa-es="https://wa.me/50766753870?text=Hola%2C%20me%20gustaria%20saber%20que%20sistema%20de%20IA%20tiene%20mas%20sentido%20para%20mi%20negocio.%20Me%20pueden%20ayudar%20a%20elegir%3F"
+   aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="tfs-wa-label" data-en="Ask about your first AI system" data-es="Preguntar por mi primer sistema IA">Ask about your first AI system</span>
+</a>
+
+<button type="button" id="tfs-scroll-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<!-- ============ END FOOTER ============ -->
+
+</div>
+
+<!-- Existing checkout scripts - PRESERVED EXACTLY.
+     payment-links.js sets window.PAYMENT_LINKS used by the inline
+     submit handler below. shop.js drives the legacy lang toggle
+     bindings (no-op here since .lang-btn is gone, but boot still
+     mirrors lang state to body[data-lang] / docElement / storage).
+     The inline form submit handler intercepts in the bubble phase,
+     calls preventDefault, and redirects to the Stripe checkout URL
+     OR to /thank-you/product.html if the link is missing. -->
+<script src="/shop/assets/payment-links.js"></script>
+<script src="/shop/assets/shop.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){var paymentLink=(window.PAYMENT_LINKS&&window.PAYMENT_LINKS.whatsappAutomationGuide)||'';var form=document.getElementById('checkout-form');var emailField=document.getElementById('checkout-email');var nameField=document.getElementById('checkout-name');form.addEventListener('submit',function(event){event.preventDefault();if(!emailField.value.trim()||!nameField.value.trim())return;if(paymentLink){window.location.href=paymentLink;return;}window.location.href='/thank-you/product.html?product=whatsapp-automation-guide';});});</script>
+
+<!-- Shared funnel scripts (Phase B layer). funnel-conversion.js
+     injects the global yellow .funnel-urgency-bar + countdown.
+     lang-toggle.js dispatches both tfs:lang and tfs:langchange so
+     funnel-conversion.js's syncBilingual stays in sync. -->
+<script src="/assets/funnel/lang-toggle.js?v=redesign-20260506"></script>
+<script src="/assets/funnel/floating-ui.js?v=redesign-20260506"></script>
+<script src="/assets/funnel-conversion.js?v=rebuild-20260505"></script>
+</body></html>
