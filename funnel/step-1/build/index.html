@@ -1,17 +1,228 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=/build/">
-<link rel="canonical" href="/build/">
-<title>Business Revenue Calculator | The Future Studio</title>
-<link rel="stylesheet" href="/assets/funnel-layout.css?v=rebuild-20260505">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Revenue Calculator | The Future Studio</title>
+  <meta name="description" content="Use the first-step business revenue calculator to estimate what missed enquiries and manual admin are costing each month.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/funnel/funnel-shell.css?v=2">
+  <link rel="stylesheet" href="../../../assets/step-one.css?v=7">
 </head>
-<body>
-<p><a href="/build/">Continue to Business Revenue Calculator</a></p>
-<script src="/assets/funnel-conversion.js?v=rebuild-20260505"></script>
-<script src="/assets/funnel-visuals.js?v=rebuild-20260505"></script>
+<body class="tfs-shell tfs-has-shell step-one-dark">
+  <nav id="tfs-nav" aria-label="Primary">
+    <div class="tfs-nav-inner">
+      <div class="tfs-nav-links" role="navigation">
+        <a href="../../../#services" data-en="Services" data-es="Servicios">Services</a>
+        <a href="../../../#academy" data-en="Academy" data-es="Academia">Academy</a>
+        <a href="../../../#packages" data-en="Packages" data-es="Paquetes">Packages</a>
+        <a href="../../../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
+        <a href="../../../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      </div>
+      <a class="tfs-nav-logo" href="../../../" aria-label="The Future Studio home">
+        <img src="../../../logo.png" alt="The Future Studio">
+      </a>
+      <div class="tfs-nav-actions">
+        <a href="https://www.linkedin.com/in/richard-hardy" class="tfs-nav-linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <div class="tfs-lang-toggle" role="group" aria-label="Language">
+          <button type="button" class="tfs-lang-btn tfs-active" data-lang="en">EN</button>
+          <button type="button" class="tfs-lang-btn" data-lang="es">ES</button>
+        </div>
+        <a href="https://calendly.com/thefuturestudio-info/30min" class="tfs-btn tfs-btn-grad tfs-btn-sm" target="_blank" rel="noopener" data-en="Book AI Systems Demo" data-es="Reservar demo IA">Book AI Systems Demo</a>
+      </div>
+      <button type="button" class="tfs-nav-hamburger" id="tfs-nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="tfs-nav-mobile"><span></span><span></span><span></span></button>
+    </div>
+    <div class="tfs-nav-mobile" id="tfs-nav-mobile">
+      <div class="tfs-nav-mobile-meta">
+        <div class="tfs-lang-toggle" role="group" aria-label="Language">
+          <button type="button" class="tfs-lang-btn tfs-active" data-lang="en">EN</button>
+          <button type="button" class="tfs-lang-btn" data-lang="es">ES</button>
+        </div>
+      </div>
+      <a href="../../../#services" data-en="Services" data-es="Servicios">Services</a>
+      <a href="../../../#packages" data-en="Packages" data-es="Paquetes">Packages</a>
+      <a href="../../../#academy" data-en="Academy" data-es="Academia">Academy</a>
+      <a href="../../../#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
+      <a href="../../../#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
+      <a href="https://calendly.com/thefuturestudio-info/30min" class="tfs-btn tfs-btn-grad" target="_blank" rel="noopener" data-en="Book AI Systems Demo" data-es="Reservar demo IA">Book AI Systems Demo</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Business Revenue Calculator</p>
+          <h1>How much is your business <span class="accent">losing right now?</span></h1>
+          <p class="hero-lede">Enter real numbers below. The calculator updates instantly, so you can see the monthly opportunity before you decide what to automate.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#calculator">Calculate my loss</a>
+            <a class="secondary-btn" href="../audit/">Run the audit</a>
+          </div>
+          <div class="proof-strip" aria-label="Calculator highlights">
+            <span><i></i>No sign-up required</span>
+            <span><i></i>Results update live</span>
+            <span><i></i>Built for service businesses</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Revenue loss preview">
+          <div class="meter-row active">
+            <span>Missed enquiries</span>
+            <div class="meter-track"><div class="meter-fill" style="width: 68%"></div></div>
+          </div>
+          <div class="meter-row">
+            <span>Manual admin</span>
+            <div class="meter-track"><div class="meter-fill" style="width: 54%"></div></div>
+          </div>
+          <div class="meter-row">
+            <span>Slow follow-up</span>
+            <div class="meter-track"><div class="meter-fill" style="width: 81%"></div></div>
+          </div>
+          <div class="meter-row">
+            <span>Automation upside</span>
+            <div class="meter-track"><div class="meter-fill" style="width: 92%"></div></div>
+          </div>
+          <div class="panel-line"></div>
+          <p class="panel-note">Find the number worth fixing first.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="section-head">
+        <h2>Your live revenue calculator</h2>
+      </div>
+
+      <div class="calculator-grid" data-calculator>
+        <form class="calc-form">
+          <div class="tool-header">
+            <div>
+              <h3>Your numbers</h3>
+              <p>Every field is editable on desktop or phone.</p>
+            </div>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Average inbound calls or enquiries per day</span>
+              <input name="daily" type="number" min="0" value="15">
+              <small>Calls, WhatsApp, forms, and emails.</small>
+            </label>
+            <label class="field">
+              <span>Average client value</span>
+              <input name="value" type="number" min="0" value="180">
+              <small>What a new client usually spends first.</small>
+            </label>
+            <label class="field">
+              <span>Missed or unanswered enquiries</span>
+              <input name="missed" type="number" min="0" max="100" value="22">
+              <small>Percentage you miss, delay, or fail to follow up.</small>
+            </label>
+            <label class="field">
+              <span>Current conversion rate</span>
+              <input name="conversion" type="number" min="0" max="100" value="30">
+              <small>Out of 100 enquiries, how many become clients?</small>
+            </label>
+            <label class="field">
+              <span>Admin hours per week</span>
+              <input name="adminHours" type="number" min="0" value="8">
+              <small>Scheduling, reminding, replying, checking.</small>
+            </label>
+            <label class="field">
+              <span>Hourly admin cost</span>
+              <input name="adminRate" type="number" min="0" value="6.5" step="0.5">
+              <small>Include salary, owner time, or outsourced support.</small>
+            </label>
+          </div>
+        </form>
+
+        <aside class="calc-results">
+          <div class="tool-header">
+            <div>
+              <h3>Your revenue at risk</h3>
+              <p>Updates as you type. No submit needed.</p>
+            </div>
+          </div>
+          <div class="result-grid">
+            <div class="result-box">
+              <span>Missed enquiries per month</span>
+              <strong data-missed-month>0</strong>
+            </div>
+            <div class="result-box">
+              <span>Potential lost clients</span>
+              <strong data-lost-clients>0</strong>
+            </div>
+            <div class="result-box">
+              <span>Monthly revenue lost</span>
+              <strong data-revenue-lost>$0</strong>
+            </div>
+            <div class="result-box">
+              <span>Monthly admin cost</span>
+              <strong data-admin-cost>$0</strong>
+            </div>
+            <div class="result-box total">
+              <span>Total monthly opportunity</span>
+              <strong data-monthly-opportunity>$0</strong>
+            </div>
+            <div class="result-box total">
+              <span>Annualized opportunity</span>
+              <strong data-annual-opportunity>$0</strong>
+            </div>
+          </div>
+          <form class="lead-gate" data-calculator-gate name="step-one-build-gate">
+            <div class="lead-copy">
+              <strong>Email my calculator analysis</strong>
+              <span>We will send the numbers to your inbox and store the lead details with the calculator summary.</span>
+            </div>
+            <div class="lead-fields">
+              <label><span>Name</span><input type="text" name="name" autocomplete="name" placeholder="Your name"></label>
+              <label><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="you@email.com" required></label>
+              <button class="primary-btn" type="submit">Send analysis</button>
+            </div>
+            <p class="gate-status" data-gate-status></p>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="tfs-footer" role="contentinfo">
+    <div class="tfs-footer-wrap">
+      <div class="tfs-footer-inner">
+        <div>
+          <div class="tfs-footer-logo"><img src="../../../logo.png" alt="The Future Studio"></div>
+          <p class="tfs-footer-tagline" data-en="AI systems for service businesses, internationally. Precision-built. Results-driven." data-es="Sistemas de IA para Latinoamerica. La confianza primero. Sin hype.">AI systems for service businesses, internationally. Precision-built. Results-driven.</p>
+        </div>
+        <div class="tfs-footer-col">
+          <h5 data-en="Services" data-es="Servicios">Services</h5>
+          <ul>
+            <li><a href="../../../#services" data-en="AI Agents" data-es="Agentes IA">AI Agents</a></li>
+            <li><a href="../../../#services" data-en="Voice Agents" data-es="Agentes de Voz">Voice Agents</a></li>
+            <li><a href="../../../#services" data-en="WhatsApp Automation" data-es="Automatizacion WhatsApp">WhatsApp Automation</a></li>
+            <li><a href="../../../#academy" data-en="AI Courses" data-es="Cursos IA">AI Courses</a></li>
+          </ul>
+        </div>
+        <div class="tfs-footer-col">
+          <h5 data-en="Contact" data-es="Contacto">Contact</h5>
+          <ul>
+            <li><a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" data-en="Book a Free AI Systems Demo" data-es="Reservar demo gratuita de IA">Book a Free AI Systems Demo</a></li>
+            <li><a href="mailto:info@thefuturestudio.online">Email</a></li>
+            <li><a href="https://thefuturestudio.online" target="_blank" rel="noopener">thefuturestudio.online</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tfs-footer-bottom"><span class="tfs-footer-copy">&copy; 2026 The Future Studio - Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span></div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/funnel/lang-toggle.js?v=2" defer></script>
+  <script src="../../../assets/funnel/floating-ui.js?v=2" defer></script>
+  <script src="../../../assets/lead-capture.js?v=3" defer></script>
+  <script src="../../../assets/step-one.js?v=7" defer></script>
 </body>
 </html>
-
-
