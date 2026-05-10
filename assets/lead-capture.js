@@ -5,7 +5,7 @@
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function getLang() {
-    var active = document.querySelector(".lang-btn.active");
+    var active = document.querySelector(".lang-btn.active, .tfs-lang-btn.tfs-active");
     return (active && active.getAttribute("data-lang")) || document.documentElement.lang || "en";
   }
 
@@ -205,7 +205,7 @@
     installCheckoutCapture();
     setTimeout(installFunctionWrappers, 0);
     document.addEventListener("click", function (event) {
-      if (event.target && event.target.closest && event.target.closest(".lang-btn")) {
+      if (event.target && event.target.closest && event.target.closest(".lang-btn, .tfs-lang-btn")) {
         setTimeout(updateConsentLanguage, 0);
       }
     });
