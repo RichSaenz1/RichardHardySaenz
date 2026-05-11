@@ -51,19 +51,19 @@
     padding by default because most funnel pages do not have a sticky
     bottom bar.                                                          */
 body.tfs-has-shell { padding-top:112px; }
-body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 52px) + 112px); }
+body.tfs-has-shell.has-funnel-urgency { --funnel-urgency-height:44px; padding-top:calc(var(--funnel-urgency-height, 44px) + 112px); }
 
 @media(max-width:1100px){
   body.tfs-has-shell { padding-top:96px; }
-  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 52px) + 96px); }
+  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 44px) + 96px); }
 }
 @media(max-width:768px){
   body.tfs-has-shell { padding-top:88px; }
-  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 76px) + 88px); }
+  body.tfs-has-shell.has-funnel-urgency { --funnel-urgency-height:64px; padding-top:calc(var(--funnel-urgency-height, 64px) + 88px); }
 }
 @media(max-width:480px){
   body.tfs-has-shell { padding-top:82px; }
-  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 76px) + 82px); }
+  body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-height, 64px) + 82px); }
 }
 
 /*  Bottom padding ONLY for pages that explicitly opt in to the sticky
@@ -73,22 +73,196 @@ body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-he
   body.tfs-has-shell.tfs-has-mobile-cta { padding-bottom:76px; }
 }
 
+/* Landing-page header clone, used by step-one funnel entry pages. */
+.urgency-bar{
+  position:fixed;top:0;left:0;right:0;z-index:140;
+  background:var(--tfs-black);color:var(--tfs-white);
+  border-bottom:2px solid rgba(255,255,255,.16);
+}
+.urgency-inner{
+  height:44px;display:flex;align-items:center;justify-content:center;gap:18px;
+  padding:0 20px;text-align:center;
+}
+.urgency-copy{
+  font-family:var(--tfs-font-d);font-size:15px;font-weight:800;font-style:italic;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.urgency-link{
+  font-family:var(--tfs-font-d);font-size:12px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  background:var(--tfs-grad);-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;white-space:nowrap;
+}
+#nav{
+  position:fixed;top:44px;left:0;right:0;z-index:100;
+  border-top:1px solid rgba(0,0,0,.12);
+  border-bottom:1px solid transparent;
+  transition:transform .4s var(--tfs-ease),background .3s,border-color .3s;
+}
+#nav.scrolled{
+  background:rgba(255,248,245,.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom-color:var(--tfs-border-dark);
+}
+#nav.nav-hidden{transform:translateY(-100%)}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:112px;padding:0 32px;max-width:100%;margin:0;gap:20px;position:relative;
+}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{height:130px;width:auto;object-fit:contain;padding:18px 0}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a,.nav-dropdown-trigger{
+  font-family:var(--tfs-font-d);font-size:17px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--tfs-black);
+  transition:all .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
+  background:var(--tfs-grad);transition:width .25s var(--tfs-ease);
+}
+.nav-links a:hover,
+.nav-dropdown-trigger:hover{
+  background:var(--tfs-grad);-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+.nav-links a:hover::after{width:100%}
+.nav-dropdown{position:relative;padding:18px 0;margin:-18px 0}
+.nav-dropdown-trigger{
+  background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:7px;
+}
+.nav-dropdown-trigger::after{
+  content:'+';color:var(--tfs-cyan);font-size:13px;line-height:1;
+}
+.nav-dropdown-menu{
+  position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);
+  min-width:220px;background:var(--tfs-black);border:1px solid rgba(0,229,204,.45);
+  padding:10px;opacity:0;visibility:hidden;pointer-events:none;
+  transition:all .22s var(--tfs-ease);box-shadow:0 18px 40px rgba(0,0,0,.22);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu a{
+  display:block;color:var(--tfs-white);padding:13px 14px;
+  border-bottom:1px solid rgba(255,255,255,.1);white-space:nowrap;
+}
+.nav-dropdown-menu a:last-child{border-bottom:none}
+.nav-dropdown-menu a::after{display:none}
+.nav-dropdown-menu a:hover{
+  background:var(--tfs-grad);color:var(--tfs-black);-webkit-text-fill-color:var(--tfs-black);
+}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.nav-linkedin{
+  display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:6px;
+  background:var(--tfs-black);color:var(--tfs-white);
+  transition:all .25s var(--tfs-ease);flex-shrink:0;line-height:1;font-size:0;
+}
+.nav-linkedin svg{display:block}
+.nav-linkedin:hover{
+  background:linear-gradient(135deg,var(--tfs-cyan),var(--tfs-violet));
+  transform:translateY(-1px);box-shadow:0 4px 16px var(--tfs-cyan-glow);
+}
+.lang-toggle{
+  display:flex;background:rgba(10,10,10,.06);border:1px solid var(--tfs-border-dark);
+  padding:3px;gap:2px;
+}
+.lang-btn{
+  padding:5px 13px;font-family:var(--tfs-font-d);font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--tfs-text-muted);
+  transition:all .2s;background:none;border:none;cursor:pointer;
+}
+.lang-btn.active{background:var(--tfs-black);color:var(--tfs-white)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 32px;
+  font-family:var(--tfs-font-d);font-weight:700;font-size:16px;letter-spacing:.06em;
+  text-transform:uppercase;cursor:pointer;transition:all .25s var(--tfs-ease);
+  border:none;position:relative;overflow:hidden;line-height:1;
+}
+.btn-grad{background:var(--tfs-grad);color:var(--tfs-black)}
+.btn-grad:hover{
+  background:var(--tfs-white);color:var(--tfs-black);
+  box-shadow:0 0 0 2px var(--tfs-black),0 12px 34px rgba(0,229,204,.22);
+  transform:translateY(-1px);
+}
+.btn-outline-dark{background:transparent;color:var(--tfs-black);border:2px solid var(--tfs-black)}
+.btn-outline-dark:hover{background:var(--tfs-black);color:var(--tfs-white)}
+.btn-sm{padding:10px 22px;font-size:13px}
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;
+  padding:8px;width:40px;
+}
+.nav-hamburger span{display:block;width:24px;height:1.5px;background:var(--tfs-black);transition:all .3s}
+.nav-hamburger.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+.nav-mobile{display:none;background:var(--tfs-cream);border-top:2px solid var(--tfs-black);padding:24px 32px 32px}
+.nav-mobile.open{display:block}
+.nav-mobile a{
+  display:block;padding:14px 0;font-family:var(--tfs-font-d);font-size:22px;font-weight:700;
+  font-style:italic;text-transform:uppercase;color:var(--tfs-text-mid);
+  border-bottom:1px solid var(--tfs-border-dark);text-align:center;
+}
+.nav-mobile a:hover{color:var(--tfs-black)}
+.nav-mobile .btn{margin-top:20px;width:100%;justify-content:center}
+.nav-mobile-meta{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 0 20px;margin-bottom:4px}
+.nav-mobile .lang-toggle{display:inline-flex}
+
+@media(max-width:1100px){
+  .nav-inner{height:96px;padding:0 28px}
+  .nav-links,.nav-actions{display:none}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;position:absolute;right:28px;top:50%;z-index:3;min-width:44px;min-height:44px;margin-left:0;transform:translateY(-50%)}
+  .nav-logo img{height:106px;padding:14px 0}
+  .nav-mobile{max-height:calc(100vh - 96px);overflow-y:auto;padding:18px 28px 28px}
+  .nav-mobile a{font-size:20px}
+}
+@media(max-width:768px){
+  .urgency-inner{height:64px;gap:10px;flex-wrap:wrap;align-content:center}
+  .urgency-copy{font-size:14px}
+  #nav{top:64px}
+  .nav-inner{height:88px}
+  .nav-logo img{height:98px;padding:12px 0}
+  .nav-mobile{max-height:calc(100vh - 88px)}
+}
+@media(max-width:480px){
+  .nav-inner{height:82px;padding:0 20px}
+  .nav-logo img{height:88px;padding:10px 0}
+  .nav-hamburger{right:20px}
+  .nav-mobile{max-height:calc(100vh - 82px);padding:14px 20px 24px}
+}
+
 /* ===========================================================
    1. URGENCY BAR
    =========================================================== */
-/* The yellow urgency bar is injected globally by
-   /assets/funnel-conversion.js (class: .funnel-urgency-bar) and styled
-   in /assets/funnel-layout.css. We do NOT inject a second bar from the
-   shared shell; if we did, two bars would stack at the top of the page.
-   Older Phase B revisions of this file defined .tfs-urgency* selectors
-   for an alternative bar markup; those have been removed to avoid
-   confusion / dead code. */
+.tfs-urgency-bar{
+  position:fixed;top:0;left:0;right:0;z-index:101;
+  min-height:44px;padding:8px 16px;
+  display:flex;align-items:center;justify-content:center;
+  background:#050505;color:var(--tfs-white);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.tfs-urgency-inner{
+  display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+  font-family:var(--tfs-font-d);font-size:16px;font-weight:800;font-style:italic;
+  letter-spacing:.09em;text-transform:uppercase;text-align:center;line-height:1.08;
+}
+.tfs-urgency-link{
+  background:var(--tfs-grad);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+@media(max-width:768px){
+  .tfs-urgency-bar{min-height:64px;padding:10px 14px}
+  .tfs-urgency-inner{font-size:14px;gap:10px}
+}
 
 /* ===========================================================
    2. NAV
    =========================================================== */
 #tfs-nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(255,248,245,.95);
   border-top:1px solid rgba(0,0,0,0.12);
   border-bottom:1px solid transparent;
   transition:transform .4s var(--tfs-ease), top .3s, background .3s, border-color .3s;
@@ -96,7 +270,7 @@ body.tfs-has-shell.has-funnel-urgency { padding-top:calc(var(--funnel-urgency-he
 /* When the existing yellow urgency bar is present, push the nav below
    it. The variable --funnel-urgency-height is defined in
    /assets/funnel-layout.css (52px desktop / 76px mobile). */
-body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
+body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 44px); }
 #tfs-nav.tfs-scrolled {
   background:rgba(255,248,245,0.92);
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
@@ -109,7 +283,7 @@ body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
   height:112px; padding:0 32px; gap:20px; position:relative;
   max-width:100%; margin:0;
 }
-.tfs-nav-logo { display:flex; align-items:center; gap:12px; }
+.tfs-nav-logo { display:flex; align-items:center; gap:12px; position:absolute; left:50%; transform:translateX(-50%); }
 .tfs-nav-logo img {
   height:130px; width:auto; object-fit:contain; padding:18px 0;
 }
@@ -117,12 +291,25 @@ body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
 .tfs-nav-links {
   display:flex; align-items:center; gap:32px;
 }
-.tfs-nav-links a {
+.tfs-nav-links a,
+.tfs-nav-dropdown-trigger {
   font-family:var(--tfs-font-d);
   font-size:17px; font-weight:700;
   letter-spacing:.1em; text-transform:uppercase;
   color:var(--tfs-black);
   position:relative; transition:all .2s;
+}
+.tfs-nav-dropdown-trigger {
+  border:0; background:transparent; padding:0;
+  display:flex; align-items:center; gap:7px;
+}
+.tfs-nav-dropdown-trigger::before { display:none; }
+.tfs-nav-dropdown-trigger::after {
+  content:'+';
+  position:static; width:auto; height:auto;
+  background:none; color:var(--tfs-cyan);
+  font-size:13px; line-height:1;
+  transition:none;
 }
 .tfs-nav-links a::after {
   content:''; position:absolute; left:0; bottom:-2px;
@@ -130,12 +317,47 @@ body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
   background:var(--tfs-grad);
   transition:width .25s var(--tfs-ease);
 }
-.tfs-nav-links a:hover {
+.tfs-nav-links a:hover,
+.tfs-nav-dropdown-trigger:hover,
+.tfs-nav-dropdown:focus-within .tfs-nav-dropdown-trigger {
   background:var(--tfs-grad);
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent; color:transparent;
 }
+.tfs-nav-dropdown-trigger:hover::after,
+.tfs-nav-dropdown:focus-within .tfs-nav-dropdown-trigger::after {
+  -webkit-text-fill-color:var(--tfs-cyan); color:var(--tfs-cyan);
+}
 .tfs-nav-links a:hover::after { width:100%; }
+.tfs-nav-dropdown {
+  position:relative;
+  padding:18px 0;
+  margin:-18px 0;
+}
+.tfs-nav-dropdown-menu {
+  position:absolute; top:100%; left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:220px; background:var(--tfs-black);
+  border:1px solid rgba(0,229,204,.45); padding:10px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:all .22s var(--tfs-ease);
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
+}
+.tfs-nav-dropdown:hover .tfs-nav-dropdown-menu,
+.tfs-nav-dropdown:focus-within .tfs-nav-dropdown-menu {
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.tfs-nav-dropdown-menu a {
+  display:block; color:var(--tfs-white); padding:13px 14px;
+  border-bottom:1px solid rgba(255,255,255,.1); white-space:nowrap;
+}
+.tfs-nav-dropdown-menu a:last-child { border-bottom:none; }
+.tfs-nav-dropdown-menu a::after { display:none; }
+.tfs-nav-dropdown-menu a:hover {
+  background:var(--tfs-grad);
+  -webkit-text-fill-color:var(--tfs-black); color:var(--tfs-black);
+}
 
 .tfs-nav-actions {
   display:flex; align-items:center; gap:14px;
@@ -144,6 +366,7 @@ body.has-funnel-urgency #tfs-nav { top:var(--funnel-urgency-height, 52px); }
   display:flex; align-items:center; justify-content:center;
   width:36px; height:36px;
   background:var(--tfs-black); color:var(--tfs-white);
+  border-radius:6px;
   flex-shrink:0; line-height:1; font-size:0;
   transition:all .25s var(--tfs-ease);
 }

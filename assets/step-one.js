@@ -39,6 +39,276 @@
     };
   }
 
+  function collectFormData(form) {
+    const data = {};
+    if (!form) return data;
+    qsa("input, select, textarea", form).forEach((field) => {
+      if (!field.name || field.type === "button" || field.type === "submit") return;
+      data[field.name] = field.value ? field.value.trim() : "";
+    });
+    return data;
+  }
+
+  function clean(value, fallback = "Not provided") {
+    return value == null || value === "" ? fallback : String(value);
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function listHtml(items) {
+    return (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  }
+
+  function pickIntakeSystem(context) {
+    const channel = (context.main_channel || "").toLowerCase();
+    const problem = (context.biggest_problem || context.loss_cause || "").toLowerCase();
+    const current = (context.current_system || "").toLowerCase();
+
+    if (problem.includes("missed call") || channel.includes("phone")) {
+      return {
+        name: "Voice Agent",
+        reason: "missed calls need instant capture, triage, callback routing, and transcripts so demand does not disappear."
+      };
+    }
+    if (problem.includes("slow") || channel.includes("whatsapp") || current.includes("whatsapp")) {
+      return {
+        name: "WhatsApp Automation Agent",
+        reason: "your fastest win is likely faster replies, qualification, and guided next steps inside the channel clients already use."
+      };
+    }
+    if (problem.includes("booking")) {
+      return {
+        name: "Booking Flow Automation",
+        reason: "the leak appears to be between interest and appointment, so reminders, confirmations, and self-booking should carry more of the work."
+      };
+    }
+    if (problem.includes("scattered") || current.includes("disconnected") || current.includes("none")) {
+      return {
+        name: "Lead Pipeline Automation",
+        reason: "leads need one reliable place, clear status, follow-up tasks, and routing before more advanced AI adds value."
+      };
+    }
+    if (problem.includes("question")) {
+      return {
+        name: "Website + AI Assistant",
+        reason: "repeated questions are a sign that prospects need clearer answers before a human spends time with them."
+      };
+    }
+    return {
+      name: "Custom Workflow Automation",
+      reason: "the answers point to an operational bottleneck that should be mapped, connected, and automated around your actual workflow."
+    };
+  }
+
+  function leadRangeValue(range) {
+    const map = {
+      "Under 25": 15,
+      "25-75": 50,
+      "76-150": 110,
+      "151-300": 220,
+      "300+": 350,
+    };
+    return map[range] || 50;
+  }
+
+  function clientValueRangeValue(range) {
+    const map = {
+      "Under $100": 75,
+      "$100-$300": 200,
+      "$301-$750": 500,
+      "$751-$1,500": 1100,
+      "$1,500+": 1800,
+    };
+    return map[range] || 250;
+  }
+
+  function buildAuditReport(summary, context) {
+    const system = pickIntakeSystem(context);
+    const estimatedLeads = leadRangeValue(context.monthly_enquiries);
+    const estimatedValue = clientValueRangeValue(context.average_client_value_range);
+    const riskBand = estimatedLeads * estimatedValue * 0.08;
+    const stage = summary.result.title;
+
+    return {
+      title: "Your Intake Leak Report",
+      stage,
+      system: system.name,
+      summary: `${stage}. Your answers suggest the main opportunity is to reduce ${clean(context.biggest_problem, "lead leakage").toLowerCase()} across ${clean(context.main_channel, "your intake channels").toLowerCase()}.`,
+      value: `A conservative first-pass estimate puts ${money.format(riskBand)}+ per month in potentially protectable opportunity if faster response, qualification, and follow-up recover only a small share of enquiries.`,
+      sections: [
+        {
+          title: "What your business may need",
+          items: [
+            `Primary system fit: ${system.name}`,
+            `Why: ${system.reason}`,
+            `Lead context: ${clean(context.monthly_enquiries)} enquiries/month through ${clean(context.main_channel).toLowerCase()}`,
+          ],
+        },
+        {
+          title: "Highest-value fixes",
+          items: [
+            "Capture every enquiry into one reliable lead record.",
+            "Reply instantly with the right next step, even after hours.",
+            "Route high-intent leads to booking or human follow-up before they cool down.",
+          ],
+        },
+        {
+          title: "Recommended 30-day action plan",
+          items: [
+            "Map the first response and follow-up path for your main lead channel.",
+            "Create a simple qualification script and booking handoff.",
+            `Pilot ${system.name} around the highest-leak step before expanding the system.`,
+          ],
+        },
+      ],
+    };
+  }
+
+  function buildLearnReport(summary, context) {
+    const goal = (context.ai_goal || "").toLowerCase();
+    const preference = (context.implementation_preference || "").toLowerCase();
+    let system = "AI Starting Point Workshop";
+    let reason = "the first win is choosing the right use case, examples, and review process before building.";
+
+    if (preference.includes("teach")) {
+      system = "Future Studio Academy";
+      reason = "you want capability in-house, so the best next step is practical training and workflow design.";
+    } else if (goal.includes("lead")) {
+      system = "WhatsApp Automation Agent or Lead Pipeline Automation";
+      reason = "lead response needs speed, qualification, and follow-up more than a generic AI tool.";
+    } else if (goal.includes("booking")) {
+      system = "Booking Flow Automation";
+      reason = "booking and reminders are measurable, repeatable, and ideal for a contained first AI workflow.";
+    } else if (goal.includes("content")) {
+      system = "AI Content Agent";
+      reason = "content systems need brand rules, repeatable prompts, approvals, and publishing handoff.";
+    } else if (goal.includes("admin") || goal.includes("workflow")) {
+      system = "Custom Workflow Automation";
+      reason = "internal work needs process cleanup, tool connections, and clear ownership before AI is added.";
+    }
+
+    return {
+      title: "Your AI Starting Point Report",
+      stage: summary.result.title,
+      system,
+      summary: `${summary.result.title}. The strongest path is not simply whether you are ready for AI; it is choosing the next step that matches your goal, team skill, and process clarity.`,
+      value: "The value is avoiding a messy AI build, reducing repeated manual work, and choosing a first use case that can produce a measurable business result.",
+      sections: [
+        {
+          title: "Best-fit next path",
+          items: [
+            `Recommended path: ${system}`,
+            `Why: ${reason}`,
+            `Preference: ${clean(context.implementation_preference)}. Team level: ${clean(context.team_skill)}.`,
+          ],
+        },
+        {
+          title: "What to prepare",
+          items: [
+            "One clear business outcome in a single sentence.",
+            "Real examples, scripts, answers, or documents the system can learn from.",
+            "A human owner who reviews AI-assisted work before clients see it.",
+          ],
+        },
+        {
+          title: "Recommended 30-day action plan",
+          items: [
+            "Choose one process, not a broad AI transformation.",
+            "Collect 10-20 real examples of the work or questions involved.",
+            `Decide whether this should be training, workflow cleanup, or a ${system} pilot.`,
+          ],
+        },
+      ],
+    };
+  }
+
+  function buildCalculatorReport(latest, context) {
+    const system = pickIntakeSystem({ loss_cause: context.loss_cause, current_system: context.current_system });
+    const monthly = latest.monthlyOpportunity || 0;
+    const annual = latest.annualOpportunity || 0;
+    const conservative = monthly * 0.15;
+    const focused = monthly * 0.30;
+
+    return {
+      title: "Your Revenue Opportunity Report",
+      stage: `${money.format(monthly)} estimated monthly opportunity`,
+      system: system.name,
+      summary: `Your inputs estimate ${money.format(monthly)} in monthly opportunity and ${money.format(annual)} annualized opportunity across missed enquiries and admin cost.`,
+      value: `If a first automation recovered only 15-30% of that opportunity, the range would be roughly ${money.format(conservative)} to ${money.format(focused)} per month.`,
+      sections: [
+        {
+          title: "What your numbers suggest",
+          items: [
+            `${number.format(latest.missedMonthly || 0)} missed or delayed enquiries per month.`,
+            `${number.format(latest.lostClients || 0)} potential clients lost from the current flow.`,
+            `${money.format(latest.adminCost || 0)} in monthly admin cost that may be reduced or redirected.`,
+          ],
+        },
+        {
+          title: "Best-fit system",
+          items: [
+            `Recommended system: ${system.name}`,
+            `Why: ${system.reason}`,
+            `Current setup: ${clean(context.current_system)}. Main loss cause: ${clean(context.loss_cause)}.`,
+          ],
+        },
+        {
+          title: "Recommended 30-day action plan",
+          items: [
+            "Protect the highest-intent enquiries first.",
+            "Automate reminders, qualification, and handoff before expanding.",
+            "Track recovered enquiries and admin hours so ROI is visible quickly.",
+          ],
+        },
+      ],
+    };
+  }
+
+  function flattenReport(report) {
+    return [
+      report.title,
+      `Stage: ${report.stage}`,
+      `Recommended system: ${report.system}`,
+      report.summary,
+      report.value,
+      ...(report.sections || []).flatMap((section) => [section.title, ...(section.items || [])]),
+    ].join("\n");
+  }
+
+  function renderReport(report, node) {
+    if (!node || !report) return;
+    node.hidden = false;
+    node.innerHTML = `
+      <div class="report-kicker">Personalized report</div>
+      <div class="report-head">
+        <div>
+          <h3>${escapeHtml(report.title)}</h3>
+          <p>${escapeHtml(report.summary)}</p>
+        </div>
+        <div class="report-stage">
+          <span>Recommended</span>
+          <strong>${escapeHtml(report.system)}</strong>
+        </div>
+      </div>
+      <div class="report-value">${escapeHtml(report.value)}</div>
+      <div class="report-section-grid">
+        ${(report.sections || []).map((section) => `
+          <section class="report-section">
+            <h4>${escapeHtml(section.title)}</h4>
+            <ul>${listHtml(section.items)}</ul>
+          </section>
+        `).join("")}
+      </div>
+    `;
+  }
+
   function hasValidEmail(form) {
     return EMAIL_RE.test(getLeadDetails(form).email);
   }
@@ -59,7 +329,7 @@
   }
 
   async function submitStepLead(payload, statusNode) {
-    setStatus(statusNode, "Sending your analysis...");
+    setStatus(statusNode, "Saving your report...");
     saveLocalLead(payload);
     if (window.TFSLeadCapture && typeof window.TFSLeadCapture.submitLead === "function") {
       try {
@@ -68,7 +338,34 @@
         console.warn("Lead capture submit failed", error);
       }
     }
-    setStatus(statusNode, "Saved. Your analysis is ready below and queued for follow-up.");
+    const emailResult = await sendReportEmail(payload);
+    if (emailResult && emailResult.emailSent) {
+      setStatus(statusNode, "Saved. Your report is ready below and has been sent to your email.");
+    } else if (emailResult && emailResult.configured === false) {
+      setStatus(statusNode, "Saved. Your report is ready below. Email sending is wired, but the email API key still needs to be added in Netlify.");
+    } else {
+      setStatus(statusNode, "Saved. Your report is ready below. If the email does not arrive, reply through the contact links and we can resend it.");
+    }
+  }
+
+  async function sendReportEmail(payload) {
+    if (!payload || !payload.email || !payload.report_json) return { emailSent: false };
+    try {
+      const response = await fetch("/.netlify/functions/send-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        console.warn("Report email request failed", data);
+        return { emailSent: false };
+      }
+      return data;
+    } catch (error) {
+      console.warn("Report email request unavailable", error);
+      return { emailSent: false };
+    }
   }
 
   function initQuiz(config) {
@@ -82,6 +379,7 @@
     const resultDescription = qs("[data-result-description]");
     const strengthsList = qs("[data-strengths]");
     const gapsList = qs("[data-gaps]");
+    const reportNode = qs("[data-report-card]");
     const retakeButton = qs("[data-retake]");
     const leadForm = qs("[data-lead-gate]");
     const statusNode = qs("[data-gate-status]");
@@ -171,24 +469,41 @@
       }
       const summary = buildResult();
       const lead = getLeadDetails(leadForm);
+      const context = collectFormData(leadForm);
       const answersJson = config.questions.map((question, index) => ({
         question: question.text,
         answer: answers.get(index) ? "yes" : "no",
       }));
+      const report = config.slug === "learn"
+        ? buildLearnReport(summary, context)
+        : buildAuditReport(summary, context);
       await submitStepLead({
         source_form: `${config.slug || "step-one"}-results-gate`,
         lead_type: "free-tool-lead",
         name: lead.name,
         email: lead.email,
+        business_type: context.business_type,
+        main_channel: context.main_channel,
+        monthly_enquiries: context.monthly_enquiries,
+        average_client_value_range: context.average_client_value_range,
+        biggest_problem: context.biggest_problem,
+        ai_goal: context.ai_goal,
+        implementation_preference: context.implementation_preference,
+        team_skill: context.team_skill,
         product_interest: config.title || document.title,
         analysis_type: config.title || "Step one analysis",
-        analysis_request: "Email my results and analysis",
+        analysis_request: `Email my ${report.title}`,
         score: `${summary.score}/${summary.total}`,
-        result_summary: `${summary.result.title}: ${summary.result.description}`,
+        result_summary: flattenReport(report).slice(0, 1400),
+        report_title: report.title,
+        report_stage: report.stage,
+        recommended_system: report.system,
+        report_json: JSON.stringify(report),
         answers_json: JSON.stringify(answersJson),
         tags: "email-consent,free-tool,step-one",
       }, statusNode);
       renderResult(summary);
+      renderReport(report, reportNode);
     }
 
     list.addEventListener("click", (event) => {
@@ -228,6 +543,7 @@
     const form = qs("[data-calculator]");
     const leadForm = qs("[data-calculator-gate]");
     const statusNode = qs("[data-gate-status]");
+    const reportNode = qs("[data-report-card]");
     if (!form) return;
     let latest = {};
 
@@ -284,20 +600,32 @@
           return;
         }
         const lead = getLeadDetails(leadForm);
+        const context = collectFormData(leadForm);
+        const report = buildCalculatorReport(latest, context);
         await submitStepLead({
           source_form: "build-calculator-results-gate",
           lead_type: "free-tool-lead",
           name: lead.name,
           email: lead.email,
+          business_type: context.business_type,
+          loss_cause: context.loss_cause,
+          current_system: context.current_system,
+          timeline: context.timeline,
           product_interest: "Business Revenue Calculator",
           analysis_type: "Revenue opportunity calculator",
-          analysis_request: "Email my calculator results and analysis",
-          result_summary: `Estimated monthly opportunity: ${money.format(latest.monthlyOpportunity || 0)}. Estimated annual opportunity: ${money.format(latest.annualOpportunity || 0)}.`,
+          analysis_request: `Email my ${report.title}`,
+          result_summary: flattenReport(report).slice(0, 1400),
+          report_title: report.title,
+          report_stage: report.stage,
+          recommended_system: report.system,
+          report_json: JSON.stringify(report),
           monthly_revenue_at_risk: money.format(latest.monthlyOpportunity || 0),
           annual_revenue_at_risk: money.format(latest.annualOpportunity || 0),
           calculator_inputs: JSON.stringify(latest),
           tags: "email-consent,free-tool,step-one,calculator",
         }, statusNode);
+        renderReport(report, reportNode);
+        if (reportNode) reportNode.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
     update();

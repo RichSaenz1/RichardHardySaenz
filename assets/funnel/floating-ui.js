@@ -22,14 +22,16 @@
   'use strict';
 
   function initHamburger() {
-    var btn = document.getElementById('tfs-nav-hamburger');
-    var menu = document.getElementById('tfs-nav-mobile');
+    var btn = document.getElementById('tfs-nav-hamburger') || document.getElementById('nav-hamburger');
+    var menu = document.getElementById('tfs-nav-mobile') || document.getElementById('nav-mobile');
     if (!btn || !menu) return;
 
     btn.addEventListener('click', function () {
-      var open = !menu.classList.contains('tfs-open');
+      var open = !(menu.classList.contains('tfs-open') || menu.classList.contains('open'));
       menu.classList.toggle('tfs-open', open);
+      menu.classList.toggle('open', open);
       btn.classList.toggle('tfs-open', open);
+      btn.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
@@ -39,7 +41,9 @@
       while (t && t !== menu) {
         if (t.nodeName === 'A') {
           menu.classList.remove('tfs-open');
+          menu.classList.remove('open');
           btn.classList.remove('tfs-open');
+          btn.classList.remove('open');
           btn.setAttribute('aria-expanded', 'false');
           return;
         }
@@ -49,7 +53,7 @@
   }
 
   function initNavScroll() {
-    var nav = document.getElementById('tfs-nav');
+    var nav = document.getElementById('tfs-nav') || document.getElementById('nav');
     if (!nav) return;
     var lastY = window.pageYOffset || document.documentElement.scrollTop;
     var ticking = false;
@@ -57,6 +61,7 @@
     function update() {
       var y = window.pageYOffset || document.documentElement.scrollTop;
       nav.classList.toggle('tfs-scrolled', y > 12);
+      nav.classList.toggle('scrolled', y > 12);
       lastY = y;
       ticking = false;
     }

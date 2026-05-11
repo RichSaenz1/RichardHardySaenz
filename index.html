@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -108,6 +108,14 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .25s var(--ease)}
 .nav-links a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-links a:hover::after{width:100%}
+.nav-dropdown{position:relative;padding:18px 0;margin:-18px 0}
+.nav-dropdown-trigger{font-family:var(--font-d);font-size:17px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:7px}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;z-index:80;transform:translateX(-50%) translateY(8px);min-width:220px;background:var(--black);border:1px solid rgba(0,229,204,.45);padding:10px;opacity:0;visibility:hidden;pointer-events:none;transition:all .22s var(--ease);box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-menu a{display:block;color:var(--white);padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.1);white-space:nowrap}
+.nav-dropdown-menu a:last-child{border-bottom:none}
+.nav-dropdown-menu a::after{display:none}
+.nav-dropdown-menu a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));color:var(--black);-webkit-text-fill-color:var(--black)}
 .nav-actions{display:flex;align-items:center;gap:14px}
 .nav-linkedin{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:6px;background:var(--black);color:var(--white);transition:all .25s var(--ease);flex-shrink:0;line-height:1;font-size:0}
 .nav-linkedin svg{display:block}
@@ -127,6 +135,15 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .nav-mobile .btn{margin-top:20px;width:100%;justify-content:center}
 .nav-mobile-meta{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 0 20px;margin-bottom:4px}
 .nav-mobile .lang-toggle{display:inline-flex}
+.nav-mobile a.btn{border-bottom-width:2px}
+.nav-mobile a.btn-outline-dark{border:3px solid var(--black);box-sizing:border-box}
+.mobile-start-dropdown{border-bottom:1px solid var(--border-dark)}
+.mobile-start-dropdown summary{list-style:none;cursor:pointer;padding:14px 0;font-family:var(--font-d);font-size:22px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--text-mid);text-align:center}
+.mobile-start-dropdown summary::-webkit-details-marker{display:none}
+.mobile-start-dropdown summary:hover{color:var(--black)}
+.mobile-start-links{padding:2px 0 10px}
+.mobile-start-links a{font-size:17px;padding:10px 0;border-bottom:none;color:var(--black)}
+.mobile-start-links a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /*  HERO xxxxxxxxxxxxxxxxxxxxxxxxxxxx */
 #hero{min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--cream)}
@@ -349,6 +366,14 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .audit-value{display:none}
 .audit-copy{display:flex;flex-direction:column;align-items:flex-start}
 .audit-bonus .btn-dark:hover{background:linear-gradient(90deg,var(--cyan),var(--violet),#e040fb);border-color:transparent;color:var(--black);box-shadow:0 16px 42px rgba(155,89,255,.22)}
+.path-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;grid-column:1/-1}
+.path-card{min-height:210px;padding:24px 22px;border:2px solid var(--black);background:rgba(255,255,255,.32);color:var(--black);display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease),color .25s var(--ease)}
+.path-card:hover{transform:translateY(-5px);background:var(--black);color:var(--white);box-shadow:0 18px 42px rgba(0,0,0,.32)}
+.path-card-kicker{font-family:var(--font-d);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.58)}
+.path-card h4{font-family:var(--font-d);font-size:clamp(28px,2.6vw,42px);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.92;margin:12px 0 10px}
+.path-card p{font-size:15px;line-height:1.5;color:rgba(0,0,0,.72);margin:0 0 18px;transition:color .25s var(--ease)}
+.path-card-link{font-family:var(--font-d);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:6px;color:var(--black)}
+.path-card:hover .path-card-kicker,.path-card:hover p,.path-card:hover .path-card-link{color:var(--white);-webkit-text-fill-color:var(--white)}
 .post-demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--black);margin-top:42px}
 .post-demo-item{padding:24px;border-right:1px solid var(--black);border-bottom:1px solid var(--black)}
 .post-demo-item:nth-child(3n){border-right:none}
@@ -585,7 +610,7 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,0.1)}
 .tier-card{padding:36px 28px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:flex-start;transition:background .3s,border-color .3s,box-shadow .3s,transform .3s,color .3s}
 .tier-card:hover{background:var(--white);color:var(--black);border-color:var(--white);box-shadow:12px 12px 0 var(--violet);transform:translateY(-8px)}
-.tier-card.featured{border-color:var(--cyan);background:linear-gradient(135deg,rgba(0,229,204,.10) 0%,rgba(18,18,34,.82) 48%,rgba(155,89,255,.24) 100%);align-items:center;text-align:center}
+.tier-card.featured{border-color:var(--cyan);background:linear-gradient(135deg,rgba(0,229,204,.10) 0%,rgba(18,18,34,.82) 48%,rgba(155,89,255,.24) 100%);align-items:flex-start;text-align:left}
 .tier-card.featured:hover{background:var(--white);color:var(--black);border-color:var(--white);box-shadow:12px 12px 0 var(--violet);transform:translateY(-8px)}
 .tier-name{font-family:var(--font-d);font-size:clamp(22px,2.5vw,32px);font-weight:800;font-style:italic;text-transform:uppercase;color:var(--white)}
 .tier-tagline{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:12px}
@@ -707,6 +732,15 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
+/* Discount countdown banner */
+.discount-banner{position:fixed;left:0;right:0;bottom:92px;z-index:230;width:100%;background:#f5bf22;color:#070709;border-top:2px solid #070709;border-bottom:2px solid #070709;box-shadow:0 -8px 34px rgba(0,0,0,.28);transform:translateY(140%);opacity:0;pointer-events:none;transition:transform .32s var(--ease),opacity .32s var(--ease)}
+.discount-banner.visible{transform:translateY(0);opacity:1;pointer-events:auto}
+.discount-banner-inner{display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 18px;text-align:center;max-width:1180px;margin:0 auto}
+.discount-kicker,.discount-banner strong,.discount-banner a{font-family:var(--font-d);font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.discount-kicker{font-size:11px;color:#070709}
+.discount-banner strong{font-size:16px;font-style:italic;color:#070709}
+.discount-countdown{font-family:var(--font-d);font-size:22px;font-weight:800;background:#070709;color:#f5bf22;padding:7px 12px;line-height:1;min-width:104px;text-align:center}
+.discount-banner a{font-size:12px;color:#070709;text-decoration:underline;text-underline-offset:5px}
 /*  RESPONSIVE xxxxxxxxxxxxxxxxxxxxxxxx */
 @media(max-width:1100px){
   .nav-inner{height:96px;padding:0 28px}
@@ -715,6 +749,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .nav-logo img{height:106px;padding:14px 0}
   .nav-mobile{max-height:calc(100vh - 96px);overflow-y:auto;padding:18px 28px 28px}
   .nav-mobile a{font-size:20px}
+  .mobile-start-dropdown summary{font-size:20px}
   .bento-main{grid-column:1/8}.bento-side{grid-column:8/13}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .system-products{grid-template-columns:1fr}
@@ -824,6 +859,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .start-grid,.start-fit-check,.conversion-grid,.post-demo-grid{grid-template-columns:1fr}
   .start-cell{border:1px solid rgba(0,0,0,.18)!important}
   .trust-card{flex-basis:min(86vw,520px)}
+  .path-cards{grid-template-columns:1fr}
   .post-demo-item{border-right:none!important}
   .post-demo-item:nth-child(n){border-bottom:1px solid var(--black)}
   .post-demo-item:last-child{border-bottom:none}
@@ -864,6 +900,10 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .testimonials-grid{grid-template-columns:1fr}
   .urgency-copy{font-size:12px;letter-spacing:.04em}
   .urgency-link{font-size:11px}
+  .discount-banner{bottom:118px;width:100%}
+  .discount-banner-inner{flex-wrap:wrap;gap:8px 12px;padding:12px}
+  .discount-banner strong{font-size:13px}
+  .discount-countdown{font-size:18px;min-width:92px}
   #nav{top:44px}
 }
 </style>
@@ -886,6 +926,14 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <a href="#services" data-en="Services" data-es="Servicios">Services</a>
       <a href="./academy/" data-en="Academy" data-es="Academia">Academy</a>
       <a href="#packages" data-en="Packages" data-es="Paquetes">Packages</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger" data-en="Start Here" data-es="Empezar Aqui">Start Here</button>
+        <div class="nav-dropdown-menu">
+          <a href="./funnel/step-1/audit/" data-en="Audit" data-es="Auditoria">Audit</a>
+          <a href="./funnel/step-1/build/" data-en="Build" data-es="Construir">Build</a>
+          <a href="./funnel/step-1/learn/" data-en="Learn" data-es="Aprender">Learn</a>
+        </div>
+      </div>
       <a href="#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
       <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
     </div>
@@ -915,6 +963,14 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     </div>
     <a href="#services" data-en="Services" data-es="Servicios">Services</a>
     <a href="#packages" data-en="Packages" data-es="Paquetes">Packages</a>
+    <details class="mobile-start-dropdown">
+      <summary data-en="Start Here" data-es="Empezar Aqui">Start Here</summary>
+      <div class="mobile-start-links">
+        <a href="./funnel/step-1/audit/" data-en="Audit" data-es="Auditoria">Audit</a>
+        <a href="./funnel/step-1/build/" data-en="Build" data-es="Construir">Build</a>
+        <a href="./funnel/step-1/learn/" data-en="Learn" data-es="Aprender">Learn</a>
+      </div>
+    </details>
     <a href="./academy/" data-en="Academy" data-es="Academia">Academy</a>
     <a href="#instructor" data-en="Instructor" data-es="Instructor">Instructor</a>
     <a href="#faq" data-en="FAQ" data-es="FAQ">FAQ</a>
@@ -1393,16 +1449,39 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     <p class="package-footnote aos" data-en="Minimum 3-month agreement - System active in 4-7 weeks" data-es="Contrato minimo de 3 meses - Sistema activo en 4-7 semanas">Minimum 3-month agreement - System active in 4-7 weeks</p>
     <div class="audit-bonus">
       <div>
-        <p class="eyebrow" data-en="Limited Bonus" data-es="Bonus Limitado">Limited Bonus</p>
-        <h3 data-en="Free Business Audit Included This Week" data-es="Auditoria de Negocio Gratis Incluida Esta Semana">Free Business Audit Included This Week</h3>
+        <p class="eyebrow" data-en="Choose Your Path" data-es="Elija Su Ruta">Choose Your Path</p>
+        <h3 data-en="Audit, Build, or Learn" data-es="Auditar, Construir o Aprender">Audit, Build, or Learn</h3>
       </div>
       <div class="audit-copy">
-        <p data-en="Book your demo this week and we will map where leads, admin time, and follow-up opportunities are being lost. Normally $250. Included free with your demo." data-es="Reserve su demo esta semana y mapearemos donde se pierden leads, tiempo administrativo y oportunidades de seguimiento. Normalmente $250. Incluido gratis con su demo.">Book your demo this week and we will map where leads, admin time, and follow-up opportunities are being lost. Normally $250. Included free with your demo.</p>
-        <div class="audit-value" data-en="A clear first-step audit before implementation" data-es="Una auditoria clara antes de implementar">A clear first-step audit before implementation</div>
-        <a href="./audit/" class="btn btn-dark btn-lg" data-en="Open Business Audit" data-es="Abrir Auditoria de Negocio">Open Business Audit</a>
+        <p data-en="Pick the next step that matches where you are right now. Start with clarity, move into implementation, or build practical AI skills through the Academy." data-es="Elija el siguiente paso que coincide con donde esta ahora. Empiece con claridad, avance a implementacion o desarrolle habilidades practicas de IA con la Academia.">Pick the next step that matches where you are right now. Start with clarity, move into implementation, or build practical AI skills through the Academy.</p>
       </div>
-    </div>
-  </div>
+      <div class="path-cards">
+        <a href="./funnel/step-1/audit/" class="path-card">
+          <span class="path-card-kicker" data-en="Start with clarity" data-es="Empiece con claridad">Start with clarity</span>
+          <span>
+            <h4 data-en="Audit" data-es="Auditoria">Audit</h4>
+            <p data-en="Map the leaks in leads, follow-up, admin time, and first system priority before building." data-es="Mapee fugas en leads, seguimiento, tiempo administrativo y prioridad del primer sistema antes de construir.">Map the leaks in leads, follow-up, admin time, and first system priority before building.</p>
+          </span>
+          <span class="path-card-link" data-en="Open Business Audit" data-es="Abrir auditoria">Open Business Audit</span>
+        </a>
+        <a href="./funnel/step-1/build/" class="path-card">
+          <span class="path-card-kicker" data-en="Install the system" data-es="Instale el sistema">Install the system</span>
+          <span>
+            <h4 data-en="Build" data-es="Construir">Build</h4>
+            <p data-en="Calculate the revenue opportunity before you choose what to automate or build first." data-es="Calcule la oportunidad de ingresos antes de elegir que automatizar o construir primero.">Calculate the revenue opportunity before you choose what to automate or build first.</p>
+          </span>
+          <span class="path-card-link" data-en="Open Build Calculator" data-es="Abrir calculadora">Open Build Calculator</span>
+        </a>
+        <a href="./funnel/step-1/learn/" class="path-card">
+          <span class="path-card-kicker" data-en="Train with us" data-es="Capacitarse con nosotros">Train with us</span>
+          <span>
+            <h4 data-en="Learn" data-es="Aprender">Learn</h4>
+            <p data-en="Find out whether to build with AI now, prepare first, or start with a smaller system." data-es="Descubra si debe construir con IA ahora, prepararse primero o empezar con un sistema mas pequeno.">Find out whether to build with AI now, prepare first, or start with a smaller system.</p>
+          </span>
+          <span class="path-card-link" data-en="Open AI Check" data-es="Abrir chequeo IA">Open AI Check</span>
+        </a>
+      </div>
+    </div>  </div>
 </section>
 
 <!-- x INDUSTRIES -->
@@ -1555,8 +1634,8 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       <div>
         <div class="sec-hdr">
           <p class="eyebrow" data-en="AI Programs & Pricing" data-es="Programas IA y Precios">AI Programs & Pricing</p>
-          <h2 class="headline-lg" style="color:var(--white)" data-en="JOIN THE FUTURE<br>STUDIO ACADEMY" data-es="ÃšNETE A FUTURE<br>STUDIO ACADEMY">JOIN THE FUTURE<br>STUDIO ACADEMY</h2>
-          <p class="body-lg" data-en="Live programs designed to give you real AI skills, practical workflows, and studio-level guidance." data-es="Programas en vivo diseÃ±ados para darte habilidades reales de IA, workflows practicos y guia de nivel estudio.">Live programs designed to give you real AI skills, practical workflows, and studio-level guidance.</p>
+          <h2 class="headline-lg" style="color:var(--white)" data-en="JOIN THE FUTURE<br>STUDIO ACADEMY" data-es="ÚNETE A FUTURE<br>STUDIO ACADEMY">JOIN THE FUTURE<br>STUDIO ACADEMY</h2>
+          <p class="body-lg" data-en="Live programs designed to give you real AI skills, practical workflows, and studio-level guidance." data-es="Programas en vivo diseñados para darte habilidades reales de IA, workflows practicos y guia de nivel estudio.">Live programs designed to give you real AI skills, practical workflows, and studio-level guidance.</p>
         </div>
       </div>
     </div>
@@ -1564,7 +1643,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
     <div class="course-from-strip">
       <div class="course-from-cell">
         <div class="course-from-label" data-en="Single Workshop" data-es="Taller Individual">Single Workshop</div>
-        <div class="course-from-price">from $175</div>
+        <div class="course-from-price">from $174.99</div>
       </div>
       <div class="course-from-cell">
         <div class="course-from-label" data-en="Studio Pass (4 Sessions)" data-es="Studio Pass (4 Sesiones)">Studio Pass (4 Sessions)</div>
@@ -1572,7 +1651,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       </div>
       <div class="course-from-cell">
         <div class="course-from-label" data-en="Full Studio Program" data-es="Programa Completo">Full Studio Program</div>
-        <div class="course-from-price">from $1,500</div>
+        <div class="course-from-price">from $1,499</div>
       </div>
     </div>
     <div class="courses-cards-grid" id="courses-grid"></div>
@@ -1689,11 +1768,19 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">Â© 2026 The Future Studio  -  Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
+      <span class="footer-copy">© 2026 The Future Studio  -  Richard Hardy Saenz. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
     </div>
   </div>
 </footer>
 
+<div id="discount-banner" class="discount-banner" role="region" aria-label="Limited discount">
+  <div class="discount-banner-inner">
+    <span class="discount-kicker" data-en="Packages + Product Discount" data-es="Descuento en paquetes + productos">Packages + Product Discount</span>
+    <strong data-en="25% off selected builds ends in" data-es="25% de descuento en builds seleccionados termina en">25% off selected builds ends in</strong>
+    <span id="discount-countdown" class="discount-countdown">48:00:00</span>
+    <a href="#packages" data-en="View Packages" data-es="Ver paquetes">View Packages</a>
+  </div>
+</div>
 <!-- x FIXED BUTTONS xxxxxxxxxxxxxxxxxxxxxx -->
 <button id="scroll-top" aria-label="Back to top">
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 14V4M4 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1744,7 +1831,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {icon:'AI',tagline:'Grows Your Pipeline',name:'Outreach Agent',desc:'AI-driven lead generation and follow-up sequences across email and WhatsApp. Personalised at scale, trust-first messaging.',setup:'From $1,250',monthly:'From $300/mo',features:['AI personalisation at scale','Multi-channel sequences','Reply detection & routing'],badge:null},
         {icon:'AI',tagline:'Always Publishing',name:'Social Media & Content Agent',desc:'Automated content creation and publishing  -  posts, short videos, reels, and editorial calendars. Your brand stays active without your time.',setup:'From $1,500',monthly:'From $250/mo',features:['AI caption & hashtag generation','Canva / brand kit integration','Auto-scheduling & publishing'],badge:null},
         {icon:'AI',tagline:'Filter Your Pipeline',name:'Lead Qualification Agent',desc:'AI that scores, segments, and routes inbound leads 24/7  -  so your team only speaks to people who are ready to move forward.',setup:'From $1,200',monthly:'From $200/mo',features:['Lead scoring & segmentation','Auto-routing to CRM','Real-time team notifications'],badge:null},
-        {icon:'AI',tagline:'Never Miss a Follow-Up',name:'AI Email & Follow-Up',desc:'Automated email sequences and intelligent reply handling  -  follow-ups that feel personal and run on autopilot, every single day.',setup:'From $1,000',monthly:'From $175/mo',features:['Personalised sequences at scale','Smart reply detection','Open & click analytics'],badge:null}
+        {icon:'AI',tagline:'Never Miss a Follow-Up',name:'AI Email & Follow-Up',desc:'Automated email sequences and intelligent reply handling  -  follow-ups that feel personal and run on autopilot, every single day.',setup:'From $1,000',monthly:'From $174.99/mo',features:['Personalised sequences at scale','Smart reply detection','Open & click analytics'],badge:null}
       ],
       industries:[
         {name:'Clinics & Wellness',systems:['Booking and reminders','AI intake assistants','Follow-ups after visits']},
@@ -1779,15 +1866,15 @@ document.addEventListener('DOMContentLoaded', function() {
         {icon:'AI',name:'Visual Storytelling & Branding',modules:8,duration:'16 hours',badge:'Advanced',desc:'Master AI-powered motion design with storyboarding, animation, and sound to craft cinematic brand narratives.'}
       ],
       coursesFull:[
-        {icon:'AI',badge:'Creative',name:'Design, Branding & AI',modules:10,duration:'20 hours',desc:'Create complete brand identities from initial concept through to final presentation. Master the intersection of traditional design thinking and cutting-edge AI tools  -  Midjourney, Adobe, and beyond.',moduleList:['Brand Strategy Foundations','Color Theory & AI Palettes','Typography Systems','Logo Design with AI','Visual Identity Build','Mockups & Presentations','Brand Voice & Copy','Social Media Kits','Brand Guidelines Doc','Final Brand Presentation'],from:'from $175'},
-        {icon:'AI',badge:'Business',name:'AI for Creatives & Business',modules:10,duration:'20 hours',desc:'Build and launch your complete brand using AI as your creative partner. Design your visual identity, build a website, automate your marketing, and position yourself to compete in any market.',moduleList:['AI Tool Landscape 2025','ChatGPT for Business','Visual Identity with AI','Website Design & Build','Marketing Automation','Content Strategy','Social Media AI Workflows','Analytics & Reporting','Pitch & Positioning','Launch Your Brand'],from:'from $175'},
-        {icon:'AI',badge:'Portfolio',name:'Portfolio & Personal Branding',modules:10,duration:'20 hours',desc:"Design, write, and build the professional identity that gets you noticed. Use AI to sharpen your story, build a portfolio that converts, and develop a personal brand that's distinctly yours.",moduleList:['Personal Brand Audit','Define Your Story','AI Writing & Bio','Visual Identity Design','Portfolio Architecture','Case Study Writing','Website Build','Social Presence Strategy','Outreach & Networking','Final Portfolio Review'],from:'from $175'},
-        {icon:'AI',badge:'Advanced',name:'Visual Storytelling & Branding',modules:8,duration:'16 hours',desc:'Master AI-powered motion design. From storyboarding to animation to sound design  -  learn to craft brand films, social reels, and cinematic narratives that move people and drive results.',moduleList:['Story Structure','Moodboards & Direction','Motion Design Fundamentals','AI Animation Tools (Runway)','Sound Design Basics','Brand Film Production','Social Reels & Shorts','Final Narrative Project'],from:'from $175'}
+        {icon:'AI',badge:'Creative',name:'Design, Branding & AI',modules:10,duration:'20 hours',desc:'Create complete brand identities from initial concept through to final presentation. Master the intersection of traditional design thinking and cutting-edge AI tools  -  Midjourney, Adobe, and beyond.',moduleList:['Brand Strategy Foundations','Color Theory & AI Palettes','Typography Systems','Logo Design with AI','Visual Identity Build','Mockups & Presentations','Brand Voice & Copy','Social Media Kits','Brand Guidelines Doc','Final Brand Presentation'],from:'from $174.99'},
+        {icon:'AI',badge:'Business',name:'AI for Creatives & Business',modules:10,duration:'20 hours',desc:'Build and launch your complete brand using AI as your creative partner. Design your visual identity, build a website, automate your marketing, and position yourself to compete in any market.',moduleList:['AI Tool Landscape 2025','ChatGPT for Business','Visual Identity with AI','Website Design & Build','Marketing Automation','Content Strategy','Social Media AI Workflows','Analytics & Reporting','Pitch & Positioning','Launch Your Brand'],from:'from $174.99'},
+        {icon:'AI',badge:'Portfolio',name:'Portfolio & Personal Branding',modules:10,duration:'20 hours',desc:"Design, write, and build the professional identity that gets you noticed. Use AI to sharpen your story, build a portfolio that converts, and develop a personal brand that's distinctly yours.",moduleList:['Personal Brand Audit','Define Your Story','AI Writing & Bio','Visual Identity Design','Portfolio Architecture','Case Study Writing','Website Build','Social Presence Strategy','Outreach & Networking','Final Portfolio Review'],from:'from $174.99'},
+        {icon:'AI',badge:'Advanced',name:'Visual Storytelling & Branding',modules:8,duration:'16 hours',desc:'Master AI-powered motion design. From storyboarding to animation to sound design  -  learn to craft brand films, social reels, and cinematic narratives that move people and drive results.',moduleList:['Story Structure','Moodboards & Direction','Motion Design Fundamentals','AI Animation Tools (Runway)','Sound Design Basics','Brand Film Production','Social Reels & Shorts','Final Narrative Project'],from:'from $174.99'}
       ],
       tiers:[
         {name:'Studio Pass',tagline:'Focused live access',was:'$665',price:'from $499',badge:'25% OFF',features:['4 live studio sessions of your choice','Session recordings for chosen modules','Module-specific templates','Community access'],nope:['Full program progression','Certificate of completion']},
-        {name:'Full Studio Program',tagline:'Complete guided journey',was:'$2,000',price:'from $1,500',badge:'25% OFF',features:['Up to 8?10 live sessions (2hr each)','Guided program progression','Live critiques & group discussion','Personalised feedback','Session recordings','All templates & resources','Private community access','Certificate of completion'],nope:[],featured:true},
-        {name:'Single Workshop',tagline:'One focused session',was:'$235',price:'from $175',badge:'25% OFF',features:['1 live studio session (2 hours)','Topic-specific guidance','Session recording','Selected templates'],nope:['Full program progression','Certificate of completion']}
+        {name:'Full Studio Program',tagline:'Complete guided journey',was:'$2,000',price:'from $1,499',badge:'25% OFF',features:['Up to 8?10 live sessions (2hr each)','Guided program progression','Live critiques & group discussion','Personalised feedback','Session recordings','All templates & resources','Private community access','Certificate of completion'],nope:[],featured:true},
+        {name:'Single Workshop',tagline:'One focused session',was:'$235',price:'from $174.99',badge:'25% OFF',features:['1 live studio session (2 hours)','Topic-specific guidance','Session recording','Selected templates'],nope:['Full program progression','Certificate of completion']}
       ],
       faq:[
         {q:'Do we need expensive software?',a:"Not necessarily. We work with tools you may already have like Gmail, WhatsApp, spreadsheets, and your website. When additional software is helpful, we recommend options that match your budget."},
@@ -1816,7 +1903,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {icon:'AI',tagline:'Crece tu Pipeline',name:'Agente de Alcance',desc:'Generacion de leads y secuencias de seguimiento impulsadas por IA en email y WhatsApp. Personalizado a escala.',setup:'Desde $1,250',monthly:'Desde $300/mes',features:['Personalizacion IA a escala','Secuencias multicanal','Deteccion de respuestas'],badge:null},
         {icon:'AI',tagline:'Siempre Publicando',name:'Agente de Redes Sociales',desc:'Creacion y publicacion automatizada  -  posts, videos cortos, reels y calendarios editoriales.',setup:'Desde $1,500',monthly:'Desde $250/mes',features:['Generacion de captions con IA','Integracion Canva / kit de marca','Auto-programacion y publicacion'],badge:null},
         {icon:'AI',tagline:'Filtra tu Pipeline',name:'Agente de Calificacion de Leads',desc:'IA que califica, segmenta y enruta leads entrantes 24/7  -  para que tu equipo solo hable con quienes estun listos.',setup:'Desde $1,200',monthly:'Desde $200/mes',features:['Calificacion y segmentacion de leads','Enrutamiento autom?tico al CRM','Notificaciones al equipo en tiempo real'],badge:null},
-        {icon:'AI',tagline:'Sin Perder un Seguimiento',name:'Email y Seguimiento IA',desc:'Secuencias de email automatizadas y manejo inteligente de respuestas  -  seguimientos que se sienten personales y funcionan solos.',setup:'Desde $1,000',monthly:'Desde $175/mes',features:['Secuencias personalizadas a escala','Deteccion inteligente de respuestas','Analitica de apertura y clics'],badge:null}
+        {icon:'AI',tagline:'Sin Perder un Seguimiento',name:'Email y Seguimiento IA',desc:'Secuencias de email automatizadas y manejo inteligente de respuestas  -  seguimientos que se sienten personales y funcionan solos.',setup:'Desde $1,000',monthly:'Desde $174.99/mes',features:['Secuencias personalizadas a escala','Deteccion inteligente de respuestas','Analitica de apertura y clics'],badge:null}
       ],
       industries:[
         {name:'Clinicas y Bienestar',systems:['Reservas y recordatorios','Asistentes de consultas con IA','Seguimientos post-visita']},
@@ -1851,15 +1938,15 @@ document.addEventListener('DOMContentLoaded', function() {
         {icon:'AI',name:'Storytelling Visual y Branding',modules:8,duration:'16 horas',badge:'Avanzado',desc:'Domina el diseno en movimiento con IA: storyboarding, animacion y sonido para narrativas cinematograficas.'}
       ],
       coursesFull:[
-        {icon:'AI',badge:'Creativo',name:'Diseno, Branding e IA',modules:10,duration:'20 horas',desc:'Crea identidades de marca completas desde el concepto inicial hasta la presentacion final. Domina la interseccion del pensamiento de diseno tradicional y las herramientas IA de vanguardia.',moduleList:['Fundamentos de Estrategia de Marca','Color y Paletas con IA','Sistemas Tipograficos','Diseno de Logo con IA','Construccion de Identidad Visual','Mockups y Presentaciones','Voz de Marca y Copywriting','Kits de Redes Sociales','Manual de Marca','Presentaci?n Final de Marca'],from:'desde $175'},
-        {icon:'AI',badge:'Negocios',name:'IA para Creativos y Negocios',modules:10,duration:'20 horas',desc:'Construye y lanza tu marca completa usando IA como tu socio creativo. Disena tu identidad visual, construye un sitio web y automatiza tu marketing.',moduleList:['Panorama de Herramientas IA 2025','ChatGPT para Negocios','Identidad Visual con IA','Diseno y Construccion de Sitio Web','Automatizacion de Marketing','Estrategia de Contenido','Flujos IA para Redes Sociales','Analitica e Informes','Pitch y Posicionamiento','Lanza tu Marca'],from:'desde $175'},
-        {icon:'AI',badge:'Portafolio',name:'Portafolio y Marca Personal',modules:10,duration:'20 horas',desc:'Disena, escribe y construye la identidad profesional que te hace notar. Usa IA para afinar tu historia y desarrollar una marca personal que sea ?nicamente tuya.',moduleList:['Auditor?a de Marca Personal','Define tu Historia','Redaccion y Bio con IA','Diseno de Identidad Visual','Arquitectura de Portafolio','Escritura de Casos de Estudio','Construccion del Sitio Web','Presencia en Redes Sociales','Estrategia de Alcance','Revision Final del Portafolio'],from:'desde $175'},
-        {icon:'AI',badge:'Avanzado',name:'Storytelling Visual y Branding',modules:8,duration:'16 horas',desc:'Domina el diseno en movimiento con IA. Del storyboard a la animacion y al diseno de sonido  -  aprende a crear films de marca y reels que mueven a las personas.',moduleList:['Estructura Narrativa','Moodboards y Direcci?n','Fundamentos de Motion Design','Herramientas de Animaci?n IA (Runway)','Diseno de Sonido','Produccion de Film de Marca','Reels y Videos Cortos','Proyecto Narrativo Final'],from:'desde $175'}
+        {icon:'AI',badge:'Creativo',name:'Diseno, Branding e IA',modules:10,duration:'20 horas',desc:'Crea identidades de marca completas desde el concepto inicial hasta la presentacion final. Domina la interseccion del pensamiento de diseno tradicional y las herramientas IA de vanguardia.',moduleList:['Fundamentos de Estrategia de Marca','Color y Paletas con IA','Sistemas Tipograficos','Diseno de Logo con IA','Construccion de Identidad Visual','Mockups y Presentaciones','Voz de Marca y Copywriting','Kits de Redes Sociales','Manual de Marca','Presentaci?n Final de Marca'],from:'desde $174.99'},
+        {icon:'AI',badge:'Negocios',name:'IA para Creativos y Negocios',modules:10,duration:'20 horas',desc:'Construye y lanza tu marca completa usando IA como tu socio creativo. Disena tu identidad visual, construye un sitio web y automatiza tu marketing.',moduleList:['Panorama de Herramientas IA 2025','ChatGPT para Negocios','Identidad Visual con IA','Diseno y Construccion de Sitio Web','Automatizacion de Marketing','Estrategia de Contenido','Flujos IA para Redes Sociales','Analitica e Informes','Pitch y Posicionamiento','Lanza tu Marca'],from:'desde $174.99'},
+        {icon:'AI',badge:'Portafolio',name:'Portafolio y Marca Personal',modules:10,duration:'20 horas',desc:'Disena, escribe y construye la identidad profesional que te hace notar. Usa IA para afinar tu historia y desarrollar una marca personal que sea ?nicamente tuya.',moduleList:['Auditor?a de Marca Personal','Define tu Historia','Redaccion y Bio con IA','Diseno de Identidad Visual','Arquitectura de Portafolio','Escritura de Casos de Estudio','Construccion del Sitio Web','Presencia en Redes Sociales','Estrategia de Alcance','Revision Final del Portafolio'],from:'desde $174.99'},
+        {icon:'AI',badge:'Avanzado',name:'Storytelling Visual y Branding',modules:8,duration:'16 horas',desc:'Domina el diseno en movimiento con IA. Del storyboard a la animacion y al diseno de sonido  -  aprende a crear films de marca y reels que mueven a las personas.',moduleList:['Estructura Narrativa','Moodboards y Direcci?n','Fundamentos de Motion Design','Herramientas de Animaci?n IA (Runway)','Diseno de Sonido','Produccion de Film de Marca','Reels y Videos Cortos','Proyecto Narrativo Final'],from:'desde $174.99'}
       ],
       tiers:[
         {name:'Studio Pass',tagline:'Acceso en vivo enfocado',was:'$665',price:'desde $499',badge:'25% DCTO',features:['4 sesiones en vivo a tu eleccion','Grabaciones de sesiones elegidas','Plantillas especificas del modulo','Acceso a la comunidad'],nope:['Progresion completa del programa','Certificado de finalizacion']},
-        {name:'Programa Completo',tagline:'Trayectoria guiada completa',was:'$2,000',price:'desde $1,500',badge:'25% DCTO',features:['Hasta 8?10 sesiones en vivo (2hr cada una)','Progresion guiada del programa','Criticas en vivo y discusion grupal','Retroalimentacion personalizada','Grabaciones de sesiones','Todas las plantillas y recursos','Acceso a comunidad privada','Certificado de finalizacion'],nope:[],featured:true},
-        {name:'Taller Individual',tagline:'Una sesion enfocada',was:'$235',price:'desde $175',badge:'25% DCTO',features:['1 sesion en vivo (2 horas)','Orientacion espec?fica del tema','Grabacion de la sesion','Plantillas seleccionadas'],nope:['Progresion completa del programa','Certificado de finalizacion']}
+        {name:'Programa Completo',tagline:'Trayectoria guiada completa',was:'$2,000',price:'desde $1,499',badge:'25% DCTO',features:['Hasta 8?10 sesiones en vivo (2hr cada una)','Progresion guiada del programa','Criticas en vivo y discusion grupal','Retroalimentacion personalizada','Grabaciones de sesiones','Todas las plantillas y recursos','Acceso a comunidad privada','Certificado de finalizacion'],nope:[],featured:true},
+        {name:'Taller Individual',tagline:'Una sesion enfocada',was:'$235',price:'desde $174.99',badge:'25% DCTO',features:['1 sesion en vivo (2 horas)','Orientacion espec?fica del tema','Grabacion de la sesion','Plantillas seleccionadas'],nope:['Progresion completa del programa','Certificado de finalizacion']}
       ],
       faq:[
         {q:'Necesitamos software costoso?',a:'No necesariamente. Trabajamos con herramientas que ya puedes tener como Gmail, WhatsApp, hojas de calculo y tu sitio web.'},
@@ -2184,7 +2271,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return '<a href="./academy/" class="cprice-card">'+
         '<div class="cprice-icon">'+c.icon+'</div>'+
         '<div class="cprice-name">'+c.name+'</div>'+
-        '<div class="cprice-meta">'+c.modules+' '+(lang==='en'?'modules':'mÃ³dulos')+' - '+c.duration+'</div>'+
+        '<div class="cprice-meta">'+c.modules+' '+(lang==='en'?'modules':'módulos')+' - '+c.duration+'</div>'+
         '<span class="cprice-badge">'+c.badge+'</span>'+
         '<p class="cprice-desc">'+c.desc+'</p>'+
       '</a>';
@@ -2203,7 +2290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '</div>'+
         '<div class="cf-name">'+c.name+'</div>'+
         '<div class="cf-meta">'+
-          '<span>'+c.modules+' '+(lang==='en'?'modules':'mÃ³dulos')+'</span>'+
+          '<span>'+c.modules+' '+(lang==='en'?'modules':'módulos')+'</span>'+
           '<span>'+c.duration+'</span>'+
         '</div>'+
         '<p class="cf-desc">'+c.desc+'</p>'+
@@ -2323,6 +2410,31 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
+  /* x DISCOUNT COUNTDOWN */
+  var discountBanner=document.getElementById('discount-banner');
+  var discountCountdown=document.getElementById('discount-countdown');
+  var discountDeadline=Number(localStorage.getItem('tfsFifteenMinuteDiscountDeadline')||0);
+  if(!discountDeadline||discountDeadline<Date.now()){
+    discountDeadline=Date.now()+15*60*1000;
+    localStorage.setItem('tfsFifteenMinuteDiscountDeadline',String(discountDeadline));
+  }
+  function updateDiscountBanner(){
+    if(discountCountdown){
+      var remaining=Math.max(0,discountDeadline-Date.now());
+      var hours=Math.floor(remaining/3600000);
+      var minutes=Math.floor((remaining%3600000)/60000);
+      var seconds=Math.floor((remaining%60000)/1000);
+      discountCountdown.textContent=String(hours).padStart(2,'0')+':'+String(minutes).padStart(2,'0')+':'+String(seconds).padStart(2,'0');
+    }
+    if(discountBanner){
+      var packagesSection=document.getElementById('packages');
+      var show=packagesSection&&window.scrollY>(packagesSection.offsetTop+packagesSection.offsetHeight-180);
+      discountBanner.classList.toggle('visible',!!show);
+    }
+  }
+  updateDiscountBanner();
+  setInterval(updateDiscountBanner,1000);
+  window.addEventListener('scroll',updateDiscountBanner,{passive:true});
   /* x NAV SCROLL */
   var nav=document.getElementById('nav');
   var lastY=0;

@@ -88,11 +88,12 @@
 
   /* Highlight active EN / ES button */
   function syncToggleButtons(lang) {
-    var btns = document.querySelectorAll('.tfs-lang-btn');
+    var btns = document.querySelectorAll('.tfs-lang-btn, .lang-btn');
     for (var i = 0; i < btns.length; i++) {
       var b = btns[i];
       var match = b.getAttribute('data-lang') === lang;
       b.classList.toggle('tfs-active', match);
+      b.classList.toggle('active', match);
       b.setAttribute('aria-pressed', match ? 'true' : 'false');
     }
   }
@@ -180,7 +181,7 @@
     document.addEventListener('click', function (e) {
       var t = e.target;
       while (t && t !== document) {
-        if (t.classList && t.classList.contains('tfs-lang-btn')) {
+        if (t.classList && (t.classList.contains('tfs-lang-btn') || t.classList.contains('lang-btn'))) {
           var lang = t.getAttribute('data-lang');
           if (lang) {
             applyLang(lang);
