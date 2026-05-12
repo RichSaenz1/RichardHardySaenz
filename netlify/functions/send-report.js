@@ -97,6 +97,9 @@ function htmlReport(report, payload) {
   const accentTitle = titleWords.length > 2
     ? `${escapeHtml(titleWords.slice(0, -2).join(" "))} <span style="background:linear-gradient(90deg,#00e5cc,#44b8ff,#9b59ff);-webkit-background-clip:text;background-clip:text;color:#44b8ff;-webkit-text-fill-color:transparent;">${escapeHtml(titleWords.slice(-2).join(" "))}</span>`
     : escapeHtml(report.title);
+  const titleHtml = clean(report.title).toLowerCase().startsWith("your ")
+    ? `<span style="color:#0a0a0a;-webkit-text-fill-color:#0a0a0a;">Your</span> <span style="background:linear-gradient(90deg,#00cdb8,#3fb8ff,#9b59ff);-webkit-background-clip:text;background-clip:text;color:#3fb8ff;-webkit-text-fill-color:transparent;">${escapeHtml(clean(report.title).slice(5))}</span>`
+    : `<span style="background:linear-gradient(90deg,#00cdb8,#3fb8ff,#9b59ff);-webkit-background-clip:text;background-clip:text;color:#3fb8ff;-webkit-text-fill-color:transparent;">${escapeHtml(report.title)}</span>`;
   const whyItems = [
     `Your answers point to ${clean(report.system, "a focused AI system")} as the clearest next move.`,
     clean(report.value, "There is a practical business opportunity if the right workflow is mapped and installed."),
@@ -118,7 +121,7 @@ function htmlReport(report, payload) {
           <div style="border:1px solid rgba(255,255,255,.72);background:radial-gradient(circle at 7% 9%,rgba(0,229,204,.30),transparent 34%),radial-gradient(circle at 96% 12%,rgba(155,89,255,.26),transparent 40%),radial-gradient(circle at 88% 88%,rgba(63,184,255,.18),transparent 36%),linear-gradient(135deg,rgba(255,255,255,.92) 0%,rgba(255,248,245,.88) 55%,rgba(245,239,255,.90) 100%);padding:42px 38px;">
             <img src="${escapeHtml(logoUrl)}" width="250" alt="The Future Studio" style="display:block;width:250px;max-width:78%;height:auto;margin:0 auto 24px;">
             <p style="margin:0 0 16px;font-family:'Barlow Condensed','Arial Narrow','Roboto Condensed',Impact,Arial,sans-serif;font-size:17px;font-weight:800;letter-spacing:.20em;text-transform:uppercase;color:#0a0a0a;">The Future Studio</p>
-            <h1 style="margin:0 0 22px;font-family:'Barlow Condensed','Arial Narrow','Roboto Condensed',Impact,Arial,sans-serif;font-size:74px;line-height:.86;font-weight:800;font-style:italic;letter-spacing:0;text-transform:uppercase;color:#0a0a0a;">${escapeHtml(report.title)}</h1>
+            <h1 style="margin:0 0 22px;font-family:'Barlow Condensed','Arial Narrow','Roboto Condensed',Impact,Arial,sans-serif;font-size:74px;line-height:.86;font-weight:800;font-style:italic;letter-spacing:0;text-transform:uppercase;color:#0a0a0a;">${titleHtml}</h1>
             <p style="margin:0 0 28px;color:rgba(10,10,10,.70);font-family:'DM Sans',Arial,sans-serif;font-size:17px;line-height:1.72;">Hi ${escapeHtml(name)}, ${escapeHtml(report.summary)}</p>
             <div style="padding:2px;background:linear-gradient(135deg,rgba(0,229,204,.92),rgba(63,184,255,.78),rgba(155,89,255,.88));box-shadow:0 14px 34px rgba(0,229,204,.10);margin-bottom:18px;">
             <div style="display:block;padding:22px 20px;background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.52));box-shadow:inset 0 1px 0 rgba(255,255,255,.74);">
