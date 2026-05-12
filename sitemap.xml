@@ -1,347 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://thefuturestudio.online/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/"/>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/case-studies/</loc>
+    <loc>https://thefuturestudio.online/academy/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/case-studies/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/es/casos-de-estudio/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/case-studies/"/>
+    <priority>0.7</priority>
   </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/es/casos-de-estudio/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/case-studies/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/es/casos-de-estudio/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/case-studies/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/case-studies/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/case-studies/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/es/casos-de-estudio/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/case-studies/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/es/casos-de-estudio/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/case-studies/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/es/casos-de-estudio/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/case-studies/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/tfs-pricing.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/tfs-pricing.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/tfs-pricing.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/tfs-pricing.html"/>
-  </url>
-
   <url>
     <loc>https://thefuturestudio.online/audit/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/audit/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/audit/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/audit/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/build/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/build/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/build/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/build/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/learn/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/learn/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/learn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/learn/"/>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://thefuturestudio.online/packages/growth/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thefuturestudio.online/packages/premium/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thefuturestudio.online/packages/starter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://thefuturestudio.online/shop/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-2/audit/</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-2/audit/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-2/audit/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-2/audit/"/>
   </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-2/build/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-2/build/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-2/build/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-2/build/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-2/learn/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-2/learn/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-2/learn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-2/learn/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-3/audit/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-3/audit/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-3/audit/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-3/audit/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-3/build/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-3/build/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-3/build/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-3/build/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-3/learn/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-3/learn/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-3/learn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-3/learn/"/>
-  </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/step-4/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/step-4/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/step-4/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/step-4/"/>
-  </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/beauty.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/beauty.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/beauty.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/beauty.html"/>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/clinic.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/clinic.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/clinic.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/clinic.html"/>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/dental.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/dental.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/dental.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/dental.html"/>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/education.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/education.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/education.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/education.html"/>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/legal.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/legal.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/legal.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/legal.html"/>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/calendar/realestate.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/calendar/realestate.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/calendar/realestate.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/calendar/realestate.html"/>
   </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/shop/series/first-ai-system.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/series/first-ai-system.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/series/first-ai-system.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/series/first-ai-system.html"/>
-  </url>
-
   <url>
     <loc>https://thefuturestudio.online/shop/series/build-what-pays.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/series/build-what-pays.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/series/build-what-pays.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/series/build-what-pays.html"/>
   </url>
-
+  <url>
+    <loc>https://thefuturestudio.online/shop/series/first-ai-system.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://thefuturestudio.online/shop/series/stop-losing-leads.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/shop/series/stop-losing-leads.html"/>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/systems/website-ai-assistant/</loc>
+    <loc>https://thefuturestudio.online/shop/step-2/audit/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/website-ai-assistant/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/website-ai-assistant/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/website-ai-assistant/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/systems/whatsapp-automation-agent/</loc>
+    <loc>https://thefuturestudio.online/shop/step-2/build/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/whatsapp-automation-agent/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/whatsapp-automation-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/whatsapp-automation-agent/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/systems/booking-agent/</loc>
+    <loc>https://thefuturestudio.online/shop/step-2/learn/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/booking-agent/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/booking-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/booking-agent/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/systems/lead-pipeline-automation/</loc>
+    <loc>https://thefuturestudio.online/shop/step-3/audit/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/lead-pipeline-automation/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/lead-pipeline-automation/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/lead-pipeline-automation/"/>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://thefuturestudio.online/shop/step-3/build/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thefuturestudio.online/shop/step-3/learn/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thefuturestudio.online/shop/step-4/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://thefuturestudio.online/systems/ai-content-agent/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/ai-content-agent/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/ai-content-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/ai-content-agent/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/systems/marketing-video-system/</loc>
+    <loc>https://thefuturestudio.online/systems/booking-agent/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/marketing-video-system/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/marketing-video-system/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/marketing-video-system/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://thefuturestudio.online/systems/custom-apps-dashboards/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/custom-apps-dashboards/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/custom-apps-dashboards/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/custom-apps-dashboards/"/>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://thefuturestudio.online/systems/lead-pipeline-automation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thefuturestudio.online/systems/marketing-video-system/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://thefuturestudio.online/systems/voice-agent/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/systems/voice-agent/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/systems/voice-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/systems/voice-agent/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/packages/starter/</loc>
+    <loc>https://thefuturestudio.online/systems/website-ai-assistant/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/packages/starter/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/packages/starter/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/packages/starter/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/packages/growth/</loc>
+    <loc>https://thefuturestudio.online/systems/whatsapp-automation-agent/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/packages/growth/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/packages/growth/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/packages/growth/"/>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://thefuturestudio.online/packages/premium/</loc>
+    <loc>https://thefuturestudio.online/tfs-pricing.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/packages/premium/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/packages/premium/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/packages/premium/"/>
+    <priority>0.7</priority>
   </url>
-
-  <url>
-    <loc>https://thefuturestudio.online/academy/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thefuturestudio.online/academy/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://thefuturestudio.online/academy/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://thefuturestudio.online/academy/"/>
-  </url>
-
 </urlset>
