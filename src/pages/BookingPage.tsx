@@ -71,16 +71,16 @@ export function BookingPage() {
   const appointmentFacts =
     language === "es"
       ? [
-          ["Confirmacion", "Manual por el equipo"],
+          ["Sistema actual", "HuliPractice"],
           ["Primera consulta", "45 minutos"],
           ["Seguimiento", "30 minutos"],
-          ["Canal", "Formulario o WhatsApp"],
+          ["Confirmación", "Manual por el equipo"],
         ]
       : [
-          ["Confirmation", "Manual by the team"],
+          ["Current system", "HuliPractice"],
           ["New visit", "45 minutes"],
           ["Follow-up", "30 minutes"],
-          ["Channel", "Form or WhatsApp"],
+          ["Confirmation", "Manual by the team"],
         ];
 
   return (
@@ -219,7 +219,7 @@ export function BookingPage() {
                 onClick={() =>
                   window.dispatchEvent(new CustomEvent("uropanama:open-assistant"))
                 }
-                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-cyan hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 {t.cta.assistant}
                 <Bot aria-hidden="true" className="h-4 w-4" />
@@ -247,7 +247,7 @@ export function BookingPage() {
                   key={item.title}
                   className="rounded-[1.25rem] border border-borderblue bg-white/82 p-5"
                 >
-                  <span className="text-xs font-medium text-medical">0{index + 1}</span>
+                  <span className="text-xs font-medium text-gold">0{index + 1}</span>
                   <h3 className="mt-3 text-base font-medium text-navy">
                     {item.title}
                   </h3>

@@ -131,7 +131,7 @@ export const refinementCopy: Record<Language, RefinementCopy> = {
     },
     booking: {
       heroBody:
-        "Complete el formulario o escriba por WhatsApp. El equipo revisa disponibilidad y confirma manualmente la cita.",
+        "Complete el formulario o escriba por WhatsApp. El equipo revisa disponibilidad y confirma manualmente la cita en HuliPractice.",
       privacyTitle: "Privacidad desde el primer contacto",
       privacyBody:
         "La información compartida se utiliza únicamente para coordinar la solicitud de cita y preparar la orientación inicial. No sustituye una evaluación médica.",
@@ -145,7 +145,7 @@ export const refinementCopy: Record<Language, RefinementCopy> = {
       nextTitle: "Qué ocurre después",
       next: [
         ["Envía su solicitud", "Comparta sus datos, motivo principal y preferencia de horario."],
-        ["Revisión del equipo", "La solicitud se revisa manualmente y se coordina por el equipo."],
+        ["Revisión del equipo", "La solicitud se revisa manualmente y se coordina en HuliPractice."],
         ["Duración estimada", "Primera consulta: 45 minutos. Seguimiento: 30 minutos."],
         ["Confirmación", "El equipo confirma disponibilidad y próximos pasos por el canal indicado."],
       ],
@@ -355,7 +355,7 @@ export const refinementCopy: Record<Language, RefinementCopy> = {
     },
     booking: {
       heroBody:
-        "Complete the form or message us on WhatsApp. The team reviews availability and manually confirms the visit.",
+        "Complete the form or message us on WhatsApp. The team reviews availability and manually confirms the visit in HuliPractice.",
       privacyTitle: "Privacy from the first contact",
       privacyBody:
         "Information shared here is used only to coordinate the appointment request and prepare initial guidance. It does not replace medical evaluation.",
@@ -369,7 +369,7 @@ export const refinementCopy: Record<Language, RefinementCopy> = {
       nextTitle: "What happens next",
       next: [
         ["Send your request", "Share contact details, main reason, and preferred time."],
-        ["Team review", "The request is reviewed manually and coordinated by the team."],
+        ["Team review", "The request is reviewed manually and coordinated in HuliPractice."],
         ["Estimated duration", "New visit: 45 minutes. Follow-up: 30 minutes."],
         ["Confirmation", "The team confirms availability and next steps through the selected channel."],
       ],

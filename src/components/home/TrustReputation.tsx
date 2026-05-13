@@ -68,7 +68,7 @@ export function TrustReputation() {
               key={title}
               className="rounded-[1.25rem] border border-borderblue bg-white/80 p-6 shadow-[0_18px_54px_rgba(13,43,69,0.06)] backdrop-blur"
             >
-              <Quote aria-hidden="true" className="h-5 w-5 text-medical" />
+              <Quote aria-hidden="true" className="h-5 w-5 text-gold" />
               <h3 className="mt-4 text-base font-medium text-navy">{title}</h3>
               <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
               <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">

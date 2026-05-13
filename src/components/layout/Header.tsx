@@ -122,7 +122,7 @@ function HeaderDropdown({
             <Link
               to={href}
               role="menuitem"
-              className="shrink-0 text-xs font-medium text-navy underline decoration-medical/70 underline-offset-4 transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+              className="shrink-0 text-xs font-medium text-navy underline decoration-gold/70 underline-offset-4 transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
             >
               {label}
             </Link>
@@ -140,7 +140,7 @@ function HeaderDropdown({
                   <span className="text-sm font-medium text-navy">
                     {item.title}
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-medical opacity-0 transition group-hover:opacity-100" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold opacity-0 transition group-hover:opacity-100" />
                 </span>
                 <span className="mt-1 block truncate text-xs leading-5 text-muted">
                   {item.description}
@@ -244,7 +244,7 @@ export function Header() {
         <span className="font-heading text-[22px] leading-none tracking-[-0.05em]">
           U
         </span>
-        <span className="absolute -right-0.5 top-2 h-3.5 w-px rounded-full bg-medical/70" />
+        <span className="absolute -right-0.5 top-2 h-3.5 w-px rounded-full bg-gold/70" />
       </div>
       <div className="min-w-0 leading-none">
         <p className="truncate text-[15px] font-medium tracking-[-0.01em] text-navy">

@@ -19,7 +19,7 @@ export function ConcernSelector() {
             className="group relative rounded-card border border-borderblue bg-white p-6 transition duration-200 hover:-translate-y-0.5 hover:border-cyan hover:shadow-[0_4px_16px_rgba(13,43,69,0.06)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
           >
             <div className="flex h-full flex-col">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl border border-borderblue bg-white text-navy shadow-[0_14px_34px_rgba(27,107,154,0.08)] transition duration-300 group-hover:border-cyan group-hover:bg-navy group-hover:text-white group-hover:shadow-[0_18px_42px_rgba(27,107,154,0.16)]">
+              <span className="grid h-14 w-14 place-items-center rounded-2xl border border-borderblue bg-white text-navy shadow-[0_14px_34px_rgba(27,107,154,0.08)] transition duration-300 group-hover:border-gold/70 group-hover:bg-navy group-hover:text-white group-hover:shadow-[0_18px_42px_rgba(201,168,76,0.22)]">
                 <Icon aria-hidden="true" className="h-5 w-5" />
               </span>
               <h3 className="mt-7 font-heading text-3xl leading-none text-navy">

@@ -221,7 +221,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
           </article>
 
           <article className="premium-card flex h-full flex-col rounded-[1.45rem] p-7">
-            <ArrowRight aria-hidden="true" className="h-6 w-6 text-medical" />
+            <ArrowRight aria-hidden="true" className="h-6 w-6 text-gold" />
             <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
               {copy.common.next}
             </p>
@@ -239,7 +239,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
             <ol className="mt-5 grid gap-3">
               {page.next.map((item, index) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-0.5 text-xs font-medium text-medical">
+                  <span className="mt-0.5 text-xs font-medium text-gold">
                     0{index + 1}
                   </span>
                   <p className="text-sm leading-6 text-muted">{item}</p>
@@ -265,7 +265,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-cyan hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {item.label}
                 </Link>
@@ -384,7 +384,7 @@ function SecondOpinionDecisionSection({
                 key={item.title}
                 className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur"
               >
-                <span className="text-xs font-medium text-medical">0{index + 1}</span>
+                <span className="text-xs font-medium text-gold">0{index + 1}</span>
                 <h3 className="mt-3 text-base font-medium text-white">
                   {item.title}
                 </h3>
@@ -444,7 +444,7 @@ function SecondOpinionDecisionSection({
                 </div>
               ))}
             </div>
-            <p className="mt-6 rounded-2xl border border-cyan/30 bg-cyan/10 p-4 text-sm leading-7 text-blue-100">
+            <p className="mt-6 rounded-2xl border border-gold/20 bg-gold/10 p-4 text-sm leading-7 text-blue-100">
               {copy.safetyNote}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
