@@ -118,6 +118,19 @@ textarea {
   text-wrap: balance;
 }
 
+.text-display {
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 639px) {
+  .text-display {
+    font-size: 36px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

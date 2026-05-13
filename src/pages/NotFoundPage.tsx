@@ -41,7 +41,7 @@ export function NotFoundPage() {
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
             UroPanama
           </p>
-          <h1 className="mt-5 font-heading text-6xl leading-[0.92] text-navy sm:text-7xl">
+          <h1 className="mt-5 font-heading text-display leading-[0.92] text-navy sm:text-display">
             {copy.title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">

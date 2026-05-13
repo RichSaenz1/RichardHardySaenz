@@ -36,7 +36,7 @@ export function DoctorProfileBlock() {
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.brand.doctor}
         </p>
-        <h2 className="mt-5 max-w-3xl font-heading text-5xl leading-[0.96] text-navy text-balance lg:text-6xl">
+        <h2 className="mt-5 max-w-3xl font-heading text-display leading-[0.96] text-navy text-balance lg:text-display">
           {t.about.subtitle}
         </h2>
         <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-muted">

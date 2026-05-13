@@ -29,7 +29,7 @@ export function SectionContainer({
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8 lg:py-32",
+        "relative overflow-hidden px-6 py-16 sm:px-10 lg:px-[60px] lg:py-[120px] xl:px-20",
         dark ? "bg-navy text-white" : "bg-white text-navy",
         className,
       )}
@@ -46,7 +46,7 @@ export function SectionContainer({
             {eyebrow && (
               <p
                 className={cn(
-                  "mb-3 text-xs font-medium uppercase tracking-[0.14em]",
+                  "mb-3 text-eyebrow uppercase",
                   dark ? "text-cyan" : "text-medical",
                 )}
               >
@@ -56,7 +56,7 @@ export function SectionContainer({
             {title && (
               <h2
                 className={cn(
-                  "max-w-4xl text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-[4.25rem]",
+                  "max-w-4xl font-heading text-h1 text-balance sm:text-display",
                   dark ? "text-white" : "text-navy",
                 )}
               >
@@ -66,7 +66,7 @@ export function SectionContainer({
             {subtitle && (
               <p
                 className={cn(
-                  "mt-6 max-w-2xl text-[17px] leading-[1.75] sm:text-lg",
+                  "mt-6 max-w-2xl text-body-lg",
                   dark ? "text-blue-100" : "text-muted",
                 )}
               >

@@ -94,7 +94,7 @@ export function AboutPage() {
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
                 {aboutUx.identityEyebrow}
               </p>
-              <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.95] text-navy text-balance sm:text-6xl">
+              <h2 className="mt-4 max-w-3xl font-heading text-display leading-[0.95] text-navy text-balance sm:text-display">
                 {aboutUx.identityTitle}
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-8 text-muted">
@@ -117,7 +117,7 @@ export function AboutPage() {
             <article className="rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-7 shadow-[0_20px_70px_rgba(13,43,69,0.06)] sm:p-9">
               <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr]">
                 <div>
-                  <h2 className="font-heading text-5xl leading-none text-navy">
+                  <h2 className="font-heading text-display leading-none text-navy">
                     {aboutUx.principlesTitle}
                   </h2>
                   <p className="mt-5 text-base leading-8 text-muted">
@@ -161,7 +161,7 @@ export function AboutPage() {
           <div className="grid gap-8 lg:grid-cols-[0.74fr_1.26fr]">
             <div>
               <FileText aria-hidden="true" className="h-7 w-7 text-medical" />
-              <h2 className="mt-5 font-heading text-5xl leading-none text-navy">
+              <h2 className="mt-5 font-heading text-display leading-none text-navy">
                 {aboutUx.consultationTitle}
               </h2>
               <p className="mt-5 text-base leading-8 text-muted">
