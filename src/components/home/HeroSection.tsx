@@ -1,4 +1,4 @@
-﻿import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { CalendarDays, MessageCircle } from "lucide-react";
 import { imageAssets, optionalImages } from "../../data/images";
 import { useLanguage } from "../../i18n/LanguageContext";
@@ -55,7 +55,7 @@ export function HeroSection() {
         className="pointer-events-none absolute bottom-2 right-[3%] -z-20 hidden h-[46rem] w-[46rem] object-contain opacity-[0.20] mix-blend-multiply lg:block"
       />
       <div className="absolute inset-0 -z-10 bg-[url('/images/medical-background-texture.webp')] bg-cover bg-center opacity-[0.055]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_16%,rgba(38,191,232,0.18),transparent_34rem),radial-gradient(circle_at_86%_78%,rgba(201,167,106,0.10),transparent_24rem),linear-gradient(90deg,#F7FBFD_0%,rgba(247,251,253,0.92)_32%,rgba(232,244,255,0.58)_61%,rgba(247,251,253,0.18)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_16%,rgba(91,158,201,0.18),transparent_34rem),radial-gradient(circle_at_86%_78%,rgba(201,168,76,0.10),transparent_24rem),linear-gradient(90deg,#F5F7F9_0%,rgba(247,251,253,0.92)_32%,rgba(232,244,255,0.58)_61%,rgba(247,251,253,0.18)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-mist via-mist/70 to-transparent" />
 
       <div className="relative mx-auto grid min-h-[calc(94vh-8rem)] max-w-[1360px] items-center gap-10 lg:grid-cols-[minmax(0,0.98fr)_minmax(340px,0.72fr)]">
@@ -81,14 +81,14 @@ export function HeroSection() {
             <CTAButton
               to="/agendar-cita"
               icon={<CalendarDays aria-hidden="true" className="h-4 w-4" />}
-              className="min-h-12 px-7 text-[15px] shadow-[0_16px_42px_rgba(6,27,51,0.14)]"
+              className="min-h-12 px-7 text-[15px] shadow-[0_16px_42px_rgba(13,43,69,0.14)]"
             >
               {t.cta.book}
             </CTAButton>
             <button
               type="button"
               onClick={openAssistant}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white/78 px-7 text-[15px] font-semibold text-navy shadow-[0_14px_36px_rgba(6,27,51,0.07)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white/78 px-7 text-[15px] font-semibold text-navy shadow-[0_14px_36px_rgba(13,43,69,0.07)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {t.cta.assistant}
               <MessageCircle aria-hidden="true" className="h-4 w-4" />
@@ -99,7 +99,7 @@ export function HeroSection() {
             {proofPoints.map(([value, label]) => (
               <div
                 key={value}
-                className="rounded-2xl border border-white/70 bg-white/72 px-4 py-3 shadow-[0_14px_34px_rgba(6,27,51,0.065)] backdrop-blur"
+                className="rounded-2xl border border-white/70 bg-white/72 px-4 py-3 shadow-[0_14px_34px_rgba(13,43,69,0.065)] backdrop-blur"
               >
                 <p className="font-heading text-2xl leading-none text-navy">
                   {value}
@@ -111,7 +111,7 @@ export function HeroSection() {
             ))}
           </div>
 
-          <div className="mt-5 flex items-center gap-3 rounded-[1.35rem] border border-white/70 bg-white/80 p-3 shadow-[0_18px_46px_rgba(6,27,51,0.09)] backdrop-blur lg:hidden">
+          <div className="mt-5 flex items-center gap-3 rounded-[1.35rem] border border-white/70 bg-white/80 p-3 shadow-[0_18px_46px_rgba(13,43,69,0.09)] backdrop-blur lg:hidden">
             <img
               src={optionalImages.doctorPortrait.src}
               alt={optionalImages.doctorPortrait.alt}

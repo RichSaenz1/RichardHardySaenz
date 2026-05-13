@@ -113,7 +113,7 @@ export function AboutPage() {
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-7 shadow-[0_20px_70px_rgba(6,27,51,0.06)] sm:p-9">
+            <article className="rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-7 shadow-[0_20px_70px_rgba(13,43,69,0.06)] sm:p-9">
               <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr]">
                 <div>
                   <h2 className="font-heading text-5xl leading-none text-navy">
@@ -156,7 +156,7 @@ export function AboutPage() {
       </SectionContainer>
 
       <SectionContainer className="bg-mist">
-        <div className="rounded-[2rem] border border-borderblue bg-white/86 p-6 shadow-[0_24px_80px_rgba(6,27,51,0.07)] backdrop-blur sm:p-9">
+        <div className="rounded-[2rem] border border-borderblue bg-white/86 p-6 shadow-[0_24px_80px_rgba(13,43,69,0.07)] backdrop-blur sm:p-9">
           <div className="grid gap-8 lg:grid-cols-[0.74fr_1.26fr]">
             <div>
               <FileText aria-hidden="true" className="h-7 w-7 text-medical" />

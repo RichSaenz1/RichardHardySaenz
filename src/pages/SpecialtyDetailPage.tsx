@@ -249,7 +249,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
           </article>
         </div>
 
-        <div className="mt-7 rounded-[1.55rem] border border-borderblue bg-white/80 p-6 shadow-[0_20px_70px_rgba(6,27,51,0.06)] backdrop-blur sm:p-8">
+        <div className="mt-7 rounded-[1.55rem] border border-borderblue bg-white/80 p-6 shadow-[0_20px_70px_rgba(13,43,69,0.06)] backdrop-blur sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <LinkIcon aria-hidden="true" className="h-6 w-6 text-medical" />
@@ -366,7 +366,7 @@ function SecondOpinionDecisionSection({
 }) {
   return (
     <SectionContainer className="bg-navy text-white" dark>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(38,191,232,0.20),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(201,167,106,0.13),transparent_26rem)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(91,158,201,0.20),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(201,168,76,0.13),transparent_26rem)]" />
       <div className="relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan">

@@ -23,7 +23,7 @@ export function AnatomyExplorer() {
 
   return (
     <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(38,191,232,0.20),transparent_30rem),radial-gradient(circle_at_82%_18%,rgba(201,167,106,0.13),transparent_26rem),linear-gradient(135deg,#061B33,#0A2745)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(91,158,201,0.20),transparent_30rem),radial-gradient(circle_at_82%_18%,rgba(201,168,76,0.13),transparent_26rem),linear-gradient(135deg,#0D2B45,#0D1F2D)]" />
       <div className="absolute inset-0 bg-[url('/images/medical-background-texture.webp')] bg-cover bg-center opacity-[0.035] mix-blend-screen" />
 
       <div className="relative mx-auto max-w-7xl">
@@ -55,7 +55,7 @@ export function AnatomyExplorer() {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_54%_44%,transparent_0,rgba(6,27,51,0.08)_42%,rgba(6,27,51,0.62)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_54%_44%,transparent_0,rgba(13,43,69,0.08)_42%,rgba(13,43,69,0.62)_100%)]" />
             <div className="absolute inset-x-8 bottom-8 h-px bg-gradient-to-r from-transparent via-cyan/55 to-transparent" />
           </div>
 
@@ -72,7 +72,7 @@ export function AnatomyExplorer() {
                   className={cn(
                     "flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                     selectedIndex === index
-                      ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(201,167,106,0.15)]"
+                      ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(201,168,76,0.15)]"
                       : "border-white/10 bg-white/[0.04] text-blue-100 hover:border-cyan/50 hover:bg-white/10",
                   )}
                 >

@@ -110,7 +110,7 @@ function HeaderDropdown({
               onOpenChange(null);
             }
           }}
-          className="absolute left-1/2 top-full mt-4 w-[min(680px,calc(100vw-2rem))] -translate-x-1/2 rounded-[1.6rem] border border-navy/10 bg-white p-5 shadow-[0_28px_80px_rgba(6,27,51,0.14)] backdrop-blur-2xl"
+          className="absolute left-1/2 top-full mt-4 w-[min(680px,calc(100vw-2rem))] -translate-x-1/2 rounded-[1.6rem] border border-navy/10 bg-white p-5 shadow-[0_28px_80px_rgba(13,43,69,0.14)] backdrop-blur-2xl"
         >
           <div className="mb-4 flex items-end justify-between gap-5 px-1">
             <div className="min-w-0">
@@ -240,7 +240,7 @@ export function Header() {
 
   const logoFallback = (
       <div className="flex min-w-0 items-center gap-3">
-      <div className="relative grid h-9 w-9 flex-none place-items-center rounded-full border border-navy/10 bg-white/65 text-navy shadow-[0_12px_30px_rgba(6,27,51,0.055)] backdrop-blur">
+      <div className="relative grid h-9 w-9 flex-none place-items-center rounded-full border border-navy/10 bg-white/65 text-navy shadow-[0_12px_30px_rgba(13,43,69,0.055)] backdrop-blur">
         <span className="font-heading text-[22px] leading-none tracking-[-0.05em]">
           U
         </span>
@@ -264,7 +264,7 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-[background,border-color,box-shadow] duration-300",
           isScrolled
-            ? "border-navy/10 bg-white/90 shadow-[0_12px_40px_rgba(6,27,51,0.06)] backdrop-blur-[22px]"
+            ? "border-navy/10 bg-white/90 shadow-[0_12px_40px_rgba(13,43,69,0.06)] backdrop-blur-[22px]"
             : "border-navy/5 bg-mist/70 backdrop-blur-[18px]",
         )}
       >
@@ -360,7 +360,7 @@ export function Header() {
             <CTAButton
               to="/agendar-cita"
               icon={<CalendarDays aria-hidden="true" className="h-4 w-4" />}
-              className="min-h-0 h-11 px-5 py-0 text-[14px] shadow-[0_10px_30px_rgba(6,27,51,0.12)]"
+              className="min-h-0 h-11 px-5 py-0 text-[14px] shadow-[0_10px_30px_rgba(13,43,69,0.12)]"
             >
               {t.cta.book}
             </CTAButton>
@@ -368,7 +368,7 @@ export function Header() {
 
           <button
             type="button"
-            className="grid h-11 w-11 place-items-center justify-self-end rounded-full border border-navy/10 bg-white/70 text-navy shadow-[0_12px_32px_rgba(6,27,51,0.075)] backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan xl:hidden"
+            className="grid h-11 w-11 place-items-center justify-self-end rounded-full border border-navy/10 bg-white/70 text-navy shadow-[0_12px_32px_rgba(13,43,69,0.075)] backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan xl:hidden"
             onClick={() => setIsOpen((value) => !value)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.header.closeMenu : t.header.openMenu}
@@ -383,7 +383,7 @@ export function Header() {
       </header>
 
       {isOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto border-t border-navy/5 bg-mist/95 px-4 py-6 shadow-[0_28px_90px_rgba(6,27,51,0.16)] backdrop-blur-2xl xl:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto border-t border-navy/5 bg-mist/95 px-4 py-6 shadow-[0_28px_90px_rgba(13,43,69,0.16)] backdrop-blur-2xl xl:hidden">
           <nav
             className="mx-auto max-w-[35rem]"
             aria-label={t.header.mobileNavLabel}
@@ -420,7 +420,7 @@ export function Header() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(6,27,51,0.075)] backdrop-blur">
+            <div className="mt-6 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(13,43,69,0.075)] backdrop-blur">
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-medical">
                 {t.header.specialtiesIntro}
               </p>
@@ -438,7 +438,7 @@ export function Header() {
               </div>
             </div>
 
-            <div className="mt-4 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(6,27,51,0.075)] backdrop-blur">
+            <div className="mt-4 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(13,43,69,0.075)] backdrop-blur">
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-medical">
                 {t.header.proceduresIntro}
               </p>

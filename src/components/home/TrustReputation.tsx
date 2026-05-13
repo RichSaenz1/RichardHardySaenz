@@ -33,7 +33,7 @@ export function TrustReputation() {
               whileInView={reduceMotion ? undefined : { y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="relative h-full min-h-[190px] overflow-hidden rounded-[1.35rem] border border-borderblue bg-white p-5 shadow-[0_22px_70px_rgba(6,27,51,0.075)] sm:p-6 lg:min-h-0"
+              className="relative h-full min-h-[190px] overflow-hidden rounded-[1.35rem] border border-borderblue bg-white p-5 shadow-[0_22px_70px_rgba(13,43,69,0.075)] sm:p-6 lg:min-h-0"
             >
               <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-medical via-cyan to-gold opacity-80" />
               <div className="flex h-full flex-col items-start gap-4 lg:flex-row">
@@ -66,7 +66,7 @@ export function TrustReputation() {
           {t.home.authority.reviews.map(([title, body, note]) => (
             <article
               key={title}
-              className="rounded-[1.25rem] border border-borderblue bg-white/80 p-6 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur"
+              className="rounded-[1.25rem] border border-borderblue bg-white/80 p-6 shadow-[0_18px_54px_rgba(13,43,69,0.06)] backdrop-blur"
             >
               <Quote aria-hidden="true" className="h-5 w-5 text-gold" />
               <h3 className="mt-4 text-base font-semibold text-navy">{title}</h3>
