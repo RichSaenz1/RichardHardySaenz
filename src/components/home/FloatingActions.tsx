@@ -89,7 +89,7 @@ export function FloatingActions() {
               <span className="grid h-10 w-10 place-items-center rounded-full bg-navy text-white">
                 <Bot aria-hidden="true" className="h-5 w-5" />
               </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
                 {t.home.floating.assistantLabel}
               </span>
             </button>
@@ -105,7 +105,7 @@ export function FloatingActions() {
               <span className="grid h-10 w-10 place-items-center rounded-full bg-medical text-white">
                 <MessageCircle aria-hidden="true" className="h-5 w-5" />
               </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
                 {t.home.floating.whatsappLabel}
               </span>
             </a>

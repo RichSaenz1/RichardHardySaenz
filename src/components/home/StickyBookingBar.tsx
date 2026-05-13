@@ -34,13 +34,13 @@ export function StickyBookingBar() {
     >
       <div className="flex items-center justify-between gap-2 sm:gap-4">
         <div className="min-w-0 sm:hidden">
-          <p className="text-sm font-semibold text-navy">{copy.shortTitle}</p>
+          <p className="text-sm font-medium text-navy">{copy.shortTitle}</p>
         </div>
         <div className="hidden min-w-0 flex-1 items-center justify-between gap-5 sm:flex">
           <p className="min-w-0 font-heading text-[1.45rem] leading-none text-navy">
             {copy.title}
           </p>
-          <p className="shrink-0 rounded-full bg-softblue px-3 py-1.5 text-xs font-semibold text-medical">
+          <p className="shrink-0 rounded-full bg-softblue px-3 py-1.5 text-xs font-medium text-medical">
             {copy.note}
           </p>
         </div>

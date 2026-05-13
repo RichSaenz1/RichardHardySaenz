@@ -13,7 +13,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
 
   return (
     <nav
-      className="border-b border-borderblue bg-white/72 px-4 py-3 text-xs font-semibold text-muted backdrop-blur sm:px-6 lg:px-8"
+      className="border-b border-borderblue bg-white/72 px-4 py-3 text-xs font-medium text-muted backdrop-blur sm:px-6 lg:px-8"
       aria-label="Breadcrumb"
     >
       <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-2">

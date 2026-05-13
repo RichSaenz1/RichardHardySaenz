@@ -16,14 +16,14 @@ export function MedicalDisclaimer({
   return (
     <div
       className={cn(
-        "flex gap-3 rounded-2xl border border-borderblue bg-softblue/60 p-4 text-sm leading-6 text-muted",
+        "mx-auto flex max-w-5xl items-center justify-center gap-3 rounded-pill bg-cyan/10 px-6 py-3 text-center text-caption text-muted",
         className,
       )}
       role="note"
     >
       <AlertTriangle
         aria-hidden="true"
-        className="mt-0.5 h-5 w-5 flex-none text-medical"
+        className="h-4 w-4 flex-none text-cyan"
       />
       <p>{compact ? t.safety.assistant : t.safety.global}</p>
     </div>

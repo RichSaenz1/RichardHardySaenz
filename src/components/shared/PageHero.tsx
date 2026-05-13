@@ -43,7 +43,7 @@ export function PageHero({
           animate={reduceMotion ? undefined : { y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
             {eyebrow ?? t.brand.platform}
           </p>
           <h1 className="max-w-5xl font-heading text-6xl leading-[0.92] text-navy text-balance sm:text-7xl lg:text-[5.8rem]">

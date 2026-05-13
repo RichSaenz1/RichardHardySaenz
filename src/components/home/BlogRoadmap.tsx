@@ -72,7 +72,7 @@ export function BlogRoadmap() {
   return (
     <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.eyebrow}
         </p>
         <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.96] text-navy text-balance sm:text-6xl">
@@ -98,11 +98,11 @@ export function BlogRoadmap() {
               <span className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-softblue text-medical">
                 <BookOpenText aria-hidden="true" className="h-5 w-5" />
               </span>
-              <span className="text-xs font-bold text-gold">
+              <span className="text-xs font-medium text-gold">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-medical">
+            <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.14em] text-medical">
               {t.status}
             </p>
             <h3 className="mt-3 font-heading text-3xl leading-none text-navy">

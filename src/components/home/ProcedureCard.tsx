@@ -17,9 +17,9 @@ export function ProcedureCard({
   ctaLabel,
 }: ProcedureCardProps) {
   return (
-    <article className="group rounded-[1.35rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_18px_58px_rgba(13,43,69,0.065)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-gold/70 hover:to-cyan/40">
-      <div className="grid h-full gap-5 rounded-[1.32rem] bg-white/90 p-4 backdrop-blur md:grid-cols-[220px_1fr]">
-        <div className="relative min-h-[200px] overflow-hidden rounded-[1rem] bg-gradient-to-br from-softblue via-white to-borderblue">
+    <article className="group h-full rounded-card border border-borderblue bg-white p-6 transition duration-200 hover:-translate-y-0.5 hover:border-cyan hover:shadow-[0_4px_16px_rgba(13,43,69,0.06)]">
+      <div className="grid h-full gap-5 md:grid-cols-[220px_1fr]">
+        <div className="relative min-h-[200px] overflow-hidden rounded-sm bg-softblue">
           <img
             src={image.src}
             alt={image.alt}
@@ -30,14 +30,14 @@ export function ProcedureCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy/10 via-transparent to-white/10" />
         </div>
-        <div className="flex flex-col p-2 md:p-4">
+        <div className="flex flex-col">
           <h3 className="font-heading text-3xl leading-none text-navy">{title}</h3>
           <p className="mt-4 min-h-[6rem] flex-1 text-sm leading-7 text-muted">
             {text}
           </p>
           <Link
             to={href}
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+            className="mt-6 inline-flex items-center gap-2 text-button text-medical transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
           >
             {ctaLabel}
             <ArrowRight aria-hidden="true" className="h-4 w-4" />

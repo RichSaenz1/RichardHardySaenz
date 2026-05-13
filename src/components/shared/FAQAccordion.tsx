@@ -26,7 +26,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
           >
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-medium text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? -1 : index)}
             >

@@ -65,7 +65,7 @@ export function HeroSection() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="max-w-[920px] lg:-mt-6"
         >
-          <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-[0.24em] text-medical sm:gap-x-5">
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium uppercase tracking-[0.14em] text-medical sm:gap-x-5">
             <span>{doctorName}</span>
             <span className="h-1 w-1 rounded-full bg-gold" aria-hidden="true" />
             <span>{platformName}</span>
@@ -81,14 +81,14 @@ export function HeroSection() {
             <CTAButton
               to="/agendar-cita"
               icon={<CalendarDays aria-hidden="true" className="h-4 w-4" />}
-              className="min-h-12 px-7 text-[15px] shadow-[0_16px_42px_rgba(13,43,69,0.14)]"
+              className="px-7"
             >
               {t.cta.book}
             </CTAButton>
             <button
               type="button"
               onClick={openAssistant}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white/78 px-7 text-[15px] font-semibold text-navy shadow-[0_14px_36px_rgba(13,43,69,0.07)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-navy bg-transparent px-7 text-button text-navy transition duration-200 hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {t.cta.assistant}
               <MessageCircle aria-hidden="true" className="h-4 w-4" />
@@ -104,7 +104,7 @@ export function HeroSection() {
                 <p className="font-heading text-2xl leading-none text-navy">
                   {value}
                 </p>
-                <p className="mt-1.5 text-[11px] font-semibold uppercase leading-4 tracking-[0.11em] text-muted">
+                <p className="mt-1.5 text-[11px] font-medium uppercase leading-4 tracking-[0.11em] text-muted">
                   {label}
                 </p>
               </div>
@@ -120,10 +120,10 @@ export function HeroSection() {
               decoding="async"
             />
             <div className="min-w-0">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-medical">
+              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-medical">
                 {doctorProof.eyebrow}
               </p>
-              <p className="mt-1 text-sm font-semibold leading-5 text-navy">
+              <p className="mt-1 text-sm font-medium leading-5 text-navy">
                 Dr. Carlos A. Brugiati
               </p>
               <p className="mt-1 text-xs leading-5 text-muted">
@@ -133,7 +133,7 @@ export function HeroSection() {
           </div>
 
           <div className="mt-10 max-w-5xl border-y border-borderblue/75 py-5 sm:mt-14">
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-medical">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-center text-xs font-medium uppercase tracking-[0.14em] text-medical">
               {t.home.hero.trust.map((item, index) => (
                 <span key={item} className="inline-flex items-center gap-5">
                   {index > 0 && (
@@ -165,7 +165,7 @@ export function HeroSection() {
                   decoding="async"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/92 via-navy/42 to-transparent p-6 text-white">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan">
                     {doctorProof.eyebrow}
                   </p>
                   <p className="mt-2 font-heading text-3xl leading-none">

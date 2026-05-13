@@ -268,7 +268,7 @@ export function AccessNetwork() {
   return (
     <div className="mx-auto max-w-7xl">
       <div className="mx-auto max-w-4xl text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.eyebrow}
         </p>
         <h2 className="mx-auto mt-4 max-w-4xl font-heading text-5xl leading-[0.95] text-navy text-balance sm:text-6xl">
@@ -287,7 +287,7 @@ export function AccessNetwork() {
               <p className="font-heading text-3xl leading-none text-navy">
                 {value}
               </p>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+              <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-muted">
                 {label}
               </p>
             </div>
@@ -326,7 +326,7 @@ export function AccessNetwork() {
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-base font-semibold text-navy">
+                      <h3 className="text-base font-medium text-navy">
                         {hospital.name}
                       </h3>
                       <p className="mt-1 text-xs leading-5 text-muted">
@@ -406,7 +406,7 @@ function SectionHeader({
           {icon}
         </span>
         <div>
-          <h3 className="text-lg font-semibold text-navy">{title}</h3>
+          <h3 className="text-lg font-medium text-navy">{title}</h3>
           <p className="mt-1 text-sm leading-6 text-muted">{note}</p>
         </div>
       </div>
@@ -439,7 +439,7 @@ function InsuranceLogo({
           compact ? "h-12 w-full max-w-[8.5rem]" : "h-12 w-full max-w-[9.5rem]"
         }`}
       >
-        <span className="absolute inset-0 grid place-items-center text-xs font-bold text-medical">
+        <span className="absolute inset-0 grid place-items-center text-xs font-medium text-medical">
           {initials}
         </span>
         {src ? (
@@ -457,7 +457,7 @@ function InsuranceLogo({
           />
         ) : null}
       </div>
-      <p className="text-xs font-semibold leading-4 text-navy">
+      <p className="text-xs font-medium leading-4 text-navy">
         {partner.name}
       </p>
     </div>
@@ -487,15 +487,15 @@ function InsuranceGroup({
             {icon}
           </span>
           <span className="min-w-0">
-            <span className="block text-sm font-bold uppercase tracking-[0.14em] text-medical">
+            <span className="block text-sm font-medium uppercase tracking-[0.14em] text-medical">
               {title}
             </span>
-            <span className="mt-1 block text-xs font-semibold text-muted">
+            <span className="mt-1 block text-xs font-medium text-muted">
               {items.length} {countLabel}
             </span>
           </span>
         </span>
-        <span className="flex flex-none items-center gap-2 rounded-full border border-borderblue bg-white px-3 py-2 text-xs font-semibold text-navy shadow-sm">
+        <span className="flex flex-none items-center gap-2 rounded-full border border-borderblue bg-white px-3 py-2 text-xs font-medium text-navy shadow-sm">
           <span className="group-open:hidden">{viewLabel}</span>
           <span className="hidden group-open:inline">{hideLabel}</span>
           <ChevronDown

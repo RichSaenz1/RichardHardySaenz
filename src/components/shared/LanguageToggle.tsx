@@ -7,7 +7,7 @@ export function LanguageToggle() {
 
   return (
     <div
-      className="inline-flex h-10 items-center rounded-full border border-navy/10 bg-white/70 p-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-muted shadow-[0_10px_28px_rgba(13,43,69,0.045)] backdrop-blur"
+      className="inline-flex h-10 items-center rounded-full border border-navy/10 bg-white/70 p-1 text-[12px] font-medium uppercase tracking-[0.1em] text-muted shadow-[0_10px_28px_rgba(13,43,69,0.045)] backdrop-blur"
       aria-label={t.header.languageLabel}
     >
       {(["es", "en"] as const).map((item) => (

@@ -8,6 +8,7 @@ import { internalPages } from "../i18n/internalPages";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
 import { CTAButton } from "../components/shared/CTAButton";
 import { ImageCard } from "../components/shared/ImageCard";
+import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
 import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
@@ -90,7 +91,7 @@ export function SpecialtiesPage() {
                   <p className="mt-4 min-h-[5.25rem] text-sm leading-7 text-muted">
                     {page.intro}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold">
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold">
                     {page.cta}
                     <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </span>
@@ -104,7 +105,7 @@ export function SpecialtiesPage() {
       <SectionContainer className="bg-mist">
         <div className="rounded-[1.75rem] border border-borderblue bg-white/84 p-7 shadow-[0_22px_76px_rgba(13,43,69,0.07)] backdrop-blur sm:p-9 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
               {copy.common.assistant}
             </p>
             <h2 className="mt-4 font-heading text-5xl leading-none text-navy">
@@ -116,7 +117,7 @@ export function SpecialtiesPage() {
             <button
               type="button"
               onClick={openAssistant}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-6 py-3 text-sm font-semibold text-navy shadow-soft transition hover:-translate-y-0.5 hover:border-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-navy bg-transparent px-6 text-button text-navy transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {t.cta.assistant}
               <MessageCircle aria-hidden="true" className="h-4 w-4" />
@@ -129,6 +130,7 @@ export function SpecialtiesPage() {
             </CTAButton>
           </div>
         </div>
+        <MedicalDisclaimer className="mt-12" />
       </SectionContainer>
     </>
   );

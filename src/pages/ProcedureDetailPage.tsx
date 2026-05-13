@@ -183,7 +183,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <LinkIcon aria-hidden="true" className="h-6 w-6 text-medical" />
-              <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-medical">
+              <p className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-medical">
                 {labels.related}
               </p>
               <h2 className="mt-3 font-heading text-4xl leading-none text-navy">
@@ -195,7 +195,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {item.label}
                 </Link>
@@ -248,10 +248,10 @@ function ProcedurePanel({
   return (
     <article className="premium-card flex h-full flex-col rounded-[1.55rem] p-7 sm:p-9">
       <div className="text-medical">{icon}</div>
-      <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
+      <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-2xl font-semibold leading-8 text-navy">{title}</h2>
+      <h2 className="mt-3 text-2xl font-medium leading-8 text-navy">{title}</h2>
       {body && <p className="mt-4 text-sm leading-7 text-muted">{body}</p>}
       {emphasis && (
         <p className="mt-5 rounded-2xl border border-borderblue bg-softblue/50 px-4 py-3 text-sm leading-6 text-muted">
