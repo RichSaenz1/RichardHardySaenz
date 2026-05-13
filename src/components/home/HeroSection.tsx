@@ -1,4 +1,4 @@
-ï»¿import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { CalendarDays, MessageCircle } from "lucide-react";
 import { imageAssets, optionalImages } from "../../data/images";
 import { useLanguage } from "../../i18n/LanguageContext";
@@ -7,7 +7,7 @@ import { CTAButton } from "../shared/CTAButton";
 export function HeroSection() {
   const reduceMotion = useReducedMotion();
   const { language, t } = useLanguage();
-  const [doctorName, platformName] = t.home.hero.eyebrow.split("Â·").map((part) => part.trim());
+  const [doctorName, platformName] = t.home.hero.eyebrow.split("·").map((part) => part.trim());
   const doctorProof =
     language === "en"
       ? {
@@ -15,20 +15,20 @@ export function HeroSection() {
           body: "Uro-oncology, endourology and minimally invasive urologic surgery.",
         }
       : {
-          eyebrow: "AtenciÃ³n dirigida por especialista",
-          body: "Uro-oncologÃ­a, endourologÃ­a y cirugÃ­a urolÃ³gica mÃ­nimamente invasiva.",
+          eyebrow: "Atención dirigida por especialista",
+          body: "Uro-oncología, endourología y cirugía urológica mínimamente invasiva.",
         };
   const proofPoints =
     language === "en"
       ? [
           ["10+", "years of clinical and surgical experience"],
           ["HoLEP", "laser prostate and endourology training"],
-          ["AUA Â· EAU", "international urology memberships"],
+          ["AUA · EAU", "international urology memberships"],
         ]
       : [
-          ["10+", "aÃ±os de experiencia clÃ­nica y quirÃºrgica"],
-          ["HoLEP", "lÃ¡ser prostÃ¡tico y endourologÃ­a"],
-          ["AUA Â· EAU", "membresÃ­as urolÃ³gicas internacionales"],
+          ["10+", "años de experiencia clínica y quirúrgica"],
+          ["HoLEP", "láser prostático y endourología"],
+          ["AUA · EAU", "membresías urológicas internacionales"],
         ];
 
   function openAssistant() {
@@ -88,7 +88,7 @@ export function HeroSection() {
             <button
               type="button"
               onClick={openAssistant}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white/78 px-7 text-[15px] font-semibold text-navy shadow-[0_14px_36px_rgba(13,43,69,0.07)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-borderblue bg-white/78 px-7 text-[15px] font-semibold text-navy shadow-[0_14px_36px_rgba(13,43,69,0.07)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-navy hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {t.cta.assistant}
               <MessageCircle aria-hidden="true" className="h-4 w-4" />

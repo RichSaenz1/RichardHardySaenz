@@ -265,7 +265,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-navy hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {item.label}
                 </Link>

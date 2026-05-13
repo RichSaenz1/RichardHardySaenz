@@ -219,7 +219,7 @@ export function BookingPage() {
                 onClick={() =>
                   window.dispatchEvent(new CustomEvent("uropanama:open-assistant"))
                 }
-                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-navy hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 {t.cta.assistant}
                 <Bot aria-hidden="true" className="h-4 w-4" />

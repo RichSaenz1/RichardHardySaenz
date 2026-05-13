@@ -17,7 +17,7 @@ export function ProcedureCard({
   ctaLabel,
 }: ProcedureCardProps) {
   return (
-    <article className="group rounded-[1.35rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_18px_58px_rgba(6,27,51,0.065)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-gold/70 hover:to-cyan/40">
+    <article className="group rounded-[1.35rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_18px_58px_rgba(6,27,51,0.065)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-navy/15 hover:to-cyan/40">
       <div className="grid h-full gap-5 rounded-[1.32rem] bg-white/90 p-4 backdrop-blur md:grid-cols-[220px_1fr]">
         <div className="relative min-h-[200px] overflow-hidden rounded-[1rem] bg-gradient-to-br from-softblue via-white to-borderblue">
           <img

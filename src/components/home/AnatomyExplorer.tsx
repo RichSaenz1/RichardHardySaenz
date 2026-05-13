@@ -72,7 +72,7 @@ export function AnatomyExplorer() {
                   className={cn(
                     "flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                     selectedIndex === index
-                      ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(201,168,76,0.15)]"
+                      ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(13,43,69,0.12)]"
                       : "border-white/10 bg-white/[0.04] text-blue-100 hover:border-cyan/50 hover:bg-white/10",
                   )}
                 >

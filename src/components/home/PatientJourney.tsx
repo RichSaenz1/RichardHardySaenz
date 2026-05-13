@@ -42,8 +42,8 @@ export function PatientJourney() {
                   {index + 1}
                 </span>
               </div>
-              <div className="group relative h-full overflow-hidden rounded-[1.35rem] border border-borderblue bg-gradient-to-br from-white via-white to-softblue/45 p-5 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_24px_70px_rgba(6,27,51,0.10)]">
-                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-white text-medical shadow-[0_10px_30px_rgba(6,27,51,0.06)] transition group-hover:border-gold/70 group-hover:text-navy">
+              <div className="group relative h-full overflow-hidden rounded-[1.35rem] border border-borderblue bg-gradient-to-br from-white via-white to-softblue/45 p-5 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-navy/70 hover:shadow-[0_24px_70px_rgba(6,27,51,0.10)]">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-white text-medical shadow-[0_10px_30px_rgba(6,27,51,0.06)] transition group-hover:border-navy/70 group-hover:text-navy">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-base font-semibold leading-tight text-navy">

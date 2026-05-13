@@ -127,7 +127,7 @@ export function AboutPage() {
                       <Link
                         key={area.href}
                         to={area.href}
-                        className="rounded-full border border-borderblue bg-white/80 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                        className="rounded-full border border-borderblue bg-white/80 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-navy hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                       >
                         {area.label}
                       </Link>
@@ -204,7 +204,7 @@ export function AboutPage() {
               {aboutUx.consultationSteps.map((step, index) => (
                 <div
                   key={step.title}
-                  className="group rounded-[1.35rem] border border-borderblue bg-white p-6 transition hover:-translate-y-1 hover:border-gold hover:shadow-soft"
+                  className="group rounded-[1.35rem] border border-borderblue bg-white p-6 transition hover:-translate-y-1 hover:border-navy hover:shadow-soft"
                 >
                   <span className="text-xs font-bold text-gold">
                     0{index + 1}

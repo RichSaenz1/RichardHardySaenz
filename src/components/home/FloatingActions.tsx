@@ -98,7 +98,7 @@ export function FloatingActions() {
           <div className="fixed bottom-24 right-5 z-40 hidden md:block">
             <a
               href={whatsappHref}
-              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-navy hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               aria-label={t.home.floating.whatsappLabel}
               onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_desktop" })}
             >
