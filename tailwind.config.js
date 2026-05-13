@@ -16,7 +16,7 @@ export default {
         gold: "#C9A84C",
       },
       fontFamily: {
-        heading: ["Newsreader", "Cormorant Garamond", "Georgia", "serif"],
+        heading: ["Syne", "Newsreader", "Cormorant Garamond", "Georgia", "serif"],
         body: ["Inter", "system-ui", "sans-serif"],
       },
       boxShadow: {
