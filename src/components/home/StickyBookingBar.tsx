@@ -29,7 +29,7 @@ export function StickyBookingBar() {
 
   return (
     <div
-      className="fixed inset-x-3 bottom-3 z-50 rounded-[1.25rem] border border-navy/10 bg-white/96 px-3 py-2.5 text-navy shadow-[0_20px_70px_rgba(13,43,69,0.13)] backdrop-blur-2xl sm:left-1/2 sm:right-auto sm:w-[min(61rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-full sm:px-5"
+      className="fixed inset-x-3 bottom-3 z-50 rounded-[1.25rem] border border-navy/10 bg-white/96 px-3 py-2.5 text-navy shadow-[0_20px_70px_rgba(6,27,51,0.13)] backdrop-blur-2xl sm:left-1/2 sm:right-auto sm:w-[min(61rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-full sm:px-5"
       style={{ bottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
       <div className="flex items-center justify-between gap-2 sm:gap-4">
@@ -49,7 +49,7 @@ export function StickyBookingBar() {
           <CTAButton
             to="/agendar-cita"
             icon={<CalendarDays aria-hidden="true" className="h-4 w-4" />}
-            className="min-h-10 px-4 py-2 text-xs shadow-[0_10px_28px_rgba(13,43,69,0.12)] sm:text-sm"
+            className="min-h-10 px-4 py-2 text-xs shadow-[0_10px_28px_rgba(6,27,51,0.12)] sm:text-sm"
             analyticsEvent="sticky_bar_cta_click"
             analyticsPayload={{ action: "book", path: location.pathname }}
           >

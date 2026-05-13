@@ -37,13 +37,13 @@ export function PatientJourney() {
               transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
               className="relative pl-16 lg:pl-0 lg:pt-24"
             >
-              <div className="absolute left-0 top-0 z-10 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white text-sm font-bold text-navy shadow-[0_16px_44px_rgba(13,43,69,0.09)] lg:left-1/2 lg:top-6 lg:-translate-x-1/2">
+              <div className="absolute left-0 top-0 z-10 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white text-sm font-bold text-navy shadow-[0_16px_44px_rgba(6,27,51,0.09)] lg:left-1/2 lg:top-6 lg:-translate-x-1/2">
                 <span className="font-heading text-xl leading-none text-medical">
                   {index + 1}
                 </span>
               </div>
-              <div className="group relative h-full overflow-hidden rounded-[1.35rem] border border-borderblue bg-gradient-to-br from-white via-white to-softblue/45 p-5 shadow-[0_18px_54px_rgba(13,43,69,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_24px_70px_rgba(13,43,69,0.10)]">
-                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-white text-medical shadow-[0_10px_30px_rgba(13,43,69,0.06)] transition group-hover:border-gold/70 group-hover:text-navy">
+              <div className="group relative h-full overflow-hidden rounded-[1.35rem] border border-borderblue bg-gradient-to-br from-white via-white to-softblue/45 p-5 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_24px_70px_rgba(6,27,51,0.10)]">
+                <div className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-white text-medical shadow-[0_10px_30px_rgba(6,27,51,0.06)] transition group-hover:border-gold/70 group-hover:text-navy">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-base font-semibold leading-tight text-navy">

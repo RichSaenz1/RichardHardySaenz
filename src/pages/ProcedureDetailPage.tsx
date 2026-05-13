@@ -179,7 +179,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
           />
         </div>
 
-        <div className="mt-7 rounded-[1.55rem] border border-borderblue bg-white/82 p-6 shadow-[0_20px_70px_rgba(13,43,69,0.06)] backdrop-blur sm:p-8">
+        <div className="mt-7 rounded-[1.55rem] border border-borderblue bg-white/82 p-6 shadow-[0_20px_70px_rgba(6,27,51,0.06)] backdrop-blur sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <LinkIcon aria-hidden="true" className="h-6 w-6 text-medical" />

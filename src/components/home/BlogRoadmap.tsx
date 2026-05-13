@@ -92,7 +92,7 @@ export function BlogRoadmap() {
         {t.topics.map(([title, body], index) => (
           <article
             key={title}
-            className="group rounded-[1.35rem] border border-borderblue bg-white p-6 shadow-[0_18px_54px_rgba(13,43,69,0.055)] transition hover:-translate-y-1 hover:border-gold/70"
+            className="group rounded-[1.35rem] border border-borderblue bg-white p-6 shadow-[0_18px_54px_rgba(6,27,51,0.055)] transition hover:-translate-y-1 hover:border-gold/70"
           >
             <div className="flex items-start justify-between gap-4">
               <span className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-softblue text-medical">

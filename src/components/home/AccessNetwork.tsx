@@ -282,7 +282,7 @@ export function AccessNetwork() {
           {t.proof.map(([value, label]) => (
             <div
               key={label}
-              className="rounded-2xl border border-borderblue bg-white/82 p-4 shadow-[0_14px_42px_rgba(13,43,69,0.055)]"
+              className="rounded-2xl border border-borderblue bg-white/82 p-4 shadow-[0_14px_42px_rgba(6,27,51,0.055)]"
             >
               <p className="font-heading text-3xl leading-none text-navy">
                 {value}
@@ -296,7 +296,7 @@ export function AccessNetwork() {
       </div>
 
       <div className="mt-12 space-y-8">
-        <article className="overflow-hidden rounded-[1.35rem] border border-borderblue bg-white shadow-[0_22px_70px_rgba(13,43,69,0.075)]">
+        <article className="overflow-hidden rounded-[1.35rem] border border-borderblue bg-white shadow-[0_22px_70px_rgba(6,27,51,0.075)]">
           <SectionHeader
             icon={<Building2 aria-hidden="true" className="h-5 w-5" />}
             title={t.hospitalsTitle}
@@ -309,7 +309,7 @@ export function AccessNetwork() {
                 href={hospital.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group overflow-hidden rounded-2xl border border-borderblue bg-white text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_52px_rgba(13,43,69,0.12)]"
+                className="group overflow-hidden rounded-2xl border border-borderblue bg-white text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_52px_rgba(6,27,51,0.12)]"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-softblue">
                   <img
@@ -344,7 +344,7 @@ export function AccessNetwork() {
           </div>
         </article>
 
-        <article className="overflow-hidden rounded-[1.35rem] border border-borderblue bg-white shadow-[0_22px_70px_rgba(13,43,69,0.075)]">
+        <article className="overflow-hidden rounded-[1.35rem] border border-borderblue bg-white shadow-[0_22px_70px_rgba(6,27,51,0.075)]">
           <SectionHeader
             icon={<ShieldCheck aria-hidden="true" className="h-5 w-5" />}
             title={t.insuranceTitle}
@@ -430,7 +430,7 @@ function InsuranceLogo({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-2 rounded-2xl border border-borderblue bg-white text-center shadow-[0_10px_30px_rgba(13,43,69,0.045)] ${
+      className={`flex flex-col items-center justify-center gap-2 rounded-2xl border border-borderblue bg-white text-center shadow-[0_10px_30px_rgba(6,27,51,0.045)] ${
         compact ? "min-h-24 px-3 py-4" : "min-h-24 px-3 py-4"
       }`}
     >

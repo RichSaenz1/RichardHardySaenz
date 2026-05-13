@@ -14,7 +14,7 @@ export function SpecialtyCard({ title, text, href, image }: SpecialtyCardProps) 
   const { t } = useLanguage();
 
   return (
-    <article className="group rounded-[1.45rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_20px_68px_rgba(13,43,69,0.075)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-gold/70 hover:to-cyan/40">
+    <article className="group rounded-[1.45rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_20px_68px_rgba(6,27,51,0.075)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-gold/70 hover:to-cyan/40">
       <div className="grid h-full overflow-hidden rounded-[1.42rem] bg-white lg:grid-cols-[0.95fr_1.05fr]">
         <div className="relative min-h-[270px] overflow-hidden bg-softblue">
           <img

@@ -92,7 +92,7 @@ export function BookingPage() {
         jsonLd={pageSchema({ breadcrumbs })}
       />
       <section className="luxury-shell relative overflow-hidden bg-mist px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(91,158,201,0.18),transparent_32rem),linear-gradient(135deg,#F5F7F9,#E0EEF7)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(38,191,232,0.18),transparent_32rem),linear-gradient(135deg,#F7FBFD,#EFF8FC)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_0.82fr]">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-medical">
@@ -124,7 +124,7 @@ export function BookingPage() {
             </div>
           </div>
 
-          <div className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_30px_90px_rgba(13,43,69,0.10)] lg:min-h-[480px]">
+          <div className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_30px_90px_rgba(6,27,51,0.10)] lg:min-h-[480px]">
             <img
               src={imageAssets.premiumClinic.src}
               alt={imageAssets.premiumClinic.alt}
@@ -133,7 +133,7 @@ export function BookingPage() {
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-navy/12 via-transparent to-white/26" />
-            <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/70 bg-white/90 p-5 shadow-[0_20px_60px_rgba(13,43,69,0.12)] backdrop-blur-xl">
+            <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/70 bg-white/90 p-5 shadow-[0_20px_60px_rgba(6,27,51,0.12)] backdrop-blur-xl">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
                 {bookingCopy.privacyTitle}
               </p>
@@ -228,7 +228,7 @@ export function BookingPage() {
           </aside>
         </div>
 
-        <div className="mt-10 rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-6 shadow-[0_20px_70px_rgba(13,43,69,0.06)] sm:p-8">
+        <div className="mt-10 rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-6 shadow-[0_20px_70px_rgba(6,27,51,0.06)] sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr] lg:items-center">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
@@ -260,7 +260,7 @@ export function BookingPage() {
       </SectionContainer>
 
       <SectionContainer className="bg-mist">
-        <div className="rounded-[2rem] border border-borderblue bg-white/86 p-5 shadow-[0_24px_80px_rgba(13,43,69,0.07)] backdrop-blur sm:p-8 lg:p-10">
+        <div className="rounded-[2rem] border border-borderblue bg-white/86 p-5 shadow-[0_24px_80px_rgba(6,27,51,0.07)] backdrop-blur sm:p-8 lg:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
@@ -352,7 +352,7 @@ function SupportCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-[1.45rem] border border-borderblue bg-white/82 p-5 shadow-[0_18px_58px_rgba(13,43,69,0.06)] backdrop-blur sm:p-6">
+    <section className="rounded-[1.45rem] border border-borderblue bg-white/82 p-5 shadow-[0_18px_58px_rgba(6,27,51,0.06)] backdrop-blur sm:p-6">
       <h2 className="font-heading text-3xl leading-none text-navy">{title}</h2>
       <div className="mt-5">{children}</div>
     </section>
@@ -370,7 +370,7 @@ function InfoPill({
 }) {
   return (
     <div className="flex gap-4 p-4">
-      <span className="grid h-10 w-10 flex-none place-items-center rounded-2xl bg-white text-medical shadow-[0_10px_30px_rgba(13,43,69,0.06)]">
+      <span className="grid h-10 w-10 flex-none place-items-center rounded-2xl bg-white text-medical shadow-[0_10px_30px_rgba(6,27,51,0.06)]">
         {icon}
       </span>
       <div>

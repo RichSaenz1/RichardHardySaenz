@@ -64,7 +64,7 @@ export function FloatingActions() {
           <button
             type="button"
             onClick={(event) => openAssistant("floating_mobile", event.currentTarget)}
-            className="fixed bottom-24 left-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-navy shadow-[0_18px_54px_rgba(13,43,69,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
+            className="fixed bottom-24 left-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
             aria-label={t.home.floating.assistantLabel}
           >
             <Bot aria-hidden="true" className="h-5 w-5" />
@@ -72,7 +72,7 @@ export function FloatingActions() {
 
           <a
             href={whatsappHref}
-            className="fixed bottom-24 right-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-medical shadow-[0_18px_54px_rgba(13,43,69,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
+            className="fixed bottom-24 right-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-medical shadow-[0_18px_54px_rgba(6,27,51,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
             aria-label={t.home.floating.whatsappLabel}
             onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_mobile" })}
           >
@@ -83,7 +83,7 @@ export function FloatingActions() {
             <button
               type="button"
               onClick={(event) => openAssistant("floating_desktop", event.currentTarget)}
-              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(13,43,69,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-cyan hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-cyan hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               aria-label={t.home.floating.assistantLabel}
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-navy text-white">
@@ -98,7 +98,7 @@ export function FloatingActions() {
           <div className="fixed bottom-24 right-5 z-40 hidden md:block">
             <a
               href={whatsappHref}
-              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(13,43,69,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               aria-label={t.home.floating.whatsappLabel}
               onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_desktop" })}
             >
