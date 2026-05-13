@@ -66,10 +66,22 @@ export function Footer() {
     <footer className="navy-panel px-4 pb-24 pt-20 text-white sm:px-6 md:pb-10 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.25fr_0.72fr_0.85fr_0.95fr]">
         <div>
-          <p className="font-heading text-4xl leading-none">{t.brand.doctor}</p>
-          <p className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-cyan">
-            {t.brand.platform}
-          </p>
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="relative grid h-10 w-10 flex-none place-items-center rounded-full border-[1.5px] border-white bg-transparent text-white">
+              <span className="absolute inset-1 rounded-full border border-dashed border-cyan" />
+              <span className="relative translate-y-[1px] font-heading text-[20px] font-light leading-none tracking-[-0.04em]">
+                CB
+              </span>
+            </div>
+            <div className="min-w-0 leading-none">
+              <p className="truncate font-heading text-[18px] font-normal leading-none text-white">
+                {t.brand.doctor}
+              </p>
+              <p className="mt-1 truncate text-[10.5px] font-medium uppercase tracking-[0.16em] text-cyan">
+                {t.brand.platform}
+              </p>
+            </div>
+          </div>
           <p className="mt-6 max-w-md text-base leading-8 text-blue-100">
             {t.brand.line}
           </p>

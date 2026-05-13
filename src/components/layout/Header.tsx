@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { CalendarDays, ChevronDown, Menu, X } from "lucide-react";
-import { optionalImages } from "../../data/images";
 import {
   specialtyRouteByKey,
   type SpecialtyKey,
@@ -15,7 +14,6 @@ import {
 import { cn } from "../../lib/cn";
 import { CTAButton } from "../shared/CTAButton";
 import { LanguageToggle } from "../shared/LanguageToggle";
-import { OptionalImage } from "../shared/OptionalImage";
 
 type DropdownId = "specialties" | "procedures";
 
@@ -238,19 +236,19 @@ export function Header() {
     setOpenDropdown(null);
   }, [location.pathname]);
 
-  const logoFallback = (
-      <div className="flex min-w-0 items-center gap-3">
-      <div className="relative grid h-9 w-9 flex-none place-items-center rounded-full border border-navy/10 bg-white/65 text-navy shadow-[0_12px_30px_rgba(13,43,69,0.055)] backdrop-blur">
-        <span className="font-heading text-[22px] leading-none tracking-[-0.05em]">
-          U
+  const logoLockup = (
+    <div className="flex min-w-0 items-center gap-3">
+      <div className="relative grid h-10 w-10 flex-none place-items-center rounded-full border-[1.5px] border-navy bg-white text-navy shadow-[0_12px_30px_rgba(13,43,69,0.055)]">
+        <span className="absolute inset-1 rounded-full border border-dashed border-medical" />
+        <span className="relative translate-y-[1px] font-heading text-[20px] font-light leading-none tracking-[-0.04em]">
+          CB
         </span>
-        <span className="absolute -right-0.5 top-2 h-3.5 w-px rounded-full bg-medical/70" />
       </div>
       <div className="min-w-0 leading-none">
-        <p className="truncate text-[15px] font-medium tracking-[-0.01em] text-navy">
+        <p className="truncate font-heading text-[18px] font-normal leading-none text-navy">
           {t.brand.doctor}
         </p>
-        <p className="mt-2 truncate text-[10.5px] font-medium uppercase tracking-[0.14em] text-medical/80">
+        <p className="mt-1 truncate text-[10.5px] font-medium uppercase tracking-[0.16em] text-medical/80">
           {t.brand.platform}
         </p>
       </div>
@@ -274,19 +272,7 @@ export function Header() {
             aria-label={t.header.homeLabel}
             className="flex min-w-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
           >
-            <OptionalImage
-              src={optionalImages.doctorLogo.src}
-              alt={optionalImages.doctorLogo.alt}
-              className="h-11 max-w-[230px] object-contain"
-              fallback={
-                <OptionalImage
-                  src={optionalImages.uropanamaLogo.src}
-                  alt={optionalImages.uropanamaLogo.alt}
-                  className="h-11 max-w-[220px] object-contain"
-                  fallback={logoFallback}
-                />
-              }
-            />
+            {logoLockup}
           </NavLink>
 
           <nav
