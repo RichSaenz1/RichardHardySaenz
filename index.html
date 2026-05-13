@@ -1022,7 +1022,13 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .industry-trust .trust-card:hover{background:#0a0a0f;color:var(--white);border-color:rgba(0,229,204,.78);box-shadow:0 0 28px rgba(0,229,204,.18),0 0 48px rgba(155,89,255,.16);transform:translateY(-4px)}
 .industry-trust .trust-card:hover h3{color:var(--white);-webkit-text-fill-color:var(--white);text-shadow:0 0 18px rgba(255,255,255,.18)}
 .industry-trust .trust-card:hover .conversion-list li{color:rgba(255,255,255,.78)}
-</style></head>
+</style><style id="fs-image-ratio-normalize">
+.flagship-visual,.testimonials-image,.pricing-image{aspect-ratio:16/9;height:auto!important;overflow:hidden}
+.flagship-visual img,.testimonials-image img,.pricing-image img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;transform:none!important}
+.instructor-photo{aspect-ratio:1/1!important;object-fit:cover!important;object-position:center center!important}
+@media(max-width:680px){.flagship-visual,.testimonials-image,.pricing-image{aspect-ratio:16/9!important}}
+</style>
+</head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
@@ -1824,7 +1830,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   <div class="wrap">
     <div class="instructor-grid">
       <div class="instructor-photo-wrap aos">
-        <img src="./assets/updated-images/academy-instructor-ai-workflow-portrait.png" alt="Richard teaching AI workflow strategy" class="instructor-photo">
+        <img src="./profile-pic-richard.png" alt="Richard Hardy Saenz portrait" class="instructor-photo">
       </div>
       <div class="aos d2">
         <div class="instructor-name">Richard<br>Hardy Saenz</div>
@@ -1857,7 +1863,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
         </div>
       </div>
       <div class="instructor-photo-wrap aos">
-        <img src="./assets/updated-images/future-studio-ai-consultation-team.png" alt="Future Studio team consultation" class="instructor-photo carolina-photo">
+        <img src="./profile-pic-carolina.png" alt="Carolina Solis portrait" class="instructor-photo carolina-photo">
       </div>
     </div>
   </div>

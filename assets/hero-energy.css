@@ -1,0 +1,109 @@
+/* Future Studio reusable hero animation */
+.tfs-page-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tfs-energy-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.tfs-energy-hero > *:not(.tfs-energy-canvas):not(.tfs-energy-orb) {
+  position: relative;
+  z-index: 2;
+}
+
+.tfs-energy-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.tfs-energy-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: .45;
+}
+
+.tfs-energy-orb-cyan {
+  background: var(--cyan, #00e5cc);
+}
+
+.tfs-energy-orb-violet {
+  background: var(--violet, #9b59ff);
+}
+
+.tfs-energy-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -150px;
+  animation: tfsOrbFloat1 12s ease-in-out infinite;
+}
+
+.tfs-energy-orb-2 {
+  width: 600px;
+  height: 600px;
+  right: -200px;
+  bottom: -100px;
+  animation: tfsOrbFloat2 15s ease-in-out infinite;
+}
+
+.tfs-energy-orb-3 {
+  width: 150px;
+  height: 150px;
+  top: 40%;
+  left: 50%;
+  opacity: .25;
+  animation: tfsOrbFloat3 9s ease-in-out infinite;
+}
+
+@keyframes tfsOrbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(.97); }
+}
+
+@keyframes tfsOrbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, 18px) scale(1.03); }
+  66% { transform: translate(20px, -12px) scale(.98); }
+}
+
+@keyframes tfsOrbFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -25px); }
+}
+
+@media (max-width: 767px) {
+  .tfs-energy-orb {
+    filter: blur(62px);
+    opacity: .32;
+  }
+
+  .tfs-energy-orb-1 {
+    width: 320px;
+    height: 320px;
+    top: -80px;
+    left: -120px;
+  }
+
+  .tfs-energy-orb-2 {
+    width: 360px;
+    height: 360px;
+    right: -160px;
+    bottom: -80px;
+  }
+}
