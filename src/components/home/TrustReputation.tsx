@@ -14,7 +14,7 @@ export function TrustReputation() {
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.home.authority.eyebrow}
         </p>
-        <h2 className="mt-5 font-heading text-display leading-[0.95] text-navy text-balance lg:text-display">
+        <h2 className="mt-5 font-heading text-5xl leading-[0.95] text-navy text-balance lg:text-[4.25rem]">
           {t.home.authority.title}
         </h2>
         <p className="mt-7 text-lg leading-[1.75] text-muted">

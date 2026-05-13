@@ -75,7 +75,7 @@ export function BlogRoadmap() {
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.eyebrow}
         </p>
-        <h2 className="mt-4 max-w-3xl font-heading text-display leading-[0.96] text-navy text-balance sm:text-display">
+        <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.96] text-navy text-balance sm:text-6xl">
           {t.title}
         </h2>
         <p className="mt-6 max-w-xl text-base leading-8 text-muted">{t.body}</p>

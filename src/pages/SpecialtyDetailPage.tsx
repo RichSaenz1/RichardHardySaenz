@@ -153,7 +153,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
                 {copy.common.overview}
               </p>
-              <h2 className="mt-4 font-heading text-display leading-[0.95] text-navy text-balance">
+              <h2 className="mt-4 font-heading text-5xl leading-[0.95] text-navy text-balance">
                 {page.overviewTitle}
               </h2>
               <p className="mt-6 text-base leading-8 text-muted">
@@ -372,7 +372,7 @@ function SecondOpinionDecisionSection({
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan">
             {copy.reviewEyebrow}
           </p>
-          <h2 className="mt-4 max-w-3xl font-heading text-display leading-[0.95] text-white text-balance sm:text-display">
+          <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl">
             {copy.reviewTitle}
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-8 text-blue-100">

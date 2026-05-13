@@ -108,7 +108,7 @@ export function SpecialtiesPage() {
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
               {copy.common.assistant}
             </p>
-            <h2 className="mt-4 font-heading text-display leading-none text-navy">
+            <h2 className="mt-4 font-heading text-5xl leading-none text-navy">
               {hub.unsureTitle}
             </h2>
             <p className="mt-5 text-base leading-8 text-muted">{hub.unsureBody}</p>

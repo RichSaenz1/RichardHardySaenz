@@ -31,7 +31,7 @@ export function AnatomyExplorer() {
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan">
             {t.home.anatomy.eyebrow}
           </p>
-          <h2 className="mt-4 font-heading text-display leading-[0.95] text-white text-balance sm:text-display lg:text-display">
+          <h2 className="mt-4 font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl lg:text-[4.25rem]">
             {t.home.anatomy.title}
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-blue-100">
@@ -91,7 +91,7 @@ export function AnatomyExplorer() {
               transition={{ duration: 0.35, ease: "easeOut" }}
               className="mt-7"
             >
-              <h3 className="font-heading text-display leading-none text-white">
+              <h3 className="font-heading text-5xl leading-none text-white">
                 {selected.label}
               </h3>
               <p className="mt-5 max-w-xl text-base leading-8 text-blue-100">

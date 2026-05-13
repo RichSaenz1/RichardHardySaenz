@@ -271,7 +271,7 @@ export function AccessNetwork() {
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
           {t.eyebrow}
         </p>
-        <h2 className="mx-auto mt-4 max-w-4xl font-heading text-display leading-[0.95] text-navy text-balance sm:text-display">
+        <h2 className="mx-auto mt-4 max-w-4xl font-heading text-5xl leading-[0.95] text-navy text-balance sm:text-6xl">
           {t.title}
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-[1.75] text-muted">

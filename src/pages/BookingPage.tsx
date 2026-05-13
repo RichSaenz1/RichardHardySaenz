@@ -98,7 +98,7 @@ export function BookingPage() {
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
               {t.brand.platform}
             </p>
-            <h1 className="mt-5 font-heading text-display leading-[0.92] text-navy text-balance sm:text-display lg:text-display">
+            <h1 className="mt-5 font-heading text-6xl leading-[0.92] text-navy text-balance sm:text-7xl lg:text-[6.15rem]">
               {t.bookingPage.title}
             </h1>
             <p className="mt-7 max-w-2xl text-xl leading-[1.7] text-slate-600">
@@ -234,7 +234,7 @@ export function BookingPage() {
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
                 {bookingUx.panelTitle}
               </p>
-              <h2 className="mt-3 font-heading text-display leading-none text-navy text-balance">
+              <h2 className="mt-3 font-heading text-5xl leading-none text-navy text-balance">
                 {bookingUx.quickTitle}
               </h2>
               <p className="mt-5 text-base leading-8 text-muted">
@@ -266,7 +266,7 @@ export function BookingPage() {
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
                 {t.bookingPage.bringTitle}
               </p>
-              <h2 className="mt-3 max-w-xl font-heading text-display leading-[0.96] text-navy text-balance">
+              <h2 className="mt-3 max-w-xl font-heading text-5xl leading-[0.96] text-navy text-balance">
                 {bookingUx.preparationTitle}
               </h2>
               <p className="mt-5 max-w-lg text-base leading-7 text-muted">
