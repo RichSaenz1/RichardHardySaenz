@@ -195,7 +195,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-cyan hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {item.label}
                 </Link>
@@ -273,7 +273,7 @@ function ProcedurePanel({
       )}
       {items && !body && (
         <div className="mt-auto pt-6">
-          <FileText aria-hidden="true" className="h-5 w-5 text-gold" />
+          <FileText aria-hidden="true" className="h-5 w-5 text-medical" />
         </div>
       )}
     </article>

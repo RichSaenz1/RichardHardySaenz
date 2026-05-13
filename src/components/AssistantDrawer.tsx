@@ -262,7 +262,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                 className={cn(
                   "rounded-full border px-3 py-2 text-xs font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                   concern === action.concern
-                    ? "border-gold bg-white text-navy shadow-sm"
+                    ? "border-cyan bg-white text-navy shadow-sm"
                     : "border-borderblue bg-white/78 text-muted hover:border-cyan hover:text-navy",
                 )}
               >

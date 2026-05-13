@@ -92,13 +92,13 @@ export function BlogRoadmap() {
         {t.topics.map(([title, body], index) => (
           <article
             key={title}
-            className="group rounded-[1.35rem] border border-borderblue bg-white p-6 shadow-[0_18px_54px_rgba(13,43,69,0.055)] transition hover:-translate-y-1 hover:border-gold/70"
+            className="group rounded-[1.35rem] border border-borderblue bg-white p-6 shadow-[0_18px_54px_rgba(13,43,69,0.055)] transition hover:-translate-y-1 hover:border-cyan"
           >
             <div className="flex items-start justify-between gap-4">
               <span className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-softblue text-medical">
                 <BookOpenText aria-hidden="true" className="h-5 w-5" />
               </span>
-              <span className="text-xs font-medium text-gold">
+              <span className="text-xs font-medium text-medical">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>

@@ -77,7 +77,7 @@ export function SpecialtiesPage() {
               <Link
                 key={key}
                 to={specialtyRouteByKey[key]}
-                className="group overflow-hidden rounded-[1.5rem] border border-borderblue bg-white shadow-[0_18px_60px_rgba(13,43,69,0.06)] transition duration-300 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_26px_80px_rgba(13,43,69,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="group overflow-hidden rounded-[1.5rem] border border-borderblue bg-white shadow-[0_18px_60px_rgba(13,43,69,0.06)] transition duration-300 hover:-translate-y-1 hover:border-cyan hover:shadow-[0_26px_80px_rgba(13,43,69,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 <ImageCard
                   image={specialtyVisuals[key].image}
@@ -91,7 +91,7 @@ export function SpecialtiesPage() {
                   <p className="mt-4 min-h-[5.25rem] text-sm leading-7 text-muted">
                     {page.intro}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold">
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-medical">
                     {page.cta}
                     <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </span>

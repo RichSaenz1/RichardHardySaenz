@@ -72,13 +72,13 @@ export function AnatomyExplorer() {
                   className={cn(
                     "flex min-h-11 items-center justify-between rounded-sm border px-4 py-3 text-left text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                     selectedIndex === index
-                      ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(201,168,76,0.15)]"
+                      ? "border-cyan bg-white text-navy shadow-[0_14px_38px_rgba(27,107,154,0.12)]"
                       : "border-white/10 bg-white/[0.04] text-blue-100 hover:border-cyan/50 hover:bg-white/10",
                   )}
                 >
                   {area.label}
                   {selectedIndex === index && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-medical" />
                   )}
                 </button>
               ))}
@@ -133,7 +133,7 @@ function ListGroup({ title, items }: { title: string; items: readonly string[] }
       <ul className="mt-3 space-y-2">
         {items.map((item) => (
           <li key={item} className="flex gap-2 text-sm leading-6 text-blue-100">
-            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-gold" />
+            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-medical" />
             {item}
           </li>
         ))}
