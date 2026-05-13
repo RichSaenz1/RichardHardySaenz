@@ -32,21 +32,20 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "luxury-shell relative overflow-hidden bg-mist bg-clinic-radial px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40",
+        "luxury-shell site-hero px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40",
         className,
       )}
     >
-      <div className="absolute inset-x-0 bottom-0 h-px bg-borderblue" />
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_0.85fr]">
         <motion.div
           initial={reduceMotion ? false : { y: 18 }}
           animate={reduceMotion ? undefined : { y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
+          <p className="site-hero-eyebrow mb-5">
             {eyebrow ?? t.brand.platform}
           </p>
-          <h1 className="max-w-5xl font-heading text-6xl leading-[0.92] text-navy text-balance sm:text-7xl lg:text-[5.8rem]">
+          <h1 className="site-hero-title max-w-5xl font-heading text-navy text-balance">
             {title}
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-[1.75] text-muted sm:text-xl">
