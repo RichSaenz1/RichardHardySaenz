@@ -1,0 +1,146 @@
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { contact } from "../../data/contact";
+import { specialtyRouteByKey, type SpecialtyKey } from "../../i18n/translations";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { MedicalDisclaimer } from "../shared/MedicalDisclaimer";
+
+const footerSpecialtyKeys: SpecialtyKey[] = [
+  "prostata",
+  "calculosRenales",
+  "uroOncologia",
+  "endourologia",
+  "cirugiaLaparoscopica",
+  "saludMasculina",
+  "segundaOpinion",
+];
+
+const contactItems = [
+  {
+    key: "WhatsApp",
+    value: contact.whatsappDisplay,
+    href: contact.whatsappHref,
+    icon: MessageCircle,
+  },
+  {
+    key: "Phone",
+    value: contact.phoneDisplay,
+    href: contact.phoneHref,
+    icon: Phone,
+  },
+  {
+    key: "Email",
+    value: contact.email,
+    href: `mailto:${contact.email}`,
+    icon: Mail,
+  },
+  {
+    key: "Instagram",
+    value: contact.instagram,
+    href: contact.instagramUrl,
+    icon: Instagram,
+  },
+  {
+    key: "Location",
+    value: contact.location,
+    href: "/agendar-cita",
+    icon: MapPin,
+  },
+];
+
+export function Footer() {
+  const { language, t } = useLanguage();
+  const labels =
+    language === "es"
+      ? ["WhatsApp", "Teléfono", "Email", "Instagram", "Ubicación"]
+      : ["WhatsApp", "Phone", "Email", "Instagram", "Location"];
+  const navItems = [
+    t.header.nav.home,
+    t.header.nav.specialties,
+    t.header.nav.procedures,
+    t.header.nav.secondOpinion,
+    t.header.nav.contact,
+  ];
+
+  return (
+    <footer className="navy-panel px-4 pb-24 pt-20 text-white sm:px-6 md:pb-10 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.25fr_0.72fr_0.85fr_0.95fr]">
+        <div>
+          <p className="font-heading text-4xl leading-none">{t.brand.doctor}</p>
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-cyan">
+            {t.brand.platform}
+          </p>
+          <p className="mt-6 max-w-md text-base leading-8 text-blue-100">
+            {t.brand.line}
+          </p>
+          <p className="mt-4 text-sm text-blue-100">{t.footer.body}</p>
+          <p className="mt-6 text-xs text-blue-200">{t.footer.credit}</p>
+        </div>
+
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
+            {t.footer.navigation}
+          </p>
+          <nav className="grid gap-2.5" aria-label="Footer">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                className="text-sm text-blue-100 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
+            {t.footer.contact}
+          </p>
+          <div className="grid gap-3">
+            {contactItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-blue-100 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                >
+                  <Icon aria-hidden="true" className="h-5 w-5 flex-none text-cyan" />
+                  <span>
+                    <span className="block text-xs text-blue-200">
+                      {labels[index]}
+                    </span>
+                    {item.value}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
+            {t.header.specialtiesLabel}
+          </p>
+          <nav className="grid gap-2.5" aria-label={t.header.specialtiesLabel}>
+            {footerSpecialtyKeys.map((key) => (
+              <Link
+                key={key}
+                to={specialtyRouteByKey[key]}
+                className="text-sm text-blue-100 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              >
+                {t.specialties[key].title}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-12 max-w-7xl">
+        <MedicalDisclaimer className="border-white/10 bg-white/10 text-xs leading-6 text-blue-100" />
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+.tools
+.vercel
+.netlify
+screenshots
+qa-screenshots
+BrugiatiImages
+*.tsbuildinfo
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
