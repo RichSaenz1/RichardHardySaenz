@@ -218,7 +218,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                 <Bot aria-hidden="true" className="h-5 w-5" />
               </span>
               <div>
-                <h2 id="assistant-title" className="text-base font-medium">
+                <h2 id="assistant-title" className="text-base font-semibold">
                   {flow.assistantTitle}
                 </h2>
                 <p className="mt-1 text-xs leading-5 text-blue-100">
@@ -260,7 +260,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                 type="button"
                 onClick={() => selectConcern(action.concern)}
                 className={cn(
-                  "rounded-full border px-3 py-2 text-xs font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
+                  "rounded-full border px-3 py-2 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                   concern === action.concern
                     ? "border-gold bg-white text-navy shadow-sm"
                     : "border-borderblue bg-white/78 text-muted hover:border-cyan hover:text-navy",
@@ -272,7 +272,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
           </div>
 
           <div className="mt-4 rounded-[1.25rem] border border-borderblue bg-white/82 p-4">
-            <p className="text-sm font-medium text-navy">
+            <p className="text-sm font-semibold text-navy">
               {selectedConcern.label}
             </p>
             <p className="mt-2 text-sm leading-7 text-muted">
@@ -353,7 +353,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
               value={values.message}
               onChange={(event) => updateField("message", event)}
               placeholder={flow.placeholders.message}
-              className="min-h-24 resize-y rounded-xs border border-borderblue bg-white px-4 py-3 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+              className="min-h-24 resize-y rounded-xl border border-borderblue bg-white/90 px-4 py-3 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue"
               aria-label={flow.fields.message}
             />
 
@@ -361,7 +361,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
               <select
                 value={values.isFirstVisit}
                 onChange={(event) => updateField("isFirstVisit", event)}
-                className="h-11 rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+                className="min-h-11 rounded-xl border border-borderblue bg-white/90 px-4 text-sm text-navy outline-none transition focus:border-medical focus:ring-4 focus:ring-softblue"
                 aria-label={flow.fields.isFirstVisit}
               >
                 <option value="">{flow.fields.isFirstVisit}</option>
@@ -371,7 +371,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
               <select
                 value={values.hasStudies}
                 onChange={(event) => updateField("hasStudies", event)}
-                className="h-11 rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+                className="min-h-11 rounded-xl border border-borderblue bg-white/90 px-4 text-sm text-navy outline-none transition focus:border-medical focus:ring-4 focus:ring-softblue"
                 aria-label={flow.fields.hasStudies}
               >
                 <option value="">{flow.fields.hasStudies}</option>
@@ -384,14 +384,14 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
               value={values.preferredTime}
               onChange={(event) => updateField("preferredTime", event)}
               placeholder={flow.placeholders.preferredTime}
-              className="h-11 rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+              className="min-h-11 rounded-xl border border-borderblue bg-white/90 px-4 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue"
               aria-label={flow.fields.preferredTime}
             />
             <input
               value={values.studyTypes}
               onChange={(event) => updateField("studyTypes", event)}
               placeholder={flow.placeholders.studyTypes}
-              className="h-11 rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+              className="min-h-11 rounded-xl border border-borderblue bg-white/90 px-4 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue"
               aria-label={flow.fields.studyTypes}
             />
           </div>
@@ -412,7 +412,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
               {errors.consentAccepted && (
                 <span
                   id="assistant-consent-error"
-                  className="mt-2 block font-medium text-red-600"
+                  className="mt-2 block font-semibold text-red-600"
                 >
                   {errors.consentAccepted}
                 </span>
@@ -428,7 +428,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                   className="mt-0.5 h-5 w-5 flex-none text-cyan"
                 />
                 <div>
-                  <p className="text-sm font-medium text-navy">
+                  <p className="text-sm font-semibold text-navy">
                     {urgentFlag ? flow.summary.urgentTitle : flow.summary.title}
                   </p>
                   <p className="mt-2 text-xs leading-6 text-muted">
@@ -437,7 +437,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                   <p className="mt-2 text-xs leading-6 text-muted">
                     {summary.summaryText}
                   </p>
-                  <p className="mt-2 text-xs font-medium leading-6 text-navy">
+                  <p className="mt-2 text-xs font-semibold leading-6 text-navy">
                     {summary.recommendedNextAction}
                   </p>
                 </div>
@@ -449,13 +449,13 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
             <button
               type="button"
               onClick={prepareSummary}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-navy bg-transparent px-4 text-button text-navy transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-4 py-3 text-sm font-semibold text-navy shadow-sm transition hover:-translate-y-0.5 hover:border-medical hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {flow.summary.prepare}
             </button>
             <Link
               to="/agendar-cita"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-navy px-4 text-button text-white transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-navy-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {flow.summary.book}
               <CalendarDays aria-hidden="true" className="h-4 w-4" />
@@ -474,7 +474,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                   });
                 }
               }}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-navy bg-transparent px-4 text-button text-navy transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-4 py-3 text-sm font-semibold text-navy shadow-sm transition hover:-translate-y-0.5 hover:border-medical hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
             >
               {flow.summary.sendWhatsapp}
               <Send aria-hidden="true" className="h-4 w-4" />
@@ -566,8 +566,8 @@ function isValidEmail(value: string) {
 
 function fieldClass(hasError: boolean) {
   return cn(
-    "h-11 w-full rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2",
-    hasError && "border-red-300 focus:outline-red-300",
+    "min-h-11 w-full rounded-xl border border-borderblue bg-white/90 px-4 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue",
+    hasError && "border-red-300 focus:border-red-400 focus:ring-red-100",
   );
 }
 
@@ -588,14 +588,14 @@ function AssistantField({
     <div>
       <label
         htmlFor={id}
-        className="text-[11px] font-medium uppercase tracking-[0.10em] text-muted"
+        className="text-[11px] font-bold uppercase tracking-[0.12em] text-navy"
       >
         {label}
         {required && <span className="text-medical"> *</span>}
       </label>
       <div className="mt-2">{children}</div>
       {error && (
-        <p id={`${id}-error`} className="mt-2 text-xs font-medium text-red-600">
+        <p id={`${id}-error`} className="mt-2 text-xs font-semibold text-red-600">
           {error}
         </p>
       )}

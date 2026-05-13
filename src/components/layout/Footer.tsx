@@ -67,7 +67,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.25fr_0.72fr_0.85fr_0.95fr]">
         <div>
           <p className="font-heading text-4xl leading-none">{t.brand.doctor}</p>
-          <p className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-cyan">
             {t.brand.platform}
           </p>
           <p className="mt-6 max-w-md text-base leading-8 text-blue-100">
@@ -78,7 +78,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="mb-5 text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
             {t.footer.navigation}
           </p>
           <nav className="grid gap-2.5" aria-label="Footer">
@@ -95,7 +95,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="mb-5 text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
             {t.footer.contact}
           </p>
           <div className="grid gap-3">
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="mb-5 text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cyan">
             {t.header.specialtiesLabel}
           </p>
           <nav className="grid gap-2.5" aria-label={t.header.specialtiesLabel}>

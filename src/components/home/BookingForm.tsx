@@ -97,7 +97,7 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
   }
 
   const fieldClass =
-    "mt-2 h-11 w-full rounded-xs border border-borderblue bg-white px-4 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2";
+    "mt-2 min-h-12 w-full rounded-xl border border-borderblue bg-white/82 px-4 py-3 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue";
 
   if (submittedLead && leadSummary) {
     return (
@@ -108,11 +108,11 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
         </h3>
         <p className="mt-3 text-sm leading-7 text-muted">{t.forms.successBody}</p>
         <div className="mt-5 rounded-2xl border border-borderblue bg-softblue/62 p-4">
-          <p className="text-sm font-medium text-navy">{leadSummary.title}</p>
+          <p className="text-sm font-semibold text-navy">{leadSummary.title}</p>
           <p className="mt-2 text-sm leading-7 text-muted">
             {leadSummary.summaryText}
           </p>
-          <p className="mt-2 text-sm font-medium leading-7 text-navy">
+          <p className="mt-2 text-sm font-semibold leading-7 text-navy">
             {leadSummary.recommendedNextAction}
           </p>
         </div>
@@ -130,7 +130,7 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
                 path: location.pathname,
               })
             }
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-navy px-5 text-button text-white transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-navy px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-navy-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
           >
             {flow.summary.sendWhatsapp}
             <MessageCircle aria-hidden="true" className="h-4 w-4" />
@@ -141,7 +141,7 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
               setSubmittedLead(null);
               setValues(initialValues);
             }}
-            className="h-11 rounded-pill border border-navy px-5 text-button text-navy transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+            className="rounded-full border border-borderblue px-5 py-3 text-sm font-semibold text-navy transition hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
           >
             {t.cta.again}
           </button>
@@ -261,7 +261,7 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
             name="message"
             value={values.message}
             onChange={(event) => updateField("message", event.target.value)}
-            className="mt-2 min-h-28 w-full resize-y rounded-xs border border-borderblue bg-white px-4 py-3 text-[14px] font-normal text-navy outline-none transition placeholder:text-slate-400 focus:outline focus:outline-2 focus:outline-cyan focus:outline-offset-2"
+            className="mt-2 min-h-28 w-full resize-y rounded-xl border border-borderblue bg-white/82 px-4 py-3 text-sm text-navy outline-none transition placeholder:text-slate-400 focus:border-medical focus:ring-4 focus:ring-softblue"
             placeholder={t.forms.fields.messagePlaceholder}
           />
         </Field>
@@ -279,7 +279,7 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
           <span>
             {bookingCopy.consent}
             {errors.consent && (
-              <span id="consent-error" className="mt-2 block font-medium text-red-600">
+              <span id="consent-error" className="mt-2 block font-semibold text-red-600">
                 {errors.consent}
               </span>
             )}
@@ -291,13 +291,13 @@ export function BookingForm({ compact = false }: { compact?: boolean }) {
           <span>{bookingCopy.privacyBody}</span>
         </div>
 
-        <p className="mt-3 text-xs font-medium leading-6 text-muted">
+        <p className="mt-3 text-xs font-semibold leading-6 text-muted">
           {flow.summary.emergencyNote}
         </p>
 
         <button
           type="submit"
-          className="mt-5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-pill bg-navy px-6 text-button text-white transition hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan sm:w-auto"
+          className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-navy-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan sm:w-auto"
         >
           {t.cta.send}
           <Send aria-hidden="true" className="h-4 w-4" />
@@ -317,17 +317,17 @@ export function AppointmentCalendarCard() {
           <p className="font-heading text-3xl leading-none">{t.forms.title}</p>
           <p className="mt-2 text-sm text-muted">{t.forms.calendar.label}</p>
         </div>
-        <button className="rounded-xl border border-borderblue bg-white/80 px-3 py-2 text-xs font-medium text-navy">
+        <button className="rounded-xl border border-borderblue bg-white/80 px-3 py-2 text-xs font-semibold text-navy">
           {t.forms.calendar.month}
         </button>
       </div>
 
-      <div className="mt-6 grid grid-cols-7 gap-2 text-center text-[11px] font-medium text-muted">
+      <div className="mt-6 grid grid-cols-7 gap-2 text-center text-[11px] font-bold text-muted">
         {t.forms.calendar.days.map((day) => (
           <span key={day}>{day}</span>
         ))}
       </div>
-      <div className="mt-3 grid grid-cols-7 gap-2 text-center text-xs font-medium">
+      <div className="mt-3 grid grid-cols-7 gap-2 text-center text-xs font-semibold">
         {calendarDays.map((day, index) => (
           <span
             key={`${day}-${index}`}
@@ -343,14 +343,14 @@ export function AppointmentCalendarCard() {
       </div>
 
       <div className="mt-6 border-t border-borderblue pt-4">
-        <p className="text-xs font-medium text-muted">{t.forms.calendar.time}</p>
+        <p className="text-xs font-bold text-muted">{t.forms.calendar.time}</p>
         <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
           {t.forms.calendar.times.map((time, index) => (
             <button
               key={time}
               type="button"
               className={cn(
-                "rounded-xl border border-borderblue bg-white/80 px-3 py-2 text-xs font-medium transition",
+                "rounded-xl border border-borderblue bg-white/80 px-3 py-2 text-xs font-semibold transition",
                 index === 2 && "border-navy bg-navy text-white",
               )}
             >
@@ -382,12 +382,12 @@ function Field({
 }: FieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="text-[11px] font-medium uppercase tracking-[0.10em] text-muted">
+      <label htmlFor={id} className="text-xs font-bold uppercase tracking-[0.12em] text-navy">
         {label}
         {required && <span className="text-medical"> *</span>}
       </label>
       {children}
-      {error && <p id={`${id}-error`} className="mt-2 text-xs font-medium text-red-600">{error}</p>}
+      {error && <p id={`${id}-error`} className="mt-2 text-xs font-semibold text-red-600">{error}</p>}
     </div>
   );
 }

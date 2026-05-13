@@ -22,13 +22,13 @@ type CTAButtonProps = {
 
 const variants = {
   primary:
-    "bg-navy text-white hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)]",
+    "bg-navy text-white shadow-soft hover:-translate-y-0.5 hover:bg-navy-2",
   secondary:
-    "border border-navy bg-transparent text-navy hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)]",
+    "border border-borderblue bg-white/82 text-navy shadow-sm backdrop-blur hover:-translate-y-0.5 hover:border-medical hover:bg-white",
   ghost:
-    "border border-navy bg-transparent text-navy hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)]",
+    "text-navy hover:bg-softblue hover:text-medical",
   light:
-    "bg-white text-navy hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(13,43,69,0.12)]",
+    "bg-white text-navy shadow-soft hover:-translate-y-0.5 hover:bg-softblue",
 };
 
 export function CTAButton({
@@ -49,7 +49,7 @@ export function CTAButton({
     </>
   );
   const classes = cn(
-    "inline-flex h-11 items-center justify-center gap-2 rounded-pill px-5 text-button transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
     variants[variant],
     className,
   );

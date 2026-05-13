@@ -28,7 +28,7 @@ export function LegalPage({ type }: LegalPageProps) {
       />
       <section className="luxury-shell bg-mist px-4 pb-14 pt-32 sm:px-6 lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-4xl">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-medical">
             UroPanama
           </p>
           <h1 className="mt-5 font-heading text-6xl leading-[0.92] text-navy sm:text-7xl">

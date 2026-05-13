@@ -139,7 +139,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
                   className="mt-0.5 h-5 w-5 flex-none text-red-500"
                 />
                 <div>
-                  <p className="font-medium text-navy">
+                  <p className="font-semibold text-navy">
                     {page.urgentTitle ?? copy.common.urgent}
                   </p>
                   <p className="mt-1">{page.urgent}</p>
@@ -150,7 +150,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
 
           <div className="grid h-full content-stretch gap-6">
             <article className="premium-card flex flex-col justify-center rounded-[1.6rem] p-7 sm:p-9">
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
                 {copy.common.overview}
               </p>
               <h2 className="mt-4 font-heading text-5xl leading-[0.95] text-navy text-balance">
@@ -162,7 +162,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
             </article>
 
             <article className="premium-card flex flex-col justify-center rounded-[1.6rem] p-7 sm:p-9">
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
                 {copy.common.when}
               </p>
               <h2 className="mt-4 font-heading text-4xl leading-none text-navy">
@@ -196,10 +196,10 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
 
           <article className="premium-card flex h-full flex-col rounded-[1.45rem] p-7">
             <FileText aria-hidden="true" className="h-6 w-6 text-medical" />
-            <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
+            <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
               {copy.common.bring}
             </p>
-            <h2 className="mt-3 text-xl font-medium leading-7 text-navy">
+            <h2 className="mt-3 text-xl font-semibold leading-7 text-navy">
               {page.bringTitle}
             </h2>
             <p className="mt-3 text-sm leading-6 text-muted">{page.bringIntro}</p>
@@ -212,7 +212,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
               {page.bring.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-borderblue bg-white/72 px-3 py-2 text-xs font-medium text-navy"
+                  className="rounded-full border border-borderblue bg-white/72 px-3 py-2 text-xs font-semibold text-navy"
                 >
                   {item}
                 </li>
@@ -222,10 +222,10 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
 
           <article className="premium-card flex h-full flex-col rounded-[1.45rem] p-7">
             <ArrowRight aria-hidden="true" className="h-6 w-6 text-gold" />
-            <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
+            <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
               {copy.common.next}
             </p>
-            <h2 className="mt-3 text-xl font-medium leading-7 text-navy">
+            <h2 className="mt-3 text-xl font-semibold leading-7 text-navy">
               {page.nextTitle}
             </h2>
             {page.nextIntro && (
@@ -239,7 +239,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
             <ol className="mt-5 grid gap-3">
               {page.next.map((item, index) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-0.5 text-xs font-medium text-gold">
+                  <span className="mt-0.5 text-xs font-bold text-gold">
                     0{index + 1}
                   </span>
                   <p className="text-sm leading-6 text-muted">{item}</p>
@@ -253,7 +253,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <LinkIcon aria-hidden="true" className="h-6 w-6 text-medical" />
-              <p className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-medical">
                 {copy.common.related}
               </p>
               <h2 className="mt-3 font-heading text-4xl leading-none text-navy">
@@ -265,7 +265,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                  className="rounded-full border border-borderblue bg-softblue/70 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                 >
                   {item.label}
                 </Link>
@@ -331,10 +331,10 @@ function InfoBlock({
   return (
     <article className="premium-card flex h-full flex-col rounded-[1.45rem] p-7">
       <div className="text-medical">{icon}</div>
-      <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-medical">
+      <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-medical">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-xl font-medium leading-7 text-navy">{title}</h2>
+      <h2 className="mt-3 text-xl font-semibold leading-7 text-navy">{title}</h2>
       <p className="mt-4 text-sm leading-7 text-muted">{body}</p>
       {points && points.length > 0 && (
         <ul className="mt-6 grid gap-3">
@@ -369,7 +369,7 @@ function SecondOpinionDecisionSection({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(91,158,201,0.20),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(201,168,76,0.13),transparent_26rem)]" />
       <div className="relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan">
             {copy.reviewEyebrow}
           </p>
           <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl">
@@ -384,8 +384,8 @@ function SecondOpinionDecisionSection({
                 key={item.title}
                 className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur"
               >
-                <span className="text-xs font-medium text-gold">0{index + 1}</span>
-                <h3 className="mt-3 text-base font-medium text-white">
+                <span className="text-xs font-bold text-gold">0{index + 1}</span>
+                <h3 className="mt-3 text-base font-semibold text-white">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-blue-100">
@@ -415,7 +415,7 @@ function SecondOpinionDecisionSection({
                     aria-hidden="true"
                     className="mt-0.5 h-4 w-4 flex-none text-cyan"
                   />
-                  <p className="text-sm font-medium leading-5 text-navy">
+                  <p className="text-sm font-semibold leading-5 text-navy">
                     {item}
                   </p>
                 </div>
@@ -430,11 +430,11 @@ function SecondOpinionDecisionSection({
             <div className="mt-6 grid gap-4">
               {copy.decisionSteps.map((step, index) => (
                 <div key={step.title} className="flex gap-4">
-                  <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-cyan/35 bg-white/10 text-xs font-medium text-cyan">
+                  <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-cyan/35 bg-white/10 text-xs font-bold text-cyan">
                     {index + 1}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-semibold text-white">
                       {step.title}
                     </p>
                     <p className="mt-1 text-sm leading-6 text-blue-100">

@@ -46,7 +46,7 @@ export function SectionContainer({
             {eyebrow && (
               <p
                 className={cn(
-                  "mb-3 text-xs font-medium uppercase tracking-[0.14em]",
+                  "mb-3 text-xs font-bold uppercase tracking-[0.18em]",
                   dark ? "text-cyan" : "text-medical",
                 )}
               >

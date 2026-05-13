@@ -18,7 +18,7 @@ export function ReviewStats() {
               <Icon aria-hidden="true" className="h-6 w-6" />
             </span>
             <div>
-              <h3 className="font-medium text-navy">{title}</h3>
+              <h3 className="font-semibold text-navy">{title}</h3>
               <p className="text-sm text-muted">{detail}</p>
             </div>
           </article>

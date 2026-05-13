@@ -95,7 +95,7 @@ export function BookingPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(91,158,201,0.18),transparent_32rem),linear-gradient(135deg,#F5F7F9,#E0EEF7)]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_0.82fr]">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-medical">
               {t.brand.platform}
             </p>
             <h1 className="mt-5 font-heading text-6xl leading-[0.92] text-navy text-balance sm:text-7xl lg:text-[6.15rem]">
@@ -134,7 +134,7 @@ export function BookingPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-navy/12 via-transparent to-white/26" />
             <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/70 bg-white/90 p-5 shadow-[0_20px_60px_rgba(13,43,69,0.12)] backdrop-blur-xl">
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
                 {bookingCopy.privacyTitle}
               </p>
               <p className="mt-2 text-sm font-medium leading-6 text-slate-600">
@@ -171,7 +171,7 @@ export function BookingPage() {
                     >
                       <Icon aria-hidden="true" className="mt-0.5 h-5 w-5 flex-none text-medical" />
                       <span>
-                        <span className="block text-xs font-medium uppercase tracking-[0.14em] text-navy">
+                        <span className="block text-xs font-bold uppercase tracking-[0.14em] text-navy">
                           {item.label}
                         </span>
                         <span className="mt-1 block text-sm leading-6 text-muted">
@@ -183,7 +183,7 @@ export function BookingPage() {
                 })}
               </div>
               <div className="mt-6 rounded-[1.25rem] border border-borderblue bg-softblue/55 p-4">
-                <p className="text-sm font-medium text-navy">
+                <p className="text-sm font-semibold text-navy">
                   {bookingUx.assuranceTitle}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-muted">
@@ -207,10 +207,10 @@ export function BookingPage() {
                     key={label}
                     className="flex items-center justify-between gap-4 border-b border-borderblue/70 pb-2 last:border-0 last:pb-0"
                   >
-                    <span className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
+                    <span className="text-xs font-bold uppercase tracking-[0.12em] text-muted">
                       {label}
                     </span>
-                    <span className="text-sm font-medium text-navy">{value}</span>
+                    <span className="text-sm font-semibold text-navy">{value}</span>
                   </div>
                 ))}
               </div>
@@ -219,7 +219,7 @@ export function BookingPage() {
                 onClick={() =>
                   window.dispatchEvent(new CustomEvent("uropanama:open-assistant"))
                 }
-                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-borderblue bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 {t.cta.assistant}
                 <Bot aria-hidden="true" className="h-4 w-4" />
@@ -231,7 +231,7 @@ export function BookingPage() {
         <div className="mt-10 rounded-[2rem] border border-borderblue bg-gradient-to-br from-softblue/72 via-white to-white p-6 shadow-[0_20px_70px_rgba(13,43,69,0.06)] sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr] lg:items-center">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
                 {bookingUx.panelTitle}
               </p>
               <h2 className="mt-3 font-heading text-5xl leading-none text-navy text-balance">
@@ -247,8 +247,8 @@ export function BookingPage() {
                   key={item.title}
                   className="rounded-[1.25rem] border border-borderblue bg-white/82 p-5"
                 >
-                  <span className="text-xs font-medium text-gold">0{index + 1}</span>
-                  <h3 className="mt-3 text-base font-medium text-navy">
+                  <span className="text-xs font-bold text-gold">0{index + 1}</span>
+                  <h3 className="mt-3 text-base font-semibold text-navy">
                     {item.title}
                   </h3>
                   <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
@@ -263,7 +263,7 @@ export function BookingPage() {
         <div className="rounded-[2rem] border border-borderblue bg-white/86 p-5 shadow-[0_24px_80px_rgba(13,43,69,0.07)] backdrop-blur sm:p-8 lg:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
                 {t.bookingPage.bringTitle}
               </p>
               <h2 className="mt-3 max-w-xl font-heading text-5xl leading-[0.96] text-navy text-balance">
@@ -299,11 +299,11 @@ export function BookingPage() {
                 <div className="mt-5 grid gap-4">
                   {bookingCopy.next.map(([title, body], index) => (
                     <div key={title} className="flex gap-3">
-                      <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-borderblue bg-white text-xs font-medium text-medical">
+                      <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-borderblue bg-white text-xs font-bold text-medical">
                         {index + 1}
                       </span>
                       <div>
-                        <p className="text-sm font-medium text-navy">{title}</p>
+                        <p className="text-sm font-semibold text-navy">{title}</p>
                         <p className="mt-1 text-sm leading-6 text-muted">{body}</p>
                       </div>
                     </div>
@@ -327,7 +327,7 @@ export function BookingPage() {
                   {t.bookingPage.bring.map((item) => (
                     <div key={item} className="flex gap-3 rounded-xl bg-softblue/55 px-3 py-2.5">
                       <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 flex-none text-cyan" />
-                      <p className="text-sm font-medium leading-5 text-navy">{item}</p>
+                      <p className="text-sm font-semibold leading-5 text-navy">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -374,7 +374,7 @@ function InfoPill({
         {icon}
       </span>
       <div>
-        <p className="text-xs font-medium uppercase tracking-[0.12em] text-navy">
+        <p className="text-xs font-bold uppercase tracking-[0.12em] text-navy">
           {title}
         </p>
         <p className="mt-2 text-xs leading-6 text-muted">{body}</p>

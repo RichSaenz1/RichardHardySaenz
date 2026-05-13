@@ -28,7 +28,7 @@ export function AnatomyExplorer() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 max-w-4xl">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan">
             {t.home.anatomy.eyebrow}
           </p>
           <h2 className="mt-4 font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl lg:text-[4.25rem]">
@@ -70,7 +70,7 @@ export function AnatomyExplorer() {
                   role="tab"
                   aria-selected={selectedIndex === index}
                   className={cn(
-                    "flex min-h-11 items-center justify-between rounded-sm border px-4 py-3 text-left text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
+                    "flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                     selectedIndex === index
                       ? "border-gold/70 bg-white text-navy shadow-[0_14px_38px_rgba(201,168,76,0.15)]"
                       : "border-white/10 bg-white/[0.04] text-blue-100 hover:border-cyan/50 hover:bg-white/10",
@@ -111,7 +111,7 @@ export function AnatomyExplorer() {
 
               <Link
                 to={selected.href}
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 {selected.cta}
                 <ArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -127,7 +127,7 @@ export function AnatomyExplorer() {
 function ListGroup({ title, items }: { title: string; items: readonly string[] }) {
   return (
     <div>
-      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cyan">
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-cyan">
         {title}
       </p>
       <ul className="mt-3 space-y-2">

@@ -16,7 +16,6 @@ import { pageUxImprovements } from "../i18n/pageUxImprovements";
 import { CTAButton } from "../components/shared/CTAButton";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
 import { ImageCard } from "../components/shared/ImageCard";
-import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
 import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
@@ -78,7 +77,7 @@ export function AboutPage() {
                   <p className="font-heading text-4xl leading-none text-gold">
                     {stat.value}
                   </p>
-                  <p className="mt-3 text-sm font-medium text-navy">
+                  <p className="mt-3 text-sm font-semibold text-navy">
                     {stat.label}
                   </p>
                   <p className="mt-2 text-sm leading-6 text-muted">
@@ -91,7 +90,7 @@ export function AboutPage() {
 
           <div className="grid gap-6">
             <article className="premium-card rounded-[2rem] p-7 sm:p-10">
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
                 {aboutUx.identityEyebrow}
               </p>
               <h2 className="mt-4 max-w-3xl font-heading text-5xl leading-[0.95] text-navy text-balance sm:text-6xl">
@@ -128,7 +127,7 @@ export function AboutPage() {
                       <Link
                         key={area.href}
                         to={area.href}
-                        className="rounded-full border border-borderblue bg-white/80 px-4 py-2 text-sm font-medium text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                        className="rounded-full border border-borderblue bg-white/80 px-4 py-2 text-sm font-semibold text-navy transition hover:-translate-y-0.5 hover:border-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                       >
                         {area.label}
                       </Link>
@@ -141,7 +140,7 @@ export function AboutPage() {
                       key={principle.title}
                       className="rounded-[1.2rem] border border-borderblue bg-white/82 p-5"
                     >
-                      <p className="text-sm font-medium text-navy">
+                      <p className="text-sm font-semibold text-navy">
                         {principle.title}
                       </p>
                       <p className="mt-2 text-sm leading-6 text-muted">
@@ -172,7 +171,7 @@ export function AboutPage() {
                   aria-hidden="true"
                   className="h-6 w-6 text-gold"
                 />
-                <h3 className="mt-4 text-lg font-medium text-navy">
+                <h3 className="mt-4 text-lg font-semibold text-navy">
                   {about.credentialsTitle}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-muted">
@@ -182,7 +181,7 @@ export function AboutPage() {
                   {credentials.training.map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl border border-borderblue bg-white/78 px-4 py-3 text-sm font-medium leading-6 text-navy"
+                      className="rounded-2xl border border-borderblue bg-white/78 px-4 py-3 text-sm font-semibold leading-6 text-navy"
                     >
                       {item}
                     </div>
@@ -192,7 +191,7 @@ export function AboutPage() {
                   {credentials.memberships.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-borderblue bg-white px-3 py-1.5 text-xs font-medium uppercase tracking-[0.11em] text-medical"
+                      className="rounded-full border border-borderblue bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.11em] text-medical"
                     >
                       {item}
                     </span>
@@ -207,10 +206,10 @@ export function AboutPage() {
                   key={step.title}
                   className="group rounded-[1.35rem] border border-borderblue bg-white p-6 transition hover:-translate-y-1 hover:border-gold hover:shadow-soft"
                 >
-                  <span className="text-xs font-medium text-gold">
+                  <span className="text-xs font-bold text-gold">
                     0{index + 1}
                   </span>
-                  <h3 className="mt-4 text-lg font-medium text-navy">
+                  <h3 className="mt-4 text-lg font-semibold text-navy">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-muted">
@@ -245,7 +244,6 @@ export function AboutPage() {
             </div>
           </div>
         </div>
-        <MedicalDisclaimer className="mt-12" />
       </SectionContainer>
     </>
   );
@@ -294,7 +292,7 @@ function InfoNote({
   return (
     <div className="rounded-[1.25rem] border border-borderblue bg-soft/80 p-5">
       <div className="text-medical">{icon}</div>
-      <h3 className="mt-4 text-base font-medium text-navy">{title}</h3>
+      <h3 className="mt-4 text-base font-semibold text-navy">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
     </div>
   );

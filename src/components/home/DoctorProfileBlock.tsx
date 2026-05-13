@@ -33,7 +33,7 @@ export function DoctorProfileBlock() {
       </div>
 
       <div>
-        <p className="text-xs font-medium uppercase tracking-[0.14em] text-medical">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-medical">
           {t.brand.doctor}
         </p>
         <h2 className="mt-5 max-w-3xl font-heading text-5xl leading-[0.96] text-navy text-balance lg:text-6xl">
@@ -46,7 +46,7 @@ export function DoctorProfileBlock() {
           {t.about.areas.map((item) => (
             <span
               key={item}
-              className="rounded-full border border-borderblue bg-softblue px-4 py-2 text-xs font-medium text-navy"
+              className="rounded-full border border-borderblue bg-softblue px-4 py-2 text-xs font-semibold text-navy"
             >
               {item}
             </span>

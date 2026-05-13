@@ -114,7 +114,7 @@ function HeaderDropdown({
         >
           <div className="mb-4 flex items-end justify-between gap-5 px-1">
             <div className="min-w-0">
-              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-medical">
                 {intro}
               </p>
               <p className="mt-1 text-sm leading-5 text-muted">{hint}</p>
@@ -122,7 +122,7 @@ function HeaderDropdown({
             <Link
               to={href}
               role="menuitem"
-              className="shrink-0 text-xs font-medium text-navy underline decoration-gold/70 underline-offset-4 transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+              className="shrink-0 text-xs font-semibold text-navy underline decoration-gold/70 underline-offset-4 transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
             >
               {label}
             </Link>
@@ -137,7 +137,7 @@ function HeaderDropdown({
                 className="group rounded-[1.05rem] px-3.5 py-3 transition hover:bg-softblue/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 <span className="flex items-center justify-between gap-3">
-                  <span className="text-sm font-medium text-navy">
+                  <span className="text-sm font-semibold text-navy">
                     {item.title}
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-gold opacity-0 transition group-hover:opacity-100" />
@@ -247,10 +247,10 @@ export function Header() {
         <span className="absolute -right-0.5 top-2 h-3.5 w-px rounded-full bg-gold/70" />
       </div>
       <div className="min-w-0 leading-none">
-        <p className="truncate text-[15px] font-medium tracking-[-0.01em] text-navy">
+        <p className="truncate text-[15px] font-semibold tracking-[-0.01em] text-navy">
           {t.brand.doctor}
         </p>
-        <p className="mt-2 truncate text-[10.5px] font-medium uppercase tracking-[0.14em] text-medical/80">
+        <p className="mt-2 truncate text-[10.5px] font-semibold uppercase tracking-[0.22em] text-medical/80">
           {t.brand.platform}
         </p>
       </div>
@@ -393,7 +393,7 @@ export function Header() {
                 <p className="font-heading text-4xl leading-none tracking-[-0.03em] text-navy">
                   {t.header.menuTitle}
                 </p>
-                <p className="mt-2 max-w-[18rem] text-xs font-medium uppercase tracking-[0.14em] text-medical">
+                <p className="mt-2 max-w-[18rem] text-xs font-semibold uppercase tracking-[0.18em] text-medical">
                   {t.brand.doctor}
                 </p>
               </div>
@@ -421,7 +421,7 @@ export function Header() {
             </div>
 
             <div className="mt-6 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(13,43,69,0.075)] backdrop-blur">
-              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-medical">
                 {t.header.specialtiesIntro}
               </p>
               <div className="mt-3 grid gap-1">
@@ -430,7 +430,7 @@ export function Header() {
                     key={item.key}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="rounded-xl px-3 py-2.5 text-sm font-medium text-navy transition hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                    className="rounded-xl px-3 py-2.5 text-sm font-semibold text-navy transition hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                   >
                     {item.title}
                   </Link>
@@ -439,7 +439,7 @@ export function Header() {
             </div>
 
             <div className="mt-4 rounded-[1.45rem] border border-navy/10 bg-white/75 p-4 shadow-[0_18px_46px_rgba(13,43,69,0.075)] backdrop-blur">
-              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-medical">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-medical">
                 {t.header.proceduresIntro}
               </p>
               <div className="mt-3 grid gap-1">
@@ -448,7 +448,7 @@ export function Header() {
                     key={item.key}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="rounded-xl px-3 py-2.5 text-sm font-medium text-navy transition hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                    className="rounded-xl px-3 py-2.5 text-sm font-semibold text-navy transition hover:bg-softblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
                   >
                     {item.title}
                   </Link>

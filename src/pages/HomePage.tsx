@@ -16,7 +16,6 @@ import { PatientJourney } from "../components/home/PatientJourney";
 import { ProcedureCard } from "../components/home/ProcedureCard";
 import { SpecialtyCard } from "../components/home/SpecialtyCard";
 import { TrustReputation } from "../components/home/TrustReputation";
-import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
 import { seoMetadata } from "../seo/metadata";
@@ -122,7 +121,6 @@ export function HomePage() {
 
       <SectionContainer className="bg-mist">
         <BlogRoadmap />
-        <MedicalDisclaimer className="mt-12" />
       </SectionContainer>
     </>
   );
