@@ -26,9 +26,10 @@
   --ease:cubic-bezier(0.25,0.46,0.45,0.94);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{background:var(--cream);color:var(--text-dark);font-family:var(--font-b);overflow-x:hidden}
-img,video{display:block;max-width:100%}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;max-width:100%;overflow-x:clip}
+body{background:var(--cream);color:var(--text-dark);font-family:var(--font-b);overflow-x:clip;max-width:100%;position:relative}
+@supports not (overflow-x:clip){html,body{overflow-x:hidden}}
+img,video,canvas,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 ul{list-style:none}
@@ -39,6 +40,7 @@ ul{list-style:none}
 /*  LAYOUT */
 .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
 .wrap-wide{max-width:1440px;margin:0 auto;padding:0 32px}
+.wrap,.wrap-wide,.container{box-sizing:border-box;max-width:100%}
 section,nav,footer{position:relative;z-index:1}
 
 /*  URGENCY BAR */
@@ -70,7 +72,7 @@ section,nav,footer{position:relative;z-index:1}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
 
-.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;pointer-events:none;z-index:0;max-width:100vw}
 .orb-cyan{background:var(--cyan)}
 .orb-violet{background:var(--violet)}
 .orb-1{animation:orbFloat1 12s ease-in-out infinite}
@@ -148,8 +150,8 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .mobile-start-links a:hover{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /*  HERO xxxxxxxxxxxxxxxxxxxxxxxxxxxx */
-#hero{min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--cream)}
-.hero-body{flex:1;display:flex;align-items:center;padding:120px 0 60px;position:relative;z-index:2;width:100%}
+#hero{min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--cream);contain:paint}
+.hero-body{flex:1;display:flex;align-items:center;padding:120px 0 60px;position:relative;z-index:2;width:100%;overflow:hidden;isolation:isolate}
 .hero-orb-1{width:500px;height:500px;top:-100px;left:-150px}
 .hero-orb-2{width:600px;height:600px;bottom:-100px;right:-200px}
 .hero-orb-3{width:200px;height:200px;top:40%;left:50%}
@@ -188,14 +190,15 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;font-family:var(--font-d)}
 /* Benefits strip */
 .hero-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--black);border-top:none;background:var(--white);overflow:hidden}
-.hero-benefit{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--font-d);font-size:12px;font-weight:800;font-style:italic;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,10,10,.42);padding:16px 22px;border-right:1px solid rgba(10,10,10,.14);min-height:56px;white-space:nowrap}
+.hero-benefit{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--font-d);font-size:12px;font-weight:800;font-style:italic;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,10,10,.42);padding:16px 22px;border-right:1px solid rgba(10,10,10,.14);min-height:56px;white-space:nowrap;min-width:0}
+.hero-benefit span:last-child{min-width:0;overflow-wrap:anywhere}
 .hero-benefit:last-child{border-right:none}
 .hero-benefit-dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#54b6ff,var(--violet),#e040fb);box-shadow:0 0 14px rgba(0,229,204,.38);flex-shrink:0}
 
 /*  PLATFORMS xxxxxxxxxxxxxxxxxxxxxxxx */
 #platforms{padding:56px 0;background:var(--black);overflow:hidden}
 .platforms-eyebrow{text-align:center;margin-bottom:34px;font-size:28px;letter-spacing:.18em;text-transform:uppercase;font-family:var(--font-d);font-weight:800;background:linear-gradient(90deg,var(--cyan),#4dbded,var(--violet),#e040fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.marquee-wrap{overflow:hidden;position:relative}
+.marquee-wrap{overflow:hidden;position:relative;max-width:100%;contain:paint}
 .marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
 .marquee-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent)}
 .marquee-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent)}
@@ -444,8 +447,8 @@ a[data-wa-link].btn-outline-white:hover{background:#25D366;color:var(--white);bo
 .product-preview-head{display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:34px;text-align:center;flex-direction:column}
 .product-preview-head .sec-hdr{margin:0 auto;max-width:760px}
 .product-preview-copy{max-width:440px;color:rgba(255,255,255,.62);font-size:16px;line-height:1.7;text-align:right}
-.product-preview-shell{position:relative}
-.product-preview-rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 54px)/4);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0 18px}
+.product-preview-shell{position:relative;max-width:100%;overflow:hidden;contain:paint}
+.product-preview-rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 54px)/4);gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0 18px;max-width:100%;min-width:0}
 .product-preview-rail::-webkit-scrollbar{display:none}
 .product-preview-card{position:relative;min-height:240px;scroll-snap-align:start;border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,rgba(0,229,204,.16),rgba(20,24,38,.96) 45%,rgba(155,89,255,.22));overflow:hidden;color:var(--white);display:flex;flex-direction:column;justify-content:space-between;padding:22px;transition:transform .28s var(--ease),border-color .28s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease);appearance:none;-webkit-appearance:none;text-align:left;cursor:pointer;font:inherit}
 .product-preview-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,8,.22),rgba(5,5,8,.88));opacity:1;z-index:1;transition:opacity .28s var(--ease)}
@@ -764,13 +767,14 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 
 /*  FIXED ELEMENTS xxxxxxxxxxxxxxxxxxxxxx */
 /* Premium WhatsApp action */
-#whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;min-width:146px;height:54px;padding:0 18px 0 16px;background:#25D366;color:var(--white);border:1px solid rgba(255,255,255,.22);border-radius:0;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 18px 50px rgba(37,211,102,.26);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .25s var(--ease),box-shadow .25s,transform .25s,border-color .25s}
+#whatsapp-btn{position:fixed;bottom:28px;right:max(18px,env(safe-area-inset-right));z-index:200;min-width:146px;max-width:calc(100vw - 36px);height:54px;padding:0 18px 0 16px;background:#25D366;color:var(--white);border:1px solid rgba(255,255,255,.22);border-radius:0;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 18px 50px rgba(37,211,102,.26);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .25s var(--ease),box-shadow .25s,transform .25s,border-color .25s}
 #whatsapp-btn::after{content:'';position:absolute;left:10px;right:10px;bottom:7px;height:2px;background:rgba(255,255,255,.72);opacity:.9}
 #whatsapp-btn:hover{background:#1ebe5d;color:var(--white);border-color:#25D366;box-shadow:0 18px 52px rgba(37,211,102,.48);transform:translateY(-2px)}
 #whatsapp-btn svg{width:22px;height:22px;fill:currentColor;flex-shrink:0}
-.wa-label{font-family:var(--font-d);font-size:14px;font-weight:800;font-style:italic;letter-spacing:.1em;text-transform:uppercase;line-height:1}
+body.discount-banner-visible #whatsapp-btn{bottom:176px}
+.wa-label{font-family:var(--font-d);font-size:14px;font-weight:800;font-style:italic;letter-spacing:.1em;text-transform:uppercase;line-height:1;white-space:nowrap}
 /* Scroll to top */
-#scroll-top{position:fixed;bottom:96px;right:28px;z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;border-radius:0;transition:background .25s,opacity .3s,transform .3s;opacity:0;pointer-events:none;transform:translateY(10px)}
+#scroll-top{position:fixed;bottom:96px;right:max(18px,env(safe-area-inset-right));z-index:200;width:44px;height:44px;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;border-radius:0;transition:background .25s,opacity .3s,transform .3s;opacity:0;pointer-events:none;transform:translateY(10px)}
 #scroll-top.visible{opacity:1;pointer-events:all;transform:none}
 #scroll-top:hover{background:var(--cyan);color:var(--black)}
 #vapi-widget{position:fixed;bottom:96px;left:28px;z-index:200}
@@ -782,9 +786,9 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
 .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
 /* Discount countdown banner */
-.discount-banner{position:fixed;left:0;right:0;bottom:92px;z-index:230;width:100%;background:#f5bf22;color:#070709;border-top:2px solid #070709;border-bottom:2px solid #070709;box-shadow:0 -8px 34px rgba(0,0,0,.28);transform:translateY(140%);opacity:0;pointer-events:none;transition:transform .32s var(--ease),opacity .32s var(--ease)}
+.discount-banner{position:fixed;left:0;right:0;bottom:92px;z-index:230;width:100%;max-width:100vw;box-sizing:border-box;background:#f5bf22;color:#070709;border-top:2px solid #070709;border-bottom:2px solid #070709;box-shadow:0 -8px 34px rgba(0,0,0,.28);transform:translateY(140%);opacity:0;pointer-events:none;transition:transform .32s var(--ease),opacity .32s var(--ease)}
 .discount-banner.visible{transform:translateY(0);opacity:1;pointer-events:auto}
-.discount-banner-inner{display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 18px;text-align:center;max-width:1180px;margin:0 auto}
+.discount-banner-inner{display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 18px;text-align:center;width:min(100%,1180px);max-width:100%;margin:0 auto;box-sizing:border-box}
 .discount-kicker,.discount-banner strong,.discount-banner a{font-family:var(--font-d);font-weight:800;text-transform:uppercase;letter-spacing:.1em}
 .discount-kicker{font-size:11px;color:#070709}
 .discount-banner strong{font-size:16px;font-style:italic;color:#070709}
@@ -923,6 +927,18 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .audit-bonus{grid-template-columns:1fr;padding:30px 24px}
   .mobile-sticky-cta{display:flex}
   body{padding-bottom:76px}
+  html,body{overflow-x:clip}
+  .wrap,.wrap-wide{max-width:100%;box-sizing:border-box}
+  .btn{max-width:100%;white-space:normal;text-align:center}
+  .urgency-inner{height:64px;min-height:64px;flex-wrap:wrap;align-content:center;justify-content:center;gap:6px 12px;padding:8px 12px}
+  .urgency-copy{flex:1 1 100%;text-align:center}
+  .urgency-link{margin-inline:auto;text-align:center}
+  .discount-banner{bottom:calc(98px + env(safe-area-inset-bottom));left:0;right:0;width:100%;max-width:100vw}
+  .discount-banner-inner{justify-content:center;align-items:center;text-align:center}
+  .discount-kicker,.discount-banner strong,.discount-countdown,.discount-banner a{margin-inline:auto;text-align:center}
+  .hero-orb-1{width:min(500px,112vw);height:min(500px,112vw);left:-28vw}
+  .hero-orb-2{width:min(520px,118vw);height:min(520px,118vw);right:-34vw}
+  .hero-orb-3{width:42vw;height:42vw;left:48%;max-width:180px;max-height:180px}
 }
 @media(max-width:480px){
   .hero-stats{grid-template-columns:repeat(2,1fr)}
@@ -931,6 +947,10 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .hero-benefit:nth-last-child(-n+2){border-bottom:1px solid var(--border-dark)}
   .hero-benefit:last-child{border-bottom:none}
   .wrap,.wrap-wide{padding:0 20px}
+  .hero-orb-1,.hero-orb-2{width:86vw;height:86vw;filter:blur(56px)}
+  .hero-orb-1{left:-34vw}
+  .hero-orb-2{right:-34vw}
+  .hero-orb-3{width:46vw;height:46vw;left:42%}
   .nav-inner{height:82px;padding:0 20px}
   .nav-logo img{height:88px;padding:10px 0}
   .nav-hamburger{right:20px}
@@ -951,17 +971,18 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
   .flagship-actions .btn{font-size:12px;min-height:44px}
   .flagship-info-panel{padding:18px 16px}
   .flagship-meta-item{padding:14px}
-  #whatsapp-btn{min-width:54px;width:54px;height:54px;padding:0;right:20px;bottom:22px}
+  #whatsapp-btn{min-width:52px;width:52px;height:52px;padding:0;right:max(12px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));gap:0}
   #whatsapp-btn::after{left:12px;right:12px}
   #whatsapp-btn .wa-label{display:none}
+  body.discount-banner-visible #whatsapp-btn{bottom:calc(232px + env(safe-area-inset-bottom))}
   .testimonials-grid{grid-template-columns:1fr}
   .urgency-copy{font-size:12px;letter-spacing:.04em}
   .urgency-link{font-size:11px}
-  .discount-banner{bottom:118px;width:100%}
+  .discount-banner{bottom:calc(112px + env(safe-area-inset-bottom));width:100%}
   .discount-banner-inner{flex-wrap:wrap;gap:8px 12px;padding:12px}
   .discount-banner strong{font-size:13px}
   .discount-countdown{font-size:18px;min-width:92px}
-  #nav{top:44px}
+  #nav{top:64px}
 }
 </style>
   <link rel="canonical" href="https://thefuturestudio.online/">
@@ -1595,7 +1616,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
         </ul>
         <div class="package-actions">
           <a href="./packages/starter/" class="btn btn-dark" data-en="Start This Package" data-es="Ver este paquete">Start This Package</a>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo firstu" data-es="?Prefiere ver una demo primero?">Prefer to see a demo firstu</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo first?" data-es="Prefiere ver una demo primero?">Prefer to see a demo first?</a>
         </div>
       </article>
       <article class="package-card">
@@ -1620,7 +1641,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
         </ul>
         <div class="package-actions">
           <a href="./packages/growth/" class="btn btn-dark" data-en="Start This Package" data-es="Ver este paquete">Start This Package</a>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo firstu" data-es="?Prefiere ver una demo primero?">Prefer to see a demo firstu</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo first?" data-es="Prefiere ver una demo primero?">Prefer to see a demo first?</a>
         </div>
       </article>
       <article class="package-card featured">
@@ -1642,7 +1663,7 @@ footer{background:var(--black);padding:56px 0 40px;color:var(--white)}
         </ul>
         <div class="package-actions">
           <a href="./packages/premium/" class="btn btn-grad" data-en="Start This Package" data-es="Ver este paquete">Start This Package</a>
-          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo firstu" data-es="?Prefiere ver una demo primero?">Prefer to see a demo firstu</a>
+          <a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="package-demo" data-en="Prefer to see a demo first?" data-es="Prefiere ver una demo primero?">Prefer to see a demo first?</a>
         </div>
       </article>
     </div>
@@ -2364,7 +2385,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '<p class="flagship-system-copy">'+(lang==='en'?'This page shows what the system does, who it helps, what it connects to, and how it can become part of your first package build.':'Esta pagina muestra que hace el sistema, a quien ayuda, con que se conecta y como puede formar parte de su primera implementacion.')+'</p>'+
         '<div class="flagship-actions">'+
           '<a href="'+s.url+'" class="btn btn-dark">'+(lang==='en'?'View System':'Ver sistema')+'</a>'+
-          '<a href="'+s.url+'" class="btn btn-grad">'+(lang==='en'?'Book AI Systems Demo':'Reservar demo de IA')+'</a>'+
+          '<a href="https://calendly.com/thefuturestudio-info/30min" target="_blank" rel="noopener" class="btn btn-grad">'+(lang==='en'?'Book AI Systems Demo':'Reservar demo de IA')+'</a>'+
         '</div>'+
       '</div>'+
       '<div class="flagship-info-panel">'+
@@ -2686,6 +2707,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var packagesSection=document.getElementById('packages');
       var show=packagesSection&&window.scrollY>(packagesSection.offsetTop+packagesSection.offsetHeight-180);
       discountBanner.classList.toggle('visible',!!show);
+      document.body.classList.toggle('discount-banner-visible',!!show);
     }
   }
   updateDiscountBanner();
