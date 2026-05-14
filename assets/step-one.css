@@ -888,6 +888,132 @@ body.step-one-dark .lead-fields label:nth-of-type(2){
 body.step-one-dark .lead-fields label:nth-of-type(2) .tfs-consent-line{
   margin-bottom:0;
 }
+
+/* Build calculator: numbered worksheet rows with the editable answer on the right. */
+#calculator .calculator-grid{
+  align-items:stretch;
+  grid-template-columns:minmax(0,1fr) minmax(380px,.78fr);
+}
+#calculator .calc-form{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+#calculator .calc-form .field-grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  border:1px solid rgba(255,255,255,.16);
+  counter-reset:calcQuestion;
+}
+#calculator .calc-form .field{
+  display:grid;
+  grid-template-columns:56px minmax(280px,1fr) minmax(200px,280px);
+  grid-template-areas:
+    "num title input"
+    "num help input";
+  column-gap:24px;
+  row-gap:8px;
+  align-items:center;
+  min-height:108px;
+  padding:20px 26px;
+  border-right:0!important;
+  border-bottom:1px solid rgba(255,255,255,.14)!important;
+  counter-increment:calcQuestion;
+}
+#calculator .calc-form .field::before{
+  grid-area:num;
+  content:counter(calcQuestion, decimal-leading-zero);
+  font-family:var(--font-d);
+  font-size:30px;
+  font-weight:900;
+  font-style:italic;
+  line-height:1;
+  background:linear-gradient(135deg,var(--cyan),#43b8ff,var(--violet));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+#calculator .calc-form .field:last-child{
+  border-bottom:0!important;
+}
+#calculator .calc-form .field span{
+  grid-area:title;
+  margin:0 0 8px;
+  font-size:14px;
+}
+#calculator .calc-form .field input{
+  grid-area:input;
+  margin:0;
+  width:100%;
+  height:58px;
+  justify-self:end;
+}
+#calculator .calc-form .field small{
+  grid-area:help;
+  min-height:0;
+  margin:0;
+  max-width:720px;
+  line-height:1.45;
+}
+#calculator .calc-form .field .answer-format{
+  display:inline;
+  margin-right:8px;
+  font:inherit;
+  font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),#43b8ff,var(--violet));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+@media(max-width:1024px){
+  #calculator .calculator-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:760px){
+  #calculator .calc-form .field-grid{
+    grid-auto-rows:auto;
+  }
+  #calculator .calc-form .field{
+    grid-template-columns:42px minmax(0,1fr);
+    grid-template-areas:
+      "num title"
+      "num help"
+      ". input";
+    gap:14px;
+    min-height:0;
+    padding:20px;
+  }
+  #calculator .calc-form .field input{
+    grid-column:2;
+    justify-self:stretch;
+    margin-top:8px;
+  }
+  #calculator .calc-form .field small{
+    min-height:0;
+  }
+}
+@media(max-width:430px){
+  #calculator .calc-form .field{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "num"
+      "title"
+      "help"
+      "input";
+  }
+  #calculator .calc-form .field::before{
+    width:34px;
+    height:34px;
+  }
+  #calculator .calc-form .field input{
+    grid-column:auto;
+  }
+}
 body.step-one-dark .tool-shell > .lead-gate{
   padding-bottom:118px;
 }

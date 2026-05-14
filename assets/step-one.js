@@ -248,7 +248,9 @@
           items: [
             `${number.format(latest.missedMonthly || 0)} missed or delayed enquiries per month.`,
             `${number.format(latest.lostClients || 0)} potential clients lost from the current flow.`,
-            `${money.format(latest.adminCost || 0)} in monthly admin cost that may be reduced or redirected.`,
+            `${money.format(latest.followupLoss || 0)} in follow-up, after-hours, and scattered-tool leakage.`,
+            `${money.format(latest.delayAndBookingLoss || 0)} in delay, no-show, and reschedule leakage.`,
+            `${money.format(latest.adminCost || 0)} in repetitive admin, repeated-question, and handoff cost that may be reduced or redirected.`,
           ],
         },
         {
@@ -559,13 +561,30 @@
       const conversion = read("conversion");
       const adminHours = read("adminHours");
       const adminRate = read("adminRate");
+      const responseDelay = read("responseDelay");
+      const followupGap = read("followupGap");
+      const noShowRate = read("noShowRate");
+      const repeatAdmin = read("repeatAdmin");
+      const afterHoursShare = read("afterHoursShare");
+      const toolScatter = read("toolScatter");
+      const repeatQuestions = read("repeatQuestions");
+      const followupTouches = read("followupTouches");
+      const handoffPeople = read("handoffPeople");
 
       const monthlyInquiries = daily * 30;
       const missedMonthly = monthlyInquiries * (missed / 100);
       const lostClients = missedMonthly * (conversion / 100);
       const revenueLost = lostClients * value;
-      const adminCost = adminHours * 4 * adminRate;
-      const monthlyOpportunity = revenueLost + adminCost;
+      const repeatQuestionCost = monthlyInquiries * (repeatQuestions / 100) * (4 / 60) * adminRate;
+      const handoffCost = monthlyInquiries * Math.min(followupTouches, 8) * Math.max(handoffPeople, 1) * (2 / 60) * adminRate;
+      const adminCost = (adminHours * 4 * adminRate * (repeatAdmin / 100)) + repeatQuestionCost + handoffCost;
+      const afterHoursLoss = monthlyInquiries * (afterHoursShare / 100) * (conversion / 100) * value * 0.18;
+      const toolScatterLoss = monthlyInquiries * (toolScatter / 100) * (conversion / 100) * value * 0.15;
+      const followupLoss = (monthlyInquiries * (followupGap / 100) * (conversion / 100) * value * 0.35) + afterHoursLoss + toolScatterLoss;
+      const delayLoss = monthlyInquiries * Math.min(responseDelay / 24, 1) * 0.08 * (conversion / 100) * value;
+      const bookingLoss = monthlyInquiries * (conversion / 100) * (noShowRate / 100) * value * 0.5;
+      const delayAndBookingLoss = delayLoss + bookingLoss;
+      const monthlyOpportunity = revenueLost + adminCost + followupLoss + delayAndBookingLoss;
       const annualOpportunity = monthlyOpportunity * 12;
       latest = {
         daily,
@@ -574,11 +593,28 @@
         conversion,
         adminHours,
         adminRate,
+        responseDelay,
+        followupGap,
+        noShowRate,
+        repeatAdmin,
+        afterHoursShare,
+        toolScatter,
+        repeatQuestions,
+        followupTouches,
+        handoffPeople,
         monthlyInquiries,
         missedMonthly,
         lostClients,
         revenueLost,
         adminCost,
+        repeatQuestionCost,
+        handoffCost,
+        afterHoursLoss,
+        toolScatterLoss,
+        followupLoss,
+        delayLoss,
+        bookingLoss,
+        delayAndBookingLoss,
         monthlyOpportunity,
         annualOpportunity,
       };
@@ -587,6 +623,8 @@
       setText("[data-lost-clients]", number.format(lostClients));
       setText("[data-revenue-lost]", money.format(revenueLost));
       setText("[data-admin-cost]", money.format(adminCost));
+      setText("[data-followup-loss]", money.format(followupLoss));
+      setText("[data-delay-loss]", money.format(delayAndBookingLoss));
       setText("[data-monthly-opportunity]", money.format(monthlyOpportunity));
       setText("[data-annual-opportunity]", money.format(annualOpportunity));
     }

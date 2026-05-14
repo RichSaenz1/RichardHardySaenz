@@ -75,7 +75,7 @@ footer .footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 footer .footer-col a{color:rgba(255,255,255,.72);text-decoration:none}
 footer .footer-col a:hover{color:var(--cyan,#00e5cc)}
 footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;color:rgba(255,255,255,.55)}
-.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-family:var(--font-d,Impact,sans-serif)!important;font-size:clamp(72px,11vw,160px)!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important;line-height:.88!important;letter-spacing:-.01em!important;margin:0 0 36px!important;max-width:1100px}
+.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-family:var(--font-d,Impact,sans-serif)!important;font-size:clamp(72px,11vw,160px)!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important;line-height:.88!important;letter-spacing:-.01em!important;margin:0 0 36px!important;max-width:1100px;overflow:visible;padding:0 .08em .08em .08em;transform:translateX(-.08em)}
 .hero .eyebrow,#hero .eyebrow{letter-spacing:.32em;text-transform:uppercase;font-weight:800}
 .hero .body,#hero .body{font-size:clamp(17px,1.6vw,20px);line-height:1.75}
 .hero .actions,#hero .actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
@@ -83,6 +83,40 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
 @media(max-width:900px){#nav .nav-links,#nav .nav-actions{display:none}#nav .nav-hamburger{display:flex}#nav .nav-inner{height:88px;padding:0 18px;justify-content:flex-end}#nav .nav-logo img{height:92px;padding:10px 0}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(58px,15vw,96px)!important}.hero .actions .btn,#hero .actions .btn{width:100%;justify-content:center}}
 @media(max-width:640px){.urgency-inner{height:40px;gap:10px}.urgency-copy{font-size:11px;letter-spacing:.04em}.urgency-link{font-size:10px}#nav{top:40px}#nav .nav-mobile{max-height:calc(100vh - 82px);overflow-y:auto;padding:14px 20px 24px}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(50px,17vw,82px)!important;line-height:.9!important}footer .footer-inner{grid-template-columns:1fr;text-align:center}footer .footer-tagline{margin-left:auto;margin-right:auto}footer .footer-bottom{justify-content:center;text-align:center}}
 @media(min-width:641px) and (max-width:980px){footer .footer-inner{grid-template-columns:1fr 1fr}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(68px,12vw,118px)!important}}
+</style>
+
+<style id="learn-hero-headline-fit">
+/* Fit page only: keep italic gradient words from clipping at the hero edge. */
+.hero .hero-copy{
+  overflow:visible;
+}
+.hero h1{
+  box-sizing:border-box;
+  max-width:min(1040px,100%)!important;
+  padding-right:.24em!important;
+}
+.hero h1 .accent{
+  display:inline-block;
+  padding-right:.16em;
+  margin-right:-.04em;
+}
+@media(max-width:900px){
+  .hero h1{
+    font-size:clamp(54px,14vw,88px)!important;
+    line-height:.94!important;
+    padding-right:.32em!important;
+  }
+  .hero h1 .accent{
+    padding-right:.24em;
+  }
+}
+@media(max-width:640px){
+  .hero h1{
+    font-size:clamp(48px,14.5vw,74px)!important;
+    line-height:.96!important;
+    padding-right:.36em!important;
+  }
+}
 </style>
 
 </head>

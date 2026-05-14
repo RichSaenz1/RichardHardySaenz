@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../assets/funnel/funnel-shell.css?v=6">
-  <link rel="stylesheet" href="../../../assets/step-one.css?v=13">
+  <link rel="stylesheet" href="../../../assets/step-one.css?v=17">
   <link rel="canonical" href="https://thefuturestudio.online/funnel/step-1/build/">
   <meta property="og:title" content="Business Revenue Calculator | The Future Studio">
   <meta property="og:description" content="Use the first-step business revenue calculator to estimate what missed enquiries and manual admin are costing each month.">
@@ -75,7 +75,7 @@ footer .footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 footer .footer-col a{color:rgba(255,255,255,.72);text-decoration:none}
 footer .footer-col a:hover{color:var(--cyan,#00e5cc)}
 footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;color:rgba(255,255,255,.55)}
-.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-family:var(--font-d,Impact,sans-serif)!important;font-size:clamp(72px,11vw,160px)!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important;line-height:.88!important;letter-spacing:-.01em!important;margin:0 0 36px!important;max-width:1100px}
+.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-family:var(--font-d,Impact,sans-serif)!important;font-size:clamp(72px,11vw,160px)!important;font-weight:800!important;font-style:italic!important;text-transform:uppercase!important;line-height:.88!important;letter-spacing:-.01em!important;margin:0 0 36px!important;max-width:1100px;overflow:visible;padding:0 .08em .08em .08em;transform:translateX(-.08em)}
 .hero .eyebrow,#hero .eyebrow{letter-spacing:.32em;text-transform:uppercase;font-weight:800}
 .hero .body,#hero .body{font-size:clamp(17px,1.6vw,20px);line-height:1.75}
 .hero .actions,#hero .actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
@@ -83,6 +83,40 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
 @media(max-width:900px){#nav .nav-links,#nav .nav-actions{display:none}#nav .nav-hamburger{display:flex}#nav .nav-inner{height:88px;padding:0 18px;justify-content:flex-end}#nav .nav-logo img{height:92px;padding:10px 0}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(58px,15vw,96px)!important}.hero .actions .btn,#hero .actions .btn{width:100%;justify-content:center}}
 @media(max-width:640px){.urgency-inner{height:40px;gap:10px}.urgency-copy{font-size:11px;letter-spacing:.04em}.urgency-link{font-size:10px}#nav{top:40px}#nav .nav-mobile{max-height:calc(100vh - 82px);overflow-y:auto;padding:14px 20px 24px}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(50px,17vw,82px)!important;line-height:.9!important}footer .footer-inner{grid-template-columns:1fr;text-align:center}footer .footer-tagline{margin-left:auto;margin-right:auto}footer .footer-bottom{justify-content:center;text-align:center}}
 @media(min-width:641px) and (max-width:980px){footer .footer-inner{grid-template-columns:1fr 1fr}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(68px,12vw,118px)!important}}
+</style>
+
+<style id="build-hero-headline-fit">
+/* Build page only: keep italic gradient words from clipping at the hero edge. */
+.hero .hero-copy{
+  overflow:visible;
+}
+.hero h1{
+  box-sizing:border-box;
+  max-width:min(1040px,100%)!important;
+  padding-right:.24em!important;
+}
+.hero h1 .accent{
+  display:inline-block;
+  padding-right:.16em;
+  margin-right:-.04em;
+}
+@media(max-width:900px){
+  .hero h1{
+    font-size:clamp(54px,14vw,88px)!important;
+    line-height:.94!important;
+    padding-right:.32em!important;
+  }
+  .hero h1 .accent{
+    padding-right:.24em;
+  }
+}
+@media(max-width:640px){
+  .hero h1{
+    font-size:clamp(48px,14.5vw,74px)!important;
+    line-height:.96!important;
+    padding-right:.36em!important;
+  }
+}
 </style>
 
 </head>
@@ -211,34 +245,79 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
           </div>
           <div class="field-grid">
             <label class="field">
-              <span>Average inbound calls or enquiries per day</span>
+              <span>How many new enquiries do you get each day?</span>
               <input name="daily" type="number" min="0" value="15">
-              <small>Calls, WhatsApp, forms, and emails.</small>
+              <small><b class="answer-format">Answer: number per day</b> Count calls, WhatsApp messages, forms, emails, and DMs.</small>
             </label>
             <label class="field">
-              <span>Average client value</span>
+              <span>How much is one new client usually worth?</span>
               <input name="value" type="number" min="0" value="180">
-              <small>What a new client usually spends first.</small>
+              <small><b class="answer-format">Answer: dollars</b> Use what a client normally spends when they first buy or book.</small>
             </label>
             <label class="field">
-              <span>Missed or unanswered enquiries</span>
+              <span>How many enquiries do not get a proper reply?</span>
               <input name="missed" type="number" min="0" max="100" value="22">
-              <small>Percentage you miss, delay, or fail to follow up.</small>
+              <small><b class="answer-format">Answer: percentage</b> Estimate the share that are missed, answered late, or forgotten.</small>
             </label>
             <label class="field">
-              <span>Current conversion rate</span>
+              <span>How many enquiries turn into paying clients?</span>
               <input name="conversion" type="number" min="0" max="100" value="30">
-              <small>Out of 100 enquiries, how many become clients?</small>
+              <small><b class="answer-format">Answer: percentage</b> If 30 out of 100 become clients, enter 30.</small>
             </label>
             <label class="field">
-              <span>Admin hours per week</span>
+              <span>How many hours does your team spend on admin each week?</span>
               <input name="adminHours" type="number" min="0" value="8">
-              <small>Scheduling, reminding, replying, checking.</small>
+              <small><b class="answer-format">Answer: hours per week</b> Include scheduling, reminders, replies, checking, and updates.</small>
             </label>
             <label class="field">
-              <span>Hourly admin cost</span>
+              <span>What does one hour of admin time cost?</span>
               <input name="adminRate" type="number" min="0" value="6.5" step="0.5">
-              <small>Include salary, owner time, or outsourced support.</small>
+              <small><b class="answer-format">Answer: dollars per hour</b> Include staff time, owner time, or outsourced help.</small>
+            </label>
+            <label class="field">
+              <span>How long do new leads wait for a real reply?</span>
+              <input name="responseDelay" type="number" min="0" value="6" step="0.5">
+              <small><b class="answer-format">Answer: hours</b> Use the usual wait time before someone responds properly.</small>
+            </label>
+            <label class="field">
+              <span>How many leads never get followed up?</span>
+              <input name="followupGap" type="number" min="0" max="100" value="35">
+              <small><b class="answer-format">Answer: percentage</b> Estimate the share that do not receive a second message, call, or reminder.</small>
+            </label>
+            <label class="field">
+              <span>How many booked calls or appointments fall through?</span>
+              <input name="noShowRate" type="number" min="0" max="100" value="12">
+              <small><b class="answer-format">Answer: percentage</b> Include no-shows, late cancellations, and messy reschedules.</small>
+            </label>
+            <label class="field">
+              <span>How much of your admin is the same task repeated?</span>
+              <input name="repeatAdmin" type="number" min="0" max="100" value="60">
+              <small><b class="answer-format">Answer: percentage</b> Think of repeated replies, reminders, copying info, and status updates.</small>
+            </label>
+            <label class="field">
+              <span>How many enquiries arrive when nobody is available?</span>
+              <input name="afterHoursShare" type="number" min="0" max="100" value="25">
+              <small><b class="answer-format">Answer: percentage</b> Include evenings, weekends, busy hours, and holidays.</small>
+            </label>
+            <label class="field">
+              <span>How many leads are spread across different places?</span>
+              <input name="toolScatter" type="number" min="0" max="100" value="40">
+              <small><b class="answer-format">Answer: percentage</b> Count leads split between WhatsApp, email, forms, spreadsheets, CRM, and social DMs.</small>
+            </label>
+            <label class="field">
+              <span>How many leads ask the same basic questions?</span>
+              <input name="repeatQuestions" type="number" min="0" max="100" value="45">
+              <small><b class="answer-format">Answer: percentage</b> Include pricing, availability, services, location, process, and next-step questions.</small>
+            </label>
+            <label class="field">
+              <span>How many follow-up messages does each lead need?</span>
+              <input name="followupTouches" type="number" min="0" value="2" step="0.5">
+              <small><b class="answer-format">Answer: number per lead</b> Count reminders, nudges, confirmations, and check-ins.</small>
+            </label>
+            <label class="field">
+              <span>How many people touch a lead before the next step?</span>
+              <input name="handoffPeople" type="number" min="0" value="2">
+              <small><b class="answer-format">Answer: number of people</b> Count the people involved before a lead is booked, quoted, or closed.</small>
             </label>
           </div>
         </form>
@@ -264,8 +343,16 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
               <strong data-revenue-lost>$0</strong>
             </div>
             <div class="result-box">
-              <span>Monthly admin cost</span>
+              <span>Automatable admin cost</span>
               <strong data-admin-cost>$0</strong>
+            </div>
+            <div class="result-box">
+              <span>Follow-up leakage</span>
+              <strong data-followup-loss>$0</strong>
+            </div>
+            <div class="result-box">
+              <span>Delay and booking leakage</span>
+              <strong data-delay-loss>$0</strong>
             </div>
             <div class="result-box total">
               <span>Total monthly opportunity</span>
@@ -338,6 +425,6 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
   <script src="../../../assets/funnel/lang-toggle.js?v=3" defer></script>
   <script src="../../../assets/funnel/floating-ui.js?v=3" defer></script>
   <script src="../../../assets/lead-capture.js?v=3" defer></script>
-  <script src="../../../assets/step-one.js?v=8" defer></script>
+  <script src="../../../assets/step-one.js?v=10" defer></script>
 </body>
 </html>

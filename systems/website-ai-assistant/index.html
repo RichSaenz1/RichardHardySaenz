@@ -228,6 +228,99 @@ footer .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba
 @media(min-width:641px) and (max-width:980px){footer .footer-inner{grid-template-columns:1fr 1fr}.hero .hxl,.hero .headline-xl,.hero .hero-title,.hero .display,.hero .headline-lg,.hero h1,#hero .hxl,#hero .headline-xl,#hero .hero-title,#hero .display,#hero .headline-lg,#hero h1{font-size:clamp(68px,12vw,118px)!important}}
 </style>
 
+<style id="tfs-hero-headline-fit">
+/* Site-wide hero safety: prevents oversized italic/gradient display words from clipping at text edges. */
+.hero,
+#hero,
+.hero-grid,
+.hero-copy,
+.hero-panel{
+  overflow:visible!important;
+}
+.hero h1,
+#hero h1,
+.hero .hxl,
+.hero .headline-xl,
+.hero .headline-lg,
+.hero .hero-title,
+.hero .hero-h1,
+#hero .hxl,
+#hero .headline-xl,
+#hero .headline-lg,
+#hero .hero-title,
+#hero .hero-h1{
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  max-width:min(1120px,100%)!important;
+  padding-left:.03em!important;
+  padding-right:.24em!important;
+  padding-bottom:.08em!important;
+}
+.hero h1 .grad,
+.hero h1 .accent,
+.hero .hero-title .grad,
+.hero .hero-title .accent,
+.hero .hero-h1 .grad,
+.hero .hero-h1 .accent,
+.hero .hxl .grad,
+.hero .hxl .accent,
+#hero h1 .grad,
+#hero h1 .accent,
+#hero .hxl .grad,
+#hero .hxl .accent{
+  display:inline-block;
+  padding-right:.16em;
+  margin-right:-.04em;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+@media(max-width:900px){
+  .hero h1,
+  #hero h1,
+  .hero .hxl,
+  .hero .headline-xl,
+  .hero .headline-lg,
+  .hero .hero-title,
+  .hero .hero-h1,
+  #hero .hxl,
+  #hero .headline-xl,
+  #hero .headline-lg,
+  #hero .hero-title,
+  #hero .hero-h1{
+    padding-right:.32em!important;
+  }
+  .hero h1 .grad,
+  .hero h1 .accent,
+  .hero .hero-title .grad,
+  .hero .hero-title .accent,
+  .hero .hero-h1 .grad,
+  .hero .hero-h1 .accent,
+  .hero .hxl .grad,
+  .hero .hxl .accent,
+  #hero h1 .grad,
+  #hero h1 .accent,
+  #hero .hxl .grad,
+  #hero .hxl .accent{
+    padding-right:.24em;
+  }
+}
+@media(max-width:640px){
+  .hero h1,
+  #hero h1,
+  .hero .hxl,
+  .hero .headline-xl,
+  .hero .headline-lg,
+  .hero .hero-title,
+  .hero .hero-h1,
+  #hero .hxl,
+  #hero .headline-xl,
+  #hero .headline-lg,
+  #hero .hero-title,
+  #hero .hero-h1{
+    padding-right:.36em!important;
+  }
+}
+</style>
 </head><body>
 <div class="urgency-bar">
   <div class="urgency-inner">
