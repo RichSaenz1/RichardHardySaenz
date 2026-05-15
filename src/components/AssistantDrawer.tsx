@@ -208,7 +208,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
       aria-labelledby="assistant-title"
     >
       <div
-        className="absolute inset-x-3 bottom-3 max-h-[calc(100vh-1.5rem)] overflow-y-auto rounded-[1.65rem] border border-white/70 bg-white shadow-[0_30px_100px_rgba(6,27,51,0.22)] md:bottom-5 md:left-auto md:right-5 md:top-5 md:w-[min(31rem,calc(100vw-2.5rem))]"
+        className="absolute inset-x-3 bottom-3 max-h-[calc(100vh-1.5rem)] overflow-y-auto rounded-[1.65rem] border border-white/70 bg-white shadow-[0_30px_100px_rgba(6,27,51,0.22)] md:bottom-5 md:left-5 md:right-auto md:top-5 md:w-[min(31rem,calc(100vw-2.5rem))]"
         ref={drawerRef}
       >
         <div className="sticky top-0 z-10 border-b border-white/20 bg-navy px-5 py-4 text-white">
@@ -262,7 +262,7 @@ export function AssistantDrawer({ open, onClose }: AssistantDrawerProps) {
                 className={cn(
                   "rounded-full border px-3 py-2 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan",
                   concern === action.concern
-                    ? "border-gold bg-white text-navy shadow-sm"
+                    ? "border-navy bg-white text-navy shadow-sm"
                     : "border-borderblue bg-white/78 text-muted hover:border-cyan hover:text-navy",
                 )}
               >

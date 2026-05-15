@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 164" role="img" aria-labelledby="title desc">
+  <title id="title">Dr. Carlos A. Brugiati UroPanama</title>
+  <desc id="desc">Approved horizontal specialist seal logo lockup.</desc>
+  <defs>
+    <style>
+      .navy{fill:#0D2B45}.blue{fill:#0B5CAD}.line{stroke:#0D2B45}.blueLine{stroke:#0B5CAD}
+      .serif{font-family:Newsreader,Georgia,serif}.sans{font-family:Inter,Arial,sans-serif}
+    </style>
+  </defs>
+  <g transform="translate(18 18)">
+    <circle cx="64" cy="64" r="60" fill="#fff" class="line" stroke-width="2.4"/>
+    <circle cx="64" cy="64" r="50" fill="none" class="line" stroke-width="1.1"/>
+    <circle cx="64" cy="64" r="35" fill="none" class="line" stroke-width="1"/>
+    <text x="64" y="30" text-anchor="middle" class="navy sans" font-size="9" font-weight="700" letter-spacing="4">UROLOGIA</text>
+    <text x="64" y="106" text-anchor="middle" class="navy sans" font-size="12" font-weight="700" letter-spacing="6">PANAMA</text>
+    <circle cx="22" cy="72" r="3.2" class="navy"/>
+    <circle cx="106" cy="72" r="3.2" class="navy"/>
+    <text x="64" y="82" text-anchor="middle" class="navy serif" font-size="62" font-weight="600" letter-spacing="-8">CB</text>
+  </g>
+  <line x1="158" y1="36" x2="158" y2="128" class="line" stroke-width="1.2" opacity=".28"/>
+  <text x="190" y="76" class="navy serif" font-size="48" font-weight="500" letter-spacing="-1.2">Dr. Carlos A. Brugiati</text>
+  <text x="202" y="120" class="blue sans" font-size="22" font-weight="700" letter-spacing="22">UROPANAMA</text>
+</svg>

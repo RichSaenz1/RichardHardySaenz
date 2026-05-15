@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+  <rect width="900" height="620" fill="#F5F7F9"/>
+  <path d="M90 430h720v64H90z" fill="#0D2B45" opacity=".12"/>
+  <path d="M138 420h205V178h-92v-48H138z" fill="#fff" stroke="#D5E8F2"/>
+  <path d="M370 420h392V128H370z" fill="#fff" stroke="#D5E8F2"/>
+  <path d="M406 176h320M406 234h320M406 292h320M406 350h320" stroke="#D5E8F2" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="248" cy="274" r="50" fill="#5B9EC9" opacity=".22"/>
+  <path d="M248 234v80M208 274h80" stroke="#1B6B9A" stroke-width="18" stroke-linecap="round"/>
+  <text x="450" y="536" text-anchor="middle" fill="#0D2B45" font-family="Inter,Arial" font-size="34" font-weight="700">Pacifica Salud Costa del Este</text>
+</svg>

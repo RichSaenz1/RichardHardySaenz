@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { imageAssets } from "../data/images";
 import { specialtyVisuals } from "../data/pageVisuals";
 import {
   specialtyRouteByKey,
@@ -24,7 +25,6 @@ import { getWhatsAppHref } from "../lib/whatsapp";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
 import { CTAButton } from "../components/shared/CTAButton";
 import { FAQAccordion } from "../components/shared/FAQAccordion";
-import { ImageCard } from "../components/shared/ImageCard";
 import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
 import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
@@ -48,6 +48,17 @@ const specialtySeoKey: Record<SpecialtyKey, SeoPageKey> = {
   saludMasculina: "saludMasculina",
   segundaOpinion: "segundaOpinion",
   ureteroscopia: "ureteroscopia",
+};
+
+const specialtyHeroImages: Record<SpecialtyKey, (typeof imageAssets)[keyof typeof imageAssets]> = {
+  prostata: imageAssets.bluegatiProstateHero,
+  calculosRenales: imageAssets.bluegatiKidneyStonesHero,
+  uroOncologia: imageAssets.bluegatiUroOncologyHero,
+  endourologia: imageAssets.bluegatiEndourologyHero,
+  cirugiaLaparoscopica: imageAssets.bluegatiLaparoscopyHero,
+  saludMasculina: imageAssets.bluegatiMensHealthHero,
+  segundaOpinion: imageAssets.bluegatiSecondOpinionHero,
+  ureteroscopia: imageAssets.bluegatiUreteroscopyHero,
 };
 
 export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
@@ -87,7 +98,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
         title={page.title}
         subtitle={page.subtitle}
         intro={page.intro}
-        image={visuals.image}
+        image={specialtyHeroImages[pageKey]}
         actions={
           <>
             <CTAButton
@@ -126,29 +137,7 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
       )}
 
       <SectionContainer className="bg-white">
-        <div className="grid items-stretch gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-5 lg:h-full">
-            <ImageCard
-              image={visuals.accent}
-              className="h-[360px] lg:h-full lg:min-h-[660px]"
-            />
-            {page.urgent && (
-              <aside className="flex gap-3 rounded-[1.25rem] border border-red-100 bg-red-50/70 p-5 text-sm leading-7 text-muted shadow-sm">
-                <AlertTriangle
-                  aria-hidden="true"
-                  className="mt-0.5 h-5 w-5 flex-none text-red-500"
-                />
-                <div>
-                  <p className="font-semibold text-navy">
-                    {page.urgentTitle ?? copy.common.urgent}
-                  </p>
-                  <p className="mt-1">{page.urgent}</p>
-                </div>
-              </aside>
-            )}
-          </div>
-
-          <div className="grid h-full content-stretch gap-6">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
             <article className="premium-card flex flex-col justify-center rounded-[1.6rem] p-7 sm:p-9">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
                 {copy.common.overview}
@@ -180,7 +169,20 @@ export function SpecialtyDetailPage({ pageKey }: SpecialtyDetailPageProps) {
                 ))}
               </div>
             </article>
-          </div>
+            {page.urgent && (
+              <aside className="premium-card flex gap-3 rounded-[1.6rem] border-red-100 bg-red-50/70 p-7 text-sm leading-7 text-muted shadow-sm lg:col-span-2">
+                <AlertTriangle
+                  aria-hidden="true"
+                  className="mt-0.5 h-5 w-5 flex-none text-red-500"
+                />
+                <div>
+                  <p className="font-semibold text-navy">
+                    {page.urgentTitle ?? copy.common.urgent}
+                  </p>
+                  <p className="mt-1">{page.urgent}</p>
+                </div>
+              </aside>
+            )}
         </div>
       </SectionContainer>
 

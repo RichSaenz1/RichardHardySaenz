@@ -1,28 +1,49 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { BadgeCheck, Quote, ShieldCheck, Sparkles } from "lucide-react";
+import { BadgeCheck, Quote, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { useLanguage } from "../../i18n/LanguageContext";
 
 const trustIcons = [BadgeCheck, ShieldCheck, Sparkles];
 
+const reviewCopy = {
+  es: {
+    label: "Testimonios",
+    source:
+      "HuliHealth muestra una calificacion publica de 5.0 basada en 155 opiniones de pacientes. El texto individual de las resenas no esta disponible publicamente.",
+    patient: "Paciente verificado",
+    body:
+      "Opinion de cinco estrellas registrada en HuliHealth. El texto completo se incorporara cuando exista autorizacion o exportacion verificable.",
+  },
+  en: {
+    label: "Testimonials",
+    source:
+      "HuliHealth shows a public 5.0 rating based on 155 patient reviews. Individual review text is not publicly available.",
+    patient: "Verified patient",
+    body:
+      "Five-star review registered on HuliHealth. Full text will be added once authorization or a verifiable export is available.",
+  },
+} as const;
+
 export function TrustReputation() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const reduceMotion = useReducedMotion();
+  const reviews = Array.from({ length: 10 }, (_, index) => index + 1);
+  const review = reviewCopy[language] ?? reviewCopy.es;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-      <div className="max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-medical">
+    <div className="space-y-12">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
           {t.home.authority.eyebrow}
         </p>
-        <h2 className="mt-5 font-heading text-5xl leading-[0.95] text-navy text-balance lg:text-[4.25rem]">
+        <h2 className="mx-auto mt-5 max-w-4xl font-heading text-5xl leading-[0.98] text-navy text-balance lg:text-[4.25rem]">
           {t.home.authority.title}
         </h2>
-        <p className="mt-7 text-lg leading-[1.75] text-muted">
+        <p className="mx-auto mt-7 max-w-3xl text-lg leading-[1.75] text-muted">
           {t.home.authority.body}
         </p>
       </div>
 
-      <div className="grid items-stretch gap-4 md:grid-cols-3 lg:grid-cols-1">
+      <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
         {t.home.authority.stats.map(([value, label, note], index) => {
           const Icon = trustIcons[index] ?? BadgeCheck;
 
@@ -33,47 +54,48 @@ export function TrustReputation() {
               whileInView={reduceMotion ? undefined : { y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="relative h-full min-h-[190px] overflow-hidden rounded-[1.35rem] border border-borderblue bg-white p-5 shadow-[0_22px_70px_rgba(6,27,51,0.075)] sm:p-6 lg:min-h-0"
+              className="brugiati-card group h-full p-6 text-center"
             >
-              <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-medical via-cyan to-gold opacity-80" />
-              <div className="flex h-full flex-col items-start gap-4 lg:flex-row">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-2xl border border-borderblue bg-softblue text-navy">
-                  <Icon aria-hidden="true" className="h-5 w-5" />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-heading text-3xl leading-none text-navy lg:text-4xl">
-                    {value}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold leading-5 text-navy">
-                    {label}
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-muted">{note}</p>
-                </div>
-              </div>
+              <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-borderblue bg-softblue text-navy transition group-hover:bg-navy group-hover:text-white">
+                <Icon aria-hidden="true" className="h-5 w-5" />
+              </span>
+              <p className="mt-5 font-heading text-4xl leading-none text-navy">
+                {value}
+              </p>
+              <p className="mt-2 text-sm font-semibold leading-5 text-navy">
+                {label}
+              </p>
+              <p className="mt-2 text-xs leading-5 text-muted">{note}</p>
             </motion.article>
           );
         })}
       </div>
 
-      <div className="lg:col-span-2">
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
-            {t.home.authority.reviewsTitle}
+      <div>
+        <div className="mx-auto mb-6 max-w-3xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
+            {review.label}
           </p>
-          <div className="fine-divider h-px flex-1" />
+          <p className="mt-3 text-sm leading-6 text-muted">{review.source}</p>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {t.home.authority.reviews.map(([title, body, note]) => (
+        <div className="flex w-full max-w-full snap-x gap-4 overflow-x-auto px-0 pb-4">
+          {reviews.map((number) => (
             <article
-              key={title}
-              className="rounded-[1.25rem] border border-borderblue bg-white/80 p-6 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur"
+              key={number}
+              className="brugiati-card min-w-[18rem] snap-start p-6 md:min-w-[22rem]"
             >
-              <Quote aria-hidden="true" className="h-5 w-5 text-gold" />
-              <h3 className="mt-4 text-base font-semibold text-navy">{title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted">{body}</p>
-              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-medical">
-                {note}
-              </p>
+              <div className="flex items-center justify-between gap-4">
+                <Quote aria-hidden="true" className="h-5 w-5 text-medical" />
+                <div className="flex gap-0.5 text-gold" aria-label="5 estrellas">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star key={index} aria-hidden="true" className="h-3.5 w-3.5 fill-current" />
+                  ))}
+                </div>
+              </div>
+              <h3 className="mt-5 text-base font-semibold text-navy">
+                {review.patient} {String(number).padStart(2, "0")}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{review.body}</p>
             </article>
           ))}
         </div>

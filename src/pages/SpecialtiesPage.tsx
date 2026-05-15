@@ -51,7 +51,7 @@ export function SpecialtiesPage() {
         title={hub.title}
         subtitle={hub.subtitle}
         intro={hub.intro}
-        image={imageAssets.uroOncology}
+        image={imageAssets.bluegatiSpecialtiesHero}
         actions={
           <CTAButton
             to="/agendar-cita"
@@ -76,7 +76,7 @@ export function SpecialtiesPage() {
               <Link
                 key={key}
                 to={specialtyRouteByKey[key]}
-                className="group overflow-hidden rounded-[1.5rem] border border-borderblue bg-white shadow-[0_18px_60px_rgba(6,27,51,0.06)] transition duration-300 hover:-translate-y-1 hover:border-navy/70 hover:shadow-[0_26px_80px_rgba(6,27,51,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="brugiati-card group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 <ImageCard
                   image={specialtyVisuals[key].image}
@@ -90,7 +90,7 @@ export function SpecialtiesPage() {
                   <p className="mt-4 min-h-[5.25rem] text-sm leading-7 text-muted">
                     {page.intro}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold">
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-medical">
                     {page.cta}
                     <ArrowRight aria-hidden="true" className="h-4 w-4" />
                   </span>
@@ -102,7 +102,7 @@ export function SpecialtiesPage() {
       </SectionContainer>
 
       <SectionContainer className="bg-mist">
-        <div className="rounded-[1.75rem] border border-borderblue bg-white/84 p-7 shadow-[0_22px_76px_rgba(6,27,51,0.07)] backdrop-blur sm:p-9 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div className="brugiati-card p-7 sm:p-9 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-medical">
               {copy.common.assistant}

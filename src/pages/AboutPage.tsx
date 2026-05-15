@@ -9,13 +9,12 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { imageAssets, optionalImages } from "../data/images";
+import { imageAssets } from "../data/images";
 import { useLanguage } from "../i18n/LanguageContext";
 import { internalPages } from "../i18n/internalPages";
 import { pageUxImprovements } from "../i18n/pageUxImprovements";
 import { CTAButton } from "../components/shared/CTAButton";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
-import { ImageCard } from "../components/shared/ImageCard";
 import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
@@ -46,8 +45,7 @@ export function AboutPage() {
         title={about.title}
         subtitle={about.subtitle}
         intro={about.intro}
-        image={optionalImages.doctorPortrait}
-        imageClassName="object-[50%_18%]"
+        image={imageAssets.bluegatiAboutHero}
         actions={
           <CTAButton
             to="/agendar-cita"
@@ -62,17 +60,11 @@ export function AboutPage() {
       <SectionContainer className="bg-white">
         <div className="grid items-stretch gap-8 lg:grid-cols-[0.78fr_1.22fr]">
           <aside className="flex h-full flex-col gap-5">
-            <ImageCard
-              image={optionalImages.doctorPortrait}
-              className="min-h-[430px] flex-1 rounded-[2rem] lg:min-h-[660px]"
-              imageClassName="object-cover object-[50%_18%]"
-              caption={aboutUx.profileCaption}
-            />
             <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {aboutUx.statCards.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-[1.25rem] border border-borderblue bg-softblue/50 p-5"
+                  className="premium-card rounded-[1.45rem] p-5"
                 >
                   <p className="font-heading text-4xl leading-none text-gold">
                     {stat.value}

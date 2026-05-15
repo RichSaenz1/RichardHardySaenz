@@ -1,0 +1,122 @@
+[
+  {
+    "key": "01-noto-serif-display",
+    "name": "Noto Serif Display",
+    "css": "Noto+Serif+Display:wght@500;600;700",
+    "note": "Editorial, legible, broad language support.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\01-noto-serif-display.png",
+    "computed": {
+      "fontFamily": "\"Noto Serif Display\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "02-roboto-serif",
+    "name": "Roboto Serif",
+    "css": "Roboto+Serif:opsz,wght@8..144,500;8..144,600;8..144,700",
+    "note": "Modern medical, serious, screen-optimized.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\02-roboto-serif.png",
+    "computed": {
+      "fontFamily": "\"Roboto Serif\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "03-lora",
+    "name": "Lora",
+    "css": "Lora:wght@500;600;700",
+    "note": "Warm, readable, professional.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\03-lora.png",
+    "computed": {
+      "fontFamily": "Lora, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "04-merriweather",
+    "name": "Merriweather",
+    "css": "Merriweather:wght@400;700;900",
+    "note": "Trustworthy and sturdy for healthcare.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\04-merriweather.png",
+    "computed": {
+      "fontFamily": "Merriweather, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "05-literata",
+    "name": "Literata",
+    "css": "Literata:opsz,wght@7..72,500;7..72,600;7..72,700",
+    "note": "Bookish, calm, expert-led.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\05-literata.png",
+    "computed": {
+      "fontFamily": "Literata, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "06-alegreya",
+    "name": "Alegreya",
+    "css": "Alegreya:wght@500;600;700",
+    "note": "Humanist, refined, less fashion-like.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\06-alegreya.png",
+    "computed": {
+      "fontFamily": "Alegreya, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "07-brygada-1918",
+    "name": "Brygada 1918",
+    "css": "Brygada+1918:wght@500;600;700",
+    "note": "Classic with personality but still formal.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\07-brygada-1918.png",
+    "computed": {
+      "fontFamily": "\"Brygada 1918\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "08-petrona",
+    "name": "Petrona",
+    "css": "Petrona:wght@500;600;700",
+    "note": "Soft editorial, good Spanish readability.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\08-petrona.png",
+    "computed": {
+      "fontFamily": "Petrona, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "09-vollkorn",
+    "name": "Vollkorn",
+    "css": "Vollkorn:wght@500;600;700",
+    "note": "Robust, less delicate, authoritative.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\09-vollkorn.png",
+    "computed": {
+      "fontFamily": "Vollkorn, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "10-instrument-serif",
+    "name": "Instrument Serif",
+    "css": "Instrument+Serif:ital@0;1",
+    "note": "Premium but lighter; more boutique/editorial.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-2\\10-instrument-serif.png",
+    "computed": {
+      "fontFamily": "\"Instrument Serif\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  }
+]

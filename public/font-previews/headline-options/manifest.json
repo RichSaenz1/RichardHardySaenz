@@ -1,0 +1,112 @@
+[
+  {
+    "key": "01-playfair-display",
+    "name": "Playfair Display",
+    "css": "Playfair+Display:wght@600;700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\01-playfair-display.png",
+    "computed": {
+      "fontFamily": "\"Playfair Display\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "02-libre-baskerville",
+    "name": "Libre Baskerville",
+    "css": "Libre+Baskerville:wght@400;700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\02-libre-baskerville.png",
+    "computed": {
+      "fontFamily": "\"Libre Baskerville\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "03-fraunces",
+    "name": "Fraunces",
+    "css": "Fraunces:opsz,wght@9..144,600;9..144,700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\03-fraunces.png",
+    "computed": {
+      "fontFamily": "Fraunces, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "04-marcellus",
+    "name": "Marcellus",
+    "css": "Marcellus",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\04-marcellus.png",
+    "computed": {
+      "fontFamily": "Marcellus, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "05-dm-serif-display",
+    "name": "DM Serif Display",
+    "css": "DM+Serif+Display",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\05-dm-serif-display.png",
+    "computed": {
+      "fontFamily": "\"DM Serif Display\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "06-prata",
+    "name": "Prata",
+    "css": "Prata",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\06-prata.png",
+    "computed": {
+      "fontFamily": "Prata, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "07-spectral",
+    "name": "Spectral",
+    "css": "Spectral:wght@500;600;700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\07-spectral.png",
+    "computed": {
+      "fontFamily": "Spectral, Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "08-crimson-pro",
+    "name": "Crimson Pro",
+    "css": "Crimson+Pro:wght@500;600;700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\08-crimson-pro.png",
+    "computed": {
+      "fontFamily": "\"Crimson Pro\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "09-eb-garamond",
+    "name": "EB Garamond",
+    "css": "EB+Garamond:wght@500;600;700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\09-eb-garamond.png",
+    "computed": {
+      "fontFamily": "\"EB Garamond\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  },
+  {
+    "key": "10-source-serif-4",
+    "name": "Source Serif 4",
+    "css": "Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\font-previews\\headline-options\\10-source-serif-4.png",
+    "computed": {
+      "fontFamily": "\"Source Serif 4\", Georgia, serif",
+      "fontWeight": "700",
+      "fontSize": "52px"
+    }
+  }
+]

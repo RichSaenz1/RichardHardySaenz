@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+  <rect width="900" height="620" fill="#F5F7F9"/>
+  <rect x="130" y="150" width="640" height="310" rx="34" fill="#fff" stroke="#D4E8F2"/>
+  <path d="M188 460V214h132v246M356 460V184h160v276M552 460V214h160v246" fill="#E8F3F8"/>
+  <g fill="#0D2B45" opacity=".86"><rect x="218" y="244" width="72" height="38" rx="8"/><rect x="218" y="310" width="72" height="38" rx="8"/><rect x="386" y="218" width="100" height="42" rx="8"/><rect x="386" y="286" width="100" height="42" rx="8"/><rect x="582" y="244" width="72" height="38" rx="8"/><rect x="582" y="310" width="72" height="38" rx="8"/></g>
+  <path d="M450 96l54 54H396z" fill="#5B9EC9"/>
+  <text x="450" y="536" text-anchor="middle" fill="#0D2B45" font-family="Inter,Arial" font-size="34" font-weight="700">The Panama Clinic</text>
+</svg>

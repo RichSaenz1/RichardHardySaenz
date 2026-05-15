@@ -27,6 +27,11 @@ const ProcedureDetailPage = lazy(() =>
     default: module.ProcedureDetailPage,
   })),
 );
+const ProceduresPage = lazy(() =>
+  import("./pages/ProceduresPage").then((module) => ({
+    default: module.ProceduresPage,
+  })),
+);
 const SpecialtiesPage = lazy(() =>
   import("./pages/SpecialtiesPage").then((module) => ({
     default: module.SpecialtiesPage,
@@ -46,6 +51,7 @@ export function App() {
           <Route index element={<HomePage />} />
           <Route path="/dr-carlos-brugiati" element={<AboutPage />} />
           <Route path="/especialidades" element={<SpecialtiesPage />} />
+          <Route path="/procedimientos" element={<ProceduresPage />} />
           <Route path="/calculos-renales" element={<KidneyStonesPage />} />
           <Route
             path="/ureteroscopia"

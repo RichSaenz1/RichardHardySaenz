@@ -42,7 +42,7 @@ export function SectionContainer({
         transition={{ duration: 0.55, ease: "easeOut" }}
       >
         {(eyebrow || title || subtitle) && (
-          <div className="mb-10 max-w-3xl">
+          <div className="mx-auto mb-12 max-w-4xl text-center">
             {eyebrow && (
               <p
                 className={cn(
@@ -56,7 +56,7 @@ export function SectionContainer({
             {title && (
               <h2
                 className={cn(
-                  "max-w-4xl text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-[4.25rem]",
+                  "mx-auto max-w-4xl text-5xl leading-[0.98] text-balance sm:text-6xl lg:text-[4.25rem]",
                   dark ? "text-white" : "text-navy",
                 )}
               >
@@ -66,7 +66,7 @@ export function SectionContainer({
             {subtitle && (
               <p
                 className={cn(
-                  "mt-6 max-w-2xl text-[17px] leading-[1.75] sm:text-lg",
+                  "mx-auto mt-6 max-w-2xl text-[17px] leading-[1.75] sm:text-lg",
                   dark ? "text-blue-100" : "text-muted",
                 )}
               >

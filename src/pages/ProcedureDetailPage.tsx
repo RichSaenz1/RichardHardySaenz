@@ -14,11 +14,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
 import { CTAButton } from "../components/shared/CTAButton";
 import { FAQAccordion } from "../components/shared/FAQAccordion";
-import { ImageCard } from "../components/shared/ImageCard";
 import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
 import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
+import { imageAssets } from "../data/images";
 import {
   procedurePages,
   procedureRoutes,
@@ -49,6 +49,23 @@ const procedureSeoKey: Record<ProcedureKey, SeoPageKey> = {
   litotriciaExtracorporea: "litotriciaExtracorporea",
   disfuncionErectil: "disfuncionErectil",
   vasectomia: "vasectomia",
+};
+
+const procedureHeroImages: Record<ProcedureKey, (typeof imageAssets)[keyof typeof imageAssets]> = {
+  ureteroscopia: imageAssets.bluegatiUreteroscopyHero,
+  laserCalculos: imageAssets.bluegatiKidneyStonesHero,
+  biopsiaProstata: imageAssets.bluegatiUroOncologyHero,
+  nefrolitotomiaPercutanea: imageAssets.bluegatiEndourologyHero,
+  cistoscopia: imageAssets.bluegatiConsultationHero,
+  laparoscopiaRenal: imageAssets.bluegatiLaparoscopyHero,
+  holep: imageAssets.bluegatiProstateHero,
+  rtup: imageAssets.bluegatiProstateHero,
+  adenectomiaProstatica: imageAssets.bluegatiLaparoscopyHero,
+  ureteroscopiaFlexible: imageAssets.bluegatiUreteroscopyHero,
+  ureteroscopiaSemirrigida: imageAssets.bluegatiEndourologyHero,
+  litotriciaExtracorporea: imageAssets.bluegatiKidneyStonesHero,
+  disfuncionErectil: imageAssets.bluegatiMensHealthHero,
+  vasectomia: imageAssets.bluegatiConsultationHero,
 };
 
 export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) {
@@ -103,7 +120,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
         title={page.title}
         subtitle={page.subtitle}
         intro={page.intro}
-        image={page.image}
+        image={procedureHeroImages[procedureKey]}
         actions={
           <>
             <CTAButton
@@ -125,16 +142,7 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
       <Breadcrumbs items={breadcrumbs} />
 
       <SectionContainer className="bg-white">
-        <div className="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="grid gap-6">
-            <ImageCard
-              image={page.image}
-              className="h-[420px] rounded-[1.8rem] lg:h-full lg:min-h-[620px]"
-              imageClassName="object-cover"
-            />
-          </div>
-
-          <div className="grid gap-6">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
             <ProcedurePanel
               icon={<Stethoscope aria-hidden="true" className="h-6 w-6" />}
               eyebrow={labels.overview}
@@ -150,7 +158,6 @@ export function ProcedureDetailPage({ procedureKey }: ProcedureDetailPageProps) 
               items={page.when}
               compact
             />
-          </div>
         </div>
       </SectionContainer>
 

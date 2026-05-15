@@ -22,7 +22,7 @@ export function PatientJourney() {
 
   return (
     <div className="relative">
-      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-cyan via-borderblue to-gold lg:left-0 lg:right-0 lg:top-12 lg:mx-auto lg:h-px lg:w-[calc(100%-9rem)] lg:bg-gradient-to-r" />
+      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-cyan via-borderblue to-navy/40 lg:left-0 lg:right-0 lg:top-12 lg:mx-auto lg:h-px lg:w-[calc(100%-9rem)] lg:bg-gradient-to-r" />
 
       <div className="grid gap-6 lg:grid-cols-5 lg:gap-5">
         {t.home.journey.steps.map(([title, text], index) => {
@@ -42,7 +42,7 @@ export function PatientJourney() {
                   {index + 1}
                 </span>
               </div>
-              <div className="group relative h-full overflow-hidden rounded-[1.35rem] border border-borderblue bg-gradient-to-br from-white via-white to-softblue/45 p-5 shadow-[0_18px_54px_rgba(6,27,51,0.06)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-navy/70 hover:shadow-[0_24px_70px_rgba(6,27,51,0.10)]">
+              <div className="brugiati-card group relative h-full p-5">
                 <div className="grid h-11 w-11 place-items-center rounded-2xl border border-borderblue bg-white text-medical shadow-[0_10px_30px_rgba(6,27,51,0.06)] transition group-hover:border-navy/70 group-hover:text-navy">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </div>

@@ -1,4 +1,4 @@
-import {
+﻿import {
   ArrowRight,
   Bot,
   CheckCircle2,
@@ -22,6 +22,7 @@ import { BookingForm } from "../components/home/BookingForm";
 import { Breadcrumbs } from "../components/shared/Breadcrumbs";
 import { CTAButton } from "../components/shared/CTAButton";
 import { MedicalDisclaimer } from "../components/shared/MedicalDisclaimer";
+import { PageHero } from "../components/shared/PageHero";
 import { SEO } from "../components/shared/SEO";
 import { SectionContainer } from "../components/shared/SectionContainer";
 import { simpleBreadcrumbs } from "../seo/breadcrumbs";
@@ -40,7 +41,7 @@ export function BookingPage() {
   );
   const contactLabels =
     language === "es"
-      ? ["WhatsApp", "Teléfono", "Email", "Ubicación"]
+      ? ["WhatsApp", "TelÃ©fono", "Email", "UbicaciÃ³n"]
       : ["WhatsApp", "Phone", "Email", "Location"];
   const contactCards = [
     {
@@ -71,13 +72,13 @@ export function BookingPage() {
   const appointmentFacts =
     language === "es"
       ? [
-          ["Sistema actual", "HuliPractice"],
+          ["Coordinación", "Equipo privado"],
           ["Primera consulta", "45 minutos"],
           ["Seguimiento", "30 minutos"],
           ["Confirmación", "Manual por el equipo"],
         ]
       : [
-          ["Current system", "HuliPractice"],
+          ["Coordination", "Private team"],
           ["New visit", "45 minutes"],
           ["Follow-up", "30 minutes"],
           ["Confirmation", "Manual by the team"],
@@ -91,59 +92,30 @@ export function BookingPage() {
         canonicalPath={seoMetadata.booking.path}
         jsonLd={pageSchema({ breadcrumbs })}
       />
-      <section className="luxury-shell site-hero relative px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(245,247,249,0.88),rgba(224,238,247,0.44))]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_0.82fr]">
-          <div>
-            <p className="site-hero-eyebrow">
-              {t.brand.platform}
-            </p>
-            <h1 className="site-hero-title mt-5 font-heading text-navy text-balance">
-              {t.bookingPage.title}
-            </h1>
-            <p className="mt-7 max-w-2xl text-xl leading-[1.7] text-slate-600">
-              {t.bookingPage.subtitle}
-            </p>
-            <p className="mt-5 max-w-xl text-base leading-[1.8] text-muted">
-              {bookingCopy.heroBody}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <CTAButton
-                href={getWhatsAppHref(location.pathname, language)}
-                icon={<MessageCircle aria-hidden="true" className="h-4 w-4" />}
-              >
-                {t.cta.whatsapp}
-              </CTAButton>
-              <CTAButton
-                href={contact.phoneHref}
-                variant="secondary"
-                icon={<Phone aria-hidden="true" className="h-4 w-4" />}
-              >
-                {t.cta.call}
-              </CTAButton>
-            </div>
-          </div>
-
-          <div className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_30px_90px_rgba(13,43,69,0.10)] lg:min-h-[480px]">
-            <img
-              src={imageAssets.premiumClinic.src}
-              alt={imageAssets.premiumClinic.alt}
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-navy/12 via-transparent to-white/26" />
-            <div className="absolute bottom-5 left-5 right-5 rounded-[1.25rem] border border-white/70 bg-white/90 p-5 shadow-[0_20px_60px_rgba(13,43,69,0.12)] backdrop-blur-xl">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-medical">
-                {bookingCopy.privacyTitle}
-              </p>
-              <p className="mt-2 text-sm font-medium leading-6 text-slate-600">
-                {bookingCopy.international}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={t.brand.platform}
+        title={t.bookingPage.title}
+        subtitle={t.bookingPage.subtitle}
+        intro={bookingCopy.heroBody}
+        image={imageAssets.bluegatiBookingHero}
+        actions={
+          <>
+            <CTAButton
+              href={getWhatsAppHref(location.pathname, language)}
+              icon={<MessageCircle aria-hidden="true" className="h-4 w-4" />}
+            >
+              {t.cta.whatsapp}
+            </CTAButton>
+            <CTAButton
+              href={contact.phoneHref}
+              variant="secondary"
+              icon={<Phone aria-hidden="true" className="h-4 w-4" />}
+            >
+              {t.cta.call}
+            </CTAButton>
+          </>
+        }
+      />
       <Breadcrumbs items={breadcrumbs} />
 
       <SectionContainer className="bg-white">
@@ -352,7 +324,7 @@ function SupportCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-[1.45rem] border border-borderblue bg-white/82 p-5 shadow-[0_18px_58px_rgba(13,43,69,0.06)] backdrop-blur sm:p-6">
+    <section className="premium-card rounded-[1.45rem] p-5 sm:p-6">
       <h2 className="font-heading text-3xl leading-none text-navy">{title}</h2>
       <div className="mt-5">{children}</div>
     </section>
@@ -382,3 +354,4 @@ function InfoPill({
     </div>
   );
 }
+

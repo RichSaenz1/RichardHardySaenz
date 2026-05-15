@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
+  <rect width="900" height="620" fill="#F5F7F9"/>
+  <rect x="108" y="164" width="684" height="292" rx="24" fill="#fff" stroke="#D5E8F2"/>
+  <rect x="154" y="210" width="160" height="246" fill="#0D2B45" opacity=".9"/>
+  <rect x="348" y="212" width="394" height="244" fill="#EAF4F8"/>
+  <g fill="#5B9EC9"><rect x="384" y="250" width="62" height="42" rx="8"/><rect x="472" y="250" width="62" height="42" rx="8"/><rect x="560" y="250" width="62" height="42" rx="8"/><rect x="648" y="250" width="62" height="42" rx="8"/><rect x="384" y="324" width="62" height="42" rx="8"/><rect x="472" y="324" width="62" height="42" rx="8"/><rect x="560" y="324" width="62" height="42" rx="8"/><rect x="648" y="324" width="62" height="42" rx="8"/></g>
+  <path d="M206 274h56M234 246v56" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+  <text x="450" y="536" text-anchor="middle" fill="#0D2B45" font-family="Inter,Arial" font-size="34" font-weight="700">Hospital San Fernando</text>
+</svg>

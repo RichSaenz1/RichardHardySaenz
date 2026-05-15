@@ -70,11 +70,11 @@ const urgentGuidance = {
 
 export const intakeFlow: Record<Language, IntakeFlowCopy> = {
   es: {
-    assistantTitle: "Asistente UroPanama",
+    assistantTitle: "Asistente IA UroPanama",
     diagnosticDisclaimer: "No realiza diagnósticos.",
     openingMessage:
-      "Hola, soy el asistente digital de UroPanama. Puedo ayudarle a preparar su consulta o coordinar una cita. No realizo diagnósticos médicos.",
-    responsePrompt: "Seleccione el motivo principal y comparta datos básicos para coordinar la atención.",
+      "Hola, soy el asistente IA de UroPanama. Puedo ayudarle a ordenar sintomas, estudios y preguntas antes de hablar con el equipo. No realizo diagnosticos medicos.",
+    responsePrompt: "Seleccione el motivo principal y comparta datos basicos para recibir orientacion inicial.",
     urgentGuidance: urgentGuidance.es,
     quickActions: [
       { concern: "general", label: "Agendar cita" },
@@ -216,11 +216,11 @@ export const intakeFlow: Record<Language, IntakeFlowCopy> = {
     },
   },
   en: {
-    assistantTitle: "UroPanama Assistant",
+    assistantTitle: "UroPanama AI Assistant",
     diagnosticDisclaimer: "Does not provide diagnoses.",
     openingMessage:
-      "Hello, I’m the UroPanama digital assistant. I can help you prepare for a visit or coordinate an appointment. I do not provide diagnoses.",
-    responsePrompt: "Select the main reason and share basic details to coordinate care.",
+      "Hello, I am the UroPanama AI assistant. I can help organize symptoms, studies, and questions before you speak with the team. I do not provide diagnoses.",
+    responsePrompt: "Select the main reason and share basic details for initial guidance.",
     urgentGuidance: urgentGuidance.en,
     quickActions: [
       { concern: "general", label: "Book visit" },

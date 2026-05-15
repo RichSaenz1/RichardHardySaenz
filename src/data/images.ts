@@ -81,6 +81,70 @@ export const imageAssets = {
     src: "/images/precision-surgery-abstract.webp",
     alt: "Visual abstracto de precisión quirúrgica en urología.",
   },
+  bluegatiHomeHero: {
+    src: "/images/bluegati/bluegati-home-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en una clinica privada con vista a Panama.",
+  },
+  bluegatiSpecialtiesHero: {
+    src: "/images/bluegati/bluegati-specialties-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en bata blanca dentro de un entorno clinico moderno.",
+  },
+  bluegatiProceduresHero: {
+    src: "/images/bluegati/bluegati-procedures-hero.webp",
+    alt: "Dr. Carlos A. Brugiati revisando tecnologia endourologica.",
+  },
+  bluegatiAboutHero: {
+    src: "/images/bluegati/bluegati-about-hero.webp",
+    alt: "Retrato editorial del Dr. Carlos A. Brugiati en bata blanca.",
+  },
+  bluegatiBookingHero: {
+    src: "/images/bluegati/bluegati-booking-hero.webp",
+    alt: "Dr. Carlos A. Brugiati explicando proximos pasos durante una consulta.",
+  },
+  bluegatiSecondOpinionHero: {
+    src: "/images/bluegati/bluegati-second-opinion-hero.webp",
+    alt: "Dr. Carlos A. Brugiati revisando estudios de imagen para segunda opinion.",
+  },
+  bluegatiProstateHero: {
+    src: "/images/bluegati/bluegati-prostate-hero.webp",
+    alt: "Dr. Carlos A. Brugiati explicando una guia visual urologica.",
+  },
+  bluegatiKidneyStonesHero: {
+    src: "/images/bluegati/bluegati-kidney-stones-hero.webp",
+    alt: "Dr. Carlos A. Brugiati usando una tableta para explicar anatomia urinaria.",
+  },
+  bluegatiUroOncologyHero: {
+    src: "/images/bluegati/bluegati-uro-oncology-hero.webp",
+    alt: "Dr. Carlos A. Brugiati revisando reportes medicos urologicos.",
+  },
+  bluegatiEndourologyHero: {
+    src: "/images/bluegati/bluegati-endourology-hero.webp",
+    alt: "Dr. Carlos A. Brugiati explicando tecnologia endourologica.",
+  },
+  bluegatiLaparoscopyHero: {
+    src: "/images/bluegati/bluegati-laparoscopy-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en area quirurgica de precision laparoscopica.",
+  },
+  bluegatiMensHealthHero: {
+    src: "/images/bluegati/bluegati-mens-health-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en retrato cercano y accesible.",
+  },
+  bluegatiUreteroscopyHero: {
+    src: "/images/bluegati/bluegati-ureteroscopy-hero.webp",
+    alt: "Dr. Carlos A. Brugiati con interfaz medica azul de endourologia.",
+  },
+  bluegatiScrubsProcedureHero: {
+    src: "/images/bluegati/bluegati-scrubs-procedure-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en entorno preprocedimiento.",
+  },
+  bluegatiConsultationHero: {
+    src: "/images/bluegati/bluegati-consultation-hero.webp",
+    alt: "Dr. Carlos A. Brugiati revisando estudios durante una consulta.",
+  },
+  bluegatiEducationVisitHero: {
+    src: "/images/bluegati/bluegati-education-visit-hero.webp",
+    alt: "Dr. Carlos A. Brugiati en conversacion educativa antes de una visita.",
+  },
 } as const;
 
 export const optionalImages = {
@@ -93,7 +157,7 @@ export const optionalImages = {
     alt: "Logo de UroPanama.",
   },
   doctorLogo: {
-    src: "/images/dr-brugiati-logo.png",
+    src: "/images/dr-brugiati-uropanama-logo-transparent-highres.png",
     alt: "Logo del Dr. Carlos A. Brugiati.",
   },
 };

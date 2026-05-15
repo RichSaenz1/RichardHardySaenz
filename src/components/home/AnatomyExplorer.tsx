@@ -27,14 +27,14 @@ export function AnatomyExplorer() {
       <div className="absolute inset-0 bg-[url('/images/medical-background-texture.webp')] bg-cover bg-center opacity-[0.035] mix-blend-screen" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-12 max-w-4xl">
+        <div className="mx-auto mb-12 max-w-4xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan">
             {t.home.anatomy.eyebrow}
           </p>
-          <h2 className="mt-4 font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl lg:text-[4.25rem]">
+          <h2 className="mx-auto mt-4 font-heading text-5xl leading-[0.95] text-white text-balance sm:text-6xl lg:text-[4.25rem]">
             {t.home.anatomy.title}
           </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-blue-100">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-[1.75] text-blue-100">
             {t.home.anatomy.subtitle}
           </p>
         </div>

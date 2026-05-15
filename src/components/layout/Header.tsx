@@ -80,7 +80,7 @@ function HeaderDropdown({
           }
         }}
         className={cn(
-          "group relative inline-flex items-center gap-1.5 px-0 py-3 text-[14.5px] font-medium tracking-[-0.01em] text-muted transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+          "group relative inline-flex items-center gap-1.5 px-1 py-4 text-[14.5px] font-medium tracking-[-0.01em] text-muted transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
           isActive && "text-navy",
         )}
         aria-expanded={isOpen}
@@ -96,7 +96,7 @@ function HeaderDropdown({
         />
         <span
           className={cn(
-            "absolute -bottom-0.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-medical opacity-0 transition duration-200 group-hover:opacity-70",
+            "absolute bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-medical opacity-0 transition duration-200 group-hover:scale-x-100 group-hover:opacity-80",
             isActive && "opacity-100 group-hover:opacity-100",
           )}
         />
@@ -110,8 +110,9 @@ function HeaderDropdown({
               onOpenChange(null);
             }
           }}
-          className="absolute left-1/2 top-full mt-4 w-[min(680px,calc(100vw-2rem))] -translate-x-1/2 rounded-[1.6rem] border border-navy/10 bg-white p-5 shadow-[0_28px_80px_rgba(6,27,51,0.14)] backdrop-blur-2xl"
+          className="absolute left-1/2 top-full z-[120] w-[min(680px,calc(100vw-2rem))] -translate-x-1/2 pt-3"
         >
+          <div className="rounded-[1.6rem] border border-navy/10 bg-white p-5 shadow-[0_34px_100px_rgba(6,27,51,0.18)]">
           <div className="mb-4 flex items-end justify-between gap-5 px-1">
             <div className="min-w-0">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-medical">
@@ -122,7 +123,7 @@ function HeaderDropdown({
             <Link
               to={href}
               role="menuitem"
-              className="shrink-0 text-xs font-semibold text-navy underline decoration-navy/70 underline-offset-4 transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+              className="shrink-0 text-xs font-semibold text-navy underline decoration-navy/70 underline-offset-4 transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
             >
               {label}
             </Link>
@@ -134,7 +135,7 @@ function HeaderDropdown({
                 key={item.key}
                 to={item.href}
                 role="menuitem"
-                className="group rounded-[1.05rem] px-3.5 py-3 transition hover:bg-softblue/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+                className="group rounded-[1.05rem] px-3.5 py-3 transition hover:bg-softblue/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
               >
                 <span className="flex items-center justify-between gap-3">
                   <span className="text-sm font-semibold text-navy">
@@ -147,6 +148,7 @@ function HeaderDropdown({
                 </span>
               </Link>
             ))}
+          </div>
           </div>
         </div>
       )}
@@ -175,7 +177,7 @@ export function Header() {
   );
   const isSpecialtiesActive = specialtyRoutes.has(location.pathname);
   const procedureRoutesSet = useMemo(
-    () => new Set(Object.values(procedureRoutes)),
+    () => new Set(["/procedimientos", ...Object.values(procedureRoutes)]),
     [],
   );
   const isProceduresActive = procedureRoutesSet.has(location.pathname);
@@ -262,13 +264,13 @@ export function Header() {
       <header
         ref={headerRef}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-[background,border-color,box-shadow] duration-300",
+          "fixed inset-x-0 top-0 z-[100] border-b transition-[background,border-color,box-shadow] duration-300",
           isScrolled
             ? "border-navy/10 bg-white/90 shadow-[0_12px_40px_rgba(6,27,51,0.06)] backdrop-blur-[22px]"
             : "border-navy/5 bg-mist/70 backdrop-blur-[18px]",
         )}
       >
-        <div className="relative mx-auto grid h-[76px] max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-4 sm:px-5 xl:h-[86px] xl:grid-cols-[minmax(250px,1fr)_auto_minmax(250px,1fr)] xl:px-10">
+        <div className="relative mx-auto grid h-[86px] max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-4 sm:px-5 xl:h-[104px] xl:grid-cols-[minmax(310px,1fr)_auto_minmax(310px,1fr)] xl:px-10">
           <NavLink
             to="/"
             aria-label={t.header.homeLabel}
@@ -277,12 +279,12 @@ export function Header() {
             <OptionalImage
               src={optionalImages.doctorLogo.src}
               alt={optionalImages.doctorLogo.alt}
-              className="h-11 max-w-[230px] object-contain"
+              className="h-[4.35rem] max-w-[270px] object-contain sm:h-20 sm:max-w-[360px] xl:h-[5.45rem] xl:max-w-[420px]"
               fallback={
                 <OptionalImage
                   src={optionalImages.uropanamaLogo.src}
                   alt={optionalImages.uropanamaLogo.alt}
-                  className="h-11 max-w-[220px] object-contain"
+                  className="h-16 max-w-[240px] object-contain sm:max-w-[320px] xl:h-20"
                   fallback={logoFallback}
                 />
               }
@@ -334,7 +336,7 @@ export function Header() {
                   to={item.href}
                   className={({ isActive }) =>
                     cn(
-                      "group relative py-3 text-[14.5px] font-medium tracking-[-0.01em] text-muted transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
+                      "group relative px-1 py-4 text-[14.5px] font-medium tracking-[-0.01em] text-muted transition hover:text-medical focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan",
                       isActive && "text-navy",
                     )
                   }
@@ -344,7 +346,7 @@ export function Header() {
                       {item.label}
                       <span
                         className={cn(
-                          "absolute -bottom-0.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-medical opacity-0 transition duration-200 group-hover:opacity-70",
+                          "absolute bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-medical opacity-0 transition duration-200 group-hover:scale-x-100 group-hover:opacity-80",
                           isActive && "opacity-100 group-hover:opacity-100",
                         )}
                       />
@@ -383,7 +385,7 @@ export function Header() {
       </header>
 
       {isOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto border-t border-navy/5 bg-mist/95 px-4 py-6 shadow-[0_28px_90px_rgba(6,27,51,0.16)] backdrop-blur-2xl xl:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-[86px] z-[90] overflow-y-auto border-t border-navy/5 bg-mist/95 px-4 py-6 shadow-[0_28px_90px_rgba(6,27,51,0.16)] backdrop-blur-2xl xl:hidden">
           <nav
             className="mx-auto max-w-[35rem]"
             aria-label={t.header.mobileNavLabel}

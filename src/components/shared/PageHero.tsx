@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import type { ImageAsset } from "../../data/images";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { cn } from "../../lib/cn";
-import { ImageCard } from "./ImageCard";
 
 type PageHeroProps = {
   eyebrow?: string;
@@ -32,15 +31,30 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "luxury-shell site-hero px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40",
+        "luxury-shell site-hero isolate min-h-[66vh] px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-28 lg:pt-40",
         className,
       )}
     >
-      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_0.85fr]">
+      {image && (
+        <img
+          src={image.src}
+          alt=""
+          aria-hidden="true"
+          className={cn(
+            "absolute -right-[62%] top-[11%] z-0 h-[108%] w-[168%] object-cover object-[76%_54%] opacity-[0.3] sm:-right-[24%] sm:top-[8%] sm:w-[128%] sm:opacity-[0.48] md:-right-[17%] md:w-[120%] lg:-right-[12%] lg:top-[7%] lg:h-[110%] lg:w-[116%] lg:opacity-[0.64] xl:-right-[13%] xl:top-[8%]",
+            imageClassName,
+          )}
+          loading="eager"
+          decoding="async"
+        />
+      )}
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(245,247,249,1)_0%,rgba(255,255,255,0.98)_48%,rgba(255,255,255,0.78)_76%,rgba(224,238,247,0.28)_100%)] sm:bg-[linear-gradient(90deg,rgba(245,247,249,0.99)_0%,rgba(255,255,255,0.94)_40%,rgba(255,255,255,0.68)_63%,rgba(224,238,247,0.2)_100%)]" />
+      <div className="relative z-20 mx-auto max-w-7xl">
         <motion.div
           initial={reduceMotion ? false : { y: 18 }}
           animate={reduceMotion ? undefined : { y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
+          className="min-w-0 max-w-4xl"
         >
           <p className="site-hero-eyebrow mb-5">
             {eyebrow ?? t.brand.platform}
@@ -56,25 +70,8 @@ export function PageHero({
               {intro}
             </p>
           )}
-          {actions && <div className="mt-8 flex flex-wrap gap-3">{actions}</div>}
+          {actions && <div className="mt-10 flex flex-wrap gap-3">{actions}</div>}
         </motion.div>
-
-        {image && (
-          <motion.div
-            initial={reduceMotion ? false : { y: 14 }}
-            animate={reduceMotion ? undefined : { y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
-            className="min-h-[280px]"
-          >
-            <ImageCard
-              image={image}
-              className="h-[340px] rounded-[1.5rem] lg:h-[500px]"
-              imageClassName={cn("object-cover", imageClassName)}
-              loading="eager"
-              fetchPriority="high"
-            />
-          </motion.div>
-        )}
       </div>
     </section>
   );

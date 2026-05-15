@@ -1,0 +1,132 @@
+[
+  {
+    "key": "01-manrope",
+    "name": "Manrope",
+    "css": "Manrope:wght@500;600;700;800",
+    "note": "Private-clinic modern, clean and quietly premium.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\01-manrope.png",
+    "computed": {
+      "fontFamily": "Manrope, Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "02-plus-jakarta-sans",
+    "name": "Plus Jakarta Sans",
+    "css": "Plus+Jakarta+Sans:wght@500;600;700;800",
+    "note": "World-class service, polished, contemporary.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\02-plus-jakarta-sans.png",
+    "computed": {
+      "fontFamily": "\"Plus Jakarta Sans\", Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "03-instrument-sans",
+    "name": "Instrument Sans",
+    "css": "Instrument+Sans:wght@500;600;700",
+    "note": "Refined brand-system sans, very controlled.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\03-instrument-sans.png",
+    "computed": {
+      "fontFamily": "\"Instrument Sans\", Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "04-geist",
+    "name": "Geist",
+    "css": "Geist:wght@500;600;700",
+    "note": "Minimal, premium digital-product feel.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\04-geist.png",
+    "computed": {
+      "fontFamily": "Geist, Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "05-sora",
+    "name": "Sora",
+    "css": "Sora:wght@500;600;700;800",
+    "note": "Precise, international, high-tech medical.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\05-sora.png",
+    "computed": {
+      "fontFamily": "Sora, Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "06-outfit",
+    "name": "Outfit",
+    "css": "Outfit:wght@500;600;700;800",
+    "note": "Geometric, clean, upscale but approachable.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\06-outfit.png",
+    "computed": {
+      "fontFamily": "Outfit, Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "07-urbanist",
+    "name": "Urbanist",
+    "css": "Urbanist:wght@500;600;700;800",
+    "note": "Architecture/luxury-service energy, elegant sans.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\07-urbanist.png",
+    "computed": {
+      "fontFamily": "Urbanist, Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "08-albert-sans",
+    "name": "Albert Sans",
+    "css": "Albert+Sans:wght@500;600;700;800",
+    "note": "Neutral, European, calm authority.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\08-albert-sans.png",
+    "computed": {
+      "fontFamily": "\"Albert Sans\", Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "09-schibsted-grotesk",
+    "name": "Schibsted Grotesk",
+    "css": "Schibsted+Grotesk:wght@500;600;700",
+    "note": "Editorial sans with credibility and restraint.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\09-schibsted-grotesk.png",
+    "computed": {
+      "fontFamily": "\"Schibsted Grotesk\", Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  },
+  {
+    "key": "10-space-grotesk",
+    "name": "Space Grotesk",
+    "css": "Space+Grotesk:wght@500;600;700",
+    "note": "Modern specialist/technology signal.",
+    "file": "C:\\Users\\Rich\\Desktop\\BrugiatiWebsite\\public\\font-previews\\headline-options-3\\10-space-grotesk.png",
+    "computed": {
+      "fontFamily": "\"Space Grotesk\", Inter, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "52px",
+      "letterSpacing": "-2.08px"
+    }
+  }
+]

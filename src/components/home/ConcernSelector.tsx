@@ -1,8 +1,8 @@
-import { ArrowRight, CircleDot, FileSearch, HeartPulse, ShieldCheck, UserRound, Waves } from "lucide-react";
+import { Activity, ArrowRight, Droplets, FileSearch, HeartPulse, Microscope, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 
-const icons = [UserRound, CircleDot, ShieldCheck, Waves, HeartPulse, FileSearch];
+const icons = [Activity, Droplets, Microscope, ShieldCheck, HeartPulse, FileSearch];
 
 export function ConcernSelector() {
   const { t } = useLanguage();
@@ -16,9 +16,12 @@ export function ConcernSelector() {
           <Link
             key={item.title}
             to={item.href}
-            className="group relative rounded-[1.45rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_20px_64px_rgba(6,27,51,0.07)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-navy/15 hover:to-cyan/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
+            className="brugiati-card group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
           >
-            <div className="flex h-full flex-col rounded-[1.42rem] bg-[linear-gradient(145deg,rgba(255,255,255,0.95),rgba(239,248,252,0.74))] p-7 backdrop-blur">
+            <div className="flex h-full flex-col p-7">
+              <span className="brugiati-card-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <span className="grid h-14 w-14 place-items-center rounded-2xl border border-borderblue bg-white text-navy shadow-[0_14px_34px_rgba(11,102,195,0.08)] transition duration-300 group-hover:border-navy/70 group-hover:bg-navy group-hover:text-white group-hover:shadow-[0_18px_42px_rgba(13,43,69,0.16)]">
                 <Icon aria-hidden="true" className="h-5 w-5" />
               </span>

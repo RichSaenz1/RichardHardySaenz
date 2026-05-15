@@ -1,6 +1,7 @@
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { contact } from "../../data/contact";
+import { optionalImages } from "../../data/images";
 import { specialtyRouteByKey, type SpecialtyKey } from "../../i18n/translations";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { MedicalDisclaimer } from "../shared/MedicalDisclaimer";
@@ -63,18 +64,18 @@ export function Footer() {
   ];
 
   return (
-    <footer className="navy-panel px-4 pb-24 pt-20 text-white sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.25fr_0.72fr_0.85fr_0.95fr]">
+    <footer className="navy-panel px-4 pb-24 pt-14 text-white sm:px-6 md:pb-8 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[1.15fr_0.72fr_0.85fr_0.95fr]">
         <div>
-          <p className="font-heading text-4xl leading-none">{t.brand.doctor}</p>
-          <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-cyan">
-            {t.brand.platform}
-          </p>
-          <p className="mt-6 max-w-md text-base leading-8 text-blue-100">
-            {t.brand.line}
-          </p>
+          <img
+            src={optionalImages.doctorLogo.src}
+            alt={optionalImages.doctorLogo.alt}
+            className="h-28 max-w-[460px] object-contain brightness-0 invert sm:h-32"
+            loading="lazy"
+            decoding="async"
+          />
           <p className="mt-4 text-sm text-blue-100">{t.footer.body}</p>
-          <p className="mt-6 text-xs text-blue-200">{t.footer.credit}</p>
+          <p className="mt-5 text-xs text-blue-200">{t.footer.credit}</p>
         </div>
 
         <div>
@@ -138,7 +139,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl">
+      <div className="mx-auto mt-9 max-w-7xl">
         <MedicalDisclaimer className="border-white/10 bg-white/10 text-xs leading-6 text-blue-100" />
       </div>
     </footer>

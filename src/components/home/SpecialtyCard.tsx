@@ -14,8 +14,8 @@ export function SpecialtyCard({ title, text, href, image }: SpecialtyCardProps) 
   const { t } = useLanguage();
 
   return (
-    <article className="group rounded-[1.45rem] bg-gradient-to-br from-borderblue via-white to-borderblue p-px shadow-[0_20px_68px_rgba(6,27,51,0.075)] transition duration-300 hover:-translate-y-1 hover:from-medical/40 hover:via-navy/15 hover:to-cyan/40">
-      <div className="grid h-full overflow-hidden rounded-[1.42rem] bg-white lg:grid-cols-[0.95fr_1.05fr]">
+    <article className="brugiati-card group">
+      <div className="grid h-full overflow-hidden lg:grid-cols-[0.95fr_1.05fr]">
         <div className="relative min-h-[270px] overflow-hidden bg-softblue">
           <img
             src={image.src}
@@ -35,7 +35,7 @@ export function SpecialtyCard({ title, text, href, image }: SpecialtyCardProps) 
           </div>
           <Link
             to={href}
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-gold transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-medical transition hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
           >
             {t.cta.learn}
             <ArrowRight aria-hidden="true" className="h-4 w-4" />

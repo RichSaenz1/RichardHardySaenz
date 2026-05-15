@@ -15,7 +15,7 @@ export function FloatingActions() {
   const { language, t } = useLanguage();
   const location = useLocation();
   const [assistantOpen, setAssistantOpen] = useState(false);
-  const [actionsVisible, setActionsVisible] = useState(false);
+  const [mobileActionsVisible, setMobileActionsVisible] = useState(false);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
   const whatsappHref = useMemo(
@@ -49,7 +49,7 @@ export function FloatingActions() {
 
   useEffect(() => {
     function handleScroll() {
-      setActionsVisible(window.scrollY > 620);
+      setMobileActionsVisible(window.scrollY > 560);
     }
 
     handleScroll();
@@ -59,59 +59,65 @@ export function FloatingActions() {
 
   return (
     <>
-      {actionsVisible && (
+      {mobileActionsVisible && (
         <>
           <button
             type="button"
             onClick={(event) => openAssistant("floating_mobile", event.currentTarget)}
-            className="fixed bottom-24 left-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
+            className="fixed bottom-4 left-4 z-40 flex h-12 items-center gap-2 rounded-full border border-borderblue bg-white p-1.5 pr-4 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.14)] transition hover:-translate-y-0.5 hover:border-navy/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
             aria-label={t.home.floating.assistantLabel}
           >
-            <Bot aria-hidden="true" className="h-5 w-5" />
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-navy text-white">
+              <Bot aria-hidden="true" className="h-4 w-4" />
+            </span>
+            <span className="text-xs font-semibold">{t.home.floating.assistantLabel}</span>
           </button>
 
           <a
             href={whatsappHref}
-            className="fixed bottom-24 right-4 z-40 grid h-12 w-12 place-items-center rounded-full border border-borderblue bg-white/86 text-medical shadow-[0_18px_54px_rgba(6,27,51,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
+            className="fixed bottom-4 right-4 z-40 flex h-12 items-center gap-2 rounded-full border border-borderblue bg-white p-1.5 pr-4 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.14)] transition hover:-translate-y-0.5 hover:border-navy/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan md:hidden"
             aria-label={t.home.floating.whatsappLabel}
             onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_mobile" })}
           >
-            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-medical text-white">
+              <MessageCircle aria-hidden="true" className="h-4 w-4" />
+            </span>
+            <span className="text-xs font-semibold">{t.home.floating.whatsappLabel}</span>
           </a>
-
-          <div className="fixed bottom-24 left-5 z-40 hidden md:block">
-            <button
-              type="button"
-              onClick={(event) => openAssistant("floating_desktop", event.currentTarget)}
-              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-cyan hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
-              aria-label={t.home.floating.assistantLabel}
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-navy text-white">
-                <Bot aria-hidden="true" className="h-5 w-5" />
-              </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
-                {t.home.floating.assistantLabel}
-              </span>
-            </button>
-          </div>
-
-          <div className="fixed bottom-24 right-5 z-40 hidden md:block">
-            <a
-              href={whatsappHref}
-              className="group flex h-14 items-center gap-0 rounded-full border border-borderblue bg-white/82 p-2 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] backdrop-blur transition hover:-translate-y-0.5 hover:border-navy hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
-              aria-label={t.home.floating.whatsappLabel}
-              onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_desktop" })}
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-medical text-white">
-                <MessageCircle aria-hidden="true" className="h-5 w-5" />
-              </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-28 group-hover:px-3 group-hover:opacity-100">
-                {t.home.floating.whatsappLabel}
-              </span>
-            </a>
-          </div>
         </>
       )}
+
+      <div className="fixed bottom-5 left-5 z-40 hidden md:block">
+        <button
+          type="button"
+          onClick={(event) => openAssistant("floating_desktop", event.currentTarget)}
+          className="group flex h-14 items-center gap-2 rounded-full border border-borderblue bg-white p-2 pr-5 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] transition hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-[0_24px_70px_rgba(6,27,51,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+          aria-label={t.home.floating.assistantLabel}
+        >
+          <span className="grid h-10 w-10 place-items-center rounded-full bg-navy text-white">
+            <Bot aria-hidden="true" className="h-5 w-5" />
+          </span>
+          <span className="whitespace-nowrap text-sm font-semibold">
+            {t.home.floating.assistantLabel}
+          </span>
+        </button>
+      </div>
+
+      <div className="fixed bottom-5 right-5 z-40 hidden md:block">
+        <a
+          href={whatsappHref}
+          className="group flex h-14 items-center gap-2 rounded-full border border-borderblue bg-white p-2 pr-5 text-navy shadow-[0_18px_54px_rgba(6,27,51,0.12)] transition hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-[0_24px_70px_rgba(6,27,51,0.16)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan"
+          aria-label={t.home.floating.whatsappLabel}
+          onClick={() => trackEvent("whatsapp_click", { path: location.pathname, source: "floating_desktop" })}
+        >
+          <span className="grid h-10 w-10 place-items-center rounded-full bg-medical text-white">
+            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+          </span>
+          <span className="whitespace-nowrap text-sm font-semibold">
+            {t.home.floating.whatsappLabel}
+          </span>
+        </a>
+      </div>
 
       {assistantOpen && (
         <Suspense fallback={null}>
